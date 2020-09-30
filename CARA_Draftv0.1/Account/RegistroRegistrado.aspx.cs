@@ -84,7 +84,7 @@ namespace CARA_Draftv0._1.Account
 
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
-            string password = "Alexie@2020";
+            string password = GeneratePassword();
                 //GeneratePassword();
 
             var user = new ApplicationUser()
@@ -118,11 +118,11 @@ namespace CARA_Draftv0._1.Account
                             dsCARA.SPC_CENTROS_A_REGISTRADO(Usuario.Id, user.Id);
                         }
 
-                        url = "~/Account/adminRegistrado.aspx";
+                        url = "Account/adminRegistrado.aspx";
                     }
                     else
                     {
-                        url = "~/Account/adminAdministrador.aspx";
+                        url = "Account/adminAdministrador.aspx";
                     }
 
                     mensaje = "El registro del usuario fué correcto. Se envió un email de confirmación al nuevo usuario.";

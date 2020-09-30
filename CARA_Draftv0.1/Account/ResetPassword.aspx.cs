@@ -27,7 +27,7 @@ namespace CARA_Draftv0._1.Account
                 var user = manager.FindByName(Email.Text);
                 if (user == null)
                 {
-                    ErrorMessage.Text = "No user found";
+                    ErrorMessage.Text = "No se encontró un usuario";
                     return;
                 }
                 var result = manager.ResetPassword(user.Id, code, Password.Text);
@@ -35,6 +35,35 @@ namespace CARA_Draftv0._1.Account
                 {
                     Response.Redirect("~/Account/ResetPasswordConfirmation");
                     return;
+                }
+                ErrorMessage.Text = result.Errors.FirstOrDefault();
+                return;
+            }
+            else if (Session["Usuario"] != null)
+            {
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+
+                var user = manager.FindByName(Email.Text);
+                if (user == null)
+                {
+                    ErrorMessage.Text = "No se encontró un usuario";
+                    return;
+                }
+                code = manager.GeneratePasswordResetToken(user.Id);
+                var result = manager.ResetPassword(user.Id, code, Password.Text);
+
+                if (result.Succeeded)
+                {
+                    if (!user.PasswordChanged)
+                    {
+                        user.PasswordChanged = true;
+                        var update = manager.Update(user);
+                        if (update.Succeeded)
+                        {
+                            Response.Redirect("~/Account/ResetPasswordConfirmation");
+                            return;
+                        }
+                    }
                 }
                 ErrorMessage.Text = result.Errors.FirstOrDefault();
                 return;

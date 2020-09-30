@@ -107,5 +107,7 @@
           <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
       </div>
     <asp:Button runat="server" OnClick="LogIn" Text="Acceder" CssClass="btn btn-lg btn-primary btn-block" />
-  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
+    &nbsp;&nbsp;
+                      <asp:Button runat="server" ID="ResendConfirm"  OnClick="SendEmailConfirmationToken" Text="Reenviar Confirmación" Visible="false" CssClass="btn btn-default"/>  
+  <p class="mt-5 mb-3 text-muted">&copy; ASSMCA</p>
 </asp:Content>

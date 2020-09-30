@@ -1,13 +1,15 @@
-﻿<%@ Page Title="Reset Password" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="CARA_Draftv0._1.Account.ResetPassword" Async="true" %>
+﻿<%@ Page Title="Actualizar Contraseña" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="ResetPassword.aspx.cs" Inherits="CARA_Draftv0._1.Account.ResetPassword" Async="true" %>
 
-<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+<asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1">
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+
     <h2><%: Title %>.</h2>
     <p class="text-danger">
         <asp:Literal runat="server" ID="ErrorMessage" />
     </p>
 
     <div class="form-horizontal">
-        <h4>Enter your new password</h4>
+        <h4>Ingrese su nueva contraseña</h4>
         <hr />
         <asp:ValidationSummary runat="server" CssClass="text-danger" />
         <div class="form-group">
@@ -42,4 +44,6 @@
             </div>
         </div>
     </div>
+
+    </main>
 </asp:Content>

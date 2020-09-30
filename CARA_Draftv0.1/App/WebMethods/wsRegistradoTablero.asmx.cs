@@ -91,7 +91,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
                     // data.totalReferidosCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).GroupBy(a => a.DE_FuenteReferido).Count().ToString();
 
-                    data.totalReferidosCara = dashCara.Select(x => x.PK_FuenteReferido).Count().ToString();
+                    data.totalReferidosCara = dashCara.Where(a => a.DE_FuenteReferido.Equals("Programa FR-CARA")).Select(x => x.PK_FuenteReferido).Count().ToString();
 
                     data.totalMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 

@@ -157,12 +157,13 @@
     }
 
     function sweetAlertRef(titulo, texto, icono, ref) {
+        var baseUrl = "<%=ResolveClientUrl("~/")%>" + ref;
 
         swal({
             title: titulo,
             text: texto,
             icon: icono
-        }).then((value) => { window.location.href = ref; });
+        }).then((value) => { window.location.href = baseUrl; });
     }
 
     function sweetAlert(titulo, texto, icono) {

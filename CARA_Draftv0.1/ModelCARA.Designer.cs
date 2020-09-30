@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Alexi\source\repos\CARA_Draftv0.1\CARA_Draftv0.1\ModelCARA.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\Alexi\Source\Repos\AlexieFalu-SC\CARA_0.1_NET6.1\CARA_Draftv0.1\ModelCARA.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
