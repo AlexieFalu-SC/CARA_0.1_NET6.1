@@ -1,0 +1,148 @@
+﻿
+.SEPSLabel {
+    font-weight: bold;
+    float: left;
+    padding-right: 5px;
+}
+.SEPSLabelConsulta {
+    font-weight: bold;
+    float: left;
+    padding-right: 5px;
+}
+.consultaDivDdlContiene {
+    float: left;
+    padding-right: 5px;
+    width: 120px;
+}
+.rightFloatAsterisk {
+    float: right;
+    padding-left: 5px;
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+}
+.expandibleDiv {
+    overflow: hidden;
+}
+.SEPSDivs {
+    min-height: 40px;
+}
+
+.SEPSDivsInfo {
+    min-height: 30px;
+}
+.card {
+    margin-bottom: 5px;
+}
+
+.card-body {
+    padding: 15px;
+}
+
+.card-header {
+    padding: 10px;
+}
+div.card {
+    /*border: 1px solid rgb(255, 216, 0);*/
+    page-break-inside: avoid;
+}
+
+.col-sm-1 {
+    width: 8%;
+    float: left;
+}
+
+.col-print-2 {
+    width: 16%;
+    float: left;
+}
+
+.col-print-3 {
+    width: 25%;
+    float: left;
+}
+
+.col-print-4 {
+    width: 33%;
+    float: left;
+}
+
+.col-print-5 {
+    width: 42%;
+    float: left;
+}
+
+.col-print-6 {
+    width: 50%;
+    float: left;
+}
+
+.col-print-7 {
+    width: 58%;
+    float: left;
+}
+
+.col-print-8 {
+    width: 66%;
+    float: left;
+}
+
+.col-print-9 {
+    width: 75%;
+    float: left;
+}
+
+.col-print-10 {
+    width: 83%;
+    float: left;
+}
+
+.col-print-11 {
+    width: 92%;
+    float: left;
+}
+
+.col-print-12 {
+    width: 100%;
+    float: left;
+}
+
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set widths on the form inputs since otherwise they're 100% wide */
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="tel"],
+input[type="select"] {
+    max-width: 280px;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .jumbotron {
+        margin-top: 20px;
+    }
+    .body-content {
+        padding: 0;
+    }
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3aa41ea3bd5a4401a6512766fe813c9b" Name="Diagram1" ZoomLevel="91">
+        <EntityTypeShape EntityType="Model.CA_CENTRO" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_CONDICION_LABORAL" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_CONDICIONES_FISICAS" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_DSMV" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_EMBARAZADA" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_EPISODIOS_PREVIO" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_ESCOLARIDAD" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_ESTADO_MARITAL" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_ESTADO_SERVICIO" Width="1.5" PointX="4.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_ESTUDIOS" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_FRECUENCIA_APOYO" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_FRECUENCIA_SUSTANCIA" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_FUENTE_INGRESO" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_FUENTE_REFERIDO" Width="1.5" PointX="8.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_FUERZA_LABORAL" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_GENERO" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_GRUPO_ETNICO" Width="1.5" PointX="6.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_ICDX" Width="1.5" PointX="8.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_MENORES_CUSTODIA" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_NIVEL_SUSTANCIA" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_RAZA" Width="1.5" PointX="10.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_RESIDENCIA" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_SEGURO_SALUD" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_SUSTANCIA" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_VETERANO" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_LKP_VIA_SUSTANCIA" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.CA_EPISODIO" Width="1.5" PointX="13.75" PointY="15.125" />
+        <AssociationConnector Association="Model.FK_EPISODIO_CENTRO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_EPISODIOS_PREVIOS" />
+        <AssociationConnector Association="Model.FK_EPISODIO_ESTADO_SERVICIO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_FUENTE_REFERIDO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA" />
+        <EntityTypeShape EntityType="Model.CA_USUARIO_CENTRO" Width="1.5" PointX="3" PointY="16.375" />
+        <AssociationConnector Association="Model.FK_USUARIO_CENTRO_CENTRO" />
+        <EntityTypeShape EntityType="Model.CA_PACIENTE" Width="1.5" PointX="13" PointY="8.25" />
+        <AssociationConnector Association="Model.FK_PACIENTE_CENTRO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
+        <AssociationConnector Association="Model.FK_PACIENTE_GENERO" />
+        <AssociationConnector Association="Model.FK_PACIENTE_GRUPO_ETNICO" />
+        <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_USO" Width="1.5" PointX="7.375" PointY="14.375" />
+        <EntityTypeShape EntityType="Model.CA_PERFIL" Width="1.5" PointX="16" PointY="0.75" />
+        <AssociationConnector Association="Model.FK_PERFIL_EPISODIO" />
+        <AssociationConnector Association="Model.FK_PERFIL_CONDICION_LABORAL" />
+        <AssociationConnector Association="Model.FK_PERFIL_CONDICION_CUARTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_CONDICION_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_CONDICION_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_CONDICION_TERCIARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DSMV_CUARTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DSMV_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DSMV_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DSMV_TERCIARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_EMBARAZADA" />
+        <AssociationConnector Association="Model.FK_PERFIL_ESCOLARIDAD" />
+        <AssociationConnector Association="Model.FK_PERFIL_ESTADO_MARITAL" />
+        <AssociationConnector Association="Model.FK_PERFIL_ESTUDIOS" />
+        <AssociationConnector Association="Model.FK_PERFIL_GRUPO_APOYO" />
+        <AssociationConnector Association="Model.FK_PERFIL_FRECUENCIA_CUARTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_FRECUENCIA_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_FRECUENCIA_QUINTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_FRECUENCIA_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_FRECUENCIA_TERCIARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_FUENTE_INGRESO" />
+        <AssociationConnector Association="Model.FK_PERFIL_NOFUERZA_LABORAL" />
+        <AssociationConnector Association="Model.FK_PERFIL_GENERO" />
+        <AssociationConnector Association="Model.FK_PERFIL_ICDX_CUARTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_ICDX_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_ICDX_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_ICDX_TERCIARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_MENORES_CUSTODIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_RESIDENCIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_SEGURO_SALUD" />
+        <AssociationConnector Association="Model.FK_PERFIL_DROGA_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DROGA_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_DROGA_TERCIARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_SOBREDOSIS_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_SOBREDOSIS_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_VETERANO" />
+        <AssociationConnector Association="Model.FK_PERFIL_VIA_CUARTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_VIA_PRIMARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_VIA_QUINTA" />
+        <AssociationConnector Association="Model.FK_PERFIL_VIA_SECUNDARIA" />
+        <AssociationConnector Association="Model.FK_PERFIL_VIA_TERCIARIA" />
+        <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="9.375" PointY="14.375" />
+        <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" Width="1.5" PointX="5.375" PointY="17.75" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PERFILES" Width="1.5" PointX="18.375" PointY="1.125" />
+        <EntityTypeShape EntityType="Model.CA_USUARIO" Width="1.5" PointX="7.375" PointY="19.125" />
+        <AssociationConnector Association="Model.FK_USUARIO_CENTRO_USUARIO" />
+        <EntityTypeShape EntityType="Model.VW_USUARIOS_ADMINISTRADORES" Width="1.5" PointX="9.375" PointY="18.75" />
+        <EntityTypeShape EntityType="Model.VW_CENTROS_ADMINISTRADORES" Width="1.5" PointX="18.375" PointY="16.25" />
+        <EntityTypeShape EntityType="Model.VW_ROLES_ADMINISTRADORES" Width="1.5" PointX="11.375" PointY="12.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
