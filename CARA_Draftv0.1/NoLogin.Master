@@ -1,0 +1,110 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="NoLogin.master.cs" Inherits="CARA_Draftv0._1.NoLogin" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title></title>
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:ContentPlaceHolder>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/caraForms/UIFlujo.js") %>"></script>
+   
+     <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <link href="<%=ResolveClientUrl("~/Content/account/sidenav.css")%>" type="text/css" rel="stylesheet" />
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Path="~/Scripts/umd/popper.min.js" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        
+        <%--Start Navbar--%>
+        <nav class="navbar navbar-expand-md col-lg-10 ml-auto navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #DCA61E;">
+          <%--<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<%=ResolveClientUrl("~/App/DashboardRegistrado")%>">ASSMCA</a>--%> <%--<img class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" width="60" height="60"/>--%>
+          <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <%--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">--%>
+            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                   <%-- <a href="#" id="dropdown03" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Mi Cuenta"><asp:Label ID="lblNombre" Text="" runat="server" /></a>
+                    <div class="dropdown-menu" aria-labelledby="dropdown03">
+                      <div class="dropdown-divider"></div>
+                      <asp:LoginStatus runat="server" class="dropdown-item" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                    </div>--%>
+                </li>
+            
+               
+              </ul>
+          </div>
+        </nav>
+        <%--End Navbar--%>
+
+
+        <div class="container-fluid">
+            <div class="row">
+
+                <%--Start Sidebar--%>
+                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse d-print-none">
+                    <a class="col-md-8 offset-md-2" href="#">
+                        <div class="text-center">
+                            <img src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" alt="" width="120" height="100">
+                        </div>
+                          
+                       </a>
+                  <div class="sidebar-sticky pt-3">
+                    
+
+                  </div>
+                </nav>
+                <%--End Sidebar--%>
+
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+
+            </div>
+        </div>
+    </form>
+
+</body>
+</html>

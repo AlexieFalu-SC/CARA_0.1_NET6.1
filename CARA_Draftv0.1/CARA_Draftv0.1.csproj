@@ -791,6 +791,7 @@
     <Content Include="ModelCARA.edmx.diagram">
       <DependentUpon>ModelCARA.edmx</DependentUpon>
     </Content>
+    <Content Include="NoLogin.Master" />
     <None Include="Scripts\jquery-3.5.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.5.1.js" />
     <Content Include="Scripts\jquery-3.5.1.min.js" />
@@ -1292,6 +1293,13 @@
       <DependentUpon>ModelCARA.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="NoLogin.Master.cs">
+      <DependentUpon>NoLogin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NoLogin.Master.designer.cs">
+      <DependentUpon>NoLogin.Master</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

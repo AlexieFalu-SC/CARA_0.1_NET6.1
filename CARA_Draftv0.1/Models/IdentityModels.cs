@@ -97,13 +97,13 @@ namespace CARA_Draftv0._1
 
         public static string GetResetPasswordRedirectUrl(string code, HttpRequest request)
         {
-            var absoluteUri = "/Account/ResetPassword?" + CodeKey + "=" + HttpUtility.UrlEncode(code);
+            var absoluteUri = "/CARA_Prueba/Account/ResetPassword?" + CodeKey + "=" + HttpUtility.UrlEncode(code);
             return new Uri(request.Url, absoluteUri).AbsoluteUri.ToString();
         }
 
         public static string GetUserConfirmationRedirectUrl(string code, string userId, HttpRequest request)
         {
-            var absoluteUri = "/Account/Confirm?" + CodeKey + "=" + HttpUtility.UrlEncode(code) + "&" + UserIdKey + "=" + HttpUtility.UrlEncode(userId);
+            var absoluteUri = "/CARA_Prueba/Account/Confirm?" + CodeKey + "=" + HttpUtility.UrlEncode(code) + "&" + UserIdKey + "=" + HttpUtility.UrlEncode(userId);
             return new Uri(request.Url, absoluteUri).AbsoluteUri.ToString();
         }
 

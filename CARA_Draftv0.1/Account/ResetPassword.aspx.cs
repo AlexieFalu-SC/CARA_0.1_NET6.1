@@ -69,7 +69,7 @@ namespace CARA_Draftv0._1.Account
                 return;
             }
 
-            ErrorMessage.Text = "An error has occurred";
+            ErrorMessage.Text = "Ocurrió un error";
         }
     }
 }

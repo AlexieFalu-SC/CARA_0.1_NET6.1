@@ -42,7 +42,7 @@ namespace CARA_Draftv0._1.Account
 
                 if(user != null)
                 {
-                    if (user.Active == true)
+                    if (user.Active == false)
                     {
                         FailureText.Text = "Su cuenta se encuentra desactivada. Favor de comunicarse con equipo de informática.";
                         ErrorMessage.Visible = true;
@@ -73,6 +73,7 @@ namespace CARA_Draftv0._1.Account
                                     }
                                     else
                                     {
+                                        Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                                         Response.Redirect("~/Account/ResetPassword");
                                     }
 

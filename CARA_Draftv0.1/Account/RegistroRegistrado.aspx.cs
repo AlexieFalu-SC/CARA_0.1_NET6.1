@@ -99,7 +99,8 @@ namespace CARA_Draftv0._1.Account
                 Tel_Trabajo = txtTel.Text,
                 PasswordChanged = false,
                 Active = true,
-                EmailConfirmed = false
+                EmailConfirmed = false,
+                LockoutEnabled = false
             };
             IdentityResult result = manager.Create(user, password);
             if (result.Succeeded)
@@ -118,11 +119,11 @@ namespace CARA_Draftv0._1.Account
                             dsCARA.SPC_CENTROS_A_REGISTRADO(Usuario.Id, user.Id);
                         }
 
-                        url = "Account/adminRegistrado.aspx";
+                        url = "App/Administracion/adminRegistrado.aspx";
                     }
                     else
                     {
-                        url = "Account/adminAdministrador.aspx";
+                        url = "App/Administracion/adminAdministrador.aspx";
                     }
 
                     mensaje = "El registro del usuario fué correcto. Se envió un email de confirmación al nuevo usuario.";

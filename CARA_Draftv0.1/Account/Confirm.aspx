@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Confirme su Cuenta CARA" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="Confirm.aspx.cs" Inherits="CARA_Draftv0._1.Account.Confirm" Async="true" %>
+﻿<%@ Page Title="Confirme su Cuenta CARA" Language="C#" MasterPageFile="~/NoLogin.Master" AutoEventWireup="true" CodeBehind="Confirm.aspx.cs" Inherits="CARA_Draftv0._1.Account.Confirm" Async="true" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="ContentPlaceHolder1">
     <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">

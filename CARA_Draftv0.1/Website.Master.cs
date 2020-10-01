@@ -30,39 +30,41 @@ namespace CARA_Draftv0._1
 
                 this.lblNombre.Text = Usuario.NB_Primero + " " + Usuario.AP_Primero;
 
-                if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro"))
+                if(Usuario.PasswordChanged && Usuario.EmailConfirmed)
                 {
-                    divRegistroPerfiles.Visible = true;
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro"))
+                    {
+                        divRegistroPerfiles.Visible = true;
+                    }
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro"))
+                    {
+                        divExpedientes.Visible = true;
+                    }
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin"))
+                    {
+                        divFacilidadesAdmin.Visible = true;
+                    }
+                    if (userManager.IsInRole(Usuario.Id, "Registrado"))
+                    {
+                        divFacilidades.Visible = true;
+                    }
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "AdminCARA") || userManager.IsInRole(Usuario.Id, "AdminPlanificacion") || userManager.IsInRole(Usuario.Id, "AdminObservatorio"))
+                    {
+                        divAnaliticaAdmin.Visible = true;
+                    }
+                    if (userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador Estadistico"))
+                    {
+                        divAnaliticaRegistrado.Visible = true;
+                    }
                 }
-                if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro"))
-                {
-                    divExpedientes.Visible = true;
-                }
-                if (userManager.IsInRole(Usuario.Id, "SuperAdmin"))
-                {
-                    divFacilidadesAdmin.Visible = true;
-                }
-                if (userManager.IsInRole(Usuario.Id, "Registrado"))
-                {
-                    divFacilidades.Visible = true;
-                }
-                if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "AdminCARA") || userManager.IsInRole(Usuario.Id, "AdminPlanificacion") || userManager.IsInRole(Usuario.Id, "AdminObservatorio"))
-                {
-                    divAnaliticaAdmin.Visible = true;
-                }
-                if (userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador Estadistico"))
-                {
-                    divAnaliticaRegistrado.Visible = true;
-                }
+                
             }
-
-            
-
 
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            Session["Usuario"] = null;
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
     }

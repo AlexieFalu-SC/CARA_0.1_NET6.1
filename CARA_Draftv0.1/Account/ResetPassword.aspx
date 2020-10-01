@@ -17,30 +17,30 @@
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                    CssClass="text-danger" ErrorMessage="The email field is required." />
+                    CssClass="text-danger" ErrorMessage="El email es requerido." />
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Password</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="Password" CssClass="col-md-2 control-label">Contraseña</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="Password" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                    CssClass="text-danger" ErrorMessage="The password field is required." />
+                    CssClass="text-danger" ErrorMessage="La contraseña es requerida." />
             </div>
         </div>
         <div class="form-group">
-            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Confirm password</asp:Label>
+            <asp:Label runat="server" AssociatedControlID="ConfirmPassword" CssClass="col-md-2 control-label">Confirme contraseña</asp:Label>
             <div class="col-md-10">
                 <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" CssClass="form-control" />
                 <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The confirm password field is required." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="La confirmación de contraseña es requerida." />
                 <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                    CssClass="text-danger" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
+                    CssClass="text-danger" Display="Dynamic" ErrorMessage="Las contraseñas no son iguales." />
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <asp:Button runat="server" OnClick="Reset_Click" Text="Reset" CssClass="btn btn-default" />
+                <asp:Button runat="server" OnClick="Reset_Click" Text="Actualizar" CssClass="btn btn-outline-secondary" />
             </div>
         </div>
     </div>
