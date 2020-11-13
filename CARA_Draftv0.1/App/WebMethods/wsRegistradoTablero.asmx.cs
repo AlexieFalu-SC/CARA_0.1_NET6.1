@@ -101,7 +101,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
                     data.perFemenino = generosPer.Where(a => a.DE_Genero.Equals("Femenino")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.edadPromedio = dashCara.Select(x => x.Edad).Average().ToString();
+                    data.edadPromedio = Math.Round(Convert.ToDouble(dashCara.Select(x => x.Edad).Average())).ToString();
 
                     return data;
                 }

@@ -37,12 +37,14 @@
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvViaPrimaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Via Primaria" ControlToValidate="ddlViaPrimaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlViaPrimaria"></asp:DropDownList>
                         <asp:Label ID="lblViaPrimaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvFrecuenciaPrimaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Frecuencia Primaria" ControlToValidate="ddlFrecuenciaPrimaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlFrecuenciaPrimaria"></asp:DropDownList>
                         <asp:Label ID="lblFrecuenciaPrimaria" runat="server" />
@@ -228,6 +230,7 @@
             </tr>
             <tr>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvSobredosis" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Sobredosis Primaria" ControlToValidate="ddlSobredosis" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlSobredosis"  onChange="ddlSobredosisF();">
                             <asp:ListItem Value="0" Text="" />
@@ -284,18 +287,21 @@
             <tr>
                 <th><span class="SEPSLabel">1.</span></th>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvICDXPrimaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="ICDX Primaria" ControlToValidate="ddlICDXPrimaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlICDXPrimaria"></asp:DropDownList>
                         <asp:Label ID="lblICDXPrimaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvDSMVPrimaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="DSMV Primaria" ControlToValidate="ddlDSMVPrimaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlDSMVPrimaria"></asp:DropDownList>
                         <asp:Label ID="lblDSMVPrimaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvCondicionPrimaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Condicion Primaria" ControlToValidate="ddlCondicionPrimaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCondicionPrimaria"></asp:DropDownList>
                         <asp:Label ID="lblCondicionPrimaria" runat="server" />
@@ -305,18 +311,21 @@
             <tr>
                 <th><span class="SEPSLabel">2.</span></th>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvICDXSecundaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="ICDX Secundaria" ControlToValidate="ddlICDXSecundaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlICDXSecundaria"></asp:DropDownList>
                         <asp:Label ID="lblICDXSecundaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvDSMVSecundaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="DSMV Secundaria" ControlToValidate="ddlDSMVSecundaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlDSMVSecundaria"></asp:DropDownList>
                         <asp:Label ID="lblDSMVSecundaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvCondicionSecundaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Condicion Secundaria" ControlToValidate="ddlCondicionSecundaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCondicionSecundaria"></asp:DropDownList>
                         <asp:Label ID="lblCondicionSecundaria" runat="server" />
@@ -326,18 +335,21 @@
             <tr>
                 <th><span class="SEPSLabel">3.</span></th>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvICDXTerciaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="ICDX Terciaria" ControlToValidate="ddlICDXTerciaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlICDXTerciaria"></asp:DropDownList>
                         <asp:Label ID="lblICDXTerciaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvDSMVTerciaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="DSMV Terciaria" ControlToValidate="ddlDSMVTerciaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlDSMVTerciaria"></asp:DropDownList>
                         <asp:Label ID="lblDSMVTerciaria" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvCondicionTerciaria" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Condicion Terciaria" ControlToValidate="ddlCondicionTerciaria" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCondicionTerciaria"></asp:DropDownList>
                         <asp:Label ID="lblCondicionTerciaria" runat="server" />
@@ -347,18 +359,21 @@
             <tr>
                 <th><span class="SEPSLabel">4.</span></th>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvICDXCuarta" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="ICDX Cuarta" ControlToValidate="ddlICDXCuarta" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlICDXCuarta"></asp:DropDownList>
                         <asp:Label ID="lblICDXCuarta" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvDSMVCuarta" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="DSMV Cuarta" ControlToValidate="ddlDSMVCuarta" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlDSMVCuarta"></asp:DropDownList>
                         <asp:Label ID="lblDSMVCuarta" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvCondicionCuarta" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Condicion Cuarta" ControlToValidate="ddlCondicionCuarta" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlCondicionCuarta"></asp:DropDownList>
                         <asp:Label ID="lblCondicionCuarta" runat="server" />
@@ -380,12 +395,14 @@
             <tr>
                 <th></th>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvNivelSustancia" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Nivel Sustancia" ControlToValidate="ddlNivelSustancia" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlNivelSustancia"></asp:DropDownList>
                         <asp:Label ID="lblNivelSustancia" runat="server" />
                     </div>
                 </td>
                 <td>
+                    <asp:RequiredFieldValidator ID="rfvSeguroSalud" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Seguro Salud" ControlToValidate="ddlSeguroSalud" InitialValue="0" Text="*"/>
                     <div class="expandibleDiv">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlSeguroSalud"></asp:DropDownList>
                         <asp:Label ID="lblSeguroSalud" runat="server" />

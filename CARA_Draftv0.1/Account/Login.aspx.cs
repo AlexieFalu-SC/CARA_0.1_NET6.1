@@ -103,6 +103,11 @@ namespace CARA_Draftv0._1.Account
                         }
                     }
                 }
+                else
+                {
+                    FailureText.Text = "No existe una cuenta con el email ingresado. Favor utilizar email de cuenta existente.";
+                    ErrorMessage.Visible = true;
+                }
 
             }
         }

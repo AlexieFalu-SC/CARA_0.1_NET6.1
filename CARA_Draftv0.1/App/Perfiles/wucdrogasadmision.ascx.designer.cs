@@ -69,6 +69,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblToxicologiaPrimaria;
 
         /// <summary>
+        /// rfvViaPrimaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvViaPrimaria;
+
+        /// <summary>
         /// ddlViaPrimaria control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblViaPrimaria;
+
+        /// <summary>
+        /// rfvFrecuenciaPrimaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvFrecuenciaPrimaria;
 
         /// <summary>
         /// ddlFrecuenciaPrimaria control.
@@ -528,6 +546,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblEdadQuinta;
 
         /// <summary>
+        /// rfvSobredosis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSobredosis;
+
+        /// <summary>
         /// ddlSobredosis control.
         /// </summary>
         /// <remarks>
@@ -618,6 +645,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblSobredosisCuarta;
 
         /// <summary>
+        /// rfvICDXPrimaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvICDXPrimaria;
+
+        /// <summary>
         /// ddlICDXPrimaria control.
         /// </summary>
         /// <remarks>
@@ -634,6 +670,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblICDXPrimaria;
+
+        /// <summary>
+        /// rfvDSMVPrimaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDSMVPrimaria;
 
         /// <summary>
         /// ddlDSMVPrimaria control.
@@ -654,6 +699,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblDSMVPrimaria;
 
         /// <summary>
+        /// rfvCondicionPrimaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCondicionPrimaria;
+
+        /// <summary>
         /// ddlCondicionPrimaria control.
         /// </summary>
         /// <remarks>
@@ -670,6 +724,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCondicionPrimaria;
+
+        /// <summary>
+        /// rfvICDXSecundaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvICDXSecundaria;
 
         /// <summary>
         /// ddlICDXSecundaria control.
@@ -690,6 +753,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblICDXSecundaria;
 
         /// <summary>
+        /// rfvDSMVSecundaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDSMVSecundaria;
+
+        /// <summary>
         /// ddlDSMVSecundaria control.
         /// </summary>
         /// <remarks>
@@ -706,6 +778,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDSMVSecundaria;
+
+        /// <summary>
+        /// rfvCondicionSecundaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCondicionSecundaria;
 
         /// <summary>
         /// ddlCondicionSecundaria control.
@@ -726,6 +807,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblCondicionSecundaria;
 
         /// <summary>
+        /// rfvICDXTerciaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvICDXTerciaria;
+
+        /// <summary>
         /// ddlICDXTerciaria control.
         /// </summary>
         /// <remarks>
@@ -742,6 +832,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblICDXTerciaria;
+
+        /// <summary>
+        /// rfvDSMVTerciaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDSMVTerciaria;
 
         /// <summary>
         /// ddlDSMVTerciaria control.
@@ -762,6 +861,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblDSMVTerciaria;
 
         /// <summary>
+        /// rfvCondicionTerciaria control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCondicionTerciaria;
+
+        /// <summary>
         /// ddlCondicionTerciaria control.
         /// </summary>
         /// <remarks>
@@ -778,6 +886,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblCondicionTerciaria;
+
+        /// <summary>
+        /// rfvICDXCuarta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvICDXCuarta;
 
         /// <summary>
         /// ddlICDXCuarta control.
@@ -798,6 +915,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblICDXCuarta;
 
         /// <summary>
+        /// rfvDSMVCuarta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDSMVCuarta;
+
+        /// <summary>
         /// ddlDSMVCuarta control.
         /// </summary>
         /// <remarks>
@@ -814,6 +940,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblDSMVCuarta;
+
+        /// <summary>
+        /// rfvCondicionCuarta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvCondicionCuarta;
 
         /// <summary>
         /// ddlCondicionCuarta control.
@@ -834,6 +969,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblCondicionCuarta;
 
         /// <summary>
+        /// rfvNivelSustancia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvNivelSustancia;
+
+        /// <summary>
         /// ddlNivelSustancia control.
         /// </summary>
         /// <remarks>
@@ -850,6 +994,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblNivelSustancia;
+
+        /// <summary>
+        /// rfvSeguroSalud control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvSeguroSalud;
 
         /// <summary>
         /// ddlSeguroSalud control.

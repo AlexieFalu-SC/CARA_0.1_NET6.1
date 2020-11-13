@@ -25,6 +25,9 @@
                 <li class="nav-item" role="presentation">
                 <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">PERFILES</a>
                 </li>
+                <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">SSRS</a>
+                </li>
             </ul>
       </div>
 
@@ -320,7 +323,9 @@
                         </div>
                     </div>
 
+                    <div class="tab-pane fade" id="ssrs" role="tabpanel" aria-labelledby="plan-tab">
 
+                    </div>
 
 
                 </div>
