@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="AnaliticaAdministradores.aspx.cs" Inherits="CARA_Draftv0._1.App.AnaliticaAdministradores" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -324,7 +325,18 @@
                     </div>
 
                     <div class="tab-pane fade" id="ssrs" role="tabpanel" aria-labelledby="plan-tab">
-
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Perfiles</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                            <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
+                                        </div>
+                                    </div>
+                            </div>
                     </div>
 
 
