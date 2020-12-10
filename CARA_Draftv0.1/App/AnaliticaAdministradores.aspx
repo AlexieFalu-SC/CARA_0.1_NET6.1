@@ -333,7 +333,7 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
+                                          <%--  <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>--%>
                                         </div>
                                     </div>
                             </div>
@@ -346,57 +346,12 @@
 </div>
 
 </main>
-
-
-
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css" />
 
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
-    
     <script type="text/javascript">
         var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
         var generos = [], niveles = [], centros = [], centroPerfiles = [];
         var perfiles_data, perfiles_desde, perfiles_hasta;
-
-        $(function () {
-            $(<%=lbxNivelSustancia.ClientID%>).multiselect({
-                includeSelectAllOption: true,
-                enableCaseInsensitiveFiltering: true,
-                buttonClass: 'form-control',
-                buttonWidth: '190px'
-            });
-            $(<%=lbxNivelSustancia.ClientID%>).multiselect('selectAll', false);
-            $(<%=lbxNivelSustancia.ClientID%>).multiselect('updateButtonText');
-
-            $(<%=lbxCentro.ClientID%>).multiselect({
-                includeSelectAllOption: true,
-                enableCaseInsensitiveFiltering: true,
-                buttonClass: 'form-control',
-                buttonWidth: '190px'
-            });
-            $(<%=lbxCentro.ClientID%>).multiselect('selectAll', false);
-            $(<%=lbxCentro.ClientID%>).multiselect('updateButtonText');
-
-            $(<%=lbxGenero.ClientID%>).multiselect({
-                includeSelectAllOption: true,
-                enableCaseInsensitiveFiltering: true,
-                buttonClass: 'form-control',
-                buttonWidth: '170px'
-            });
-            $(<%=lbxGenero.ClientID%>).multiselect('selectAll', false);
-            $(<%=lbxGenero.ClientID%>).multiselect('updateButtonText');
-
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect({
-                includeSelectAllOption: true,
-                enableCaseInsensitiveFiltering: true,
-                buttonClass: 'form-control',
-                buttonWidth: '190px'
-            });
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect('selectAll', false);
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect('updateButtonText');
-
-        });
 
         google.charts.load('current', { 'packages': ['line', 'bar', 'corechart', 'controls', 'table'] });
        
