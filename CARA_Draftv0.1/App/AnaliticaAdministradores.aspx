@@ -90,7 +90,7 @@
 
                             <div class="row">
 
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-2 col-md-6 mb-4">
                                   <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                       <div class="row no-gutters align-items-center">
@@ -106,7 +106,7 @@
                                   </div>
                                 </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-4 col-md-6 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row">
@@ -120,45 +120,78 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-4 col-md-6 mb-4">
                                   <div class="card border-left-info shadow h-100 py-2">
                                     <div class="card-body">
                                       <div class="row no-gutters align-items-center">
                                         <div class="col">
                                           <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">Género</div>
-                                          <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                              <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">Masculino</div>
+                                            <div class="row">
+                                                <div class="col-md-7">
+                                                    <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                          <div class="h7 mb-0 mr-3 font-weight-bold text-gray-800">Masculino</div>
+                                                        </div>
+                                                        <div class="col">
+                                                          <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-info" role="progressbar" id="perMasculino" aria-valuemin="0" aria-valuemax="100"></div>
+                                                          </div>
+                                                        </div>
+                                                          <div class="col">
+                                                              <div class="font-weight-bold" id="totalMasculino"></div>
+                                                          </div>
+                                                      </div>
+                                                      <div class="row no-gutters align-items-center">
+                                                        <div class="col-auto">
+                                                          <div class="h7 mb-0 mr-3 font-weight-bold text-gray-800">Femenino</div>
+                                                        </div>
+                                                        <div class="col">
+                                                          <div class="progress progress-sm mr-2">
+                                                            <div class="progress-bar bg-info" role="progressbar" id="perFemenino" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                          </div>
+                                                        </div>
+                                                          <div class="col">
+                                                              <div class="font-weight-bold" id="totalFemenino"></div>
+                                                          </div>
+                                                      </div>
+                                                </div>
+                                                <div class="col-md-5">
+                                                    <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                      <div class="h7 mb-0 mr-1 font-weight-bold text-gray-800">F -> M</div>
+                                                    </div>
+                                                    <div class="col">
+                                                      <div class="progress progress-sm mr-1">
+                                                        <div class="progress-bar bg-info" role="progressbar" id="perFM" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                      </div>
+                                                    </div>
+                                                      <div class="col">
+                                                          <div class="font-weight-bold" id="totalFM">0</div>
+                                                      </div>
+                                                  </div>
+                                                    <div class="row no-gutters align-items-center">
+                                                    <div class="col-auto">
+                                                      <div class="h7 mb-0 mr-1 font-weight-bold text-gray-800">M -> F</div>
+                                                    </div>
+                                                    <div class="col">
+                                                      <div class="progress progress-sm mr-1">
+                                                        <div class="progress-bar bg-info" role="progressbar" id="perMF" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                                                      </div>
+                                                    </div>
+                                                      <div class="col">
+                                                          <div class="font-weight-bold" id="totalMF">0</div>
+                                                      </div>
+                                                  </div>
+                                                </div>
                                             </div>
-                                            <div class="col">
-                                              <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar" id="perMasculino" aria-valuemin="0" aria-valuemax="100"></div>
-                                              </div>
-                                            </div>
-                                              <div class="col">
-                                                  <div class="font-weight-bold" id="totalMasculino"></div>
-                                              </div>
-                                          </div>
-                                            <div class="row no-gutters align-items-center">
-                                            <div class="col-auto">
-                                              <div class="h6 mb-0 mr-3 font-weight-bold text-gray-800">Femenino</div>
-                                            </div>
-                                            <div class="col">
-                                              <div class="progress progress-sm mr-2">
-                                                <div class="progress-bar bg-info" role="progressbar" id="perFemenino" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                              </div>
-                                            </div>
-                                              <div class="col">
-                                                  <div class="font-weight-bold" id="totalFemenino"></div>
-                                              </div>
-                                          </div>
                                         </div>
+
                                       </div>
                                     </div>
                                   </div>
                                 </div>
 
-                                <div class="col-xl-3 col-md-6 mb-4">
+                                <div class="col-xl-2 col-md-6 mb-4">
                                     <div class="card border-left-info shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row">
@@ -349,7 +382,7 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     <script type="text/javascript">
-        var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
+        var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtTotalFM, dtPerFM, dtTotalMF, dtPerFM, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
         var generos = [], niveles = [], centros = [], centroPerfiles = [];
         var perfiles_data, perfiles_desde, perfiles_hasta;
 
@@ -407,6 +440,10 @@
                     dtTotalFemenino = mydata.totalFemenino;
                     dtPerMasculino = mydata.perMasculino;
                     dtPerFemenino = mydata.perFemenino;
+                    dtTotalFM = mydata.totalFM;
+                    dtTotalFM = mydata.totalFM;
+                    dtPerMF = mydata.perMF;
+                    dtPerMF = mydata.perMF;
                     dtEdadPromedio = mydata.edadPromedio;
                 },
                 error: function () {
@@ -417,10 +454,14 @@
                 $("#totalReferidosCara").html(dtTotalReferidosCara);
                 $("#totalMasculino").html(dtTotalMasculino);
                 $("#totalFemenino").html(dtTotalFemenino);
+                $("#totalFM").html(dtTotalFM);
+                $("#totalMF").html(dtTotalMF);
                 $("#edadPromedioCara").html(dtEdadPromedio);
 
                 document.getElementById('perMasculino').setAttribute("style", "width:" + dtPerMasculino + "%");
                 document.getElementById('perFemenino').setAttribute("style", "width:" + dtPerFemenino + "%");
+                document.getElementById('perFM').setAttribute("style", "width:" + dtPerFM + "%");
+                document.getElementById('perMF').setAttribute("style", "width:" + dtPerMF + "%");
             });
         }
 
@@ -632,7 +673,8 @@
                         0: { side: 'top', label: 'Perfiles' } // Top x-axis.
                     }
                 },
-                bar: { groupWidth: "90%" }
+                bar: { groupWidth: "90%" },
+                sort: 'enable'
 
             };
             var referido_chart = new google.charts.Bar(document.getElementById("referido_chart"));
