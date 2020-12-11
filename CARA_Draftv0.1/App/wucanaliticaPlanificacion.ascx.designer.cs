@@ -11,7 +11,7 @@ namespace CARA_Draftv0._1.App
 {
 
 
-    public partial class AnaliticaAdministradores
+    public partial class wucanaliticaPlanificacion
     {
 
         /// <summary>
@@ -58,41 +58,5 @@ namespace CARA_Draftv0._1.App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lbxNivelSustancia;
-
-        /// <summary>
-        /// wucanaliticaPlanificacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CARA_Draftv0._1.App.wucanaliticaPlanificacion wucanaliticaPlanificacion;
-
-        /// <summary>
-        /// txtPerfilesDesde control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPerfilesDesde;
-
-        /// <summary>
-        /// txtPerfilesHasta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPerfilesHasta;
-
-        /// <summary>
-        /// lbxCentroPerfiles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbxCentroPerfiles;
     }
 }

@@ -217,7 +217,9 @@
     <Content Include="App\Perfiles\wucdatospersonales.ascx" />
     <Content Include="App\Perfiles\wucdrogasadmision.ascx" />
     <Content Include="App\Perfiles\wucperfiladmision.ascx" />
+    <Content Include="App\WebMethods\wsPlanificacionTablero.asmx" />
     <Content Include="App\WebMethods\wsRegistradoTablero.asmx" />
+    <Content Include="App\wucanaliticaPlanificacion.ascx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\account\login.css" />
     <Content Include="Content\account\sidenav.css" />
@@ -1160,8 +1162,18 @@
     <Compile Include="App\Perfiles\wucperfiladmision.ascx.designer.cs">
       <DependentUpon>wucperfiladmision.ascx</DependentUpon>
     </Compile>
+    <Compile Include="App\WebMethods\wsPlanificacionTablero.asmx.cs">
+      <DependentUpon>wsPlanificacionTablero.asmx</DependentUpon>
+    </Compile>
     <Compile Include="App\WebMethods\wsRegistradoTablero.asmx.cs">
       <DependentUpon>wsRegistradoTablero.asmx</DependentUpon>
+    </Compile>
+    <Compile Include="App\wucanaliticaPlanificacion.ascx.cs">
+      <DependentUpon>wucanaliticaPlanificacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\wucanaliticaPlanificacion.ascx.designer.cs">
+      <DependentUpon>wucanaliticaPlanificacion.ascx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

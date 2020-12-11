@@ -1,5 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="AnaliticaAdministradores.aspx.cs" Inherits="CARA_Draftv0._1.App.AnaliticaAdministradores" %>
 <%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
+
+<%@ Register Src="~/App/wucanaliticaPlanificacion.ascx" TagPrefix="uc1" TagName="wucanaliticaPlanificacion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -298,7 +301,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="plan" role="tabpanel" aria-labelledby="plan-tab">
-
+                        <uc1:wucanaliticaPlanificacion runat="server" id="wucanaliticaPlanificacion" />
                     </div>
 
                     <div class="tab-pane fade" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
