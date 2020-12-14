@@ -44,7 +44,6 @@
         <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
         <AssociationConnector Association="Model.FK_PACIENTE_GENERO" />
         <AssociationConnector Association="Model.FK_PACIENTE_GRUPO_ETNICO" />
-        <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_USO" Width="1.5" PointX="7.375" PointY="14.375" />
         <EntityTypeShape EntityType="Model.CA_PERFIL" Width="1.5" PointX="16" PointY="0.75" />
         <AssociationConnector Association="Model.FK_PERFIL_EPISODIO" />
         <AssociationConnector Association="Model.FK_PERFIL_CONDICION_LABORAL" />
@@ -95,6 +94,7 @@
         <EntityTypeShape EntityType="Model.VW_USUARIOS_ADMINISTRADORES" Width="1.5" PointX="9.375" PointY="18.75" />
         <EntityTypeShape EntityType="Model.VW_CENTROS_ADMINISTRADORES" Width="1.5" PointX="18.375" PointY="16.25" />
         <EntityTypeShape EntityType="Model.VW_ROLES_ADMINISTRADORES" Width="1.5" PointX="11.375" PointY="12.75" />
+        <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_USO" Width="1.5" PointX="5.375" PointY="13.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

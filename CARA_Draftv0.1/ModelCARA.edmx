@@ -388,12 +388,14 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_DROGAS_SOBREDOSIS' does n
 warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_DROGAS_USO' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_DSH_CARA_DROGAS_USO">
           <Key>
+            <PropertyRef Name="IN_Toxicologia" />
             <PropertyRef Name="FE_Perfil" />
             <PropertyRef Name="FK_Genero" />
             <PropertyRef Name="FK_NivelSustancia" />
             <PropertyRef Name="FK_Centro" />
           </Key>
           <Property Name="DE_Sustancia" Type="varchar" MaxLength="300" />
+          <Property Name="IN_Toxicologia" Type="bit" Nullable="false" />
           <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
           <Property Name="FK_Genero" Type="int" Nullable="false" />
           <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
@@ -1483,6 +1485,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Self.VW_DSH_CARA_DROGAS_USO" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VW_DSH_CARA_DROGAS_USO].[DE_Sustancia] AS [DE_Sustancia], 
+    [VW_DSH_CARA_DROGAS_USO].[IN_Toxicologia] AS [IN_Toxicologia], 
     [VW_DSH_CARA_DROGAS_USO].[FE_Perfil] AS [FE_Perfil], 
     [VW_DSH_CARA_DROGAS_USO].[FK_Genero] AS [FK_Genero], 
     [VW_DSH_CARA_DROGAS_USO].[FK_NivelSustancia] AS [FK_NivelSustancia], 
@@ -2222,7 +2225,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="FK_NivelSustancia" Mode="In" Type="Int32" />
             <Parameter Name="NR_DiasEspera" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Model.VW_DSH_CARA_DROGAS_USO" />
           <EntitySet Name="CA_PERFIL" EntityType="Model.CA_PERFIL" />
           <AssociationSet Name="FK_PERFIL_EPISODIO" Association="Model.FK_PERFIL_EPISODIO">
             <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
@@ -2534,6 +2536,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="ID_Proveedor" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Model.VW_DSH_CARA_DROGAS_USO" />
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -2757,19 +2760,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Type="DateTime" Name="FE_Episodio" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="NR_Perfiles" Nullable="true" />
         </ComplexType>
-        <EntityType Name="VW_DSH_CARA_DROGAS_USO">
-          <Key>
-            <PropertyRef Name="FE_Perfil" />
-            <PropertyRef Name="FK_Genero" />
-            <PropertyRef Name="FK_NivelSustancia" />
-            <PropertyRef Name="FK_Centro" />
-          </Key>
-          <Property Name="DE_Sustancia" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
-          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
-          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
-        </EntityType>
         <EntityType Name="CA_PERFIL">
           <Key>
             <PropertyRef Name="PK_Perfil" />
@@ -3625,6 +3615,21 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="PK_Roles" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="Cantidad" Type="Int32" />
         </EntityType>
+        <EntityType Name="VW_DSH_CARA_DROGAS_USO">
+          <Key>
+            <PropertyRef Name="IN_Toxicologia" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="DE_Sustancia" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_Toxicologia" Type="Boolean" Nullable="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4002,17 +4007,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPU_EPISODIO" FunctionName="Model.Store.SPU_EPISODIO" />
-          <EntitySetMapping Name="VW_DSH_CARA_DROGAS_USO">
-            <EntityTypeMapping TypeName="Model.VW_DSH_CARA_DROGAS_USO">
-              <MappingFragment StoreEntitySet="VW_DSH_CARA_DROGAS_USO">
-                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
-                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
-                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="DE_Sustancia" ColumnName="DE_Sustancia" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CA_PERFIL">
             <EntityTypeMapping TypeName="Model.CA_PERFIL">
               <MappingFragment StoreEntitySet="CA_PERFIL">
@@ -4250,6 +4244,18 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_CENTRO" FunctionName="Model.Store.SPC_CENTRO" />
+          <EntitySetMapping Name="VW_DSH_CARA_DROGAS_USO">
+            <EntityTypeMapping TypeName="Model.VW_DSH_CARA_DROGAS_USO">
+              <MappingFragment StoreEntitySet="VW_DSH_CARA_DROGAS_USO">
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="IN_Toxicologia" ColumnName="IN_Toxicologia" />
+                <ScalarProperty Name="DE_Sustancia" ColumnName="DE_Sustancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

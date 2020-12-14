@@ -382,7 +382,7 @@
 </div>
 
 </main>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <%--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--%>
 
     <script type="text/javascript">
         var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtTotalFM, dtPerFM, dtTotalMF, dtPerFM, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;

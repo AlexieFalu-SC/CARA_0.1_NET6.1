@@ -15,6 +15,7 @@ namespace CARA_Draftv0._1
     public partial class VW_DSH_CARA_DROGAS_USO
     {
         public string DE_Sustancia { get; set; }
+        public bool IN_Toxicologia { get; set; }
         public System.DateTime FE_Perfil { get; set; }
         public int FK_Genero { get; set; }
         public int FK_NivelSustancia { get; set; }

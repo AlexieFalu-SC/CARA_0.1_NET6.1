@@ -9,9 +9,9 @@
                 </div>
                 <div class="row">
                     <span class="list-item">Desde</span>
-                    <asp:textbox runat="server" ID="txtFechaDesde" CssClass="form-control" TextMode="Date" onChange="changeFecha();"/>
+                    <asp:textbox runat="server" ID="txtFechaDesde" CssClass="form-control" TextMode="Date" onChange="changeFilter();"/>
                     <span class="list-item">Hasta</span>
-                    <asp:textbox runat="server" ID="txtFechaHasta" CssClass="form-control" TextMode="Date" onChange="changeFecha();"/>
+                    <asp:textbox runat="server" ID="txtFechaHasta" CssClass="form-control" TextMode="Date" onChange="changeFilter();"/>
                 </div>
                           
             </li>
@@ -20,7 +20,7 @@
                     <h6 class="list-item">Centro de Servicio</h6>
                 </div>
                 <div class="row">
-                    <asp:ListBox runat="server" ID="lbxCentro" SelectionMode="Multiple" onChange="changeFecha();" CssClass="form-control">
+                    <asp:ListBox runat="server" ID="lbxCentro" SelectionMode="Multiple" onChange="changeFilter();" CssClass="form-control">
                 </asp:ListBox>
                 </div>
             </li>
@@ -29,7 +29,7 @@
                     <h6 class="list-item">Género</h6>
                 </div>
                 <div class="row">
-                    <asp:ListBox runat="server" ID="lbxGenero" SelectionMode="Multiple" CssClass="form-control" onChange="changeFecha();"></asp:ListBox>
+                    <asp:ListBox runat="server" ID="lbxGenero" SelectionMode="Multiple" CssClass="form-control" onChange="changeFilter();"></asp:ListBox>
                 </div>
             </li>
             <li class="list-group-item">
@@ -37,7 +37,7 @@
                     <h6 class="list-item">Nivel de Cuidado</h6>
                 </div>
                 <div class="row">
-                    <asp:ListBox ID="lbxNivelSustancia" runat="server" SelectionMode="Multiple" onChange="changeFecha();" CssClass="form-control"></asp:ListBox>
+                    <asp:ListBox ID="lbxNivelSustancia" runat="server" SelectionMode="Multiple" onChange="changeFilter();" CssClass="form-control"></asp:ListBox>
                 </div>
             </li>
         </ul>
@@ -171,7 +171,7 @@
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <div id="nivelCuidado_div" style="height: 250px"></div>
+                        <div id="drogasuso_chart" style="height: 250px"></div>
                     </div>
                 </div>
                 </div>
@@ -182,3 +182,151 @@
         </div>
 
 </div>
+
+
+<script type="text/javascript">
+    var plnDesde, plnHasta, plnAjax_data, plnTotalVia, plnTotalToxicologia, plnTotalCentros, plnTotalAdmisiones, plnDrogasUso;
+    var plnGeneros = [], plnNiveles = [], plnCentros = [];
+
+   
+
+    $(document).ready(function () {
+        plnDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
+        plnHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
+
+        plnlistGenero();
+
+        plnlistNivelCuidado();
+
+        plnlistCentro();
+
+        plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + '}'
+
+        wsplnTotales();
+
+        wsplnDrogasUso();
+    });
+
+    function changeFilter() {
+        plnDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
+        plnHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
+
+        plnlistGenero();
+
+        plnlistNivelCuidado();
+
+        plnlistCentro();
+
+        plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + '}'
+
+        wsplnTotales();
+
+        wsplnDrogasUso();
+    }
+
+    function wsplnTotales() {
+
+        $.ajax({
+            url: "WebMethods/wsPlanificacionTablero.asmx/dashTotales",
+            data: plnAjax_data,
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                var mydata = data.d;
+                plnTotalToxicologia = mydata.totalToxicologia;
+                plnTotalCentros = mydata.totalCentros;
+                plnTotalAdmisiones = mydata.totalAdmisiones;
+            },
+            error: function () {
+                alert("Error");
+            }
+        }).done(function () {
+            $("#totalToxicologia").html(plnTotalToxicologia);
+            $("#totalCentros").html(plnTotalCentros);
+            $("#totalAdmisiones").html(plnTotalAdmisiones);
+        });
+
+
+    }
+
+    function wsplnDrogasUso() {
+        $.ajax({
+            url: "WebMethods/wsPlanificacionTablero.asmx/dashDrogasUso",
+            data: plnAjax_data,
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                plnDrogasUso = data.d;
+            },
+            error: function () {
+                alert("Error");
+            }
+        }).done(function () {
+            google.charts.setOnLoadCallback(plnChartDrogasUso);
+        });
+    }
+
+    function plnChartDrogasUso() {
+
+        var data = new google.visualization.arrayToDataTable(plnDrogasUso);
+        var options = {
+            title: 'Drogas de Uso',
+            bars: 'horizontal',
+            legend: { position: "none" },
+            chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
+            axes: {
+                x: {
+                    0: { side: 'top', label: 'Cantidad' } // Top x-axis.
+                }
+            },
+            bar: { groupWidth: "90%" },
+            sort: 'enable'
+
+        };
+        var drogas_chart = new google.charts.Bar(document.getElementById('drogasuso_chart'));
+        drogas_chart.draw(data, options);
+    };
+
+    function plnlistGenero() {
+        plnGeneros = [];
+        var plnlistGenero = document.getElementById("<%=lbxGenero.ClientID%>");
+
+        var a = 0;
+        for (var i = 0; i < plnlistGenero.options.length; i++) {
+            if (plnlistGenero.options[i].selected == true) {
+                plnGeneros[a] = { pk_genero: plnlistGenero.options[i].value };
+                a++;
+            }
+        }
+    }
+
+    function plnlistNivelCuidado() {
+        plnNiveles = [];
+        var plnlistNiveles = document.getElementById("<%=lbxNivelSustancia.ClientID%>");
+
+        var a = 0;
+        for (var i = 0; i < plnlistNiveles.options.length; i++) {
+            if (plnlistNiveles.options[i].selected == true) {
+                plnNiveles[a] = { pk_nivel: plnlistNiveles.options[i].value };
+                a++;
+            }
+        }
+    }
+
+    function plnlistCentro() {
+        plnCentros = [];
+        var plnlistCentros = document.getElementById("<%=lbxCentro.ClientID%>");
+
+        var a = 0;
+        for (var i = 0; i < plnlistCentros.options.length; i++) {
+            if (plnlistCentros.options[i].selected == true) {
+                plnCentros[a] = { pk_centro: plnlistCentros.options[i].value };
+                a++;
+            }
+        }
+    }
+</script>
+
+
