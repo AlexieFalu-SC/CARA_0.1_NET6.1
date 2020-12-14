@@ -65,6 +65,10 @@ namespace CARA_Draftv0._1
         public virtual DbSet<VW_CENTROS_ADMINISTRADORES> VW_CENTROS_ADMINISTRADORES { get; set; }
         public virtual DbSet<VW_ROLES_ADMINISTRADORES> VW_ROLES_ADMINISTRADORES { get; set; }
         public virtual DbSet<VW_DSH_CARA_DROGAS_USO> VW_DSH_CARA_DROGAS_USO { get; set; }
+        public virtual DbSet<VW_DSH_PLN_CondicionesFisicas> VW_DSH_PLN_CondicionesFisicas { get; set; }
+        public virtual DbSet<VW_DSH_PLN_DSMV> VW_DSH_PLN_DSMV { get; set; }
+        public virtual DbSet<VW_DSH_PLN_ICDX> VW_DSH_PLN_ICDX { get; set; }
+        public virtual DbSet<VW_DSH_PLN_ViaSustancia> VW_DSH_PLN_ViaSustancia { get; set; }
     
         public virtual int SPC_EPISODIO(Nullable<int> fK_Paciente, Nullable<int> fK_Centro, Nullable<System.DateTime> fE_Episodio, Nullable<System.DateTime> fE_Alta, Nullable<int> fK_EstadoServicio, Nullable<int> fK_FuenteReferido, Nullable<int> fK_EpisodiosPrevios, Nullable<int> fK_NivelSustancia, Nullable<int> nR_DiasEspera, ObjectParameter pK_Episodio)
         {

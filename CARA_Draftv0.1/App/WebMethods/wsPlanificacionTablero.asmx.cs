@@ -11,6 +11,7 @@ namespace CARA_Draftv0._1.App.WebMethods
         public string totalToxicologia;
         public string totalCentros;
         public string totalAdmisiones;
+        public string viaUso;
     }
 
     /// <summary>
@@ -67,6 +68,11 @@ namespace CARA_Draftv0._1.App.WebMethods
                     data.totalCentros = totalCentros.ToString();
                     data.totalAdmisiones = totalAdmisiones.ToString();
 
+
+                    var viaUso = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(1);
+
+                    data.viaUso = viaUso.Select(a => a.DE_ViaSustancia).FirstOrDefault();
+
                     return data;
                 }
             }
@@ -105,7 +111,7 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() });
+                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]
@@ -118,6 +124,159 @@ namespace CARA_Draftv0._1.App.WebMethods
                     {
                         j++;
                         charData[j] = new object[] { item.DE_Sustancia, item.Perfiles };
+                    }
+
+                    return charData;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public object[] dashICDX(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        {
+            try
+            {
+                List<int> listGenero = new List<int>();
+                List<int> listNiveles = new List<int>();
+                List<int> listCentros = new List<int>();
+
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    foreach (dashCaraGenero item in gen)
+                    {
+                        listGenero.Add(item.pk_genero);
+                    }
+                    foreach (dashCaraNivel item in Niveles)
+                    {
+                        listNiveles.Add(item.pk_nivel);
+                    }
+
+                    foreach (dashCaraCentro item in Centros)
+                    {
+                        listCentros.Add(item.pk_centro);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_PLN_ICDX.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ICDX.Equals("No Aplica")).GroupBy(a => a.DE_ICDX).Select(x => new { DE_ICDX = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
+
+                    var charData = new object[dashCara.Count() + 1];
+                    charData[0] = new object[]
+                        {
+                        "ICDX","Cantidad"
+                        };
+
+                    int j = 0;
+                    foreach (var item in dashCara)
+                    {
+                        j++;
+                        charData[j] = new object[] { item.DE_ICDX, item.Perfiles };
+                    }
+
+                    return charData;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public object[] dashDSMV(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        {
+            try
+            {
+                List<int> listGenero = new List<int>();
+                List<int> listNiveles = new List<int>();
+                List<int> listCentros = new List<int>();
+
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    foreach (dashCaraGenero item in gen)
+                    {
+                        listGenero.Add(item.pk_genero);
+                    }
+                    foreach (dashCaraNivel item in Niveles)
+                    {
+                        listNiveles.Add(item.pk_nivel);
+                    }
+
+                    foreach (dashCaraCentro item in Centros)
+                    {
+                        listCentros.Add(item.pk_centro);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_PLN_DSMV.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_DSMV.Equals("No Aplica")).GroupBy(a => a.DE_DSMV).Select(x => new { DE_DSMV = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
+
+                    var charData = new object[dashCara.Count() + 1];
+                    charData[0] = new object[]
+                        {
+                        "DSMV","Cantidad"
+                        };
+
+                    int j = 0;
+                    foreach (var item in dashCara)
+                    {
+                        j++;
+                        charData[j] = new object[] { item.DE_DSMV, item.Perfiles };
+                    }
+
+                    return charData;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        [WebMethod]
+        //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public object[] dashCondicionesFisicas(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        {
+            try
+            {
+                List<int> listGenero = new List<int>();
+                List<int> listNiveles = new List<int>();
+                List<int> listCentros = new List<int>();
+
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    foreach (dashCaraGenero item in gen)
+                    {
+                        listGenero.Add(item.pk_genero);
+                    }
+                    foreach (dashCaraNivel item in Niveles)
+                    {
+                        listNiveles.Add(item.pk_nivel);
+                    }
+
+                    foreach (dashCaraCentro item in Centros)
+                    {
+                        listCentros.Add(item.pk_centro);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_PLN_CondicionesFisicas.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_CondicionesFisicas.Equals("Ningún diagnóstico")).GroupBy(a => a.DE_CondicionesFisicas).Select(x => new { DE_CondicionesFisicas = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
+
+                    var charData = new object[dashCara.Count() + 1];
+                    charData[0] = new object[]
+                        {
+                        "Condiciones Fisicas","Cantidad"
+                        };
+
+                    int j = 0;
+                    foreach (var item in dashCara)
+                    {
+                        j++;
+                        charData[j] = new object[] { item.DE_CondicionesFisicas, item.Perfiles };
                     }
 
                     return charData;

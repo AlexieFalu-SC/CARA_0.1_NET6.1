@@ -51,7 +51,7 @@
                     <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">Vía de Uso (más utilizada)</div>
-                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align:center" id="viaUsada"></div>
+                        <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align:center" id="viaUso"></div>
                     </div>
                     <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -114,7 +114,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">DIAGNOSTICOS ICD 10 (Top 10)</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">DIAGNOSTICOS ICD 10 (Top 5)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -130,7 +130,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">DIAGNOSTICOS DSMV (Top 10)</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">DIAGNOSTICOS DSMV (Top 5)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -150,12 +150,12 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">CONDICIONES SALUD FÍSICAS</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">CONDICIONES SALUD FÍSICAS (Top 5)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
                     <div class="chart-area">
-                        <div id="saludfisicas_chart" style="height: 250px"></div>
+                        <div id="condicionesfisicas_chart" style="height: 250px"></div>
                     </div>
                 </div>
                 </div>
@@ -166,7 +166,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">DROGAS DE USO (Confirmadas Toxicología)</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">DROGAS DE USO (Confirmadas Toxicología) (Top 5)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -185,26 +185,39 @@
 
 
 <script type="text/javascript">
-    var plnDesde, plnHasta, plnAjax_data, plnTotalVia, plnTotalToxicologia, plnTotalCentros, plnTotalAdmisiones, plnDrogasUso;
+    var plnDesde, plnHasta, plnAjax_data, plnTotalVia, plnTotalToxicologia, plnTotalCentros, plnTotalAdmisiones, plnDrogasUso, plnICDX, plnDSMV, plnCondicionesFisicas;
     var plnGeneros = [], plnNiveles = [], plnCentros = [];
 
-   
+
+    
 
     $(document).ready(function () {
-        plnDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
-        plnHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
+        
 
-        plnlistGenero();
+        setTimeout(function () {
+            plnDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
+            plnHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
 
-        plnlistNivelCuidado();
+            plnlistGenero();
 
-        plnlistCentro();
+            plnlistNivelCuidado();
 
-        plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + '}'
+            plnlistCentro();
 
-        wsplnTotales();
+            plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + '}'
 
-        wsplnDrogasUso();
+            wsplnTotales();
+
+            wsplnDrogasUso();
+
+            wsplnICDX();
+
+            wsplnDSMV();
+
+            wsplnCondicionesFisicas();
+           
+        }, 1500);
+        
     });
 
     function changeFilter() {
@@ -222,6 +235,12 @@
         wsplnTotales();
 
         wsplnDrogasUso();
+
+        wsplnICDX();
+
+        wsplnDSMV();
+
+        wsplnCondicionesFisicas();
     }
 
     function wsplnTotales() {
@@ -237,6 +256,7 @@
                 plnTotalToxicologia = mydata.totalToxicologia;
                 plnTotalCentros = mydata.totalCentros;
                 plnTotalAdmisiones = mydata.totalAdmisiones;
+                plnTotalVia = mydata.viaUso;
             },
             error: function () {
                 alert("Error");
@@ -245,6 +265,7 @@
             $("#totalToxicologia").html(plnTotalToxicologia);
             $("#totalCentros").html(plnTotalCentros);
             $("#totalAdmisiones").html(plnTotalAdmisiones);
+            $("#viaUso").html(plnTotalVia);
         });
 
 
@@ -268,6 +289,60 @@
         });
     }
 
+    function wsplnICDX() {
+        $.ajax({
+            url: "WebMethods/wsPlanificacionTablero.asmx/dashICDX",
+            data: plnAjax_data,
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                plnICDX = data.d;
+            },
+            error: function () {
+                alert("Error");
+            }
+        }).done(function () {
+            google.charts.setOnLoadCallback(plnChartICDX);
+        });
+    }
+
+    function wsplnDSMV() {
+        $.ajax({
+            url: "WebMethods/wsPlanificacionTablero.asmx/dashDSMV",
+            data: plnAjax_data,
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                plnDSMV = data.d;
+            },
+            error: function () {
+                alert("Error");
+            }
+        }).done(function () {
+            google.charts.setOnLoadCallback(plnChartDSMV);
+        });
+    }
+
+    function wsplnCondicionesFisicas() {
+        $.ajax({
+            url: "WebMethods/wsPlanificacionTablero.asmx/dashCondicionesFisicas",
+            data: plnAjax_data,
+            dataType: "json",
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                plnCondicionesFisicas = data.d;
+            },
+            error: function () {
+                alert("Error");
+            }
+        }).done(function () {
+            google.charts.setOnLoadCallback(plnChartCondicionesFisicas);
+        });
+    }
+
     function plnChartDrogasUso() {
 
         var data = new google.visualization.arrayToDataTable(plnDrogasUso);
@@ -287,6 +362,69 @@
         };
         var drogas_chart = new google.charts.Bar(document.getElementById('drogasuso_chart'));
         drogas_chart.draw(data, options);
+    };
+
+    function plnChartICDX() {
+
+        var data = new google.visualization.arrayToDataTable(plnICDX);
+        var options = {
+            title: 'ICDX',
+            bars: 'horizontal',
+            legend: { position: "none" },
+            chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
+            axes: {
+                x: {
+                    0: { side: 'top', label: 'Cantidad' } // Top x-axis.
+                }
+            },
+            bar: { groupWidth: "90%" },
+            sort: 'enable'
+
+        };
+        var icdx_chart = new google.charts.Bar(document.getElementById('icdx_chart'));
+        icdx_chart.draw(data, options);
+    };
+
+    function plnChartDSMV() {
+
+        var data = new google.visualization.arrayToDataTable(plnDSMV);
+        var options = {
+            title: 'DSMV',
+            bars: 'horizontal',
+            legend: { position: "none" },
+            chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
+            axes: {
+                x: {
+                    0: { side: 'top', label: 'Cantidad' } // Top x-axis.
+                }
+            },
+            bar: { groupWidth: "90%" },
+            sort: 'enable'
+
+        };
+        var dsmv_chart = new google.charts.Bar(document.getElementById('dsmv_chart'));
+        dsmv_chart.draw(data, options);
+    };
+
+    function plnChartCondicionesFisicas() {
+
+        var data = new google.visualization.arrayToDataTable(plnCondicionesFisicas);
+        var options = {
+            title: 'Condiciones Fisicas',
+            bars: 'horizontal',
+            legend: { position: "none" },
+            chartArea: { left: 0, top: 0, width: '100%', height: '100%' },
+            axes: {
+                x: {
+                    0: { side: 'top', label: 'Cantidad' } // Top x-axis.
+                }
+            },
+            bar: { groupWidth: "90%" },
+            sort: 'enable'
+
+        };
+        var condicionesfisicas_chart = new google.charts.Bar(document.getElementById('condicionesfisicas_chart'));
+        condicionesfisicas_chart.draw(data, options);
     };
 
     function plnlistGenero() {

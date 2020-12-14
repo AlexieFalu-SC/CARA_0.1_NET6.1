@@ -566,6 +566,86 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PERFILES' does not have a prim
           <Property Name="Seguro Salud" Type="varchar" MaxLength="60" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_CondicionesFisicas' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DSH_PLN_CondicionesFisicas">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_CondicionesFisicas" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_CondicionesFisicas" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="int" Nullable="false" />
+          <Property Name="DE_CondicionesFisicas" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
+          <Property Name="FK_Genero" Type="int" Nullable="false" />
+          <Property Name="FK_CondicionesFisicas" Type="int" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
+          <Property Name="FK_Centro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_DSMV' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DSH_PLN_DSMV">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_DSMV" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_DSMV" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="int" Nullable="false" />
+          <Property Name="DE_DSMV" Type="varchar" MaxLength="322" Nullable="false" />
+          <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
+          <Property Name="FK_Genero" Type="int" Nullable="false" />
+          <Property Name="FK_DSMV" Type="int" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
+          <Property Name="FK_Centro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_ICDX' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DSH_PLN_ICDX">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_ICDX" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_ICDX" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="int" Nullable="false" />
+          <Property Name="DE_ICDX" Type="varchar" MaxLength="321" Nullable="false" />
+          <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
+          <Property Name="FK_Genero" Type="int" Nullable="false" />
+          <Property Name="FK_ICDX" Type="int" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
+          <Property Name="FK_Centro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_ViaSustancia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DSH_PLN_ViaSustancia">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_ViaSustancia" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_ViaSustancia" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="int" Nullable="false" />
+          <Property Name="DE_ViaSustancia" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
+          <Property Name="FK_Genero" Type="int" Nullable="false" />
+          <Property Name="FK_ViaSustancia" Type="int" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
+          <Property Name="FK_Centro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'CARA_0.1.dbo.VW_ROLES_ADMINISTRADORES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VW_ROLES_ADMINISTRADORES">
           <Key>
@@ -1579,6 +1659,50 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
     [VW_DSH_PERFILES].[Seguro Salud] AS [Seguro Salud]
     FROM [dbo].[VW_DSH_PERFILES] AS [VW_DSH_PERFILES]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VW_DSH_PLN_CondicionesFisicas" EntityType="Self.VW_DSH_PLN_CondicionesFisicas" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DSH_PLN_CondicionesFisicas].[PK_Perfil] AS [PK_Perfil], 
+    [VW_DSH_PLN_CondicionesFisicas].[DE_CondicionesFisicas] AS [DE_CondicionesFisicas], 
+    [VW_DSH_PLN_CondicionesFisicas].[FE_Perfil] AS [FE_Perfil], 
+    [VW_DSH_PLN_CondicionesFisicas].[FK_Genero] AS [FK_Genero], 
+    [VW_DSH_PLN_CondicionesFisicas].[FK_CondicionesFisicas] AS [FK_CondicionesFisicas], 
+    [VW_DSH_PLN_CondicionesFisicas].[FK_NivelSustancia] AS [FK_NivelSustancia], 
+    [VW_DSH_PLN_CondicionesFisicas].[FK_Centro] AS [FK_Centro]
+    FROM [dbo].[VW_DSH_PLN_CondicionesFisicas] AS [VW_DSH_PLN_CondicionesFisicas]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DSH_PLN_DSMV" EntityType="Self.VW_DSH_PLN_DSMV" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DSH_PLN_DSMV].[PK_Perfil] AS [PK_Perfil], 
+    [VW_DSH_PLN_DSMV].[DE_DSMV] AS [DE_DSMV], 
+    [VW_DSH_PLN_DSMV].[FE_Perfil] AS [FE_Perfil], 
+    [VW_DSH_PLN_DSMV].[FK_Genero] AS [FK_Genero], 
+    [VW_DSH_PLN_DSMV].[FK_DSMV] AS [FK_DSMV], 
+    [VW_DSH_PLN_DSMV].[FK_NivelSustancia] AS [FK_NivelSustancia], 
+    [VW_DSH_PLN_DSMV].[FK_Centro] AS [FK_Centro]
+    FROM [dbo].[VW_DSH_PLN_DSMV] AS [VW_DSH_PLN_DSMV]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DSH_PLN_ICDX" EntityType="Self.VW_DSH_PLN_ICDX" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DSH_PLN_ICDX].[PK_Perfil] AS [PK_Perfil], 
+    [VW_DSH_PLN_ICDX].[DE_ICDX] AS [DE_ICDX], 
+    [VW_DSH_PLN_ICDX].[FE_Perfil] AS [FE_Perfil], 
+    [VW_DSH_PLN_ICDX].[FK_Genero] AS [FK_Genero], 
+    [VW_DSH_PLN_ICDX].[FK_ICDX] AS [FK_ICDX], 
+    [VW_DSH_PLN_ICDX].[FK_NivelSustancia] AS [FK_NivelSustancia], 
+    [VW_DSH_PLN_ICDX].[FK_Centro] AS [FK_Centro]
+    FROM [dbo].[VW_DSH_PLN_ICDX] AS [VW_DSH_PLN_ICDX]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DSH_PLN_ViaSustancia" EntityType="Self.VW_DSH_PLN_ViaSustancia" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DSH_PLN_ViaSustancia].[PK_Perfil] AS [PK_Perfil], 
+    [VW_DSH_PLN_ViaSustancia].[DE_ViaSustancia] AS [DE_ViaSustancia], 
+    [VW_DSH_PLN_ViaSustancia].[FE_Perfil] AS [FE_Perfil], 
+    [VW_DSH_PLN_ViaSustancia].[FK_Genero] AS [FK_Genero], 
+    [VW_DSH_PLN_ViaSustancia].[FK_ViaSustancia] AS [FK_ViaSustancia], 
+    [VW_DSH_PLN_ViaSustancia].[FK_NivelSustancia] AS [FK_NivelSustancia], 
+    [VW_DSH_PLN_ViaSustancia].[FK_Centro] AS [FK_Centro]
+    FROM [dbo].[VW_DSH_PLN_ViaSustancia] AS [VW_DSH_PLN_ViaSustancia]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VW_ROLES_ADMINISTRADORES" EntityType="Self.VW_ROLES_ADMINISTRADORES" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VW_ROLES_ADMINISTRADORES].[Nombre] AS [Nombre], 
@@ -2537,6 +2661,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="Email" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Model.VW_DSH_CARA_DROGAS_USO" />
+          <EntitySet Name="VW_DSH_PLN_CondicionesFisicas" EntityType="Model.VW_DSH_PLN_CondicionesFisicas" />
+          <EntitySet Name="VW_DSH_PLN_DSMV" EntityType="Model.VW_DSH_PLN_DSMV" />
+          <EntitySet Name="VW_DSH_PLN_ICDX" EntityType="Model.VW_DSH_PLN_ICDX" />
+          <EntitySet Name="VW_DSH_PLN_ViaSustancia" EntityType="Model.VW_DSH_PLN_ViaSustancia" />
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -3630,6 +3758,78 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
           <Property Name="FK_Centro" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="VW_DSH_PLN_CondicionesFisicas">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_CondicionesFisicas" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_CondicionesFisicas" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="DE_CondicionesFisicas" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="FK_CondicionesFisicas" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_DSH_PLN_DSMV">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_DSMV" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_DSMV" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="DE_DSMV" Type="String" Nullable="false" MaxLength="322" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="FK_DSMV" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_DSH_PLN_ICDX">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_ICDX" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_ICDX" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="DE_ICDX" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="FK_ICDX" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_DSH_PLN_ViaSustancia">
+          <Key>
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="DE_ViaSustancia" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="FK_ViaSustancia" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="FK_Centro" />
+          </Key>
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="DE_ViaSustancia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="FK_ViaSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4253,6 +4453,58 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
                 <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
                 <ScalarProperty Name="IN_Toxicologia" ColumnName="IN_Toxicologia" />
                 <ScalarProperty Name="DE_Sustancia" ColumnName="DE_Sustancia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_CondicionesFisicas">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_CondicionesFisicas">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_CondicionesFisicas">
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_CondicionesFisicas" ColumnName="FK_CondicionesFisicas" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_CondicionesFisicas" ColumnName="DE_CondicionesFisicas" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_DSMV">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_DSMV">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_DSMV">
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_DSMV" ColumnName="FK_DSMV" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_DSMV" ColumnName="DE_DSMV" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_ICDX">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ICDX">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_ICDX">
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_ICDX" ColumnName="FK_ICDX" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_ICDX" ColumnName="DE_ICDX" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_ViaSustancia">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ViaSustancia">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_ViaSustancia">
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_ViaSustancia" ColumnName="FK_ViaSustancia" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_ViaSustancia" ColumnName="DE_ViaSustancia" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -392,6 +392,8 @@
         google.charts.load('current', { 'packages': ['line', 'bar', 'corechart', 'controls', 'table'] });
        
         $(document).ready(function () {
+            setTimeout(function () {
+
             dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
             dtHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
 
@@ -423,6 +425,8 @@
             perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centrosPerfiles) + '}'
 
             wsPerfiles();
+
+            }, 1500);
 
         });
 

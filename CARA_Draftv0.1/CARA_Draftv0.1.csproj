@@ -1395,6 +1395,18 @@
     <Compile Include="VW_DSH_PERFILES.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_DSH_PLN_CondicionesFisicas.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_DSH_PLN_DSMV.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_DSH_PLN_ICDX.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_DSH_PLN_ViaSustancia.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_ROLES_ADMINISTRADORES.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>

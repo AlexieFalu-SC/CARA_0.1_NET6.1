@@ -95,6 +95,10 @@
         <EntityTypeShape EntityType="Model.VW_CENTROS_ADMINISTRADORES" Width="1.5" PointX="18.375" PointY="16.25" />
         <EntityTypeShape EntityType="Model.VW_ROLES_ADMINISTRADORES" Width="1.5" PointX="11.375" PointY="12.75" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_USO" Width="1.5" PointX="5.375" PointY="13.5" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PLN_CondicionesFisicas" Width="1.5" PointX="0.75" PointY="20.375" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PLN_DSMV" Width="1.5" PointX="2.75" PointY="20.375" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PLN_ICDX" Width="1.5" PointX="18.75" PointY="20.375" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PLN_ViaSustancia" Width="1.5" PointX="20.375" PointY="1.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
