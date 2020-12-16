@@ -65,6 +65,15 @@ namespace CARA_Draftv0._1.Account
                                 {
                                     ApplicationUser Usuario = context.Users.Where(u => u.Email.Equals(Email.Text, StringComparison.CurrentCultureIgnoreCase)).FirstOrDefault();
 
+                                    using (CARAEntities dsCARA = new CARAEntities())
+                                    {
+                                        System.Data.Entity.Core.Objects.ObjectParameter pk_Sesion_Output = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Sesion", typeof(string));
+
+                                        var spc_sesion = dsCARA.SPC_SESION(Usuario.Id, pk_Sesion_Output);
+
+                                        Session["PK_Sesion"] = pk_Sesion_Output.Value.ToString();
+                                    }
+
                                     Session["Usuario"] = Usuario;
 
                                     if (Usuario.PasswordChanged)
@@ -73,6 +82,8 @@ namespace CARA_Draftv0._1.Account
                                     }
                                     else
                                     {
+                                        Session["Usuario"] = null;
+                                        Session["PK_Sesion"] = null;
                                         Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
                                         Response.Redirect("~/Account/ResetPassword");
                                     }

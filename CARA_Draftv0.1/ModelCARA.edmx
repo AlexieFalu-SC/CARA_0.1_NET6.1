@@ -1306,6 +1306,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Parameter Name="ID_SLYC" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ID_Proveedor" Type="varchar" Mode="In" />
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
+          <Parameter Name="PK_Centro" Type="int" Mode="InOut" />
         </Function>
         <Function Name="SPC_CENTROS_A_REGISTRADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_Registrado" Type="nvarchar" Mode="In" />
@@ -1400,8 +1401,24 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Parameter Name="FK_Paciente" Type="int" Mode="In" />
           <Parameter Name="FK_Raza" Type="int" Mode="In" />
         </Function>
+        <Function Name="SPC_SESION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="PK_Sesion" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="SPC_SESION_ACTIVIDAD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Sesion" Type="nvarchar" Mode="In" />
+          <Parameter Name="CAT_Actividad" Type="nvarchar" Mode="In" />
+          <Parameter Name="TI_Actividad" Type="char" Mode="In" />
+          <Parameter Name="FK_Usuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Centro" Type="int" Mode="In" />
+          <Parameter Name="FK_Episodio" Type="int" Mode="In" />
+          <Parameter Name="FK_Perfil" Type="int" Mode="In" />
+        </Function>
         <Function Name="SPD_RAZA_PACIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_Paciente" Type="int" Mode="In" />
+        </Function>
+        <Function Name="SPD_SESION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Sesion" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SPR_EPISODIOS_PACIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PK_Paciente" Type="int" Mode="In" />
@@ -2654,17 +2671,34 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <EntitySet Name="VW_USUARIOS_ADMINISTRADORES" EntityType="Model.VW_USUARIOS_ADMINISTRADORES" />
           <EntitySet Name="VW_CENTROS_ADMINISTRADORES" EntityType="Model.VW_CENTROS_ADMINISTRADORES" />
           <EntitySet Name="VW_ROLES_ADMINISTRADORES" EntityType="Model.VW_ROLES_ADMINISTRADORES" />
-          <FunctionImport Name="SPC_CENTRO">
-            <Parameter Name="NB_Centro" Mode="In" Type="String" />
-            <Parameter Name="ID_SLYC" Mode="In" Type="Guid" />
-            <Parameter Name="ID_Proveedor" Mode="In" Type="String" />
-            <Parameter Name="Email" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Model.VW_DSH_CARA_DROGAS_USO" />
           <EntitySet Name="VW_DSH_PLN_CondicionesFisicas" EntityType="Model.VW_DSH_PLN_CondicionesFisicas" />
           <EntitySet Name="VW_DSH_PLN_DSMV" EntityType="Model.VW_DSH_PLN_DSMV" />
           <EntitySet Name="VW_DSH_PLN_ICDX" EntityType="Model.VW_DSH_PLN_ICDX" />
           <EntitySet Name="VW_DSH_PLN_ViaSustancia" EntityType="Model.VW_DSH_PLN_ViaSustancia" />
+          <FunctionImport Name="SPC_SESION">
+            <Parameter Name="FK_Usuario" Mode="In" Type="String" />
+            <Parameter Name="PK_Sesion" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPD_SESION">
+          <Parameter Name="PK_Sesion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SPC_SESION_ACTIVIDAD">
+            <Parameter Name="FK_Sesion" Mode="In" Type="String" />
+            <Parameter Name="CAT_Actividad" Mode="In" Type="String" />
+            <Parameter Name="TI_Actividad" Mode="In" Type="String" />
+            <Parameter Name="FK_Usuario" Mode="In" Type="String" />
+            <Parameter Name="FK_Centro" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Episodio" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Perfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPC_CENTRO">
+            <Parameter Name="NB_Centro" Mode="In" Type="String" />
+            <Parameter Name="ID_SLYC" Mode="In" Type="Guid" />
+            <Parameter Name="ID_Proveedor" Mode="In" Type="String" />
+            <Parameter Name="Email" Mode="In" Type="String" />
+            <Parameter Name="PK_Centro" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -4443,7 +4477,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SPC_CENTRO" FunctionName="Model.Store.SPC_CENTRO" />
           <EntitySetMapping Name="VW_DSH_CARA_DROGAS_USO">
             <EntityTypeMapping TypeName="Model.VW_DSH_CARA_DROGAS_USO">
               <MappingFragment StoreEntitySet="VW_DSH_CARA_DROGAS_USO">
@@ -4508,6 +4541,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPC_SESION" FunctionName="Model.Store.SPC_SESION" />
+          <FunctionImportMapping FunctionImportName="SPD_SESION" FunctionName="Model.Store.SPD_SESION" />
+          <FunctionImportMapping FunctionImportName="SPC_SESION_ACTIVIDAD" FunctionName="Model.Store.SPC_SESION_ACTIVIDAD" />
+          <FunctionImportMapping FunctionImportName="SPC_CENTRO" FunctionName="Model.Store.SPC_CENTRO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -15,6 +15,7 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected CARAEntities dsCARA;
         protected DatosInternos ca_paciente;
         ApplicationUser Usuario = new ApplicationUser();
+        protected string PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CA_Paciente"] == null)
@@ -26,12 +27,13 @@ namespace CARA_Draftv0._1.App.Perfiles
                 Response.Redirect("~/App/Pacientes/frmconsulta.aspx", false);
                 return;
             }
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             string Accion = this.Request.QueryString["accion"].ToString();
@@ -131,6 +133,8 @@ namespace CARA_Draftv0._1.App.Perfiles
             int PK_Episodio = 0;
 
             string mensaje = string.Empty;
+
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
             System.Data.Entity.Core.Objects.ObjectParameter pk_Episodio_Output = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Episodio", typeof(int));
 
@@ -240,6 +244,8 @@ namespace CARA_Draftv0._1.App.Perfiles
 
                     int PK_Perfil = Convert.ToInt32(pk_Perfil_Output.Value);
 
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Perfil", "C", null, FK_Centro, PK_Episodio, PK_Perfil);
+
                     mensaje = "El perfil fué registrado correctamente.";
 
                     ClientScript.RegisterStartupScript(this.GetType(), "Perfil Registrado", "sweetAlertRef('Perfil Registrado','" + mensaje + "','success','App/Perfiles/frmadmision.aspx?accion=leer&pk_perfil=" + PK_Perfil.ToString() + "');", true);
@@ -270,6 +276,8 @@ namespace CARA_Draftv0._1.App.Perfiles
             int PK_Perfil = Convert.ToInt32(this.Request.QueryString["pk_perfil"].ToString());
 
             string mensaje = string.Empty;
+
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
 
             /*Propiedades de wucDatosPersonales*/
@@ -372,6 +380,8 @@ namespace CARA_Draftv0._1.App.Perfiles
                             DE_DrogaSobredosisCuarta, FK_ICDX_Primaria, FK_ICDX_Secundaria, FK_ICDX_Terciaria, FK_ICDX_Cuarta, FK_DSMV_Primaria, FK_DSMV_Secundaria, FK_DSMV_Terciaria, FK_DSMV_Cuarta,
                             FK_CondicionFisicaPrimaria, FK_CondicionFisicaSecundaria, FK_CondicionFisicaTerciaria, FK_CondicionFisicaCuarta, FK_SeguroSalud, FK_EstadoMarital, FE_Episodio, Usuario.Id, IN_Sobredosis
                         );
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Perfil", "A", null, FK_Centro, PK_Episodio, PK_Perfil);
 
                     mensaje = "El perfil fué modificado correctamente.";
 

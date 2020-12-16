@@ -17,5 +17,6 @@ namespace CARA_Draftv0._1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
-    }
+
+	}
 }

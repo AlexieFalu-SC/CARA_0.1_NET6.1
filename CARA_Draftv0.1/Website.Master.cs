@@ -64,7 +64,20 @@ namespace CARA_Draftv0._1
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    var spd_sesion = dsCARA.SPD_SESION(Session["PK_Sesion"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
             Session["Usuario"] = null;
+            Session["PK_Sesion"] = null;
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
     }

@@ -826,7 +826,58 @@ namespace CARA_Draftv0._1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_PERFIL", pK_PerfilParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter);
         }
     
-        public virtual int SPC_CENTRO(string nB_Centro, Nullable<System.Guid> iD_SLYC, string iD_Proveedor, string email)
+        public virtual int SPC_SESION(string fK_Usuario, ObjectParameter pK_Sesion)
+        {
+            var fK_UsuarioParameter = fK_Usuario != null ?
+                new ObjectParameter("FK_Usuario", fK_Usuario) :
+                new ObjectParameter("FK_Usuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_SESION", fK_UsuarioParameter, pK_Sesion);
+        }
+    
+        public virtual int SPD_SESION(string pK_Sesion)
+        {
+            var pK_SesionParameter = pK_Sesion != null ?
+                new ObjectParameter("PK_Sesion", pK_Sesion) :
+                new ObjectParameter("PK_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPD_SESION", pK_SesionParameter);
+        }
+    
+        public virtual int SPC_SESION_ACTIVIDAD(string fK_Sesion, string cAT_Actividad, string tI_Actividad, string fK_Usuario, Nullable<int> fK_Centro, Nullable<int> fK_Episodio, Nullable<int> fK_Perfil)
+        {
+            var fK_SesionParameter = fK_Sesion != null ?
+                new ObjectParameter("FK_Sesion", fK_Sesion) :
+                new ObjectParameter("FK_Sesion", typeof(string));
+    
+            var cAT_ActividadParameter = cAT_Actividad != null ?
+                new ObjectParameter("CAT_Actividad", cAT_Actividad) :
+                new ObjectParameter("CAT_Actividad", typeof(string));
+    
+            var tI_ActividadParameter = tI_Actividad != null ?
+                new ObjectParameter("TI_Actividad", tI_Actividad) :
+                new ObjectParameter("TI_Actividad", typeof(string));
+    
+            var fK_UsuarioParameter = fK_Usuario != null ?
+                new ObjectParameter("FK_Usuario", fK_Usuario) :
+                new ObjectParameter("FK_Usuario", typeof(string));
+    
+            var fK_CentroParameter = fK_Centro.HasValue ?
+                new ObjectParameter("FK_Centro", fK_Centro) :
+                new ObjectParameter("FK_Centro", typeof(int));
+    
+            var fK_EpisodioParameter = fK_Episodio.HasValue ?
+                new ObjectParameter("FK_Episodio", fK_Episodio) :
+                new ObjectParameter("FK_Episodio", typeof(int));
+    
+            var fK_PerfilParameter = fK_Perfil.HasValue ?
+                new ObjectParameter("FK_Perfil", fK_Perfil) :
+                new ObjectParameter("FK_Perfil", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_SESION_ACTIVIDAD", fK_SesionParameter, cAT_ActividadParameter, tI_ActividadParameter, fK_UsuarioParameter, fK_CentroParameter, fK_EpisodioParameter, fK_PerfilParameter);
+        }
+    
+        public virtual int SPC_CENTRO(string nB_Centro, Nullable<System.Guid> iD_SLYC, string iD_Proveedor, string email, ObjectParameter pK_Centro)
         {
             var nB_CentroParameter = nB_Centro != null ?
                 new ObjectParameter("NB_Centro", nB_Centro) :
@@ -844,7 +895,7 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTRO", nB_CentroParameter, iD_SLYCParameter, iD_ProveedorParameter, emailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTRO", nB_CentroParameter, iD_SLYCParameter, iD_ProveedorParameter, emailParameter, pK_Centro);
         }
     }
 }

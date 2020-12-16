@@ -15,15 +15,16 @@ namespace CARA_Draftv0._1.App.Administracion
         ApplicationDbContext context = new ApplicationDbContext();
         protected CARAEntities dsCARA;
         ApplicationUser Usuario = new ApplicationUser();
-        protected string pk_rol, nb_rol, roles;
+        protected string pk_rol, nb_rol, roles, PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             pk_rol = this.Request.QueryString["rol"].ToString();
@@ -142,16 +143,24 @@ namespace CARA_Draftv0._1.App.Administracion
         {
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
             string mensaje = string.Empty;
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
             foreach (GridViewRow item in gvUsuarios.Rows)
             {
                 var checkbox = item.FindControl("CheckBox1") as CheckBox;
-                if(checkbox.Checked)
+               
+
+                if (checkbox.Checked)
                 {
                     try
                     {
                         string PK_Usuario = gvUsuarios.DataKeys[item.RowIndex].Values[0].ToString();
                         userManager.AddToRole(PK_Usuario, nb_rol);
+
+                        using (CARAEntities dsCARA = new CARAEntities())
+                        {
+                            dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Rol", "AR", PK_Usuario, null, null, null);
+                        }
 
                         mensaje = "Se asignó correctamente el rol al usuario.";
 
