@@ -11,7 +11,14 @@ namespace CARA_Draftv0._1.App
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!this.IsPostBack)
+            {
+                if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
+                {
+                    Response.Redirect("~/Account/Login.aspx", false);
+                    return;
+                }
+            }
         }
     }
 }

@@ -78,7 +78,7 @@ namespace CARA_Draftv0._1.Account
 
                                     if (Usuario.PasswordChanged)
                                     {
-                                        Response.Redirect("~/App/Entrada");
+                                        Response.Redirect("~/App/Entrada", false);
                                     }
                                     else
                                     {
@@ -88,11 +88,12 @@ namespace CARA_Draftv0._1.Account
                                         Response.Redirect("~/Account/ResetPassword");
                                     }
 
-                                    
                                 }
                                 catch (Exception)
                                 {
-
+                                    //Exception err = Server.GetLastError();
+                                    //Session.Add("LastError", err);
+                                    //Response.Redirect("~/App/Errores/OtrosError");
                                     throw;
                                 }
 
@@ -108,7 +109,7 @@ namespace CARA_Draftv0._1.Account
                                     break;
                                 case SignInStatus.Failure:
                                 default:
-                                    FailureText.Text = "Invalid login attempt";
+                                    FailureText.Text = "Intento de ingreso fallído.";
                                     ErrorMessage.Visible = true;
                                     break;
                         }

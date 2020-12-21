@@ -18,5 +18,14 @@ namespace CARA_Draftv0._1
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
 
-	}
+        void Application_Error(object sender, EventArgs e)
+        {
+            Exception err = Server.GetLastError();
+            Session.Add("LastError", err);
+            Server.ClearError();
+            //Response.Redirect("~/App/Errores/OtrosError");
+        }
+
+
+    }
 }

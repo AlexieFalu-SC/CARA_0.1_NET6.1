@@ -897,5 +897,18 @@ namespace CARA_Draftv0._1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTRO", nB_CentroParameter, iD_SLYCParameter, iD_ProveedorParameter, emailParameter, pK_Centro);
         }
+    
+        public virtual int SPC_ERROR(string dE_Error, string fK_Sesion, ObjectParameter pK_Error)
+        {
+            var dE_ErrorParameter = dE_Error != null ?
+                new ObjectParameter("DE_Error", dE_Error) :
+                new ObjectParameter("DE_Error", typeof(string));
+    
+            var fK_SesionParameter = fK_Sesion != null ?
+                new ObjectParameter("FK_Sesion", fK_Sesion) :
+                new ObjectParameter("FK_Sesion", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ERROR", dE_ErrorParameter, fK_SesionParameter, pK_Error);
+        }
     }
 }

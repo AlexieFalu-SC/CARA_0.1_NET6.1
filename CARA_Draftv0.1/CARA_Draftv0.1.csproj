@@ -208,6 +208,10 @@
     <Content Include="App\DashboardRegistrado.aspx" />
     <Content Include="App\EmailsHTML\ConfirmacionCuenta.html" />
     <Content Include="App\Entrada.aspx" />
+    <Content Include="App\Errores\NoAutorizadoError.aspx" />
+    <Content Include="App\Errores\NoEncontradoError.aspx" />
+    <Content Include="App\Errores\OtrosError.aspx" />
+    <Content Include="App\Errores\ServidorError.aspx" />
     <Content Include="App\Pacientes\frmconsulta.aspx" />
     <Content Include="App\Pacientes\frmEditar.aspx" />
     <Content Include="App\Pacientes\frmPerfiles.aspx" />
@@ -769,6 +773,7 @@
     <Content Include="Content\images\graphic_home.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Account\Web.config" />
@@ -1099,6 +1104,34 @@
     <Compile Include="App\Entrada.aspx.designer.cs">
       <DependentUpon>Entrada.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Errores\NoAutorizadoError.aspx.cs">
+      <DependentUpon>NoAutorizadoError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Errores\NoAutorizadoError.aspx.designer.cs">
+      <DependentUpon>NoAutorizadoError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Errores\NoEncontradoError.aspx.cs">
+      <DependentUpon>NoEncontradoError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Errores\NoEncontradoError.aspx.designer.cs">
+      <DependentUpon>NoEncontradoError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Errores\OtrosError.aspx.cs">
+      <DependentUpon>OtrosError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Errores\OtrosError.aspx.designer.cs">
+      <DependentUpon>OtrosError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Errores\ServidorError.aspx.cs">
+      <DependentUpon>ServidorError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Errores\ServidorError.aspx.designer.cs">
+      <DependentUpon>ServidorError.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Pacientes\frmconsulta.aspx.cs">
       <DependentUpon>frmconsulta.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1292,6 +1325,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

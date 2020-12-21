@@ -88,6 +88,9 @@
                                 <asp:BoundField DataField="Roles" HeaderText="Roles" HeaderStyle-HorizontalAlign="Center">
                                     <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                                 </asp:BoundField>
+                                <asp:BoundField DataField="Cuenta" HeaderText="Cuenta" HeaderStyle-HorizontalAlign="Center">
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                </asp:BoundField>
                                 <asp:BoundField DataField="Estatus" HeaderText="Estatus" HeaderStyle-HorizontalAlign="Center">
                                     <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                                 </asp:BoundField>                        
@@ -153,6 +156,9 @@
                                     <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="Roles" HeaderText="Roles" HeaderStyle-HorizontalAlign="Center">
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                </asp:BoundField>
+                                <asp:BoundField DataField="Cuenta" HeaderText="Cuenta" HeaderStyle-HorizontalAlign="Center">
                                     <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                                 </asp:BoundField>
                                 <asp:BoundField DataField="Estatus" HeaderText="Estatus" HeaderStyle-HorizontalAlign="Center">

@@ -1324,6 +1324,11 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Parameter Name="NR_DiasEspera" Type="int" Mode="In" />
           <Parameter Name="PK_Episodio" Type="int" Mode="InOut" />
         </Function>
+        <Function Name="SPC_ERROR" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="DE_Error" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="FK_Sesion" Type="nvarchar" Mode="In" />
+          <Parameter Name="PK_Error" Type="int" Mode="InOut" />
+        </Function>
         <Function Name="SPC_PACIENTE" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FE_Nacimiento" Type="datetime" Mode="In" />
           <Parameter Name="FK_Centro" Type="int" Mode="In" />
@@ -2698,6 +2703,11 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="ID_Proveedor" Mode="In" Type="String" />
             <Parameter Name="Email" Mode="In" Type="String" />
             <Parameter Name="PK_Centro" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPC_ERROR">
+            <Parameter Name="DE_Error" Mode="In" Type="String" />
+            <Parameter Name="FK_Sesion" Mode="In" Type="String" />
+            <Parameter Name="PK_Error" Mode="InOut" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
@@ -4545,6 +4555,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <FunctionImportMapping FunctionImportName="SPD_SESION" FunctionName="Model.Store.SPD_SESION" />
           <FunctionImportMapping FunctionImportName="SPC_SESION_ACTIVIDAD" FunctionName="Model.Store.SPC_SESION_ACTIVIDAD" />
           <FunctionImportMapping FunctionImportName="SPC_CENTRO" FunctionName="Model.Store.SPC_CENTRO" />
+          <FunctionImportMapping FunctionImportName="SPC_ERROR" FunctionName="Model.Store.SPC_ERROR" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
