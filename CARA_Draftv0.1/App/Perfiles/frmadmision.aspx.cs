@@ -15,6 +15,7 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected CARAEntities dsCARA;
         protected DatosInternos ca_paciente;
         ApplicationUser Usuario = new ApplicationUser();
+        protected string PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CA_Paciente"] == null)
@@ -26,12 +27,13 @@ namespace CARA_Draftv0._1.App.Perfiles
                 Response.Redirect("~/App/Pacientes/frmconsulta.aspx", false);
                 return;
             }
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             string Accion = this.Request.QueryString["accion"].ToString();
@@ -132,6 +134,8 @@ namespace CARA_Draftv0._1.App.Perfiles
 
             string mensaje = string.Empty;
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
+
             System.Data.Entity.Core.Objects.ObjectParameter pk_Episodio_Output = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Episodio", typeof(int));
 
             System.Data.Entity.Core.Objects.ObjectParameter pk_Perfil_Output = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Perfil", typeof(int));
@@ -149,6 +153,7 @@ namespace CARA_Draftv0._1.App.Perfiles
             int FK_Genero = this.wucperfiladmision.FK_Genero;
             int NR_Edad = this.wucperfiladmision.NR_Edad;
             int FK_EstadoMarital = this.wucperfiladmision.FK_EstadoMarital;
+            int FK_Municipio = this.wucperfiladmision.FK_Municipio;
             int FK_Residencia = this.wucperfiladmision.FK_Residencia;
             int FK_HijosMenoresCuido = this.wucperfiladmision.FK_HijosMenoresCuido;
             int FK_Embarazada = this.wucperfiladmision.FK_Embarazada;
@@ -228,7 +233,7 @@ namespace CARA_Draftv0._1.App.Perfiles
 
                     var spc_perfil = dsCARA.SPC_PERFIL
                         (
-                            PK_Episodio, FE_Episodio, "AD", NR_ArrestosMesPasado, FK_GrupoApoyoMesPasado, FK_Genero, NR_Edad, FK_Residencia, FK_Embarazada, FK_HijosMenoresCuido, FK_Veterano,
+                            PK_Episodio, FE_Episodio, "AD", NR_ArrestosMesPasado, FK_GrupoApoyoMesPasado, FK_Genero, NR_Edad, FK_Municipio, FK_Residencia, FK_Embarazada, FK_HijosMenoresCuido, FK_Veterano,
                             FK_Escolaridad, FK_CondicionLaboral, FK_NoFuerzaLaboral, FK_Estudios, FK_FuenteIngreso, FK_DrogaPrimaria, IN_ToxicologiaPrimaria, FK_ViaPrimaria, FK_FrecuenciaPrimaria,
                             NR_EdadPrimaria, FK_DrogaSecundaria, IN_ToxicologiaSecundaria, FK_ViaSecundaria, FK_FrecuenciaSecundaria, NR_EdadSecundaria, FK_DrogaTerciaria, IN_ToxicologiaTerciaria,
                             FK_ViaTerciaria, FK_FrecuenciaTerciaria, NR_EdadTerciaria, NB_DrogaCuarta, IN_ToxicologiaCuarta, FK_ViaCuarta, FK_FrecuenciaCuarta, NR_EdadCuarta,
@@ -239,6 +244,8 @@ namespace CARA_Draftv0._1.App.Perfiles
                         );
 
                     int PK_Perfil = Convert.ToInt32(pk_Perfil_Output.Value);
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Perfil", "C", null, FK_Centro, PK_Episodio, PK_Perfil);
 
                     mensaje = "El perfil fué registrado correctamente.";
 
@@ -271,6 +278,8 @@ namespace CARA_Draftv0._1.App.Perfiles
 
             string mensaje = string.Empty;
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
+
 
             /*Propiedades de wucDatosPersonales*/
             DateTime FE_Episodio = this.wucdatospersonales.FE_Admision;
@@ -285,6 +294,7 @@ namespace CARA_Draftv0._1.App.Perfiles
             int FK_Genero = this.wucperfiladmision.FK_Genero;
             int NR_Edad = this.wucperfiladmision.NR_Edad;
             int FK_EstadoMarital = this.wucperfiladmision.FK_EstadoMarital;
+            int FK_Municipio = this.wucperfiladmision.FK_Municipio;
             int FK_Residencia = this.wucperfiladmision.FK_Residencia;
             int FK_HijosMenoresCuido = this.wucperfiladmision.FK_HijosMenoresCuido;
             int FK_Embarazada = this.wucperfiladmision.FK_Embarazada;
@@ -364,7 +374,7 @@ namespace CARA_Draftv0._1.App.Perfiles
 
                     var spu_perfil = dsCARA.SPU_PERFIL
                         (
-                            PK_Perfil, FE_Episodio, "AD", NR_ArrestosMesPasado, FK_GrupoApoyoMesPasado, FK_Genero, NR_Edad, FK_Residencia, FK_Embarazada, FK_HijosMenoresCuido, FK_Veterano,
+                            PK_Perfil, FE_Episodio, "AD", NR_ArrestosMesPasado, FK_GrupoApoyoMesPasado, FK_Genero, NR_Edad, FK_Municipio, FK_Residencia, FK_Embarazada, FK_HijosMenoresCuido, FK_Veterano,
                             FK_Escolaridad, FK_CondicionLaboral, FK_NoFuerzaLaboral, FK_Estudios, FK_FuenteIngreso, FK_DrogaPrimaria, IN_ToxicologiaPrimaria, FK_ViaPrimaria, FK_FrecuenciaPrimaria,
                             NR_EdadPrimaria, FK_DrogaSecundaria, IN_ToxicologiaSecundaria, FK_ViaSecundaria, FK_FrecuenciaSecundaria, NR_EdadSecundaria, FK_DrogaTerciaria, IN_ToxicologiaTerciaria,
                             FK_ViaTerciaria, FK_FrecuenciaTerciaria, NR_EdadTerciaria, NB_DrogaCuarta, IN_ToxicologiaCuarta, FK_ViaCuarta, FK_FrecuenciaCuarta, NR_EdadCuarta,
@@ -372,6 +382,8 @@ namespace CARA_Draftv0._1.App.Perfiles
                             DE_DrogaSobredosisCuarta, FK_ICDX_Primaria, FK_ICDX_Secundaria, FK_ICDX_Terciaria, FK_ICDX_Cuarta, FK_DSMV_Primaria, FK_DSMV_Secundaria, FK_DSMV_Terciaria, FK_DSMV_Cuarta,
                             FK_CondicionFisicaPrimaria, FK_CondicionFisicaSecundaria, FK_CondicionFisicaTerciaria, FK_CondicionFisicaCuarta, FK_SeguroSalud, FK_EstadoMarital, FE_Episodio, Usuario.Id, IN_Sobredosis
                         );
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Perfil", "A", null, FK_Centro, PK_Episodio, PK_Perfil);
 
                     mensaje = "El perfil fué modificado correctamente.";
 

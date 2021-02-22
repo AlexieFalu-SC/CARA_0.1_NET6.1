@@ -9,7 +9,7 @@
 
         <div style="max-width:600px;margin:auto">
             <br />
-            <h1 class="hidden-print">Sistema CARA (Comprehensive Addiction and Recovery Act)</h1>
+            <h1 class="hidden-print">Sistema Estadístico de Admisiones a Tratamientos de Sustancias (SEATS)</h1>
             <br />
             <p>Sistema para recopilar información y generar informes estadísticos de pacientes con experiencias de sobredosis que ingresen a los programas de instituciones que brinden servicios de tratamiento de abuso de sustancias.  Estas instituciones son licenciadas e inspeccionadas por la Oficina de Organismos Reguladores (OOR) de ASSMCA y son conocidas dentro de la Agencia como Registrados.</p>
             <br />

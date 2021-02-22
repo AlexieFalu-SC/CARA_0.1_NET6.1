@@ -232,7 +232,15 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
     
     <script type="text/javascript">
-       
+        //window.onbeforeunload = function (e) {
+        //    alert("The Window is closing!");
+
+        //    $.ajax({
+        //        url: "WebMethods/wsRegistradoTablero.asmx/HelloWorld2",
+        //        async: false,
+        //        type: "POST"
+        //    });
+        //};
     </script>
 
 </body>

@@ -11,14 +11,16 @@ namespace CARA_Draftv0._1.App.Administracion
     public partial class agregarCentro : System.Web.UI.Page
     {
         ApplicationUser Usuario = new ApplicationUser();
+        string PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             if (!this.IsPostBack)
@@ -64,11 +66,19 @@ namespace CARA_Draftv0._1.App.Administracion
 
             string mensaje = string.Empty;
 
+            System.Data.Entity.Core.Objects.ObjectParameter pk_Centro_Output = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Centro", typeof(int));
+
+            PK_Sesion = Session["PK_Sesion"].ToString();
+
             try
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    dsCARA.SPC_CENTRO(NB_Centro, ID_SLYC, ID_Proveedor, Email);
+                    var spc_centro = dsCARA.SPC_CENTRO(NB_Centro, ID_SLYC, ID_Proveedor, Email, pk_Centro_Output);
+
+                    int PK_Centro = Convert.ToInt32(pk_Centro_Output.Value);
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion,"Centro","C",null, PK_Centro, null,null);
 
                     mensaje = "El registro del centro fué correcto.";
 

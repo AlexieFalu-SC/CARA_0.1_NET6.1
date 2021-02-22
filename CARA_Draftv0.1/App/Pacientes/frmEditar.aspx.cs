@@ -13,14 +13,16 @@ namespace CARA_Draftv0._1.App.Pacientes
     {
         private int m_PK_Centro;
         ApplicationUser Usuario = new ApplicationUser();
+        protected string PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             this.m_PK_Centro = Convert.ToInt32(this.Session["PK_Centro"].ToString());
@@ -168,6 +170,7 @@ namespace CARA_Draftv0._1.App.Pacientes
             int FK_GrupoEtnico = Convert.ToInt32(this.ddlGrupoEtnico.SelectedValue);
             string NR_Expediente = this.txtExpediente.Text;
             int FK_Genero = Convert.ToInt32(this.ddlGenero.SelectedValue);
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
             System.Data.Entity.Core.Objects.ObjectParameter myOutputParamString = new System.Data.Entity.Core.Objects.ObjectParameter("PK_Paciente", typeof(int));
 
@@ -178,6 +181,8 @@ namespace CARA_Draftv0._1.App.Pacientes
                     var spc = dsCARA.SPC_PACIENTE(FE_Nacimiento, FK_Centro, FK_GrupoEtnico, NR_Expediente, FK_Genero, myOutputParamString);
 
                     PK_Paciente = Convert.ToInt32(myOutputParamString.Value);
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Paciente", "C", null, FK_Centro, null, null);
 
                     this.lblIUP.Text = PK_Paciente.ToString();
 
@@ -238,12 +243,15 @@ namespace CARA_Draftv0._1.App.Pacientes
             int FK_GrupoEtnico = Convert.ToInt32(this.ddlGrupoEtnico.SelectedValue);
             string NR_Expediente = this.txtExpediente.Text;
             int FK_Genero = Convert.ToInt32(this.ddlGenero.SelectedValue);
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
             try
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
                    dsCARA.SPU_PACIENTE(ca_paciente.PK_Paciente,FE_Nacimiento, FK_Centro, FK_GrupoEtnico, NR_Expediente, FK_Genero);
+
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Paciente", "A", null, FK_Centro, null, null);
 
                     PK_Paciente = ca_paciente.PK_Paciente;
 

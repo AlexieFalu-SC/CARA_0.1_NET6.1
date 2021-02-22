@@ -86,6 +86,7 @@ namespace CARA_Draftv0._1.App.Perfiles
 
                     this.lblGenero.Text = dsCARA.CA_LKP_GENERO.Where(a => a.PK_Genero.Equals(perfil.FK_Genero)).Select(b => b.DE_Genero).SingleOrDefault();
                     this.lblEstadoMarital.Text = dsCARA.CA_LKP_ESTADO_MARITAL.Where(a => a.PK_EstadoMarital.Equals(perfil.FK_EstadoMarital)).Select(b => b.DE_EstadoMarital).SingleOrDefault();
+                    this.lblMunicipio.Text = dsCARA.CA_LKP_MUNICIPIO.Where(a => a.PK_Municipio == perfil.FK_Municipio).Select(b => b.DE_Municipio).SingleOrDefault();
                     this.lblResidencia.Text = dsCARA.CA_LKP_RESIDENCIA.Where(a => a.PK_Residencia.Equals(perfil.FK_Residencia)).Select(b => b.DE_Residencia).SingleOrDefault();
                     this.lblMenoresCuidado.Text = dsCARA.CA_LKP_MENORES_CUSTODIA.Where(a => a.PK_MenoresCustodia.Equals(perfil.FK_HijosMenoresCuido)).Select(b => b.DE_MenoresCustodia).SingleOrDefault();
                     this.lblEmbarazada.Text = dsCARA.CA_LKP_EMBARAZADA.Where(a => a.PK_Embarazada.Equals(perfil.FK_Embarazada)).Select(b => b.DE_Embarazada).SingleOrDefault();
@@ -98,6 +99,7 @@ namespace CARA_Draftv0._1.App.Perfiles
 
                     this.ddlGenero.Visible = false;
                     this.ddlEstadoMarital.Visible = false;
+                    this.ddlMunicipio.Visible = false;
                     this.ddlResidencia.Visible = false;
                     this.ddlMenoresCuidado.Visible = false;
                     this.ddlEmbarazada.Visible = false;
@@ -201,6 +203,12 @@ namespace CARA_Draftv0._1.App.Perfiles
                     ddlVeterano.DataBind();
                     ddlVeterano.Items.Insert(0, new ListItem("", "0"));
 
+                    ddlMunicipio.DataValueField = "PK_Municipio";
+                    ddlMunicipio.DataTextField = "DE_Municipio";
+                    ddlMunicipio.DataSource = dsCARA.CA_LKP_MUNICIPIO.ToList();
+                    ddlMunicipio.DataBind();
+                    ddlMunicipio.Items.Insert(0, new ListItem("", "0"));
+
                     ddlEscolaridad.DataValueField = "PK_Escolaridad";
                     ddlEscolaridad.DataTextField = "DE_Escolaridad";
                     ddlEscolaridad.DataSource = dsCARA.CA_LKP_ESCOLARIDAD.ToList();
@@ -299,6 +307,28 @@ namespace CARA_Draftv0._1.App.Perfiles
                     if (Convert.ToInt32(this.ddlEstadoMarital.SelectedValue.ToString()) != 0)
                     {
                         return Convert.ToInt32(this.ddlEstadoMarital.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        throw new Exception("No aplica");
+                    }
+                }
+                catch
+                {
+                    return 7;//Default No aplica
+                }
+            }
+        }
+
+        public int FK_Municipio
+        {
+            get
+            {
+                try
+                {
+                    if (Convert.ToInt32(this.ddlMunicipio.SelectedValue.ToString()) != 0)
+                    {
+                        return Convert.ToInt32(this.ddlMunicipio.SelectedValue.ToString());
                     }
                     else
                     {

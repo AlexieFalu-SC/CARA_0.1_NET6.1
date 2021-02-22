@@ -231,33 +231,34 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] HelloWorld2()
+        public void HelloWorld2()
         {
-            DataTable Datos = new DataTable();
+            string a = "a";
+            //DataTable Datos = new DataTable();
 
-            Datos.Columns.Add(new DataColumn("Centros de Servicio", typeof(String)));
-            Datos.Columns.Add(new DataColumn("Perfiles", typeof(String)));
+            //Datos.Columns.Add(new DataColumn("Centros de Servicio", typeof(String)));
+            //Datos.Columns.Add(new DataColumn("Perfiles", typeof(String)));
 
-            Datos.Rows.Add(new Object[] { "Dimelo papi", 5 });
-            Datos.Rows.Add(new Object[] { "Trata", 44});
-            Datos.Rows.Add(new Object[] { "Alcapone", 11 });
-            Datos.Rows.Add(new Object[] { "Oro", 122 });
+            //Datos.Rows.Add(new Object[] { "Dimelo papi", 5 });
+            //Datos.Rows.Add(new Object[] { "Trata", 44});
+            //Datos.Rows.Add(new Object[] { "Alcapone", 11 });
+            //Datos.Rows.Add(new Object[] { "Oro", 122 });
 
 
-            var charData = new object[Datos.Rows.Count + 1];
-            charData[0] = new object[]
-            {
-                "Centros de Servicio","Perfiles"
-            };
+            //var charData = new object[Datos.Rows.Count + 1];
+            //charData[0] = new object[]
+            //{
+            //    "Centros de Servicio","Perfiles"
+            //};
 
-            int j = 0;
-            foreach (DataRow item in Datos.Rows)
-            {
-                j++;
-                charData[j] = new object[] { item[0], item[1] };
-            }
+            //int j = 0;
+            //foreach (DataRow item in Datos.Rows)
+            //{
+            //    j++;
+            //    charData[j] = new object[] { item[0], item[1] };
+            //}
 
-            return charData;
+            //return charData;
         }
 
         [WebMethod]

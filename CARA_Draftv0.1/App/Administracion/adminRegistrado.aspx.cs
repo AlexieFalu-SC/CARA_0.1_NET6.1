@@ -15,10 +15,11 @@ namespace CARA_Draftv0._1.App.Administracion
         ApplicationDbContext context = new ApplicationDbContext();
         protected CARAEntities dsCARA;
         ApplicationUser Usuario = new ApplicationUser();
+        string PK_Sesion = string.Empty;
         protected void Page_Load(object sender, EventArgs e)
         {
             
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;

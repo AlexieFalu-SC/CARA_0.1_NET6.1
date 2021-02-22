@@ -69,30 +69,12 @@ namespace CARA_Draftv0._1.App
         protected global::CARA_Draftv0._1.App.wucanaliticaPlanificacion wucanaliticaPlanificacion;
 
         /// <summary>
-        /// txtPerfilesDesde control.
+        /// rvAnaliticaAdministradores control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPerfilesDesde;
-
-        /// <summary>
-        /// txtPerfilesHasta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPerfilesHasta;
-
-        /// <summary>
-        /// lbxCentroPerfiles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbxCentroPerfiles;
+        protected global::Microsoft.Reporting.WebForms.ReportViewer rvAnaliticaAdministradores;
     }
 }

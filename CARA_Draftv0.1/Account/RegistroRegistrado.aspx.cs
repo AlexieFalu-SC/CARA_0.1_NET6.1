@@ -17,14 +17,16 @@ namespace CARA_Draftv0._1.Account
     {
         ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser Usuario = new ApplicationUser();
+        protected string PK_Sesion;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null)
+            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
             }
 
+            PK_Sesion = Session["PK_Sesion"].ToString();
             Usuario = (ApplicationUser)Session["Usuario"];
 
             string Roles = this.Request.QueryString["roles"].ToString();
@@ -85,7 +87,8 @@ namespace CARA_Draftv0._1.Account
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
             var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
             string password = GeneratePassword();
-                //GeneratePassword();
+            PK_Sesion = Session["PK_Sesion"].ToString();
+            //GeneratePassword();
 
             var user = new ApplicationUser()
             {
@@ -112,6 +115,11 @@ namespace CARA_Draftv0._1.Account
 
                 try
                 {
+                    using (CARAEntities dsCARA = new CARAEntities())
+                    {
+                        dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Usuario", "C", user.Id, null, null, null);
+                    }
+
                     if (userManager.IsInRole(Usuario.Id, "Registrado"))
                     {
                         using (CARAEntities dsCARA = new CARAEntities())
