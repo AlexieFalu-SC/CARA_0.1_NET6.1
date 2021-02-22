@@ -52,6 +52,14 @@
         </div>
         <div class="row pt-3">
             <div class="col-print-4 col-sm SEPSDivsInfo">
+                <span class="SEPSLabel">Municipio de Residencia:</span>
+                <asp:RequiredFieldValidator ID="rfvMunicipio" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Residencia" ControlToValidate="ddlMunicipio" InitialValue="0" Text="*"/>
+                <div class="expandibleDiv">
+                <asp:DropDownList runat="server" CssClass="form-control" ID="ddlMunicipio"></asp:DropDownList>
+                    <asp:Label ID="lblMunicipio" runat="server" />
+                </div>
+            </div>
+            <div class="col-print-4 col-sm SEPSDivsInfo">
                 <span class="SEPSLabel">Residencia:</span>
                 <asp:RequiredFieldValidator ID="rfvResidencia" runat="server" CssClass="rightFloatAsterisk" Display="Dynamic" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ForeColor="Red" ErrorMessage="Residencia" ControlToValidate="ddlResidencia" InitialValue="0" Text="*"/>
                 <div class="expandibleDiv">

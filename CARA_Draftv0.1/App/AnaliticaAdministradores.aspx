@@ -26,11 +26,11 @@
                 <li class="nav-item" role="presentation">
                 <a class="nav-link" id="plan-tab" data-toggle="tab" href="#plan" role="tab" aria-controls="plan" aria-selected="false">PLANIFICACIÓN</a>
                 </li>
-                <li class="nav-item" role="presentation">
+                <%--<li class="nav-item" role="presentation">
                 <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">PERFILES</a>
-                </li>
+                </li>--%>
                 <li class="nav-item" role="presentation">
-                <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">SSRS</a>
+                <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">PERFILES</a>
                 </li>
             </ul>
       </div>
@@ -304,7 +304,7 @@
                         <uc1:wucanaliticaPlanificacion runat="server" id="wucanaliticaPlanificacion" />
                     </div>
 
-                    <div class="tab-pane fade" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
+                   <%-- <div class="tab-pane fade" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
                         <div class="row">
                             <div class="col-md-3 col-lg-2 px-md-0">
                                 <ul class="list-group">
@@ -358,7 +358,7 @@
                             </div>
 
                         </div>
-                    </div>
+                    </div>--%>
 
                     <div class="tab-pane fade" id="ssrs" role="tabpanel" aria-labelledby="plan-tab">
                             <div class="card shadow mb-4">
@@ -369,7 +369,7 @@
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                          <%--<rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>--%>
+                                          <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
                                         </div>
                                     </div>
                             </div>
@@ -397,8 +397,8 @@
             dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
             dtHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
 
-            perfiles_desde = document.getElementById("<%=txtPerfilesDesde.ClientID %>").value;
-            perfiles_hasta = document.getElementById("<%=txtPerfilesHasta.ClientID %>").value;
+ <%--           perfiles_desde = document.getElementById("<%=txtPerfilesDesde.ClientID %>").value;
+            perfiles_hasta = document.getElementById("<%=txtPerfilesHasta.ClientID %>").value;--%>
 
             listGenero();
 
@@ -580,7 +580,7 @@
             });
         }
 
-        function changeFechaPerfiles() {
+      <%--  function changeFechaPerfiles() {
             perfiles_desde = document.getElementById("<%=txtPerfilesDesde.ClientID %>").value;
             perfiles_hasta = document.getElementById("<%=txtPerfilesHasta.ClientID %>").value;
 
@@ -589,7 +589,7 @@
             perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centrosPerfiles) + '}'
 
             wsPerfiles();
-        }
+        }--%>
 
         function changeFecha() {
             dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
@@ -655,7 +655,7 @@
             }
         }
 
-        function listCentroPerfiles() {
+       <%-- function listCentroPerfiles() {
             centrosPerfiles = [];
             var listCentros = document.getElementById("<%=lbxCentroPerfiles.ClientID%>");
 
@@ -666,7 +666,7 @@
                     a++;
                 }
             }
-        }
+        }--%>
 
         function fuenteReferido() {
             <%--var data = new google.visualization.arrayToDataTable(<%=datosTablero()%>);--%>

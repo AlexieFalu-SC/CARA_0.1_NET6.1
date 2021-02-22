@@ -105,6 +105,33 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected global::System.Web.UI.WebControls.Label lblEstadoMarital;
 
         /// <summary>
+        /// rfvMunicipio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMunicipio;
+
+        /// <summary>
+        /// ddlMunicipio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlMunicipio;
+
+        /// <summary>
+        /// lblMunicipio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMunicipio;
+
+        /// <summary>
         /// rfvResidencia control.
         /// </summary>
         /// <remarks>
