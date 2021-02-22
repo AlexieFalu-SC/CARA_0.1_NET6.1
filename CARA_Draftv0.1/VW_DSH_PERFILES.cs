@@ -28,6 +28,7 @@ namespace CARA_Draftv0._1
         public string Grupo_de_Apoyo { get; set; }
         public string Genero { get; set; }
         public string Estado_Marital { get; set; }
+        public string Municipio { get; set; }
         public string Residencia { get; set; }
         public string Hijos_Menores { get; set; }
         public string Embarazada { get; set; }

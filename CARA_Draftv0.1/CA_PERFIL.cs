@@ -78,6 +78,7 @@ namespace CARA_Draftv0._1
         public System.DateTime CreadoEn { get; set; }
         public string CreadoPor { get; set; }
         public Nullable<bool> IN_Sobredosis { get; set; }
+        public Nullable<int> FK_Municipio { get; set; }
     
         public virtual CA_EPISODIO CA_EPISODIO { get; set; }
         public virtual CA_LKP_CONDICION_LABORAL CA_LKP_CONDICION_LABORAL { get; set; }

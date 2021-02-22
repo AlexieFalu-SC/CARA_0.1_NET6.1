@@ -56,10 +56,8 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_EPISODIO> CA_EPISODIO { get; set; }
         public virtual DbSet<CA_USUARIO_CENTRO> CA_USUARIO_CENTRO { get; set; }
         public virtual DbSet<CA_PACIENTE> CA_PACIENTE { get; set; }
-        public virtual DbSet<CA_PERFIL> CA_PERFIL { get; set; }
         public virtual DbSet<VW_DSH_CARA_PERFILES> VW_DSH_CARA_PERFILES { get; set; }
         public virtual DbSet<VW_DSH_CARA_DROGAS_SOBREDOSIS> VW_DSH_CARA_DROGAS_SOBREDOSIS { get; set; }
-        public virtual DbSet<VW_DSH_PERFILES> VW_DSH_PERFILES { get; set; }
         public virtual DbSet<CA_USUARIO> CA_USUARIO { get; set; }
         public virtual DbSet<VW_USUARIOS_ADMINISTRADORES> VW_USUARIOS_ADMINISTRADORES { get; set; }
         public virtual DbSet<VW_CENTROS_ADMINISTRADORES> VW_CENTROS_ADMINISTRADORES { get; set; }
@@ -69,6 +67,9 @@ namespace CARA_Draftv0._1
         public virtual DbSet<VW_DSH_PLN_DSMV> VW_DSH_PLN_DSMV { get; set; }
         public virtual DbSet<VW_DSH_PLN_ICDX> VW_DSH_PLN_ICDX { get; set; }
         public virtual DbSet<VW_DSH_PLN_ViaSustancia> VW_DSH_PLN_ViaSustancia { get; set; }
+        public virtual DbSet<CA_LKP_MUNICIPIO> CA_LKP_MUNICIPIO { get; set; }
+        public virtual DbSet<CA_PERFIL> CA_PERFIL { get; set; }
+        public virtual DbSet<VW_DSH_PERFILES> VW_DSH_PERFILES { get; set; }
     
         public virtual int SPC_EPISODIO(Nullable<int> fK_Paciente, Nullable<int> fK_Centro, Nullable<System.DateTime> fE_Episodio, Nullable<System.DateTime> fE_Alta, Nullable<int> fK_EstadoServicio, Nullable<int> fK_FuenteReferido, Nullable<int> fK_EpisodiosPrevios, Nullable<int> fK_NivelSustancia, Nullable<int> nR_DiasEspera, ObjectParameter pK_Episodio)
         {
@@ -320,512 +321,6 @@ namespace CARA_Draftv0._1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_EPISODIO", pK_EpisodioParameter, fE_EpisodioParameter, fE_AltaParameter, fK_EstadoServicioParameter, fK_FuenteReferidoParameter, fK_EpisodiosPreviosParameter, fK_NivelSustanciaParameter, nR_DiasEsperaParameter);
         }
     
-        public virtual int SPC_PERFIL(Nullable<int> fK_Episodio, Nullable<System.DateTime> fE_Perfil, string iN_TI_Perfil, Nullable<int> nR_ArrestosMesPasado, Nullable<int> fK_GrupoApoyoMesPasado, Nullable<int> fK_Genero, Nullable<int> nR_Edad, Nullable<int> fK_Residencia, Nullable<int> fK_Embarazada, Nullable<int> fK_HijosMenoresCuido, Nullable<int> fK_Veterano, Nullable<int> fK_Escolaridad, Nullable<int> fK_CondicionLaboral, Nullable<int> fK_NoFuerzaLaboral, Nullable<int> fK_Estudios, Nullable<int> fK_FuenteIngreso, Nullable<int> fK_DrogaPrimaria, Nullable<bool> iN_ToxicologiaPrimaria, Nullable<int> fK_ViaPrimaria, Nullable<int> fK_FrecuenciaPrimaria, Nullable<int> nR_EdadPrimaria, Nullable<int> fK_DrogaSecundaria, Nullable<bool> iN_ToxicologiaSecundaria, Nullable<int> fK_ViaSecundaria, Nullable<int> fK_FrecuenciaSecundaria, Nullable<int> nR_EdadSecundaria, Nullable<int> fK_DrogaTerciaria, Nullable<bool> iN_ToxicologiaTerciaria, Nullable<int> fK_ViaTerciaria, Nullable<int> fK_FrecuenciaTerciaria, Nullable<int> nR_EdadTerciaria, string nB_DrogaCuarta, Nullable<bool> iN_ToxicologiaCuarta, Nullable<int> fK_ViaCuarta, Nullable<int> fK_FrecuenciaCuarta, Nullable<int> nR_EdadCuarta, string nB_DrogaQuinta, Nullable<bool> iN_ToxicologiaQuinta, Nullable<int> fK_ViaQuinta, Nullable<int> fK_FrecuenciaQuinta, Nullable<int> nR_EdadQuinta, Nullable<int> fK_DrogaSobredosisPrimaria, Nullable<int> fK_DrogaSobredosisSecundaria, string dE_DrogaSobredosisTerciaria, string dE_DrogaSobredosisCuarta, Nullable<int> fK_ICDX_Primaria, Nullable<int> fK_ICDX_Secundaria, Nullable<int> fK_ICDX_Terciaria, Nullable<int> fK_ICDX_Cuarta, Nullable<int> fK_DSMV_Primaria, Nullable<int> fK_DSMV_Secundaria, Nullable<int> fK_DSMV_Terciaria, Nullable<int> fK_DSMV_Cuarta, Nullable<int> fK_CondicionFisicaPrimaria, Nullable<int> fK_CondicionFisicaSecundaria, Nullable<int> fK_CondicionFisicaTerciaria, Nullable<int> fK_CondicionFisicaCuarta, Nullable<int> fK_SeguroSalud, Nullable<int> fK_EstadoMarital, Nullable<System.DateTime> fE_UltimoContacto, string creadoPor, Nullable<bool> iN_Sobredosis, ObjectParameter pK_Perfil)
-        {
-            var fK_EpisodioParameter = fK_Episodio.HasValue ?
-                new ObjectParameter("FK_Episodio", fK_Episodio) :
-                new ObjectParameter("FK_Episodio", typeof(int));
-    
-            var fE_PerfilParameter = fE_Perfil.HasValue ?
-                new ObjectParameter("FE_Perfil", fE_Perfil) :
-                new ObjectParameter("FE_Perfil", typeof(System.DateTime));
-    
-            var iN_TI_PerfilParameter = iN_TI_Perfil != null ?
-                new ObjectParameter("IN_TI_Perfil", iN_TI_Perfil) :
-                new ObjectParameter("IN_TI_Perfil", typeof(string));
-    
-            var nR_ArrestosMesPasadoParameter = nR_ArrestosMesPasado.HasValue ?
-                new ObjectParameter("NR_ArrestosMesPasado", nR_ArrestosMesPasado) :
-                new ObjectParameter("NR_ArrestosMesPasado", typeof(int));
-    
-            var fK_GrupoApoyoMesPasadoParameter = fK_GrupoApoyoMesPasado.HasValue ?
-                new ObjectParameter("FK_GrupoApoyoMesPasado", fK_GrupoApoyoMesPasado) :
-                new ObjectParameter("FK_GrupoApoyoMesPasado", typeof(int));
-    
-            var fK_GeneroParameter = fK_Genero.HasValue ?
-                new ObjectParameter("FK_Genero", fK_Genero) :
-                new ObjectParameter("FK_Genero", typeof(int));
-    
-            var nR_EdadParameter = nR_Edad.HasValue ?
-                new ObjectParameter("NR_Edad", nR_Edad) :
-                new ObjectParameter("NR_Edad", typeof(int));
-    
-            var fK_ResidenciaParameter = fK_Residencia.HasValue ?
-                new ObjectParameter("FK_Residencia", fK_Residencia) :
-                new ObjectParameter("FK_Residencia", typeof(int));
-    
-            var fK_EmbarazadaParameter = fK_Embarazada.HasValue ?
-                new ObjectParameter("FK_Embarazada", fK_Embarazada) :
-                new ObjectParameter("FK_Embarazada", typeof(int));
-    
-            var fK_HijosMenoresCuidoParameter = fK_HijosMenoresCuido.HasValue ?
-                new ObjectParameter("FK_HijosMenoresCuido", fK_HijosMenoresCuido) :
-                new ObjectParameter("FK_HijosMenoresCuido", typeof(int));
-    
-            var fK_VeteranoParameter = fK_Veterano.HasValue ?
-                new ObjectParameter("FK_Veterano", fK_Veterano) :
-                new ObjectParameter("FK_Veterano", typeof(int));
-    
-            var fK_EscolaridadParameter = fK_Escolaridad.HasValue ?
-                new ObjectParameter("FK_Escolaridad", fK_Escolaridad) :
-                new ObjectParameter("FK_Escolaridad", typeof(int));
-    
-            var fK_CondicionLaboralParameter = fK_CondicionLaboral.HasValue ?
-                new ObjectParameter("FK_CondicionLaboral", fK_CondicionLaboral) :
-                new ObjectParameter("FK_CondicionLaboral", typeof(int));
-    
-            var fK_NoFuerzaLaboralParameter = fK_NoFuerzaLaboral.HasValue ?
-                new ObjectParameter("FK_NoFuerzaLaboral", fK_NoFuerzaLaboral) :
-                new ObjectParameter("FK_NoFuerzaLaboral", typeof(int));
-    
-            var fK_EstudiosParameter = fK_Estudios.HasValue ?
-                new ObjectParameter("FK_Estudios", fK_Estudios) :
-                new ObjectParameter("FK_Estudios", typeof(int));
-    
-            var fK_FuenteIngresoParameter = fK_FuenteIngreso.HasValue ?
-                new ObjectParameter("FK_FuenteIngreso", fK_FuenteIngreso) :
-                new ObjectParameter("FK_FuenteIngreso", typeof(int));
-    
-            var fK_DrogaPrimariaParameter = fK_DrogaPrimaria.HasValue ?
-                new ObjectParameter("FK_DrogaPrimaria", fK_DrogaPrimaria) :
-                new ObjectParameter("FK_DrogaPrimaria", typeof(int));
-    
-            var iN_ToxicologiaPrimariaParameter = iN_ToxicologiaPrimaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaPrimaria", iN_ToxicologiaPrimaria) :
-                new ObjectParameter("IN_ToxicologiaPrimaria", typeof(bool));
-    
-            var fK_ViaPrimariaParameter = fK_ViaPrimaria.HasValue ?
-                new ObjectParameter("FK_ViaPrimaria", fK_ViaPrimaria) :
-                new ObjectParameter("FK_ViaPrimaria", typeof(int));
-    
-            var fK_FrecuenciaPrimariaParameter = fK_FrecuenciaPrimaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaPrimaria", fK_FrecuenciaPrimaria) :
-                new ObjectParameter("FK_FrecuenciaPrimaria", typeof(int));
-    
-            var nR_EdadPrimariaParameter = nR_EdadPrimaria.HasValue ?
-                new ObjectParameter("NR_EdadPrimaria", nR_EdadPrimaria) :
-                new ObjectParameter("NR_EdadPrimaria", typeof(int));
-    
-            var fK_DrogaSecundariaParameter = fK_DrogaSecundaria.HasValue ?
-                new ObjectParameter("FK_DrogaSecundaria", fK_DrogaSecundaria) :
-                new ObjectParameter("FK_DrogaSecundaria", typeof(int));
-    
-            var iN_ToxicologiaSecundariaParameter = iN_ToxicologiaSecundaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaSecundaria", iN_ToxicologiaSecundaria) :
-                new ObjectParameter("IN_ToxicologiaSecundaria", typeof(bool));
-    
-            var fK_ViaSecundariaParameter = fK_ViaSecundaria.HasValue ?
-                new ObjectParameter("FK_ViaSecundaria", fK_ViaSecundaria) :
-                new ObjectParameter("FK_ViaSecundaria", typeof(int));
-    
-            var fK_FrecuenciaSecundariaParameter = fK_FrecuenciaSecundaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaSecundaria", fK_FrecuenciaSecundaria) :
-                new ObjectParameter("FK_FrecuenciaSecundaria", typeof(int));
-    
-            var nR_EdadSecundariaParameter = nR_EdadSecundaria.HasValue ?
-                new ObjectParameter("NR_EdadSecundaria", nR_EdadSecundaria) :
-                new ObjectParameter("NR_EdadSecundaria", typeof(int));
-    
-            var fK_DrogaTerciariaParameter = fK_DrogaTerciaria.HasValue ?
-                new ObjectParameter("FK_DrogaTerciaria", fK_DrogaTerciaria) :
-                new ObjectParameter("FK_DrogaTerciaria", typeof(int));
-    
-            var iN_ToxicologiaTerciariaParameter = iN_ToxicologiaTerciaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaTerciaria", iN_ToxicologiaTerciaria) :
-                new ObjectParameter("IN_ToxicologiaTerciaria", typeof(bool));
-    
-            var fK_ViaTerciariaParameter = fK_ViaTerciaria.HasValue ?
-                new ObjectParameter("FK_ViaTerciaria", fK_ViaTerciaria) :
-                new ObjectParameter("FK_ViaTerciaria", typeof(int));
-    
-            var fK_FrecuenciaTerciariaParameter = fK_FrecuenciaTerciaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaTerciaria", fK_FrecuenciaTerciaria) :
-                new ObjectParameter("FK_FrecuenciaTerciaria", typeof(int));
-    
-            var nR_EdadTerciariaParameter = nR_EdadTerciaria.HasValue ?
-                new ObjectParameter("NR_EdadTerciaria", nR_EdadTerciaria) :
-                new ObjectParameter("NR_EdadTerciaria", typeof(int));
-    
-            var nB_DrogaCuartaParameter = nB_DrogaCuarta != null ?
-                new ObjectParameter("NB_DrogaCuarta", nB_DrogaCuarta) :
-                new ObjectParameter("NB_DrogaCuarta", typeof(string));
-    
-            var iN_ToxicologiaCuartaParameter = iN_ToxicologiaCuarta.HasValue ?
-                new ObjectParameter("IN_ToxicologiaCuarta", iN_ToxicologiaCuarta) :
-                new ObjectParameter("IN_ToxicologiaCuarta", typeof(bool));
-    
-            var fK_ViaCuartaParameter = fK_ViaCuarta.HasValue ?
-                new ObjectParameter("FK_ViaCuarta", fK_ViaCuarta) :
-                new ObjectParameter("FK_ViaCuarta", typeof(int));
-    
-            var fK_FrecuenciaCuartaParameter = fK_FrecuenciaCuarta.HasValue ?
-                new ObjectParameter("FK_FrecuenciaCuarta", fK_FrecuenciaCuarta) :
-                new ObjectParameter("FK_FrecuenciaCuarta", typeof(int));
-    
-            var nR_EdadCuartaParameter = nR_EdadCuarta.HasValue ?
-                new ObjectParameter("NR_EdadCuarta", nR_EdadCuarta) :
-                new ObjectParameter("NR_EdadCuarta", typeof(int));
-    
-            var nB_DrogaQuintaParameter = nB_DrogaQuinta != null ?
-                new ObjectParameter("NB_DrogaQuinta", nB_DrogaQuinta) :
-                new ObjectParameter("NB_DrogaQuinta", typeof(string));
-    
-            var iN_ToxicologiaQuintaParameter = iN_ToxicologiaQuinta.HasValue ?
-                new ObjectParameter("IN_ToxicologiaQuinta", iN_ToxicologiaQuinta) :
-                new ObjectParameter("IN_ToxicologiaQuinta", typeof(bool));
-    
-            var fK_ViaQuintaParameter = fK_ViaQuinta.HasValue ?
-                new ObjectParameter("FK_ViaQuinta", fK_ViaQuinta) :
-                new ObjectParameter("FK_ViaQuinta", typeof(int));
-    
-            var fK_FrecuenciaQuintaParameter = fK_FrecuenciaQuinta.HasValue ?
-                new ObjectParameter("FK_FrecuenciaQuinta", fK_FrecuenciaQuinta) :
-                new ObjectParameter("FK_FrecuenciaQuinta", typeof(int));
-    
-            var nR_EdadQuintaParameter = nR_EdadQuinta.HasValue ?
-                new ObjectParameter("NR_EdadQuinta", nR_EdadQuinta) :
-                new ObjectParameter("NR_EdadQuinta", typeof(int));
-    
-            var fK_DrogaSobredosisPrimariaParameter = fK_DrogaSobredosisPrimaria.HasValue ?
-                new ObjectParameter("FK_DrogaSobredosisPrimaria", fK_DrogaSobredosisPrimaria) :
-                new ObjectParameter("FK_DrogaSobredosisPrimaria", typeof(int));
-    
-            var fK_DrogaSobredosisSecundariaParameter = fK_DrogaSobredosisSecundaria.HasValue ?
-                new ObjectParameter("FK_DrogaSobredosisSecundaria", fK_DrogaSobredosisSecundaria) :
-                new ObjectParameter("FK_DrogaSobredosisSecundaria", typeof(int));
-    
-            var dE_DrogaSobredosisTerciariaParameter = dE_DrogaSobredosisTerciaria != null ?
-                new ObjectParameter("DE_DrogaSobredosisTerciaria", dE_DrogaSobredosisTerciaria) :
-                new ObjectParameter("DE_DrogaSobredosisTerciaria", typeof(string));
-    
-            var dE_DrogaSobredosisCuartaParameter = dE_DrogaSobredosisCuarta != null ?
-                new ObjectParameter("DE_DrogaSobredosisCuarta", dE_DrogaSobredosisCuarta) :
-                new ObjectParameter("DE_DrogaSobredosisCuarta", typeof(string));
-    
-            var fK_ICDX_PrimariaParameter = fK_ICDX_Primaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Primaria", fK_ICDX_Primaria) :
-                new ObjectParameter("FK_ICDX_Primaria", typeof(int));
-    
-            var fK_ICDX_SecundariaParameter = fK_ICDX_Secundaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Secundaria", fK_ICDX_Secundaria) :
-                new ObjectParameter("FK_ICDX_Secundaria", typeof(int));
-    
-            var fK_ICDX_TerciariaParameter = fK_ICDX_Terciaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Terciaria", fK_ICDX_Terciaria) :
-                new ObjectParameter("FK_ICDX_Terciaria", typeof(int));
-    
-            var fK_ICDX_CuartaParameter = fK_ICDX_Cuarta.HasValue ?
-                new ObjectParameter("FK_ICDX_Cuarta", fK_ICDX_Cuarta) :
-                new ObjectParameter("FK_ICDX_Cuarta", typeof(int));
-    
-            var fK_DSMV_PrimariaParameter = fK_DSMV_Primaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Primaria", fK_DSMV_Primaria) :
-                new ObjectParameter("FK_DSMV_Primaria", typeof(int));
-    
-            var fK_DSMV_SecundariaParameter = fK_DSMV_Secundaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Secundaria", fK_DSMV_Secundaria) :
-                new ObjectParameter("FK_DSMV_Secundaria", typeof(int));
-    
-            var fK_DSMV_TerciariaParameter = fK_DSMV_Terciaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Terciaria", fK_DSMV_Terciaria) :
-                new ObjectParameter("FK_DSMV_Terciaria", typeof(int));
-    
-            var fK_DSMV_CuartaParameter = fK_DSMV_Cuarta.HasValue ?
-                new ObjectParameter("FK_DSMV_Cuarta", fK_DSMV_Cuarta) :
-                new ObjectParameter("FK_DSMV_Cuarta", typeof(int));
-    
-            var fK_CondicionFisicaPrimariaParameter = fK_CondicionFisicaPrimaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaPrimaria", fK_CondicionFisicaPrimaria) :
-                new ObjectParameter("FK_CondicionFisicaPrimaria", typeof(int));
-    
-            var fK_CondicionFisicaSecundariaParameter = fK_CondicionFisicaSecundaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaSecundaria", fK_CondicionFisicaSecundaria) :
-                new ObjectParameter("FK_CondicionFisicaSecundaria", typeof(int));
-    
-            var fK_CondicionFisicaTerciariaParameter = fK_CondicionFisicaTerciaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaTerciaria", fK_CondicionFisicaTerciaria) :
-                new ObjectParameter("FK_CondicionFisicaTerciaria", typeof(int));
-    
-            var fK_CondicionFisicaCuartaParameter = fK_CondicionFisicaCuarta.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaCuarta", fK_CondicionFisicaCuarta) :
-                new ObjectParameter("FK_CondicionFisicaCuarta", typeof(int));
-    
-            var fK_SeguroSaludParameter = fK_SeguroSalud.HasValue ?
-                new ObjectParameter("FK_SeguroSalud", fK_SeguroSalud) :
-                new ObjectParameter("FK_SeguroSalud", typeof(int));
-    
-            var fK_EstadoMaritalParameter = fK_EstadoMarital.HasValue ?
-                new ObjectParameter("FK_EstadoMarital", fK_EstadoMarital) :
-                new ObjectParameter("FK_EstadoMarital", typeof(int));
-    
-            var fE_UltimoContactoParameter = fE_UltimoContacto.HasValue ?
-                new ObjectParameter("FE_UltimoContacto", fE_UltimoContacto) :
-                new ObjectParameter("FE_UltimoContacto", typeof(System.DateTime));
-    
-            var creadoPorParameter = creadoPor != null ?
-                new ObjectParameter("CreadoPor", creadoPor) :
-                new ObjectParameter("CreadoPor", typeof(string));
-    
-            var iN_SobredosisParameter = iN_Sobredosis.HasValue ?
-                new ObjectParameter("IN_Sobredosis", iN_Sobredosis) :
-                new ObjectParameter("IN_Sobredosis", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_PERFIL", fK_EpisodioParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter, pK_Perfil);
-        }
-    
-        public virtual int SPU_PERFIL(Nullable<int> pK_Perfil, Nullable<System.DateTime> fE_Perfil, string iN_TI_Perfil, Nullable<int> nR_ArrestosMesPasado, Nullable<int> fK_GrupoApoyoMesPasado, Nullable<int> fK_Genero, Nullable<int> nR_Edad, Nullable<int> fK_Residencia, Nullable<int> fK_Embarazada, Nullable<int> fK_HijosMenoresCuido, Nullable<int> fK_Veterano, Nullable<int> fK_Escolaridad, Nullable<int> fK_CondicionLaboral, Nullable<int> fK_NoFuerzaLaboral, Nullable<int> fK_Estudios, Nullable<int> fK_FuenteIngreso, Nullable<int> fK_DrogaPrimaria, Nullable<bool> iN_ToxicologiaPrimaria, Nullable<int> fK_ViaPrimaria, Nullable<int> fK_FrecuenciaPrimaria, Nullable<int> nR_EdadPrimaria, Nullable<int> fK_DrogaSecundaria, Nullable<bool> iN_ToxicologiaSecundaria, Nullable<int> fK_ViaSecundaria, Nullable<int> fK_FrecuenciaSecundaria, Nullable<int> nR_EdadSecundaria, Nullable<int> fK_DrogaTerciaria, Nullable<bool> iN_ToxicologiaTerciaria, Nullable<int> fK_ViaTerciaria, Nullable<int> fK_FrecuenciaTerciaria, Nullable<int> nR_EdadTerciaria, string nB_DrogaCuarta, Nullable<bool> iN_ToxicologiaCuarta, Nullable<int> fK_ViaCuarta, Nullable<int> fK_FrecuenciaCuarta, Nullable<int> nR_EdadCuarta, string nB_DrogaQuinta, Nullable<bool> iN_ToxicologiaQuinta, Nullable<int> fK_ViaQuinta, Nullable<int> fK_FrecuenciaQuinta, Nullable<int> nR_EdadQuinta, Nullable<int> fK_DrogaSobredosisPrimaria, Nullable<int> fK_DrogaSobredosisSecundaria, string dE_DrogaSobredosisTerciaria, string dE_DrogaSobredosisCuarta, Nullable<int> fK_ICDX_Primaria, Nullable<int> fK_ICDX_Secundaria, Nullable<int> fK_ICDX_Terciaria, Nullable<int> fK_ICDX_Cuarta, Nullable<int> fK_DSMV_Primaria, Nullable<int> fK_DSMV_Secundaria, Nullable<int> fK_DSMV_Terciaria, Nullable<int> fK_DSMV_Cuarta, Nullable<int> fK_CondicionFisicaPrimaria, Nullable<int> fK_CondicionFisicaSecundaria, Nullable<int> fK_CondicionFisicaTerciaria, Nullable<int> fK_CondicionFisicaCuarta, Nullable<int> fK_SeguroSalud, Nullable<int> fK_EstadoMarital, Nullable<System.DateTime> fE_UltimoContacto, string creadoPor, Nullable<bool> iN_Sobredosis)
-        {
-            var pK_PerfilParameter = pK_Perfil.HasValue ?
-                new ObjectParameter("PK_Perfil", pK_Perfil) :
-                new ObjectParameter("PK_Perfil", typeof(int));
-    
-            var fE_PerfilParameter = fE_Perfil.HasValue ?
-                new ObjectParameter("FE_Perfil", fE_Perfil) :
-                new ObjectParameter("FE_Perfil", typeof(System.DateTime));
-    
-            var iN_TI_PerfilParameter = iN_TI_Perfil != null ?
-                new ObjectParameter("IN_TI_Perfil", iN_TI_Perfil) :
-                new ObjectParameter("IN_TI_Perfil", typeof(string));
-    
-            var nR_ArrestosMesPasadoParameter = nR_ArrestosMesPasado.HasValue ?
-                new ObjectParameter("NR_ArrestosMesPasado", nR_ArrestosMesPasado) :
-                new ObjectParameter("NR_ArrestosMesPasado", typeof(int));
-    
-            var fK_GrupoApoyoMesPasadoParameter = fK_GrupoApoyoMesPasado.HasValue ?
-                new ObjectParameter("FK_GrupoApoyoMesPasado", fK_GrupoApoyoMesPasado) :
-                new ObjectParameter("FK_GrupoApoyoMesPasado", typeof(int));
-    
-            var fK_GeneroParameter = fK_Genero.HasValue ?
-                new ObjectParameter("FK_Genero", fK_Genero) :
-                new ObjectParameter("FK_Genero", typeof(int));
-    
-            var nR_EdadParameter = nR_Edad.HasValue ?
-                new ObjectParameter("NR_Edad", nR_Edad) :
-                new ObjectParameter("NR_Edad", typeof(int));
-    
-            var fK_ResidenciaParameter = fK_Residencia.HasValue ?
-                new ObjectParameter("FK_Residencia", fK_Residencia) :
-                new ObjectParameter("FK_Residencia", typeof(int));
-    
-            var fK_EmbarazadaParameter = fK_Embarazada.HasValue ?
-                new ObjectParameter("FK_Embarazada", fK_Embarazada) :
-                new ObjectParameter("FK_Embarazada", typeof(int));
-    
-            var fK_HijosMenoresCuidoParameter = fK_HijosMenoresCuido.HasValue ?
-                new ObjectParameter("FK_HijosMenoresCuido", fK_HijosMenoresCuido) :
-                new ObjectParameter("FK_HijosMenoresCuido", typeof(int));
-    
-            var fK_VeteranoParameter = fK_Veterano.HasValue ?
-                new ObjectParameter("FK_Veterano", fK_Veterano) :
-                new ObjectParameter("FK_Veterano", typeof(int));
-    
-            var fK_EscolaridadParameter = fK_Escolaridad.HasValue ?
-                new ObjectParameter("FK_Escolaridad", fK_Escolaridad) :
-                new ObjectParameter("FK_Escolaridad", typeof(int));
-    
-            var fK_CondicionLaboralParameter = fK_CondicionLaboral.HasValue ?
-                new ObjectParameter("FK_CondicionLaboral", fK_CondicionLaboral) :
-                new ObjectParameter("FK_CondicionLaboral", typeof(int));
-    
-            var fK_NoFuerzaLaboralParameter = fK_NoFuerzaLaboral.HasValue ?
-                new ObjectParameter("FK_NoFuerzaLaboral", fK_NoFuerzaLaboral) :
-                new ObjectParameter("FK_NoFuerzaLaboral", typeof(int));
-    
-            var fK_EstudiosParameter = fK_Estudios.HasValue ?
-                new ObjectParameter("FK_Estudios", fK_Estudios) :
-                new ObjectParameter("FK_Estudios", typeof(int));
-    
-            var fK_FuenteIngresoParameter = fK_FuenteIngreso.HasValue ?
-                new ObjectParameter("FK_FuenteIngreso", fK_FuenteIngreso) :
-                new ObjectParameter("FK_FuenteIngreso", typeof(int));
-    
-            var fK_DrogaPrimariaParameter = fK_DrogaPrimaria.HasValue ?
-                new ObjectParameter("FK_DrogaPrimaria", fK_DrogaPrimaria) :
-                new ObjectParameter("FK_DrogaPrimaria", typeof(int));
-    
-            var iN_ToxicologiaPrimariaParameter = iN_ToxicologiaPrimaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaPrimaria", iN_ToxicologiaPrimaria) :
-                new ObjectParameter("IN_ToxicologiaPrimaria", typeof(bool));
-    
-            var fK_ViaPrimariaParameter = fK_ViaPrimaria.HasValue ?
-                new ObjectParameter("FK_ViaPrimaria", fK_ViaPrimaria) :
-                new ObjectParameter("FK_ViaPrimaria", typeof(int));
-    
-            var fK_FrecuenciaPrimariaParameter = fK_FrecuenciaPrimaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaPrimaria", fK_FrecuenciaPrimaria) :
-                new ObjectParameter("FK_FrecuenciaPrimaria", typeof(int));
-    
-            var nR_EdadPrimariaParameter = nR_EdadPrimaria.HasValue ?
-                new ObjectParameter("NR_EdadPrimaria", nR_EdadPrimaria) :
-                new ObjectParameter("NR_EdadPrimaria", typeof(int));
-    
-            var fK_DrogaSecundariaParameter = fK_DrogaSecundaria.HasValue ?
-                new ObjectParameter("FK_DrogaSecundaria", fK_DrogaSecundaria) :
-                new ObjectParameter("FK_DrogaSecundaria", typeof(int));
-    
-            var iN_ToxicologiaSecundariaParameter = iN_ToxicologiaSecundaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaSecundaria", iN_ToxicologiaSecundaria) :
-                new ObjectParameter("IN_ToxicologiaSecundaria", typeof(bool));
-    
-            var fK_ViaSecundariaParameter = fK_ViaSecundaria.HasValue ?
-                new ObjectParameter("FK_ViaSecundaria", fK_ViaSecundaria) :
-                new ObjectParameter("FK_ViaSecundaria", typeof(int));
-    
-            var fK_FrecuenciaSecundariaParameter = fK_FrecuenciaSecundaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaSecundaria", fK_FrecuenciaSecundaria) :
-                new ObjectParameter("FK_FrecuenciaSecundaria", typeof(int));
-    
-            var nR_EdadSecundariaParameter = nR_EdadSecundaria.HasValue ?
-                new ObjectParameter("NR_EdadSecundaria", nR_EdadSecundaria) :
-                new ObjectParameter("NR_EdadSecundaria", typeof(int));
-    
-            var fK_DrogaTerciariaParameter = fK_DrogaTerciaria.HasValue ?
-                new ObjectParameter("FK_DrogaTerciaria", fK_DrogaTerciaria) :
-                new ObjectParameter("FK_DrogaTerciaria", typeof(int));
-    
-            var iN_ToxicologiaTerciariaParameter = iN_ToxicologiaTerciaria.HasValue ?
-                new ObjectParameter("IN_ToxicologiaTerciaria", iN_ToxicologiaTerciaria) :
-                new ObjectParameter("IN_ToxicologiaTerciaria", typeof(bool));
-    
-            var fK_ViaTerciariaParameter = fK_ViaTerciaria.HasValue ?
-                new ObjectParameter("FK_ViaTerciaria", fK_ViaTerciaria) :
-                new ObjectParameter("FK_ViaTerciaria", typeof(int));
-    
-            var fK_FrecuenciaTerciariaParameter = fK_FrecuenciaTerciaria.HasValue ?
-                new ObjectParameter("FK_FrecuenciaTerciaria", fK_FrecuenciaTerciaria) :
-                new ObjectParameter("FK_FrecuenciaTerciaria", typeof(int));
-    
-            var nR_EdadTerciariaParameter = nR_EdadTerciaria.HasValue ?
-                new ObjectParameter("NR_EdadTerciaria", nR_EdadTerciaria) :
-                new ObjectParameter("NR_EdadTerciaria", typeof(int));
-    
-            var nB_DrogaCuartaParameter = nB_DrogaCuarta != null ?
-                new ObjectParameter("NB_DrogaCuarta", nB_DrogaCuarta) :
-                new ObjectParameter("NB_DrogaCuarta", typeof(string));
-    
-            var iN_ToxicologiaCuartaParameter = iN_ToxicologiaCuarta.HasValue ?
-                new ObjectParameter("IN_ToxicologiaCuarta", iN_ToxicologiaCuarta) :
-                new ObjectParameter("IN_ToxicologiaCuarta", typeof(bool));
-    
-            var fK_ViaCuartaParameter = fK_ViaCuarta.HasValue ?
-                new ObjectParameter("FK_ViaCuarta", fK_ViaCuarta) :
-                new ObjectParameter("FK_ViaCuarta", typeof(int));
-    
-            var fK_FrecuenciaCuartaParameter = fK_FrecuenciaCuarta.HasValue ?
-                new ObjectParameter("FK_FrecuenciaCuarta", fK_FrecuenciaCuarta) :
-                new ObjectParameter("FK_FrecuenciaCuarta", typeof(int));
-    
-            var nR_EdadCuartaParameter = nR_EdadCuarta.HasValue ?
-                new ObjectParameter("NR_EdadCuarta", nR_EdadCuarta) :
-                new ObjectParameter("NR_EdadCuarta", typeof(int));
-    
-            var nB_DrogaQuintaParameter = nB_DrogaQuinta != null ?
-                new ObjectParameter("NB_DrogaQuinta", nB_DrogaQuinta) :
-                new ObjectParameter("NB_DrogaQuinta", typeof(string));
-    
-            var iN_ToxicologiaQuintaParameter = iN_ToxicologiaQuinta.HasValue ?
-                new ObjectParameter("IN_ToxicologiaQuinta", iN_ToxicologiaQuinta) :
-                new ObjectParameter("IN_ToxicologiaQuinta", typeof(bool));
-    
-            var fK_ViaQuintaParameter = fK_ViaQuinta.HasValue ?
-                new ObjectParameter("FK_ViaQuinta", fK_ViaQuinta) :
-                new ObjectParameter("FK_ViaQuinta", typeof(int));
-    
-            var fK_FrecuenciaQuintaParameter = fK_FrecuenciaQuinta.HasValue ?
-                new ObjectParameter("FK_FrecuenciaQuinta", fK_FrecuenciaQuinta) :
-                new ObjectParameter("FK_FrecuenciaQuinta", typeof(int));
-    
-            var nR_EdadQuintaParameter = nR_EdadQuinta.HasValue ?
-                new ObjectParameter("NR_EdadQuinta", nR_EdadQuinta) :
-                new ObjectParameter("NR_EdadQuinta", typeof(int));
-    
-            var fK_DrogaSobredosisPrimariaParameter = fK_DrogaSobredosisPrimaria.HasValue ?
-                new ObjectParameter("FK_DrogaSobredosisPrimaria", fK_DrogaSobredosisPrimaria) :
-                new ObjectParameter("FK_DrogaSobredosisPrimaria", typeof(int));
-    
-            var fK_DrogaSobredosisSecundariaParameter = fK_DrogaSobredosisSecundaria.HasValue ?
-                new ObjectParameter("FK_DrogaSobredosisSecundaria", fK_DrogaSobredosisSecundaria) :
-                new ObjectParameter("FK_DrogaSobredosisSecundaria", typeof(int));
-    
-            var dE_DrogaSobredosisTerciariaParameter = dE_DrogaSobredosisTerciaria != null ?
-                new ObjectParameter("DE_DrogaSobredosisTerciaria", dE_DrogaSobredosisTerciaria) :
-                new ObjectParameter("DE_DrogaSobredosisTerciaria", typeof(string));
-    
-            var dE_DrogaSobredosisCuartaParameter = dE_DrogaSobredosisCuarta != null ?
-                new ObjectParameter("DE_DrogaSobredosisCuarta", dE_DrogaSobredosisCuarta) :
-                new ObjectParameter("DE_DrogaSobredosisCuarta", typeof(string));
-    
-            var fK_ICDX_PrimariaParameter = fK_ICDX_Primaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Primaria", fK_ICDX_Primaria) :
-                new ObjectParameter("FK_ICDX_Primaria", typeof(int));
-    
-            var fK_ICDX_SecundariaParameter = fK_ICDX_Secundaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Secundaria", fK_ICDX_Secundaria) :
-                new ObjectParameter("FK_ICDX_Secundaria", typeof(int));
-    
-            var fK_ICDX_TerciariaParameter = fK_ICDX_Terciaria.HasValue ?
-                new ObjectParameter("FK_ICDX_Terciaria", fK_ICDX_Terciaria) :
-                new ObjectParameter("FK_ICDX_Terciaria", typeof(int));
-    
-            var fK_ICDX_CuartaParameter = fK_ICDX_Cuarta.HasValue ?
-                new ObjectParameter("FK_ICDX_Cuarta", fK_ICDX_Cuarta) :
-                new ObjectParameter("FK_ICDX_Cuarta", typeof(int));
-    
-            var fK_DSMV_PrimariaParameter = fK_DSMV_Primaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Primaria", fK_DSMV_Primaria) :
-                new ObjectParameter("FK_DSMV_Primaria", typeof(int));
-    
-            var fK_DSMV_SecundariaParameter = fK_DSMV_Secundaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Secundaria", fK_DSMV_Secundaria) :
-                new ObjectParameter("FK_DSMV_Secundaria", typeof(int));
-    
-            var fK_DSMV_TerciariaParameter = fK_DSMV_Terciaria.HasValue ?
-                new ObjectParameter("FK_DSMV_Terciaria", fK_DSMV_Terciaria) :
-                new ObjectParameter("FK_DSMV_Terciaria", typeof(int));
-    
-            var fK_DSMV_CuartaParameter = fK_DSMV_Cuarta.HasValue ?
-                new ObjectParameter("FK_DSMV_Cuarta", fK_DSMV_Cuarta) :
-                new ObjectParameter("FK_DSMV_Cuarta", typeof(int));
-    
-            var fK_CondicionFisicaPrimariaParameter = fK_CondicionFisicaPrimaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaPrimaria", fK_CondicionFisicaPrimaria) :
-                new ObjectParameter("FK_CondicionFisicaPrimaria", typeof(int));
-    
-            var fK_CondicionFisicaSecundariaParameter = fK_CondicionFisicaSecundaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaSecundaria", fK_CondicionFisicaSecundaria) :
-                new ObjectParameter("FK_CondicionFisicaSecundaria", typeof(int));
-    
-            var fK_CondicionFisicaTerciariaParameter = fK_CondicionFisicaTerciaria.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaTerciaria", fK_CondicionFisicaTerciaria) :
-                new ObjectParameter("FK_CondicionFisicaTerciaria", typeof(int));
-    
-            var fK_CondicionFisicaCuartaParameter = fK_CondicionFisicaCuarta.HasValue ?
-                new ObjectParameter("FK_CondicionFisicaCuarta", fK_CondicionFisicaCuarta) :
-                new ObjectParameter("FK_CondicionFisicaCuarta", typeof(int));
-    
-            var fK_SeguroSaludParameter = fK_SeguroSalud.HasValue ?
-                new ObjectParameter("FK_SeguroSalud", fK_SeguroSalud) :
-                new ObjectParameter("FK_SeguroSalud", typeof(int));
-    
-            var fK_EstadoMaritalParameter = fK_EstadoMarital.HasValue ?
-                new ObjectParameter("FK_EstadoMarital", fK_EstadoMarital) :
-                new ObjectParameter("FK_EstadoMarital", typeof(int));
-    
-            var fE_UltimoContactoParameter = fE_UltimoContacto.HasValue ?
-                new ObjectParameter("FE_UltimoContacto", fE_UltimoContacto) :
-                new ObjectParameter("FE_UltimoContacto", typeof(System.DateTime));
-    
-            var creadoPorParameter = creadoPor != null ?
-                new ObjectParameter("CreadoPor", creadoPor) :
-                new ObjectParameter("CreadoPor", typeof(string));
-    
-            var iN_SobredosisParameter = iN_Sobredosis.HasValue ?
-                new ObjectParameter("IN_Sobredosis", iN_Sobredosis) :
-                new ObjectParameter("IN_Sobredosis", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_PERFIL", pK_PerfilParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter);
-        }
-    
         public virtual int SPC_SESION(string fK_Usuario, ObjectParameter pK_Sesion)
         {
             var fK_UsuarioParameter = fK_Usuario != null ?
@@ -909,6 +404,520 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("FK_Sesion", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ERROR", dE_ErrorParameter, fK_SesionParameter, pK_Error);
+        }
+    
+        public virtual int SPC_PERFIL(Nullable<int> fK_Episodio, Nullable<System.DateTime> fE_Perfil, string iN_TI_Perfil, Nullable<int> nR_ArrestosMesPasado, Nullable<int> fK_GrupoApoyoMesPasado, Nullable<int> fK_Genero, Nullable<int> nR_Edad, Nullable<int> fK_Residencia, Nullable<int> fK_Embarazada, Nullable<int> fK_HijosMenoresCuido, Nullable<int> fK_Veterano, Nullable<int> fK_Municipio, Nullable<int> fK_Escolaridad, Nullable<int> fK_CondicionLaboral, Nullable<int> fK_NoFuerzaLaboral, Nullable<int> fK_Estudios, Nullable<int> fK_FuenteIngreso, Nullable<int> fK_DrogaPrimaria, Nullable<bool> iN_ToxicologiaPrimaria, Nullable<int> fK_ViaPrimaria, Nullable<int> fK_FrecuenciaPrimaria, Nullable<int> nR_EdadPrimaria, Nullable<int> fK_DrogaSecundaria, Nullable<bool> iN_ToxicologiaSecundaria, Nullable<int> fK_ViaSecundaria, Nullable<int> fK_FrecuenciaSecundaria, Nullable<int> nR_EdadSecundaria, Nullable<int> fK_DrogaTerciaria, Nullable<bool> iN_ToxicologiaTerciaria, Nullable<int> fK_ViaTerciaria, Nullable<int> fK_FrecuenciaTerciaria, Nullable<int> nR_EdadTerciaria, string nB_DrogaCuarta, Nullable<bool> iN_ToxicologiaCuarta, Nullable<int> fK_ViaCuarta, Nullable<int> fK_FrecuenciaCuarta, Nullable<int> nR_EdadCuarta, string nB_DrogaQuinta, Nullable<bool> iN_ToxicologiaQuinta, Nullable<int> fK_ViaQuinta, Nullable<int> fK_FrecuenciaQuinta, Nullable<int> nR_EdadQuinta, Nullable<int> fK_DrogaSobredosisPrimaria, Nullable<int> fK_DrogaSobredosisSecundaria, string dE_DrogaSobredosisTerciaria, string dE_DrogaSobredosisCuarta, Nullable<int> fK_ICDX_Primaria, Nullable<int> fK_ICDX_Secundaria, Nullable<int> fK_ICDX_Terciaria, Nullable<int> fK_ICDX_Cuarta, Nullable<int> fK_DSMV_Primaria, Nullable<int> fK_DSMV_Secundaria, Nullable<int> fK_DSMV_Terciaria, Nullable<int> fK_DSMV_Cuarta, Nullable<int> fK_CondicionFisicaPrimaria, Nullable<int> fK_CondicionFisicaSecundaria, Nullable<int> fK_CondicionFisicaTerciaria, Nullable<int> fK_CondicionFisicaCuarta, Nullable<int> fK_SeguroSalud, Nullable<int> fK_EstadoMarital, Nullable<System.DateTime> fE_UltimoContacto, string creadoPor, Nullable<bool> iN_Sobredosis, ObjectParameter pK_Perfil)
+        {
+            var fK_EpisodioParameter = fK_Episodio.HasValue ?
+                new ObjectParameter("FK_Episodio", fK_Episodio) :
+                new ObjectParameter("FK_Episodio", typeof(int));
+    
+            var fE_PerfilParameter = fE_Perfil.HasValue ?
+                new ObjectParameter("FE_Perfil", fE_Perfil) :
+                new ObjectParameter("FE_Perfil", typeof(System.DateTime));
+    
+            var iN_TI_PerfilParameter = iN_TI_Perfil != null ?
+                new ObjectParameter("IN_TI_Perfil", iN_TI_Perfil) :
+                new ObjectParameter("IN_TI_Perfil", typeof(string));
+    
+            var nR_ArrestosMesPasadoParameter = nR_ArrestosMesPasado.HasValue ?
+                new ObjectParameter("NR_ArrestosMesPasado", nR_ArrestosMesPasado) :
+                new ObjectParameter("NR_ArrestosMesPasado", typeof(int));
+    
+            var fK_GrupoApoyoMesPasadoParameter = fK_GrupoApoyoMesPasado.HasValue ?
+                new ObjectParameter("FK_GrupoApoyoMesPasado", fK_GrupoApoyoMesPasado) :
+                new ObjectParameter("FK_GrupoApoyoMesPasado", typeof(int));
+    
+            var fK_GeneroParameter = fK_Genero.HasValue ?
+                new ObjectParameter("FK_Genero", fK_Genero) :
+                new ObjectParameter("FK_Genero", typeof(int));
+    
+            var nR_EdadParameter = nR_Edad.HasValue ?
+                new ObjectParameter("NR_Edad", nR_Edad) :
+                new ObjectParameter("NR_Edad", typeof(int));
+    
+            var fK_ResidenciaParameter = fK_Residencia.HasValue ?
+                new ObjectParameter("FK_Residencia", fK_Residencia) :
+                new ObjectParameter("FK_Residencia", typeof(int));
+    
+            var fK_EmbarazadaParameter = fK_Embarazada.HasValue ?
+                new ObjectParameter("FK_Embarazada", fK_Embarazada) :
+                new ObjectParameter("FK_Embarazada", typeof(int));
+    
+            var fK_HijosMenoresCuidoParameter = fK_HijosMenoresCuido.HasValue ?
+                new ObjectParameter("FK_HijosMenoresCuido", fK_HijosMenoresCuido) :
+                new ObjectParameter("FK_HijosMenoresCuido", typeof(int));
+    
+            var fK_VeteranoParameter = fK_Veterano.HasValue ?
+                new ObjectParameter("FK_Veterano", fK_Veterano) :
+                new ObjectParameter("FK_Veterano", typeof(int));
+    
+            var fK_MunicipioParameter = fK_Municipio.HasValue ?
+                new ObjectParameter("FK_Municipio", fK_Municipio) :
+                new ObjectParameter("FK_Municipio", typeof(int));
+    
+            var fK_EscolaridadParameter = fK_Escolaridad.HasValue ?
+                new ObjectParameter("FK_Escolaridad", fK_Escolaridad) :
+                new ObjectParameter("FK_Escolaridad", typeof(int));
+    
+            var fK_CondicionLaboralParameter = fK_CondicionLaboral.HasValue ?
+                new ObjectParameter("FK_CondicionLaboral", fK_CondicionLaboral) :
+                new ObjectParameter("FK_CondicionLaboral", typeof(int));
+    
+            var fK_NoFuerzaLaboralParameter = fK_NoFuerzaLaboral.HasValue ?
+                new ObjectParameter("FK_NoFuerzaLaboral", fK_NoFuerzaLaboral) :
+                new ObjectParameter("FK_NoFuerzaLaboral", typeof(int));
+    
+            var fK_EstudiosParameter = fK_Estudios.HasValue ?
+                new ObjectParameter("FK_Estudios", fK_Estudios) :
+                new ObjectParameter("FK_Estudios", typeof(int));
+    
+            var fK_FuenteIngresoParameter = fK_FuenteIngreso.HasValue ?
+                new ObjectParameter("FK_FuenteIngreso", fK_FuenteIngreso) :
+                new ObjectParameter("FK_FuenteIngreso", typeof(int));
+    
+            var fK_DrogaPrimariaParameter = fK_DrogaPrimaria.HasValue ?
+                new ObjectParameter("FK_DrogaPrimaria", fK_DrogaPrimaria) :
+                new ObjectParameter("FK_DrogaPrimaria", typeof(int));
+    
+            var iN_ToxicologiaPrimariaParameter = iN_ToxicologiaPrimaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaPrimaria", iN_ToxicologiaPrimaria) :
+                new ObjectParameter("IN_ToxicologiaPrimaria", typeof(bool));
+    
+            var fK_ViaPrimariaParameter = fK_ViaPrimaria.HasValue ?
+                new ObjectParameter("FK_ViaPrimaria", fK_ViaPrimaria) :
+                new ObjectParameter("FK_ViaPrimaria", typeof(int));
+    
+            var fK_FrecuenciaPrimariaParameter = fK_FrecuenciaPrimaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaPrimaria", fK_FrecuenciaPrimaria) :
+                new ObjectParameter("FK_FrecuenciaPrimaria", typeof(int));
+    
+            var nR_EdadPrimariaParameter = nR_EdadPrimaria.HasValue ?
+                new ObjectParameter("NR_EdadPrimaria", nR_EdadPrimaria) :
+                new ObjectParameter("NR_EdadPrimaria", typeof(int));
+    
+            var fK_DrogaSecundariaParameter = fK_DrogaSecundaria.HasValue ?
+                new ObjectParameter("FK_DrogaSecundaria", fK_DrogaSecundaria) :
+                new ObjectParameter("FK_DrogaSecundaria", typeof(int));
+    
+            var iN_ToxicologiaSecundariaParameter = iN_ToxicologiaSecundaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaSecundaria", iN_ToxicologiaSecundaria) :
+                new ObjectParameter("IN_ToxicologiaSecundaria", typeof(bool));
+    
+            var fK_ViaSecundariaParameter = fK_ViaSecundaria.HasValue ?
+                new ObjectParameter("FK_ViaSecundaria", fK_ViaSecundaria) :
+                new ObjectParameter("FK_ViaSecundaria", typeof(int));
+    
+            var fK_FrecuenciaSecundariaParameter = fK_FrecuenciaSecundaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaSecundaria", fK_FrecuenciaSecundaria) :
+                new ObjectParameter("FK_FrecuenciaSecundaria", typeof(int));
+    
+            var nR_EdadSecundariaParameter = nR_EdadSecundaria.HasValue ?
+                new ObjectParameter("NR_EdadSecundaria", nR_EdadSecundaria) :
+                new ObjectParameter("NR_EdadSecundaria", typeof(int));
+    
+            var fK_DrogaTerciariaParameter = fK_DrogaTerciaria.HasValue ?
+                new ObjectParameter("FK_DrogaTerciaria", fK_DrogaTerciaria) :
+                new ObjectParameter("FK_DrogaTerciaria", typeof(int));
+    
+            var iN_ToxicologiaTerciariaParameter = iN_ToxicologiaTerciaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaTerciaria", iN_ToxicologiaTerciaria) :
+                new ObjectParameter("IN_ToxicologiaTerciaria", typeof(bool));
+    
+            var fK_ViaTerciariaParameter = fK_ViaTerciaria.HasValue ?
+                new ObjectParameter("FK_ViaTerciaria", fK_ViaTerciaria) :
+                new ObjectParameter("FK_ViaTerciaria", typeof(int));
+    
+            var fK_FrecuenciaTerciariaParameter = fK_FrecuenciaTerciaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaTerciaria", fK_FrecuenciaTerciaria) :
+                new ObjectParameter("FK_FrecuenciaTerciaria", typeof(int));
+    
+            var nR_EdadTerciariaParameter = nR_EdadTerciaria.HasValue ?
+                new ObjectParameter("NR_EdadTerciaria", nR_EdadTerciaria) :
+                new ObjectParameter("NR_EdadTerciaria", typeof(int));
+    
+            var nB_DrogaCuartaParameter = nB_DrogaCuarta != null ?
+                new ObjectParameter("NB_DrogaCuarta", nB_DrogaCuarta) :
+                new ObjectParameter("NB_DrogaCuarta", typeof(string));
+    
+            var iN_ToxicologiaCuartaParameter = iN_ToxicologiaCuarta.HasValue ?
+                new ObjectParameter("IN_ToxicologiaCuarta", iN_ToxicologiaCuarta) :
+                new ObjectParameter("IN_ToxicologiaCuarta", typeof(bool));
+    
+            var fK_ViaCuartaParameter = fK_ViaCuarta.HasValue ?
+                new ObjectParameter("FK_ViaCuarta", fK_ViaCuarta) :
+                new ObjectParameter("FK_ViaCuarta", typeof(int));
+    
+            var fK_FrecuenciaCuartaParameter = fK_FrecuenciaCuarta.HasValue ?
+                new ObjectParameter("FK_FrecuenciaCuarta", fK_FrecuenciaCuarta) :
+                new ObjectParameter("FK_FrecuenciaCuarta", typeof(int));
+    
+            var nR_EdadCuartaParameter = nR_EdadCuarta.HasValue ?
+                new ObjectParameter("NR_EdadCuarta", nR_EdadCuarta) :
+                new ObjectParameter("NR_EdadCuarta", typeof(int));
+    
+            var nB_DrogaQuintaParameter = nB_DrogaQuinta != null ?
+                new ObjectParameter("NB_DrogaQuinta", nB_DrogaQuinta) :
+                new ObjectParameter("NB_DrogaQuinta", typeof(string));
+    
+            var iN_ToxicologiaQuintaParameter = iN_ToxicologiaQuinta.HasValue ?
+                new ObjectParameter("IN_ToxicologiaQuinta", iN_ToxicologiaQuinta) :
+                new ObjectParameter("IN_ToxicologiaQuinta", typeof(bool));
+    
+            var fK_ViaQuintaParameter = fK_ViaQuinta.HasValue ?
+                new ObjectParameter("FK_ViaQuinta", fK_ViaQuinta) :
+                new ObjectParameter("FK_ViaQuinta", typeof(int));
+    
+            var fK_FrecuenciaQuintaParameter = fK_FrecuenciaQuinta.HasValue ?
+                new ObjectParameter("FK_FrecuenciaQuinta", fK_FrecuenciaQuinta) :
+                new ObjectParameter("FK_FrecuenciaQuinta", typeof(int));
+    
+            var nR_EdadQuintaParameter = nR_EdadQuinta.HasValue ?
+                new ObjectParameter("NR_EdadQuinta", nR_EdadQuinta) :
+                new ObjectParameter("NR_EdadQuinta", typeof(int));
+    
+            var fK_DrogaSobredosisPrimariaParameter = fK_DrogaSobredosisPrimaria.HasValue ?
+                new ObjectParameter("FK_DrogaSobredosisPrimaria", fK_DrogaSobredosisPrimaria) :
+                new ObjectParameter("FK_DrogaSobredosisPrimaria", typeof(int));
+    
+            var fK_DrogaSobredosisSecundariaParameter = fK_DrogaSobredosisSecundaria.HasValue ?
+                new ObjectParameter("FK_DrogaSobredosisSecundaria", fK_DrogaSobredosisSecundaria) :
+                new ObjectParameter("FK_DrogaSobredosisSecundaria", typeof(int));
+    
+            var dE_DrogaSobredosisTerciariaParameter = dE_DrogaSobredosisTerciaria != null ?
+                new ObjectParameter("DE_DrogaSobredosisTerciaria", dE_DrogaSobredosisTerciaria) :
+                new ObjectParameter("DE_DrogaSobredosisTerciaria", typeof(string));
+    
+            var dE_DrogaSobredosisCuartaParameter = dE_DrogaSobredosisCuarta != null ?
+                new ObjectParameter("DE_DrogaSobredosisCuarta", dE_DrogaSobredosisCuarta) :
+                new ObjectParameter("DE_DrogaSobredosisCuarta", typeof(string));
+    
+            var fK_ICDX_PrimariaParameter = fK_ICDX_Primaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Primaria", fK_ICDX_Primaria) :
+                new ObjectParameter("FK_ICDX_Primaria", typeof(int));
+    
+            var fK_ICDX_SecundariaParameter = fK_ICDX_Secundaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Secundaria", fK_ICDX_Secundaria) :
+                new ObjectParameter("FK_ICDX_Secundaria", typeof(int));
+    
+            var fK_ICDX_TerciariaParameter = fK_ICDX_Terciaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Terciaria", fK_ICDX_Terciaria) :
+                new ObjectParameter("FK_ICDX_Terciaria", typeof(int));
+    
+            var fK_ICDX_CuartaParameter = fK_ICDX_Cuarta.HasValue ?
+                new ObjectParameter("FK_ICDX_Cuarta", fK_ICDX_Cuarta) :
+                new ObjectParameter("FK_ICDX_Cuarta", typeof(int));
+    
+            var fK_DSMV_PrimariaParameter = fK_DSMV_Primaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Primaria", fK_DSMV_Primaria) :
+                new ObjectParameter("FK_DSMV_Primaria", typeof(int));
+    
+            var fK_DSMV_SecundariaParameter = fK_DSMV_Secundaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Secundaria", fK_DSMV_Secundaria) :
+                new ObjectParameter("FK_DSMV_Secundaria", typeof(int));
+    
+            var fK_DSMV_TerciariaParameter = fK_DSMV_Terciaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Terciaria", fK_DSMV_Terciaria) :
+                new ObjectParameter("FK_DSMV_Terciaria", typeof(int));
+    
+            var fK_DSMV_CuartaParameter = fK_DSMV_Cuarta.HasValue ?
+                new ObjectParameter("FK_DSMV_Cuarta", fK_DSMV_Cuarta) :
+                new ObjectParameter("FK_DSMV_Cuarta", typeof(int));
+    
+            var fK_CondicionFisicaPrimariaParameter = fK_CondicionFisicaPrimaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaPrimaria", fK_CondicionFisicaPrimaria) :
+                new ObjectParameter("FK_CondicionFisicaPrimaria", typeof(int));
+    
+            var fK_CondicionFisicaSecundariaParameter = fK_CondicionFisicaSecundaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaSecundaria", fK_CondicionFisicaSecundaria) :
+                new ObjectParameter("FK_CondicionFisicaSecundaria", typeof(int));
+    
+            var fK_CondicionFisicaTerciariaParameter = fK_CondicionFisicaTerciaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaTerciaria", fK_CondicionFisicaTerciaria) :
+                new ObjectParameter("FK_CondicionFisicaTerciaria", typeof(int));
+    
+            var fK_CondicionFisicaCuartaParameter = fK_CondicionFisicaCuarta.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaCuarta", fK_CondicionFisicaCuarta) :
+                new ObjectParameter("FK_CondicionFisicaCuarta", typeof(int));
+    
+            var fK_SeguroSaludParameter = fK_SeguroSalud.HasValue ?
+                new ObjectParameter("FK_SeguroSalud", fK_SeguroSalud) :
+                new ObjectParameter("FK_SeguroSalud", typeof(int));
+    
+            var fK_EstadoMaritalParameter = fK_EstadoMarital.HasValue ?
+                new ObjectParameter("FK_EstadoMarital", fK_EstadoMarital) :
+                new ObjectParameter("FK_EstadoMarital", typeof(int));
+    
+            var fE_UltimoContactoParameter = fE_UltimoContacto.HasValue ?
+                new ObjectParameter("FE_UltimoContacto", fE_UltimoContacto) :
+                new ObjectParameter("FE_UltimoContacto", typeof(System.DateTime));
+    
+            var creadoPorParameter = creadoPor != null ?
+                new ObjectParameter("CreadoPor", creadoPor) :
+                new ObjectParameter("CreadoPor", typeof(string));
+    
+            var iN_SobredosisParameter = iN_Sobredosis.HasValue ?
+                new ObjectParameter("IN_Sobredosis", iN_Sobredosis) :
+                new ObjectParameter("IN_Sobredosis", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_PERFIL", fK_EpisodioParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_MunicipioParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter, pK_Perfil);
+        }
+    
+        public virtual int SPU_PERFIL(Nullable<int> pK_Perfil, Nullable<System.DateTime> fE_Perfil, string iN_TI_Perfil, Nullable<int> nR_ArrestosMesPasado, Nullable<int> fK_GrupoApoyoMesPasado, Nullable<int> fK_Genero, Nullable<int> nR_Edad, Nullable<int> fK_Residencia, Nullable<int> fK_Embarazada, Nullable<int> fK_HijosMenoresCuido, Nullable<int> fK_Veterano, Nullable<int> fK_Municipio, Nullable<int> fK_Escolaridad, Nullable<int> fK_CondicionLaboral, Nullable<int> fK_NoFuerzaLaboral, Nullable<int> fK_Estudios, Nullable<int> fK_FuenteIngreso, Nullable<int> fK_DrogaPrimaria, Nullable<bool> iN_ToxicologiaPrimaria, Nullable<int> fK_ViaPrimaria, Nullable<int> fK_FrecuenciaPrimaria, Nullable<int> nR_EdadPrimaria, Nullable<int> fK_DrogaSecundaria, Nullable<bool> iN_ToxicologiaSecundaria, Nullable<int> fK_ViaSecundaria, Nullable<int> fK_FrecuenciaSecundaria, Nullable<int> nR_EdadSecundaria, Nullable<int> fK_DrogaTerciaria, Nullable<bool> iN_ToxicologiaTerciaria, Nullable<int> fK_ViaTerciaria, Nullable<int> fK_FrecuenciaTerciaria, Nullable<int> nR_EdadTerciaria, string nB_DrogaCuarta, Nullable<bool> iN_ToxicologiaCuarta, Nullable<int> fK_ViaCuarta, Nullable<int> fK_FrecuenciaCuarta, Nullable<int> nR_EdadCuarta, string nB_DrogaQuinta, Nullable<bool> iN_ToxicologiaQuinta, Nullable<int> fK_ViaQuinta, Nullable<int> fK_FrecuenciaQuinta, Nullable<int> nR_EdadQuinta, Nullable<int> fK_DrogaSobredosisPrimaria, Nullable<int> fK_DrogaSobredosisSecundaria, string dE_DrogaSobredosisTerciaria, string dE_DrogaSobredosisCuarta, Nullable<int> fK_ICDX_Primaria, Nullable<int> fK_ICDX_Secundaria, Nullable<int> fK_ICDX_Terciaria, Nullable<int> fK_ICDX_Cuarta, Nullable<int> fK_DSMV_Primaria, Nullable<int> fK_DSMV_Secundaria, Nullable<int> fK_DSMV_Terciaria, Nullable<int> fK_DSMV_Cuarta, Nullable<int> fK_CondicionFisicaPrimaria, Nullable<int> fK_CondicionFisicaSecundaria, Nullable<int> fK_CondicionFisicaTerciaria, Nullable<int> fK_CondicionFisicaCuarta, Nullable<int> fK_SeguroSalud, Nullable<int> fK_EstadoMarital, Nullable<System.DateTime> fE_UltimoContacto, string creadoPor, Nullable<bool> iN_Sobredosis)
+        {
+            var pK_PerfilParameter = pK_Perfil.HasValue ?
+                new ObjectParameter("PK_Perfil", pK_Perfil) :
+                new ObjectParameter("PK_Perfil", typeof(int));
+    
+            var fE_PerfilParameter = fE_Perfil.HasValue ?
+                new ObjectParameter("FE_Perfil", fE_Perfil) :
+                new ObjectParameter("FE_Perfil", typeof(System.DateTime));
+    
+            var iN_TI_PerfilParameter = iN_TI_Perfil != null ?
+                new ObjectParameter("IN_TI_Perfil", iN_TI_Perfil) :
+                new ObjectParameter("IN_TI_Perfil", typeof(string));
+    
+            var nR_ArrestosMesPasadoParameter = nR_ArrestosMesPasado.HasValue ?
+                new ObjectParameter("NR_ArrestosMesPasado", nR_ArrestosMesPasado) :
+                new ObjectParameter("NR_ArrestosMesPasado", typeof(int));
+    
+            var fK_GrupoApoyoMesPasadoParameter = fK_GrupoApoyoMesPasado.HasValue ?
+                new ObjectParameter("FK_GrupoApoyoMesPasado", fK_GrupoApoyoMesPasado) :
+                new ObjectParameter("FK_GrupoApoyoMesPasado", typeof(int));
+    
+            var fK_GeneroParameter = fK_Genero.HasValue ?
+                new ObjectParameter("FK_Genero", fK_Genero) :
+                new ObjectParameter("FK_Genero", typeof(int));
+    
+            var nR_EdadParameter = nR_Edad.HasValue ?
+                new ObjectParameter("NR_Edad", nR_Edad) :
+                new ObjectParameter("NR_Edad", typeof(int));
+    
+            var fK_ResidenciaParameter = fK_Residencia.HasValue ?
+                new ObjectParameter("FK_Residencia", fK_Residencia) :
+                new ObjectParameter("FK_Residencia", typeof(int));
+    
+            var fK_EmbarazadaParameter = fK_Embarazada.HasValue ?
+                new ObjectParameter("FK_Embarazada", fK_Embarazada) :
+                new ObjectParameter("FK_Embarazada", typeof(int));
+    
+            var fK_HijosMenoresCuidoParameter = fK_HijosMenoresCuido.HasValue ?
+                new ObjectParameter("FK_HijosMenoresCuido", fK_HijosMenoresCuido) :
+                new ObjectParameter("FK_HijosMenoresCuido", typeof(int));
+    
+            var fK_VeteranoParameter = fK_Veterano.HasValue ?
+                new ObjectParameter("FK_Veterano", fK_Veterano) :
+                new ObjectParameter("FK_Veterano", typeof(int));
+    
+            var fK_MunicipioParameter = fK_Municipio.HasValue ?
+                new ObjectParameter("FK_Municipio", fK_Municipio) :
+                new ObjectParameter("FK_Municipio", typeof(int));
+    
+            var fK_EscolaridadParameter = fK_Escolaridad.HasValue ?
+                new ObjectParameter("FK_Escolaridad", fK_Escolaridad) :
+                new ObjectParameter("FK_Escolaridad", typeof(int));
+    
+            var fK_CondicionLaboralParameter = fK_CondicionLaboral.HasValue ?
+                new ObjectParameter("FK_CondicionLaboral", fK_CondicionLaboral) :
+                new ObjectParameter("FK_CondicionLaboral", typeof(int));
+    
+            var fK_NoFuerzaLaboralParameter = fK_NoFuerzaLaboral.HasValue ?
+                new ObjectParameter("FK_NoFuerzaLaboral", fK_NoFuerzaLaboral) :
+                new ObjectParameter("FK_NoFuerzaLaboral", typeof(int));
+    
+            var fK_EstudiosParameter = fK_Estudios.HasValue ?
+                new ObjectParameter("FK_Estudios", fK_Estudios) :
+                new ObjectParameter("FK_Estudios", typeof(int));
+    
+            var fK_FuenteIngresoParameter = fK_FuenteIngreso.HasValue ?
+                new ObjectParameter("FK_FuenteIngreso", fK_FuenteIngreso) :
+                new ObjectParameter("FK_FuenteIngreso", typeof(int));
+    
+            var fK_DrogaPrimariaParameter = fK_DrogaPrimaria.HasValue ?
+                new ObjectParameter("FK_DrogaPrimaria", fK_DrogaPrimaria) :
+                new ObjectParameter("FK_DrogaPrimaria", typeof(int));
+    
+            var iN_ToxicologiaPrimariaParameter = iN_ToxicologiaPrimaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaPrimaria", iN_ToxicologiaPrimaria) :
+                new ObjectParameter("IN_ToxicologiaPrimaria", typeof(bool));
+    
+            var fK_ViaPrimariaParameter = fK_ViaPrimaria.HasValue ?
+                new ObjectParameter("FK_ViaPrimaria", fK_ViaPrimaria) :
+                new ObjectParameter("FK_ViaPrimaria", typeof(int));
+    
+            var fK_FrecuenciaPrimariaParameter = fK_FrecuenciaPrimaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaPrimaria", fK_FrecuenciaPrimaria) :
+                new ObjectParameter("FK_FrecuenciaPrimaria", typeof(int));
+    
+            var nR_EdadPrimariaParameter = nR_EdadPrimaria.HasValue ?
+                new ObjectParameter("NR_EdadPrimaria", nR_EdadPrimaria) :
+                new ObjectParameter("NR_EdadPrimaria", typeof(int));
+    
+            var fK_DrogaSecundariaParameter = fK_DrogaSecundaria.HasValue ?
+                new ObjectParameter("FK_DrogaSecundaria", fK_DrogaSecundaria) :
+                new ObjectParameter("FK_DrogaSecundaria", typeof(int));
+    
+            var iN_ToxicologiaSecundariaParameter = iN_ToxicologiaSecundaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaSecundaria", iN_ToxicologiaSecundaria) :
+                new ObjectParameter("IN_ToxicologiaSecundaria", typeof(bool));
+    
+            var fK_ViaSecundariaParameter = fK_ViaSecundaria.HasValue ?
+                new ObjectParameter("FK_ViaSecundaria", fK_ViaSecundaria) :
+                new ObjectParameter("FK_ViaSecundaria", typeof(int));
+    
+            var fK_FrecuenciaSecundariaParameter = fK_FrecuenciaSecundaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaSecundaria", fK_FrecuenciaSecundaria) :
+                new ObjectParameter("FK_FrecuenciaSecundaria", typeof(int));
+    
+            var nR_EdadSecundariaParameter = nR_EdadSecundaria.HasValue ?
+                new ObjectParameter("NR_EdadSecundaria", nR_EdadSecundaria) :
+                new ObjectParameter("NR_EdadSecundaria", typeof(int));
+    
+            var fK_DrogaTerciariaParameter = fK_DrogaTerciaria.HasValue ?
+                new ObjectParameter("FK_DrogaTerciaria", fK_DrogaTerciaria) :
+                new ObjectParameter("FK_DrogaTerciaria", typeof(int));
+    
+            var iN_ToxicologiaTerciariaParameter = iN_ToxicologiaTerciaria.HasValue ?
+                new ObjectParameter("IN_ToxicologiaTerciaria", iN_ToxicologiaTerciaria) :
+                new ObjectParameter("IN_ToxicologiaTerciaria", typeof(bool));
+    
+            var fK_ViaTerciariaParameter = fK_ViaTerciaria.HasValue ?
+                new ObjectParameter("FK_ViaTerciaria", fK_ViaTerciaria) :
+                new ObjectParameter("FK_ViaTerciaria", typeof(int));
+    
+            var fK_FrecuenciaTerciariaParameter = fK_FrecuenciaTerciaria.HasValue ?
+                new ObjectParameter("FK_FrecuenciaTerciaria", fK_FrecuenciaTerciaria) :
+                new ObjectParameter("FK_FrecuenciaTerciaria", typeof(int));
+    
+            var nR_EdadTerciariaParameter = nR_EdadTerciaria.HasValue ?
+                new ObjectParameter("NR_EdadTerciaria", nR_EdadTerciaria) :
+                new ObjectParameter("NR_EdadTerciaria", typeof(int));
+    
+            var nB_DrogaCuartaParameter = nB_DrogaCuarta != null ?
+                new ObjectParameter("NB_DrogaCuarta", nB_DrogaCuarta) :
+                new ObjectParameter("NB_DrogaCuarta", typeof(string));
+    
+            var iN_ToxicologiaCuartaParameter = iN_ToxicologiaCuarta.HasValue ?
+                new ObjectParameter("IN_ToxicologiaCuarta", iN_ToxicologiaCuarta) :
+                new ObjectParameter("IN_ToxicologiaCuarta", typeof(bool));
+    
+            var fK_ViaCuartaParameter = fK_ViaCuarta.HasValue ?
+                new ObjectParameter("FK_ViaCuarta", fK_ViaCuarta) :
+                new ObjectParameter("FK_ViaCuarta", typeof(int));
+    
+            var fK_FrecuenciaCuartaParameter = fK_FrecuenciaCuarta.HasValue ?
+                new ObjectParameter("FK_FrecuenciaCuarta", fK_FrecuenciaCuarta) :
+                new ObjectParameter("FK_FrecuenciaCuarta", typeof(int));
+    
+            var nR_EdadCuartaParameter = nR_EdadCuarta.HasValue ?
+                new ObjectParameter("NR_EdadCuarta", nR_EdadCuarta) :
+                new ObjectParameter("NR_EdadCuarta", typeof(int));
+    
+            var nB_DrogaQuintaParameter = nB_DrogaQuinta != null ?
+                new ObjectParameter("NB_DrogaQuinta", nB_DrogaQuinta) :
+                new ObjectParameter("NB_DrogaQuinta", typeof(string));
+    
+            var iN_ToxicologiaQuintaParameter = iN_ToxicologiaQuinta.HasValue ?
+                new ObjectParameter("IN_ToxicologiaQuinta", iN_ToxicologiaQuinta) :
+                new ObjectParameter("IN_ToxicologiaQuinta", typeof(bool));
+    
+            var fK_ViaQuintaParameter = fK_ViaQuinta.HasValue ?
+                new ObjectParameter("FK_ViaQuinta", fK_ViaQuinta) :
+                new ObjectParameter("FK_ViaQuinta", typeof(int));
+    
+            var fK_FrecuenciaQuintaParameter = fK_FrecuenciaQuinta.HasValue ?
+                new ObjectParameter("FK_FrecuenciaQuinta", fK_FrecuenciaQuinta) :
+                new ObjectParameter("FK_FrecuenciaQuinta", typeof(int));
+    
+            var nR_EdadQuintaParameter = nR_EdadQuinta.HasValue ?
+                new ObjectParameter("NR_EdadQuinta", nR_EdadQuinta) :
+                new ObjectParameter("NR_EdadQuinta", typeof(int));
+    
+            var fK_DrogaSobredosisPrimariaParameter = fK_DrogaSobredosisPrimaria.HasValue ?
+                new ObjectParameter("FK_DrogaSobredosisPrimaria", fK_DrogaSobredosisPrimaria) :
+                new ObjectParameter("FK_DrogaSobredosisPrimaria", typeof(int));
+    
+            var fK_DrogaSobredosisSecundariaParameter = fK_DrogaSobredosisSecundaria.HasValue ?
+                new ObjectParameter("FK_DrogaSobredosisSecundaria", fK_DrogaSobredosisSecundaria) :
+                new ObjectParameter("FK_DrogaSobredosisSecundaria", typeof(int));
+    
+            var dE_DrogaSobredosisTerciariaParameter = dE_DrogaSobredosisTerciaria != null ?
+                new ObjectParameter("DE_DrogaSobredosisTerciaria", dE_DrogaSobredosisTerciaria) :
+                new ObjectParameter("DE_DrogaSobredosisTerciaria", typeof(string));
+    
+            var dE_DrogaSobredosisCuartaParameter = dE_DrogaSobredosisCuarta != null ?
+                new ObjectParameter("DE_DrogaSobredosisCuarta", dE_DrogaSobredosisCuarta) :
+                new ObjectParameter("DE_DrogaSobredosisCuarta", typeof(string));
+    
+            var fK_ICDX_PrimariaParameter = fK_ICDX_Primaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Primaria", fK_ICDX_Primaria) :
+                new ObjectParameter("FK_ICDX_Primaria", typeof(int));
+    
+            var fK_ICDX_SecundariaParameter = fK_ICDX_Secundaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Secundaria", fK_ICDX_Secundaria) :
+                new ObjectParameter("FK_ICDX_Secundaria", typeof(int));
+    
+            var fK_ICDX_TerciariaParameter = fK_ICDX_Terciaria.HasValue ?
+                new ObjectParameter("FK_ICDX_Terciaria", fK_ICDX_Terciaria) :
+                new ObjectParameter("FK_ICDX_Terciaria", typeof(int));
+    
+            var fK_ICDX_CuartaParameter = fK_ICDX_Cuarta.HasValue ?
+                new ObjectParameter("FK_ICDX_Cuarta", fK_ICDX_Cuarta) :
+                new ObjectParameter("FK_ICDX_Cuarta", typeof(int));
+    
+            var fK_DSMV_PrimariaParameter = fK_DSMV_Primaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Primaria", fK_DSMV_Primaria) :
+                new ObjectParameter("FK_DSMV_Primaria", typeof(int));
+    
+            var fK_DSMV_SecundariaParameter = fK_DSMV_Secundaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Secundaria", fK_DSMV_Secundaria) :
+                new ObjectParameter("FK_DSMV_Secundaria", typeof(int));
+    
+            var fK_DSMV_TerciariaParameter = fK_DSMV_Terciaria.HasValue ?
+                new ObjectParameter("FK_DSMV_Terciaria", fK_DSMV_Terciaria) :
+                new ObjectParameter("FK_DSMV_Terciaria", typeof(int));
+    
+            var fK_DSMV_CuartaParameter = fK_DSMV_Cuarta.HasValue ?
+                new ObjectParameter("FK_DSMV_Cuarta", fK_DSMV_Cuarta) :
+                new ObjectParameter("FK_DSMV_Cuarta", typeof(int));
+    
+            var fK_CondicionFisicaPrimariaParameter = fK_CondicionFisicaPrimaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaPrimaria", fK_CondicionFisicaPrimaria) :
+                new ObjectParameter("FK_CondicionFisicaPrimaria", typeof(int));
+    
+            var fK_CondicionFisicaSecundariaParameter = fK_CondicionFisicaSecundaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaSecundaria", fK_CondicionFisicaSecundaria) :
+                new ObjectParameter("FK_CondicionFisicaSecundaria", typeof(int));
+    
+            var fK_CondicionFisicaTerciariaParameter = fK_CondicionFisicaTerciaria.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaTerciaria", fK_CondicionFisicaTerciaria) :
+                new ObjectParameter("FK_CondicionFisicaTerciaria", typeof(int));
+    
+            var fK_CondicionFisicaCuartaParameter = fK_CondicionFisicaCuarta.HasValue ?
+                new ObjectParameter("FK_CondicionFisicaCuarta", fK_CondicionFisicaCuarta) :
+                new ObjectParameter("FK_CondicionFisicaCuarta", typeof(int));
+    
+            var fK_SeguroSaludParameter = fK_SeguroSalud.HasValue ?
+                new ObjectParameter("FK_SeguroSalud", fK_SeguroSalud) :
+                new ObjectParameter("FK_SeguroSalud", typeof(int));
+    
+            var fK_EstadoMaritalParameter = fK_EstadoMarital.HasValue ?
+                new ObjectParameter("FK_EstadoMarital", fK_EstadoMarital) :
+                new ObjectParameter("FK_EstadoMarital", typeof(int));
+    
+            var fE_UltimoContactoParameter = fE_UltimoContacto.HasValue ?
+                new ObjectParameter("FE_UltimoContacto", fE_UltimoContacto) :
+                new ObjectParameter("FE_UltimoContacto", typeof(System.DateTime));
+    
+            var creadoPorParameter = creadoPor != null ?
+                new ObjectParameter("CreadoPor", creadoPor) :
+                new ObjectParameter("CreadoPor", typeof(string));
+    
+            var iN_SobredosisParameter = iN_Sobredosis.HasValue ?
+                new ObjectParameter("IN_Sobredosis", iN_Sobredosis) :
+                new ObjectParameter("IN_Sobredosis", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_PERFIL", pK_PerfilParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_MunicipioParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter);
         }
     }
 }

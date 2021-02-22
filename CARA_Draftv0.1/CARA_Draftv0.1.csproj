@@ -1279,6 +1279,9 @@
     <Compile Include="CA_LKP_MENORES_CUSTODIA.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
+    <Compile Include="CA_LKP_MUNICIPIO.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
     <Compile Include="CA_LKP_NIVEL_SUSTANCIA.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
