@@ -70,6 +70,7 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_LKP_MUNICIPIO> CA_LKP_MUNICIPIO { get; set; }
         public virtual DbSet<CA_PERFIL> CA_PERFIL { get; set; }
         public virtual DbSet<VW_DSH_PERFILES> VW_DSH_PERFILES { get; set; }
+        public virtual DbSet<VW_DSH_PLN_PERFILES> VW_DSH_PLN_PERFILES { get; set; }
     
         public virtual int SPC_EPISODIO(Nullable<int> fK_Paciente, Nullable<int> fK_Centro, Nullable<System.DateTime> fE_Episodio, Nullable<System.DateTime> fE_Alta, Nullable<int> fK_EstadoServicio, Nullable<int> fK_FuenteReferido, Nullable<int> fK_EpisodiosPrevios, Nullable<int> fK_NivelSustancia, Nullable<int> nR_DiasEspera, ObjectParameter pK_Episodio)
         {

@@ -44,6 +44,25 @@ namespace CARA_Draftv0._1.App
                     lbxCentro.DataSource = dsCARA.CA_CENTRO.ToList();
                     lbxCentro.DataBind();
 
+                    lbxFuenteReferido.DataValueField = "PK_FuenteReferido";
+                    lbxFuenteReferido.DataTextField = "DE_FuenteReferido";
+                    lbxFuenteReferido.DataSource = dsCARA.CA_LKP_FUENTE_REFERIDO.ToList();
+                    lbxFuenteReferido.DataBind();
+
+                    lbxMunicipios.DataValueField = "PK_Municipio";
+                    lbxMunicipios.DataTextField = "DE_Municipio";
+                    lbxMunicipios.DataSource = dsCARA.CA_LKP_MUNICIPIO.ToList();
+                    lbxMunicipios.DataBind();
+
+
+                    lbxGrupoEdades.Items.Insert(0, new ListItem("18-24", "18-24"));
+                    lbxGrupoEdades.Items.Insert(1, new ListItem("25-44", "25-44"));
+                    lbxGrupoEdades.Items.Insert(2, new ListItem("45-65", "45-65"));
+                    lbxGrupoEdades.Items.Insert(3, new ListItem("65+", "65+"));
+
+                    lbxSobredosis.Items.Insert(0, new ListItem("No", "No"));
+                    lbxSobredosis.Items.Insert(1, new ListItem("Si", "Si"));
+
                     this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");
                     this.txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
 

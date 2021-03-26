@@ -75,6 +75,42 @@ $(function () {
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentroPerfiles').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentroPerfiles').multiselect('updateButtonText');
 
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxGrupoEdades').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxGrupoEdades').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxGrupoEdades').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxSobredosis').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxSobredosis').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxSobredosis').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('updateButtonText');
+
 });
 
 

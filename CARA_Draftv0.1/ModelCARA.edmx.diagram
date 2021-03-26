@@ -100,6 +100,7 @@
         <AssociationConnector Association="Model.FK_PERFIL_VIA_QUINTA" />
         <AssociationConnector Association="Model.FK_PERFIL_VIA_SECUNDARIA" />
         <AssociationConnector Association="Model.FK_PERFIL_VIA_TERCIARIA" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PLN_PERFILES" Width="1.5" PointX="11.375" PointY="20.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -51,6 +51,15 @@ namespace CARA_Draftv0._1.App
         protected global::System.Web.UI.WebControls.ListBox lbxGenero;
 
         /// <summary>
+        /// lbxGrupoEdades control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxGrupoEdades;
+
+        /// <summary>
         /// lbxNivelSustancia control.
         /// </summary>
         /// <remarks>
@@ -58,5 +67,32 @@ namespace CARA_Draftv0._1.App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ListBox lbxNivelSustancia;
+
+        /// <summary>
+        /// lbxSobredosis control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxSobredosis;
+
+        /// <summary>
+        /// lbxFuenteReferido control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxFuenteReferido;
+
+        /// <summary>
+        /// lbxMunicipios control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ListBox lbxMunicipios;
     }
 }

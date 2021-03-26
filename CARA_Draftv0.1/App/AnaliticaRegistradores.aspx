@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="AnaliticaRegistradores.aspx.cs" Inherits="CARA_Draftv0._1.App.AnaliticaRegistradores" %>
+<%@ Register assembly="Microsoft.ReportViewer.WebForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" namespace="Microsoft.Reporting.WebForms" tagprefix="rsweb" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -258,64 +259,19 @@
 
 
                     <div class="tab-pane fade" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-2 px-md-0">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Fecha de Admisión</h6>
-                                        </div>
-                                        <div class="row">
-                                            <span class="list-item">Desde</span>
-                                            <asp:textbox runat="server" ID="txtPerfilesDesde" CssClass="form-control" onChange="changeFechaPerfiles();" TextMode="Date"/>
-                                            <span class="list-item">Hasta</span>
-                                            <asp:textbox runat="server" ID="txtPerfilesHasta" CssClass="form-control" onChange="changeFechaPerfiles();" TextMode="Date"/>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Centro de Servicio</h6>
-                                        </div>
-                                        <div class="row">
-                                            <asp:ListBox runat="server" ID="lbxCentroPerfiles" SelectionMode="Multiple" onChange="changeFechaPerfiles();" CssClass="form-control">
-                                        </asp:ListBox>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Perfiles para Descargar</h6>
-                                        </div>
-                                        <div class="row">
-                                             <button id="btnDescargar" class="form-control" onclick="descargarPerfil();">Descargar</button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
-                                <div class="col-lg-12 mb-2">
-                                    <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
+                        <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 class="m-0 font-weight-bold text-primary">Perfiles</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
                                         <div class="chart-area">
-                                            
-                                            <div id="perfiles_table"></div>
+                                          <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
                                         </div>
                                     </div>
-                                    </div>
                                 </div>
-                            </div>
-
                         </div>
-                    </div>
-
-
-
-
                 </div>
 
 
@@ -363,14 +319,6 @@
             $(<%=lbxGenero.ClientID%>).multiselect('selectAll', false);
             $(<%=lbxGenero.ClientID%>).multiselect('updateButtonText');
 
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect({
-                includeSelectAllOption: true,
-                enableCaseInsensitiveFiltering: true,
-                buttonClass: 'form-control',
-                buttonWidth: '190px'
-            });
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect('selectAll', false);
-            $(<%=lbxCentroPerfiles.ClientID%>).multiselect('updateButtonText');
 
         });
 
@@ -380,16 +328,11 @@
             dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
             dtHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
 
-            perfiles_desde = document.getElementById("<%=txtPerfilesDesde.ClientID %>").value;
-            perfiles_hasta = document.getElementById("<%=txtPerfilesHasta.ClientID %>").value;
-
             listGenero();
 
             listNivelCuidado();
 
             listCentro();
-
-            listCentroPerfiles();
 
             ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + '}'
 
@@ -405,10 +348,7 @@
 
             wsDrogaUso();
 
-            perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centrosPerfiles) + '}'
-
-            wsPerfiles();
-
+           
         });
 
 
@@ -554,8 +494,6 @@
         }
 
         function changeFechaPerfiles() {
-            perfiles_desde = document.getElementById("<%=txtPerfilesDesde.ClientID %>").value;
-            perfiles_hasta = document.getElementById("<%=txtPerfilesHasta.ClientID %>").value;
 
             listCentroPerfiles();
 
@@ -634,7 +572,6 @@
 
         function listCentroPerfiles() {
             centrosPerfiles = [];
-            var listCentros = document.getElementById("<%=lbxCentroPerfiles.ClientID%>");
 
             var a = 0;
             for (var i = 0; i < listCentros.options.length; i++) {

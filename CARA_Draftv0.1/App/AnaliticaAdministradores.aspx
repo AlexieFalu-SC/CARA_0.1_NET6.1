@@ -32,6 +32,9 @@
                 <li class="nav-item" role="presentation">
                 <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">PERFILES</a>
                 </li>
+                <li class="nav-item" role="presentation">
+                <a class="nav-link" id="ssrs-plan-tab" data-toggle="tab" href="#ssrs-plan" role="tab" aria-controls="ssrs-plan" aria-selected="false">DETALLES DE PERFILES</a>
+                </li>
             </ul>
       </div>
 
@@ -375,6 +378,21 @@
                             </div>
                     </div>
 
+                    <div class="tab-pane fade" id="ssrs-plan" role="tabpanel" aria-labelledby="plan-tab">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <h6 class="m-0 font-weight-bold text-primary">Detalles de Perfiles</h6>
+                                    </div>
+                                    <!-- Card Body -->
+                                    <div class="card-body">
+                                        <div class="chart-area">
+                                          <rsweb:ReportViewer ID="rvAnaliticaPerfiles" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+
 
                 </div>
 
@@ -406,7 +424,7 @@
 
             listCentro();
 
-            listCentroPerfiles();
+            //listCentroPerfiles();
 
             ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + '}'
 
@@ -422,9 +440,9 @@
 
             wsDrogaUso();
 
-            perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centrosPerfiles) + '}'
+            //perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centroPerfiles) + '}'
 
-            wsPerfiles();
+            //wsPerfiles();
 
             }, 1500);
 
@@ -483,7 +501,6 @@
                     dtFuenteReferido = data.d;
                 },
                 error: function () {
-                    alert("Error");
                 }
             }).done(function () {
                 google.charts.setOnLoadCallback(fuenteReferido);
@@ -501,7 +518,6 @@
                     dtSobredosis = data.d;
                 },
                 error: function () {
-                    alert("Error");
                 }
             }).done(function () {
                 google.charts.setOnLoadCallback(sobredosis);
@@ -519,7 +535,6 @@
                     dtDrogaSobredosis = data.d;
                 },
                 error: function () {
-                    alert("Error");
                 }
             }).done(function () {
                 google.charts.setOnLoadCallback(drogaSobredosis);
@@ -537,7 +552,6 @@
                     dtNivelCuidado = data.d;
                 },
                 error: function () {
-                    alert("Error");
                 }
             }).done(function () {
                 google.charts.setOnLoadCallback(nivelCuidado);
@@ -573,6 +587,7 @@
                     dtPerfiles = data.d;
                 },
                 error: function () {
+                    alert("7");
                     alert("Error");
                 }
             }).done(function () {

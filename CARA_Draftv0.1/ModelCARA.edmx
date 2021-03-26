@@ -426,6 +426,8 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_PERFILES' does not have a
             <PropertyRef Name="PK_NivelSustancia" />
             <PropertyRef Name="DE_NivelSustancia" />
             <PropertyRef Name="DE_Sobredosis" />
+            <PropertyRef Name="PK_Municipio" />
+            <PropertyRef Name="DE_Municipio" />
           </Key>
           <Property Name="PK_Episodio" Type="int" Nullable="false" />
           <Property Name="PK_Perfil" Type="int" Nullable="false" />
@@ -433,13 +435,17 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_PERFILES' does not have a
           <Property Name="NB_Centro" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
           <Property Name="Edad" Type="int" />
+          <Property Name="GrupoEdad" Type="varchar" MaxLength="5" />
           <Property Name="PK_Genero" Type="int" Nullable="false" />
           <Property Name="DE_Genero" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="PK_FuenteReferido" Type="int" Nullable="false" />
           <Property Name="DE_FuenteReferido" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="PK_NivelSustancia" Type="int" Nullable="false" />
           <Property Name="DE_NivelSustancia" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IN_Sobredosis" Type="bit" />
           <Property Name="DE_Sobredosis" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PK_Municipio" Type="int" Nullable="false" />
+          <Property Name="DE_Municipio" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PERFILES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -635,6 +641,43 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_ICDX' does not have a prim
           <Property Name="FK_ICDX" Type="int" Nullable="false" />
           <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
           <Property Name="FK_Centro" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_PERFILES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_DSH_PLN_PERFILES">
+          <Key>
+            <PropertyRef Name="PK_Episodio" />
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="PK_Centro" />
+            <PropertyRef Name="NB_Centro" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="PK_Genero" />
+            <PropertyRef Name="DE_Genero" />
+            <PropertyRef Name="PK_FuenteReferido" />
+            <PropertyRef Name="DE_FuenteReferido" />
+            <PropertyRef Name="PK_NivelSustancia" />
+            <PropertyRef Name="DE_NivelSustancia" />
+            <PropertyRef Name="DE_Sobredosis" />
+            <PropertyRef Name="PK_Municipio" />
+            <PropertyRef Name="DE_Municipio" />
+          </Key>
+          <Property Name="PK_Episodio" Type="int" Nullable="false" />
+          <Property Name="PK_Perfil" Type="int" Nullable="false" />
+          <Property Name="PK_Centro" Type="int" Nullable="false" />
+          <Property Name="NB_Centro" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="FE_Perfil" Type="datetime" Nullable="false" />
+          <Property Name="Edad" Type="int" />
+          <Property Name="GrupoEdad" Type="varchar" MaxLength="5" />
+          <Property Name="PK_Genero" Type="int" Nullable="false" />
+          <Property Name="DE_Genero" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="PK_FuenteReferido" Type="int" Nullable="false" />
+          <Property Name="DE_FuenteReferido" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="PK_NivelSustancia" Type="int" Nullable="false" />
+          <Property Name="DE_NivelSustancia" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="IN_Sobredosis" Type="bit" />
+          <Property Name="DE_Sobredosis" Type="varchar" MaxLength="2" Nullable="false" />
+          <Property Name="PK_Municipio" Type="int" Nullable="false" />
+          <Property Name="DE_Municipio" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PLN_ViaSustancia' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1616,13 +1659,17 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
     [VW_DSH_CARA_PERFILES].[NB_Centro] AS [NB_Centro], 
     [VW_DSH_CARA_PERFILES].[FE_Perfil] AS [FE_Perfil], 
     [VW_DSH_CARA_PERFILES].[Edad] AS [Edad], 
+    [VW_DSH_CARA_PERFILES].[GrupoEdad] AS [GrupoEdad], 
     [VW_DSH_CARA_PERFILES].[PK_Genero] AS [PK_Genero], 
     [VW_DSH_CARA_PERFILES].[DE_Genero] AS [DE_Genero], 
     [VW_DSH_CARA_PERFILES].[PK_FuenteReferido] AS [PK_FuenteReferido], 
     [VW_DSH_CARA_PERFILES].[DE_FuenteReferido] AS [DE_FuenteReferido], 
     [VW_DSH_CARA_PERFILES].[PK_NivelSustancia] AS [PK_NivelSustancia], 
     [VW_DSH_CARA_PERFILES].[DE_NivelSustancia] AS [DE_NivelSustancia], 
-    [VW_DSH_CARA_PERFILES].[DE_Sobredosis] AS [DE_Sobredosis]
+    [VW_DSH_CARA_PERFILES].[IN_Sobredosis] AS [IN_Sobredosis], 
+    [VW_DSH_CARA_PERFILES].[DE_Sobredosis] AS [DE_Sobredosis], 
+    [VW_DSH_CARA_PERFILES].[PK_Municipio] AS [PK_Municipio], 
+    [VW_DSH_CARA_PERFILES].[DE_Municipio] AS [DE_Municipio]
     FROM [dbo].[VW_DSH_CARA_PERFILES] AS [VW_DSH_CARA_PERFILES]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_DSH_PERFILES" EntityType="Self.VW_DSH_PERFILES" store:Type="Views" store:Schema="dbo">
@@ -1728,6 +1775,27 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
     [VW_DSH_PLN_ICDX].[FK_NivelSustancia] AS [FK_NivelSustancia], 
     [VW_DSH_PLN_ICDX].[FK_Centro] AS [FK_Centro]
     FROM [dbo].[VW_DSH_PLN_ICDX] AS [VW_DSH_PLN_ICDX]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VW_DSH_PLN_PERFILES" EntityType="Self.VW_DSH_PLN_PERFILES" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_DSH_PLN_PERFILES].[PK_Episodio] AS [PK_Episodio], 
+    [VW_DSH_PLN_PERFILES].[PK_Perfil] AS [PK_Perfil], 
+    [VW_DSH_PLN_PERFILES].[PK_Centro] AS [PK_Centro], 
+    [VW_DSH_PLN_PERFILES].[NB_Centro] AS [NB_Centro], 
+    [VW_DSH_PLN_PERFILES].[FE_Perfil] AS [FE_Perfil], 
+    [VW_DSH_PLN_PERFILES].[Edad] AS [Edad], 
+    [VW_DSH_PLN_PERFILES].[GrupoEdad] AS [GrupoEdad], 
+    [VW_DSH_PLN_PERFILES].[PK_Genero] AS [PK_Genero], 
+    [VW_DSH_PLN_PERFILES].[DE_Genero] AS [DE_Genero], 
+    [VW_DSH_PLN_PERFILES].[PK_FuenteReferido] AS [PK_FuenteReferido], 
+    [VW_DSH_PLN_PERFILES].[DE_FuenteReferido] AS [DE_FuenteReferido], 
+    [VW_DSH_PLN_PERFILES].[PK_NivelSustancia] AS [PK_NivelSustancia], 
+    [VW_DSH_PLN_PERFILES].[DE_NivelSustancia] AS [DE_NivelSustancia], 
+    [VW_DSH_PLN_PERFILES].[IN_Sobredosis] AS [IN_Sobredosis], 
+    [VW_DSH_PLN_PERFILES].[DE_Sobredosis] AS [DE_Sobredosis], 
+    [VW_DSH_PLN_PERFILES].[PK_Municipio] AS [PK_Municipio], 
+    [VW_DSH_PLN_PERFILES].[DE_Municipio] AS [DE_Municipio]
+    FROM [dbo].[VW_DSH_PLN_PERFILES] AS [VW_DSH_PLN_PERFILES]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_DSH_PLN_ViaSustancia" EntityType="Self.VW_DSH_PLN_ViaSustancia" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -2727,6 +2795,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="CreadoPor" Mode="In" Type="String" />
             <Parameter Name="IN_Sobredosis" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <EntitySet Name="VW_DSH_PLN_PERFILES" EntityType="Model.VW_DSH_PLN_PERFILES" />
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -2964,6 +3033,8 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <PropertyRef Name="PK_NivelSustancia" />
             <PropertyRef Name="DE_NivelSustancia" />
             <PropertyRef Name="DE_Sobredosis" />
+            <PropertyRef Name="PK_Municipio" />
+            <PropertyRef Name="DE_Municipio" />
           </Key>
           <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
           <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
@@ -2978,6 +3049,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="PK_NivelSustancia" Type="Int32" Nullable="false" />
           <Property Name="DE_NivelSustancia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="DE_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="GrupoEdad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="IN_Sobredosis" Type="Boolean" />
+          <Property Name="PK_Municipio" Type="Int32" Nullable="false" />
+          <Property Name="DE_Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VW_DSH_CARA_DROGAS_SOBREDOSIS">
           <Key>
@@ -3903,6 +3978,41 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VW_DSH_PLN_PERFILES">
+          <Key>
+            <PropertyRef Name="PK_Episodio" />
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="PK_Centro" />
+            <PropertyRef Name="NB_Centro" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="PK_Genero" />
+            <PropertyRef Name="DE_Genero" />
+            <PropertyRef Name="PK_FuenteReferido" />
+            <PropertyRef Name="DE_FuenteReferido" />
+            <PropertyRef Name="PK_NivelSustancia" />
+            <PropertyRef Name="DE_NivelSustancia" />
+            <PropertyRef Name="DE_Sobredosis" />
+            <PropertyRef Name="PK_Municipio" />
+            <PropertyRef Name="DE_Municipio" />
+          </Key>
+          <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="PK_Centro" Type="Int32" Nullable="false" />
+          <Property Name="NB_Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="GrupoEdad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="DE_Genero" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PK_FuenteReferido" Type="Int32" Nullable="false" />
+          <Property Name="DE_FuenteReferido" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="DE_NivelSustancia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="IN_Sobredosis" Type="Boolean" />
+          <Property Name="DE_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Municipio" Type="Int32" Nullable="false" />
+          <Property Name="DE_Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4283,6 +4393,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <EntitySetMapping Name="VW_DSH_CARA_PERFILES">
             <EntityTypeMapping TypeName="Model.VW_DSH_CARA_PERFILES">
               <MappingFragment StoreEntitySet="VW_DSH_CARA_PERFILES">
+                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
+                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
+                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
+                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
                 <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
                 <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
                 <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
@@ -4596,6 +4710,29 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_PERFIL" FunctionName="Model.Store.SPC_PERFIL" />
           <FunctionImportMapping FunctionImportName="SPU_PERFIL" FunctionName="Model.Store.SPU_PERFIL" />
+          <EntitySetMapping Name="VW_DSH_PLN_PERFILES">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_PERFILES">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_PERFILES">
+                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
+                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
+                <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
+                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
+                <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
+                <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
+                <ScalarProperty Name="DE_FuenteReferido" ColumnName="DE_FuenteReferido" />
+                <ScalarProperty Name="PK_FuenteReferido" ColumnName="PK_FuenteReferido" />
+                <ScalarProperty Name="DE_Genero" ColumnName="DE_Genero" />
+                <ScalarProperty Name="PK_Genero" ColumnName="PK_Genero" />
+                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
+                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

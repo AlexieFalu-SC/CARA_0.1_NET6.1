@@ -39,6 +39,26 @@ namespace CARA_Draftv0._1.App.WebMethods
         public int pk_centro;
     }
 
+    public class dashCaraFuenteReferido
+    {
+        public int pk_fuentereferido;
+    }
+
+    public class dashCaraGrupoEdades
+    {
+        public string pk_grupoedades;
+    }
+
+    public class dashCaraSobredosis
+    {
+        public string pk_sobredosis;
+    }
+
+    public class dashCaraMunicipios
+    {
+        public int pk_municipios;
+    }
+
     /// <summary>
     /// Summary description for wsRegistradoTablero
     /// </summary>

@@ -1447,6 +1447,9 @@
     <Compile Include="VW_DSH_PLN_ICDX.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_DSH_PLN_PERFILES.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_DSH_PLN_ViaSustancia.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
