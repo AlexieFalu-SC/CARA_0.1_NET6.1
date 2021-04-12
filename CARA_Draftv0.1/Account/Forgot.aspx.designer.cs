@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.Account {
-    
-    
-    public partial class ForgotPassword {
-        
+namespace CARA_Draftv0._1.Account
+{
+
+
+    public partial class ForgotPassword
+    {
+
         /// <summary>
         /// loginForm control.
         /// </summary>
@@ -20,7 +22,7 @@ namespace CARA_Draftv0._1.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder loginForm;
-        
+
         /// <summary>
         /// ErrorMessage control.
         /// </summary>
@@ -29,7 +31,7 @@ namespace CARA_Draftv0._1.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder ErrorMessage;
-        
+
         /// <summary>
         /// FailureText control.
         /// </summary>
@@ -38,7 +40,7 @@ namespace CARA_Draftv0._1.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal FailureText;
-        
+
         /// <summary>
         /// Email control.
         /// </summary>
@@ -47,7 +49,7 @@ namespace CARA_Draftv0._1.Account {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Email;
-        
+
         /// <summary>
         /// DisplayEmail control.
         /// </summary>

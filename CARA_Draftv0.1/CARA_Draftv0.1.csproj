@@ -207,6 +207,7 @@
     <Content Include="App\AnaliticaRegistradores.aspx" />
     <Content Include="App\DashboardRegistrado.aspx" />
     <Content Include="App\EmailsHTML\ConfirmacionCuenta.html" />
+    <Content Include="App\EmailsHTML\EmailPassword.html" />
     <Content Include="App\Entrada.aspx" />
     <Content Include="App\Errores\NoAutorizadoError.aspx" />
     <Content Include="App\Errores\NoEncontradoError.aspx" />

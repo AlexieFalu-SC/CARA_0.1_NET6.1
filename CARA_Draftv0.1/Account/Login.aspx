@@ -104,10 +104,13 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label>--%>
           <asp:CheckBox runat="server" ID="RememberMe" />
-          <asp:Label runat="server" AssociatedControlID="RememberMe">Remember me?</asp:Label>
+          <asp:Label runat="server" AssociatedControlID="RememberMe">Recordarme</asp:Label>
       </div>
     <asp:Button runat="server" OnClick="LogIn" Text="Acceder" CssClass="btn btn-lg btn-primary btn-block" />
     &nbsp;&nbsp;
                       <asp:Button runat="server" ID="ResendConfirm"  OnClick="SendEmailConfirmationToken" Text="Reenviar Confirmación" Visible="false" CssClass="btn btn-default"/>  
+
+    <asp:HyperLink runat="server" ID="ForgotPasswordHyperLink" ViewStateMode="Disabled" class="btn btn-link">OLVIDÉ MI CONTRASEÑA</asp:HyperLink>
+
   <p class="mt-5 mb-3 text-muted">&copy; ASSMCA</p>
 </asp:Content>
