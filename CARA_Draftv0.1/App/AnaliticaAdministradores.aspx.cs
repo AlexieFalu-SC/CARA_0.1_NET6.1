@@ -1,4 +1,6 @@
 ﻿using CARA_Draftv0._1.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
@@ -25,6 +27,17 @@ namespace CARA_Draftv0._1.App
             {
                 PrepararDropDownLists();
                 GenerarReportes();
+
+                Usuario = (ApplicationUser)Session["Usuario"];
+
+                ApplicationDbContext context = new ApplicationDbContext();
+                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                if (userManager.IsInRole(Usuario.Id, "AdminTablero"))
+                {
+                    aDownload.Visible = false;
+                }
+
             }
         }
 
@@ -73,7 +86,7 @@ namespace CARA_Draftv0._1.App
         {
             rvAnaliticaAdministradores.Height = Unit.Pixel(800 - 58);
             rvAnaliticaAdministradores.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
-            IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@1912", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
+            IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@654321", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
             rvAnaliticaAdministradores.ServerReport.ReportServerCredentials = irsc;
             rvAnaliticaAdministradores.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
             rvAnaliticaAdministradores.ServerReport.ReportPath = "/Informes CARA/PERFILES";

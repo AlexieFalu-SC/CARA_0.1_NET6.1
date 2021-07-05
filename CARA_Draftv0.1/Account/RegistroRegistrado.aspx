@@ -77,7 +77,7 @@
                 <asp:ValidationSummary runat="server" CssClass="text-danger" />
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-12 control-label">Email</asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="Email" CssClass="col-md-12 control-label">Correo Electrónico</asp:Label>
                         <div class="col-md-12">
                             <asp:TextBox runat="server" ID="Email" CssClass="form-control" TextMode="Email" />
                             <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
@@ -126,7 +126,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <asp:Label runat="server" AssociatedControlID="ddlRol" CssClass="col-md-12 control-label">Role</asp:Label>
+                    <asp:Label runat="server" AssociatedControlID="ddlRol" CssClass="col-md-12 control-label">Rol</asp:Label>
                     <div class="col-md-12">
                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlRol"></asp:DropDownList>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlRol" InitialValue="0"
@@ -135,14 +135,14 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <asp:Button runat="server" Text="Register" OnClick="BtnRegistrar_Click" CssClass="btn btn-outline-secondary" />
+                        <asp:Button runat="server" Text="Registrar" OnClick="BtnRegistrar_Click" CssClass="btn btn-outline-secondary" />
                     </div>
                 </div>
             </div>
 
       </div>
       <div class="card-footer text-muted text-center">
-    2 days ago
+    ASSMCA
   </div>
 </div>
 

@@ -94,6 +94,30 @@ namespace CARA_Draftv0._1
                 var role = new IdentityRole("AdminObservatorio");
                 roleManager.Create(role);
             }
+            if (!roleManager.RoleExists("AdminTablero"))
+            {
+                var role = new IdentityRole("AdminTablero");
+                roleManager.Create(role);
+
+                var user = new ApplicationUser();
+                user.UserName = "tablero@assmca.pr.gov";
+                user.Email = "tablero@assmca.pr.gov";
+                user.NB_Primero = "Tablero";
+                user.NB_Segundo = "De";
+                user.AP_Primero = "Prueba";
+                user.AP_Segundo = "Cara";
+                user.Tel_Celular = "7875555555";
+                user.Tel_Trabajo = "7875555555";
+                user.PasswordChanged = true;
+                user.Active = true;
+                user.EmailConfirmed = true;
+                string pwd = "Tablero@2020";
+                var newuser = userManager.Create(user, pwd);
+                if (newuser.Succeeded)
+                {
+                    var result = userManager.AddToRole(user.Id, "AdminTablero");
+                }
+            }
 
         }
     }

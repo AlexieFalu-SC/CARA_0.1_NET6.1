@@ -53,7 +53,7 @@
                             <asp:BoundField DataField="Nombre" HeaderText="Nombre" HeaderStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                             </asp:BoundField>
-                            <asp:BoundField DataField="Email" HeaderText="Email" HeaderStyle-HorizontalAlign="Center">
+                            <asp:BoundField DataField="Email" HeaderText="Correo Electrónico" HeaderStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
                             </asp:BoundField>
                             <asp:BoundField DataField="Estatus" HeaderText="Estatus" HeaderStyle-HorizontalAlign="Center">

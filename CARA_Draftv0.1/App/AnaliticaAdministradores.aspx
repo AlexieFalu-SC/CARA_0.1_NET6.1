@@ -29,12 +29,18 @@
                 <%--<li class="nav-item" role="presentation">
                 <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">PERFILES</a>
                 </li>--%>
+                 <%--if (Roles.IsUserInRole("AdminTablero"))--%>
+                    
+
+                <a  id="aDownload" runat="server">
                 <li class="nav-item" role="presentation">
                 <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">PERFILES</a>
                 </li>
                 <li class="nav-item" role="presentation">
                 <a class="nav-link" id="ssrs-plan-tab" data-toggle="tab" href="#ssrs-plan" role="tab" aria-controls="ssrs-plan" aria-selected="false">DETALLES DE PERFILES</a>
                 </li>
+                </a>
+               
             </ul>
       </div>
 

@@ -36,7 +36,7 @@ namespace CARA_Draftv0._1
                     {
                         divRegistroPerfiles.Visible = true;
                     }
-                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro"))
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Registrado") || userManager.IsInRole(Usuario.Id, "Operador de Registro") || userManager.IsInRole(Usuario.Id, "AdminCARA") || userManager.IsInRole(Usuario.Id, "AdminPlanificacion"))
                     {
                         divExpedientes.Visible = true;
                     }
@@ -48,7 +48,7 @@ namespace CARA_Draftv0._1
                     {
                         divFacilidades.Visible = true;
                     }
-                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "AdminCARA") || userManager.IsInRole(Usuario.Id, "AdminPlanificacion") || userManager.IsInRole(Usuario.Id, "AdminObservatorio"))
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "AdminCARA") || userManager.IsInRole(Usuario.Id, "AdminPlanificacion") || userManager.IsInRole(Usuario.Id, "AdminObservatorio") || userManager.IsInRole(Usuario.Id, "AdminTablero"))
                     {
                         divAnaliticaAdmin.Visible = true;
                     }
