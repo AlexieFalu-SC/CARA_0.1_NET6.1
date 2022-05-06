@@ -33,13 +33,22 @@ namespace CARA_Draftv0._1
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// lblNombre control.
+        /// logoASSMCA control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNombre;
+        protected global::System.Web.UI.WebControls.Image logoASSMCA;
+
+        /// <summary>
+        /// tableroPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl tableroPrincipal;
 
         /// <summary>
         /// divRegistroPerfiles control.
@@ -60,40 +69,40 @@ namespace CARA_Draftv0._1
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divExpedientes;
 
         /// <summary>
-        /// divFacilidadesAdmin control.
+        /// divTablerosAnaliticos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFacilidadesAdmin;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTablerosAnaliticos;
 
         /// <summary>
-        /// divFacilidades control.
+        /// divAdministracion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divFacilidades;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdministracion;
 
         /// <summary>
-        /// divAnaliticaAdmin control.
+        /// lblNombre control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAnaliticaAdmin;
+        protected global::System.Web.UI.WebControls.Label lblNombre;
 
         /// <summary>
-        /// divAnaliticaRegistrado control.
+        /// profileImg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAnaliticaRegistrado;
+        protected global::System.Web.UI.WebControls.Image profileImg;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

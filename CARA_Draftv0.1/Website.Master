@@ -5,36 +5,70 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title></title>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SEATSS <%: Page.Title %></title>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:ContentPlaceHolder>
-
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/caraForms/UIFlujo.js") %>"></script>
-
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    
-     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <link href="<%=ResolveClientUrl("~/Content/account/sidenav.css")%>" type="text/css" rel="stylesheet" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Sweet Alerts -->
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Custom styles for this template-->
+    <link href="<%=ResolveClientUrl("~/Content/css/sb-admin-2.min.css")%>" type="text/css" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="<%=ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.css")%>" type="text/css" rel="stylesheet" />
+
+
+
+    <style>
+        .img-account-profile {
+            height: 10rem;
+        }
+
+        .rounded-circle {
+            border-radius: 50% !important;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
+            border-bottom-right-radius: 50%;
+            border-bottom-left-radius: 50%;
+        }
+
+        .hyper-button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            text-decoration: underline;
+            padding: 0px;
+        }
+
+        .avatar {
+            display: inline-flex;
+            height: 2rem;
+            width: 2rem;
+            border-radius: 50%;
+            position: relative;
+            align-items: center;
+            justify-content: center;
+        }
+
+            .avatar .avatar-img {
+                border-radius: 100%;
+                -o-object-fit: cover;
+                object-fit: cover;
+                height: 2rem;
+                width: auto;
+            }
+
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -59,170 +93,360 @@
             </Scripts>
         </asp:ScriptManager>
 
-        
-        <%--Start Navbar--%>
-        <nav class="navbar navbar-expand-md col-lg-10 ml-auto navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #DCA61E;">
-          <%--<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<%=ResolveClientUrl("~/App/DashboardRegistrado")%>">ASSMCA</a>--%> <%--<img class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" width="60" height="60"/>--%>
-          <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <%--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">--%>
-            <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul class="navbar-nav ml-auto">
-                <li class="nav-item dropdown">
-                    <a href="#" id="dropdown03" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Mi Cuenta"><asp:Label ID="lblNombre" Text="" runat="server" /></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown03">
-                      <%--<a runat="server" class="dropdown-item" href="~/Account/Manage">Mi Cuenta</a>--%>
-                      <%--<a class="dropdown-item" href="#">Configuración</a>--%>
-                      <div class="dropdown-divider"></div>
-                      <asp:LoginStatus runat="server" class="dropdown-item" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+         <!-- Page Wrapper -->
+        <div id="wrapper">
+
+             <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="d-flex align-items-center justify-content-center" href="<%=ResolveClientUrl("~/App/Entrada")%>">
+                    <asp:Image ID="logoASSMCA" ImageUrl="~/Content/images/ASSMCA_Logo2021.png" runat="server" CssClass="img-account-profile img-fluid" />
+                </a>
+
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<%=ResolveClientUrl("~/App/Entrada")%>">
+                    <div class="sidebar-brand-text mx-3">SEATS</div>
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li id="tableroPrincipal" runat="server" class="nav-item active">
+                    <a class="nav-link" href="<%=ResolveClientUrl("~/App/Entrada")%>">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Tablero Principal</span></a>
+                </li>
+
+                
+                <div runat="server" id="divRegistroPerfiles" visible="true">
+                
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <div class="sidebar-heading">
+                    Registro de Perfiles
+                </div>
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li id="liRegistroPerfiles" class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#admision" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-laptop-code"></i>
+                        <span>Admisión</span>
+                    </a>
+                    <div id="admision" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <%--<h6 class="collapse-header">Procesos:</h6>--%>
+                            <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=crear")%>">Registrar Admisión</a>
+                        </div>
                     </div>
                 </li>
-            
-                <%--<li class="nav-item text-nowrap">
-                  <a class="nav-link" href="#">Sign out</a>
-                </li>--%>
-              </ul>
-          </div>
-        </nav>
-        <%--End Navbar--%>
 
+                </div>
 
-        <div class="container-fluid">
-            <div class="row">
+                <div runat="server" id="divExpedientes" visible="true">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
 
-                <%--Start Sidebar--%>
-                <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse d-print-none">
-                    <a class="col-md-8 offset-md-2" href="#">
-                        <div class="text-center">
-                            <img src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" alt="" width="120" height="100">
-                        </div>
-                          
-                       </a>
-                  <div class="sidebar-sticky pt-3">
-                     <%-- <img class="navbar-brand" src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" width="120" height="40"/>--%>
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Expedientes de Pacientes
+                    </div>
 
-                    <!--Start - Pantalla Inicio-->
-                    <%--<ul class="nav navbar navbar-center flex-column">
-                      <li class="nav-item">
-                        <a class="nav-link active" href="<%=ResolveClientUrl("~/App/DashboardRegistrado")%>">
-                          <span data-feather="home"><img src="<%=ResolveClientUrl("~/Content/iconos/house-door.svg")%>" /></span>
-                          Tablero <span class="sr-only">(current)</span>
+                     <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item" id="liExpedientes">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#buscarExpedientes" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-laptop-code"></i>
+                        <span>Expedientes</span>
                         </a>
-                      </li>
-                    </ul>
-                    <hr class="sidebar-divider my-0">--%>
-                    <!--End - Pantalla Inicio-->
+                        <div id="buscarExpedientes" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">
+                                <%--<h6 class="collapse-header">Procesos:</h6>--%>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=leer")%>">Buscar Expedientes</a>
+                            </div>
+                        </div>
+                    </li>
 
-                    <!--Start - Sección Registro Perfil-->
-                    <div id="divRegistroPerfiles" runat="server" visible="false">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                          <span>Registro De Perfiles</span>
-                        </h6>
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=crear")%>">
-                              <img src="<%=ResolveClientUrl("~/Content/iconos/file-earmark-arrow-up.svg")%>" />
-                              Admisión
-                            </a>
-                          </li>
-                        </ul>
-                        <hr class="sidebar-divider my-0">
+                </div>
+
+                <div runat="server" id="divTablerosAnaliticos" visible="true">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Tableros y Datos Analiticos
                     </div>
-                    <!--End - Sección Registro Perfil-->
 
-                    <!--Start - Sección Expediente-->
-                    <div id="divExpedientes" runat="server" visible="false">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                          <span>Expedientes</span>
-                        </h6>
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=leer")%>">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/search.svg")%>" /></span>
-                              Buscar
-                            </a>
-                          </li>
-                           <%-- <li class="nav-item">
-                            <a class="nav-link" href="#">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/person-plus.svg")%>" /></span>
-                              Agregar
-                            </a>
-                          </li>--%>
-                        </ul>
-                        <hr class="sidebar-divider my-0">
+                     <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item" id="liAnalitica">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#analitica" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-laptop-code"></i>
+                        <span>Analitica</span>
+                        </a>
+                        <div id="analitica" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">  
+                                <h6 class="collapse-header">Gráficas:</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Mi Tablero Gráfico</a>
+                                <div class="collapse-divider"></div>
+                                <h6 class="collapse-header">Exportar:</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Perfiles</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Detalle de Perfiles</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mis Perfiles</a>
+                            </div>
+                        </div>
+                    </li>
+
+                </div>
+
+                <div runat="server" id="divAdministracion" visible="true">
+                    <!-- Divider -->
+                    <hr class="sidebar-divider">
+
+                    <!-- Heading -->
+                    <div class="sidebar-heading">
+                        Administración
                     </div>
-                    <!--End - Sección Expediente-->
 
-                    <!--Start - Sección Facilidades-->
-                    <div id="divFacilidadesAdmin" runat="server" visible="false">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                          <span>Sistema CARA</span>
-                        </h6>
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/Administracion/adminAdministrador")%>">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/building.svg")%>" /></span>
-                              Administración
-                            </a>
-                          </li>
-                        </ul>
-                        <hr class="sidebar-divider my-0">
+                     <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item" id="liManejoUsuarios">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#manejoUsuarios" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-laptop-code"></i>
+                        <span>Manejo de Usuarios</span>
+                        </a>
+                        <div id="manejoUsuarios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">  
+                               <%-- <h6 class="collapse-header">Procesos:</h6>--%>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Usuarios</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
+                            </div>
+                        </div>
+                    </li>
+                </div>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <!-- Nav Item - Pages Collapse Menu -->
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#documentos" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-book"></i>
+                        <span>Documentos</span>
+                    </a>
+                    <div id="documentos" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Manuales:</h6>
+                            <a class="collapse-item" href="#">Usuarios</a>
+                            <a class="collapse-item" href="#">Administrativo</a>
+                            <div class="collapse-divider"></div>
+                            <h6 class="collapse-header">Módulos:</h6>
+                            <a class="collapse-item" href="#">Extracciones TEDS</a>
+                        </div>
                     </div>
-                    <!--End - Sección Facilidades-->
+                </li>
 
-                    <!--Start - Sección Facilidades-->
-                    <div id="divFacilidades" runat="server" visible="false">
-                        <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                          <span>Facilidades</span>
-                        </h6>
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistrado")%>">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/building.svg")%>" /></span>
-                              Mis Facilidades
-                            </a>
-                          </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle" type="button"></button>
+                </div>
+
+
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+
+                     <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                        <!-- Sidebar Toggle (Topbar) -->
+                        <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                            <i class="fa fa-bars"></i>
+                        </button>
+
+
+                        <!-- Topbar Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                            <li class="nav-item dropdown no-arrow d-sm-none">
+                                <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-search fa-fw"></i>
+                                </a>
+                                <!-- Dropdown - Messages -->
+                                <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                                    <div class="form-inline mr-auto w-100 navbar-search">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-primary" type="button">
+                                                    <i class="fas fa-search fa-sm"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <!-- Nav Item - Alerts -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter count"></span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dpAlertas dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">Centro de Alertas
+                                    </h6>
+                                    
+                                </div>
+                            </li>
+
+                           <%-- <!-- Nav Item - Alerts -->
+                            <li class="nav-item dropdown no-arrow mx-1">
+                                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-bell fa-fw"></i>
+                                    <!-- Counter - Alerts -->
+                                    <span class="badge badge-danger badge-counter">3+</span>
+                                </a>
+                                <!-- Dropdown - Alerts -->
+                                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                                    <h6 class="dropdown-header">Centro de Alertas
+                                    </h6>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-primary">
+                                                <i class="fas fa-file-alt text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">Enero 12, 2022</div>
+                                            <span class="font-weight-bold">¡El módulo de extracciones TEDS esta listo para utilizar!</span>
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-success">
+                                                <i class="fas fa-donate text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">Enero 12, 2022</div>
+                                            ¡Los reportes TEDS estan listos para utilizar!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item d-flex align-items-center" href="#">
+                                        <div class="mr-3">
+                                            <div class="icon-circle bg-warning">
+                                                <i class="fas fa-exclamation-triangle text-white"></i>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="small text-gray-500">Enero 12, 2022</div>
+                                            ¡Los reportes informativos estan listos para utilizar!
+                                        </div>
+                                    </a>
+                                    <a class="dropdown-item text-center small text-gray-500" href="#">Mostrar todas las alertas</a>
+                                </div>
+                            </li>--%>
+
+
+                            <div class="topbar-divider d-none d-sm-block"></div>
+
+                            <!-- Nav Item - User Information -->
+                            <li class="nav-item dropdown no-arrow">
+                                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                        <asp:Label ID="lblNombre" Text="" runat="server" /></span>
+                                    <asp:Image ID="profileImg" ImageUrl="~/Content/images/Avatar.png" runat="server" CssClass="img-profile rounded-circle" />
+                                </a>
+                                <!-- Dropdown - User Information -->
+                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                                    <a class="dropdown-item" href="<%=ResolveClientUrl("~/Account/Manage")%>">
+                                        <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Profile
+                                    </a>
+                                    <%-- <a class="dropdown-item" href="#">
+                                        <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Settings
+                                    </a>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Activity Log
+                                    </a>--%>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                        Salir
+                                    </a>
+                                </div>
+                            </li>
+
                         </ul>
-                        <hr class="sidebar-divider my-0">
-                    </div>
-                    <!--End - Sección Facilidades-->
-                    
-                    <!--Start - Sección Analitica-->
-                    <div id="divAnaliticaAdmin" runat="server" visible="false">
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/pie-chart.svg")%>" /></span>
-                              Analitica
-                            </a>
-                          </li>
-                        </ul>
-                    </div>
-                    <!--End - Sección Analitica-->
 
-                    <!--Start - Sección Analitica-->
-                    <div id="divAnaliticaRegistrado" runat="server" visible="false">
-                        <ul class="nav navbar navbar-center flex-column mb-2">
-                          <li class="nav-item">
-                            <a class="nav-link" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">
-                              <span><img src="<%=ResolveClientUrl("~/Content/iconos/pie-chart.svg")%>" /></span>
-                              Analitica
-                            </a>
-                          </li>
-                        </ul>
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
                     </div>
-                    <!--End - Sección Analitica-->
+                    <!-- /.container-fluid -->
 
-                  </div>
-                </nav>
-                <%--End Sidebar--%>
+                </div>
+                <!-- End of Main Content -->
 
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+                <!-- Footer -->
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; ASSMCA</span>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End of Footer -->
 
             </div>
+            <!-- End of Content Wrapper -->
+
+
         </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+        </a>
+
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">¿Realmente desea salir del sistema?</h5>
+                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">Seleccione "Salir" en la parte de abajo para cerrar su sesión en el sistema.</div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                        <asp:LoginStatus runat="server" CssClass="btn btn-primary" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </form>
 
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/caraForms/AdminTableros.js") %>"></script>
@@ -231,17 +455,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css" />
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
     
-    <script type="text/javascript">
-        //window.onbeforeunload = function (e) {
-        //    alert("The Window is closing!");
+    <!-- Core plugin JavaScript-->
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/jquery-easing/jquery.easing.min.js") %>"></script>
 
-        //    $.ajax({
-        //        url: "WebMethods/wsRegistradoTablero.asmx/HelloWorld2",
-        //        async: false,
-        //        type: "POST"
-        //    });
-        //};
-    </script>
+    <!-- Custom scripts for all pages-->
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/js/sb-admin-2.min.js") %>"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/jquery.dataTables.min.js") %>"></script>
+    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.js") %>"></script>
 
 </body>
 </html>

@@ -79,6 +79,7 @@ namespace CARA_Draftv0._1.Account
                                     if (Usuario.PasswordChanged)
                                     {
                                         Response.Redirect("~/App/Entrada", false);
+                                        //Response.Redirect("~/Default", false);
                                     }
                                     else
                                     {

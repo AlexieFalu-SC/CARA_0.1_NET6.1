@@ -206,6 +206,7 @@
     <Content Include="App\AnaliticaAdministradores.aspx" />
     <Content Include="App\AnaliticaRegistradores.aspx" />
     <Content Include="App\DashboardRegistrado.aspx" />
+    <Content Include="App\devAnaRegistradores.aspx" />
     <Content Include="App\EmailsHTML\ConfirmacionCuenta.html" />
     <Content Include="App\EmailsHTML\EmailPassword.html" />
     <Content Include="App\Entrada.aspx" />
@@ -776,6 +777,9 @@
     <Content Include="Content\images\ASSMCA_Logo2021.png" />
     <Content Include="Content\images\Avatar.png" />
     <Content Include="Content\images\graphic_home.png" />
+    <Content Include="Content\images\undraw_posting_photo.svg" />
+    <Content Include="Content\images\undraw_team_collaboration_re_ow29.svg" />
+    <Content Include="Content\images\undraw_visionary_technology_re_jfp7.svg" />
     <Content Include="Content\Site.css" />
     <Content Include="Default.aspx" />
     <Content Include="Error.aspx" />
@@ -2725,6 +2729,13 @@
       <DependentUpon>DashboardRegistrado.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Data\DatosInternos.cs" />
+    <Compile Include="App\devAnaRegistradores.aspx.cs">
+      <DependentUpon>devAnaRegistradores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\devAnaRegistradores.aspx.designer.cs">
+      <DependentUpon>devAnaRegistradores.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Entrada.aspx.cs">
       <DependentUpon>Entrada.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

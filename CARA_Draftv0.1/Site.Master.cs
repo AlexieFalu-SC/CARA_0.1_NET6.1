@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CARA_Draftv0._1.Models;
 using Microsoft.AspNet.Identity;
 
 namespace CARA_Draftv0._1
 {
     public partial class SiteMaster : MasterPage
     {
+        ApplicationUser Usuario = new ApplicationUser();
+        ApplicationDbContext context = new ApplicationDbContext();
+
         private const string AntiXsrfTokenKey = "__AntiXsrfToken";
         private const string AntiXsrfUserNameKey = "__AntiXsrfUserName";
         private string _antiXsrfTokenValue;
@@ -71,17 +76,44 @@ namespace CARA_Draftv0._1
         {
             if ((System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
             {
-                Response.Redirect("~/App/Entrada.aspx", false);
+                if(Session["Usuario"] == null)
+                {
+                    var userId = Context.User.Identity.GetUserId();
+                    Usuario = context.Users.Where(a => a.Id.Equals(userId)).FirstOrDefault();
+                    Session["Usuario"] = Usuario;
+                }
+
+                //Response.Redirect("~/App/Entrada.aspx", false);
 
             }
             else
             {
                 Response.Redirect("~/Account/Login.aspx", false);
+                return;
+            }
+
+            if(!Page.IsPostBack)
+            {
+
             }
         }
 
         protected void Unnamed_LoggingOut(object sender, LoginCancelEventArgs e)
         {
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    var spd_sesion = dsCARA.SPD_SESION(Session["PK_Sesion"].ToString());
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            Session["Usuario"] = null;
+            Session["PK_Sesion"] = null;
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
         }
     }
