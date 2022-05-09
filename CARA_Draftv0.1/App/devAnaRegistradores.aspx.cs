@@ -42,12 +42,9 @@ namespace CARA_Draftv0._1.App
                     lbxNivelSustancia.DataSource = dsCARA.CA_LKP_NIVEL_SUSTANCIA.ToList();
                     lbxNivelSustancia.DataBind();
 
-                    var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
-                    var centros = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).ToList();
-
                     lbxCentro.DataValueField = "PK_Centro";
                     lbxCentro.DataTextField = "NB_Centro";
-                    lbxCentro.DataSource = centros;
+                    lbxCentro.DataSource = dsCARA.CA_CENTRO.ToList();
                     lbxCentro.DataBind();
 
                     this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");

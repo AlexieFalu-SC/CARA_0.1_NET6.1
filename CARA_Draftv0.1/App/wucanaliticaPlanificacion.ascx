@@ -263,7 +263,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Tendencia de Eventos de Sobredosis y Admisiones</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">Tendencia de Eventos de Sobredosis y Admisiones</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -279,7 +279,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Porciento de atendidos (Admitidos+Traslados) con evento de sobredosis por municipio de residencia</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">Porciento de atendidos (Admitidos+Traslados) con evento de sobredosis por municipio de residencia</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -299,7 +299,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">DROGAS DE USO (No Incluye Sobredosis)</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">DROGAS DE USO (No Incluye Sobredosis)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -315,7 +315,7 @@
                 <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">DROGAS DE SOBREDOSIS (No Incluye Drogas de Uso)</h6>
+                    <h6 class="m-0 font-weight-bold text-secondary">DROGAS DE SOBREDOSIS (No Incluye Drogas de Uso)</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -447,7 +447,7 @@
                 
             },
             error: function () {
-                alert("Error");
+                //alert("Error e1");
             }
         }).done(function () {
            // $("#totalToxicologia").html(plnTotalToxicologia);
@@ -492,7 +492,7 @@
                 plnDrogasUso = data.d;
             },
             error: function () {
-                alert("Error");
+               // alert("Error e2");
             }
         }).done(function () {
             google.charts.setOnLoadCallback(plnChartDrogasUso);
@@ -510,8 +510,8 @@
                 plnICDX = data.d;
             },
             error: function () {
-                alert("b");
-                alert("Error");
+               // alert("b");
+               // alert("Error e3");
             }
         }).done(function () {
             google.charts.setOnLoadCallback(plnChartICDX);
@@ -529,7 +529,7 @@
                 plnDSMV = data.d;
             },
             error: function () {
-                alert("Error");
+               // alert("Error e4");
             }
         }).done(function () {
             google.charts.setOnLoadCallback(plnChartDSMV);
@@ -547,8 +547,8 @@
                 plnCondicionesFisicas = data.d;
             },
             error: function () {
-                alert("a");
-                alert("Error");
+                //alert("a");
+                //alert("Error e5");
             }
         }).done(function () {
             google.charts.setOnLoadCallback(plnChartCondicionesFisicas);

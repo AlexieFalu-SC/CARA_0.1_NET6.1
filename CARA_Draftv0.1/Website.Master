@@ -187,12 +187,11 @@
                         <div id="analitica" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">  
                                 <h6 class="collapse-header">Gráficas:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Tableros Gráficos</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mi Tablero Gráfico</a>
                                 <div class="collapse-divider"></div>
                                 <h6 class="collapse-header">Exportar:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Perfiles</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Detalle de Perfiles</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarAdministradores")%>">Perfiles</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarRegistradores")%>">Mis Perfiles</a>
                             </div>
                         </div>
@@ -466,9 +465,9 @@
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.js") %>"></script>
 
     <script>
-        //$(document).ready(function () {
-        //    $('.perfilesListTable').DataTable();
-        //});
+        $(document).ready(function () {
+            $('.perfilesListTable').DataTable();
+        });
 
     </script>
 

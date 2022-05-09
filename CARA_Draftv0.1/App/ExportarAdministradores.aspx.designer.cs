@@ -11,7 +11,7 @@ namespace CARA_Draftv0._1.App
 {
 
 
-    public partial class devAnaRegistradores
+    public partial class ExportarAdministradores
     {
 
         /// <summary>
@@ -42,30 +42,30 @@ namespace CARA_Draftv0._1.App
         protected global::System.Web.UI.WebControls.ListBox lbxCentro;
 
         /// <summary>
-        /// lbxGenero control.
+        /// lbxReferido control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbxGenero;
+        protected global::System.Web.UI.WebControls.ListBox lbxReferido;
 
         /// <summary>
-        /// lbxNivelSustancia control.
+        /// lbxMunicipios control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ListBox lbxNivelSustancia;
+        protected global::System.Web.UI.WebControls.ListBox lbxMunicipios;
 
         /// <summary>
-        /// wucanaliticaPlanificacion control.
+        /// gvPerfilesList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CARA_Draftv0._1.App.wucanaliticaPlanificacion wucanaliticaPlanificacion;
+        protected global::System.Web.UI.WebControls.GridView gvPerfilesList;
     }
 }

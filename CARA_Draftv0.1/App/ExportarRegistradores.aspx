@@ -39,7 +39,7 @@
                                 <div class="row">
                                     <h6 class="list-item">Fecha de Admisión</h6>
                                 </div>
-                                <div class="row">
+                                <div class="form-inline">
                                     <span class="list-item">Desde</span>
                                     <asp:textbox runat="server" ID="txtFechaDesde" CssClass="form-control" TextMode="Date" />
                                     <span class="list-item">Hasta</span>
