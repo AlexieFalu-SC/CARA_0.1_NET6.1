@@ -214,6 +214,7 @@
     <Content Include="App\Errores\NoEncontradoError.aspx" />
     <Content Include="App\Errores\OtrosError.aspx" />
     <Content Include="App\Errores\ServidorError.aspx" />
+    <Content Include="App\ExportarRegistradores.aspx" />
     <Content Include="App\Pacientes\frmconsulta.aspx" />
     <Content Include="App\Pacientes\frmEditar.aspx" />
     <Content Include="App\Pacientes\frmPerfiles.aspx" />
@@ -2770,6 +2771,13 @@
     </Compile>
     <Compile Include="App\Errores\ServidorError.aspx.designer.cs">
       <DependentUpon>ServidorError.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\ExportarRegistradores.aspx.cs">
+      <DependentUpon>ExportarRegistradores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\ExportarRegistradores.aspx.designer.cs">
+      <DependentUpon>ExportarRegistradores.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Pacientes\frmconsulta.aspx.cs">
       <DependentUpon>frmconsulta.aspx</DependentUpon>

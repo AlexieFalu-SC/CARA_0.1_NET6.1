@@ -193,7 +193,7 @@
                                 <h6 class="collapse-header">Exportar:</h6>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Perfiles</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Detalle de Perfiles</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mis Perfiles</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarRegistradores")%>">Mis Perfiles</a>
                             </div>
                         </div>
                     </li>
@@ -464,6 +464,13 @@
     <!-- Core plugin JavaScript-->
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/jquery.dataTables.min.js") %>"></script>
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.js") %>"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('.perfilesListTable').DataTable();
+        });
+
+    </script>
 
 </body>
 </html>

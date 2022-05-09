@@ -247,4 +247,444 @@
         </div>
 
     </main>
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
+    
+    <script type="text/javascript">
+        var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
+        var generos = [], niveles = [], centros = [], centroPerfiles = [];
+        var perfiles_data, perfiles_desde, perfiles_hasta;
+
+        $(function () {
+            $(<%=lbxNivelSustancia.ClientID%>).multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonClass: 'form-control',
+                buttonWidth: '190px'
+            });
+            $(<%=lbxNivelSustancia.ClientID%>).multiselect('selectAll', false);
+            $(<%=lbxNivelSustancia.ClientID%>).multiselect('updateButtonText');
+
+            $(<%=lbxCentro.ClientID%>).multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonClass: 'form-control',
+                buttonWidth: '190px'
+            });
+            $(<%=lbxCentro.ClientID%>).multiselect('selectAll', false);
+            $(<%=lbxCentro.ClientID%>).multiselect('updateButtonText');
+
+            $(<%=lbxGenero.ClientID%>).multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonClass: 'form-control',
+                buttonWidth: '170px'
+            });
+            $(<%=lbxGenero.ClientID%>).multiselect('selectAll', false);
+            $(<%=lbxGenero.ClientID%>).multiselect('updateButtonText');
+
+
+        });
+
+        google.charts.load('current', { 'packages': ['line', 'bar', 'corechart', 'controls', 'table'] });
+       
+        $(document).ready(function () {
+            dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
+            dtHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
+
+            listGenero();
+
+            listNivelCuidado();
+
+            listCentro();
+
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + '}'
+
+            wsTotalPerfiles();
+
+            wsFuenteReferido();
+
+            wsNivelCuidado();
+
+            wsSobredosis();
+
+            wsDrogaSobredosis();
+
+            wsDrogaUso();
+
+           
+        });
+
+
+        function wsTotalPerfiles() {
+
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraTotalPerfiles",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var mydata = data.d;
+                    dtTotalPerfiles = mydata.totalPerfiles;
+                    dtTotalReferidosCara = mydata.totalReferidosCara;
+                    dtTotalMasculino = mydata.totalMasculino;
+                    dtTotalFemenino = mydata.totalFemenino;
+                    dtPerMasculino = mydata.perMasculino;
+                    dtPerFemenino = mydata.perFemenino;
+                    dtEdadPromedio = mydata.edadPromedio;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                $("#totalPerfiles").html(dtTotalPerfiles);
+                $("#totalReferidosCara").html(dtTotalReferidosCara);
+                $("#totalMasculino").html(dtTotalMasculino);
+                $("#totalFemenino").html(dtTotalFemenino);
+                $("#edadPromedioCara").html(dtEdadPromedio);
+
+                document.getElementById('perMasculino').setAttribute("style", "width:" + dtPerMasculino + "%");
+                document.getElementById('perFemenino').setAttribute("style", "width:" + dtPerFemenino + "%");
+            });
+        }
+
+        function wsFuenteReferido() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraFuenteReferido",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtFuenteReferido = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(fuenteReferido);
+            });
+        }
+
+        function wsSobredosis() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraSobredosis",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtSobredosis = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(sobredosis);
+            });
+        }
+
+        function wsDrogaSobredosis() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraDrogaSobredosis",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtDrogaSobredosis = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(drogaSobredosis);
+            });
+        }
+
+        function wsNivelCuidado() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraNivelCuidado",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtNivelCuidado = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(nivelCuidado);
+            });
+        }
+
+        function wsDrogaUso() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashCaraDrogasUso",
+                data: ajax_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtDrogasUso = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(drogasUso);
+            });
+        }
+
+        function wsPerfiles() {
+            $.ajax({
+                url: "WebMethods/wsRegistradoTablero.asmx/dashPerfiles",
+                data: perfiles_data,
+                dataType: "json",
+                type: "POST",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    dtPerfiles = data.d;
+                },
+                error: function () {
+                    alert("Error");
+                }
+            }).done(function () {
+                google.charts.setOnLoadCallback(perfiles);
+            });
+        }
+
+        function changeFechaPerfiles() {
+
+            listCentroPerfiles();
+
+            perfiles_data = '{Desde:"' + perfiles_desde + '", Hasta:"' + perfiles_hasta + '", Centros:' + JSON.stringify(centrosPerfiles) + '}'
+
+            wsPerfiles();
+        }
+
+        function changeFecha() {
+            dtDesde = document.getElementById("<%=txtFechaDesde.ClientID %>").value;
+            dtHasta = document.getElementById("<%=txtFechaHasta.ClientID %>").value;
+
+            listGenero();
+
+            listNivelCuidado();
+
+            listCentro();
+
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) +'}'
+
+            wsTotalPerfiles();
+
+            wsFuenteReferido();
+
+            wsNivelCuidado();
+
+            wsSobredosis();
+
+            wsDrogaSobredosis();
+
+            wsDrogaUso();
+        }
+
+        function changeReferido() {
+           
+        }
+
+        function listGenero() {
+            generos = [];
+            var listGenero = document.getElementById("<%=lbxGenero.ClientID%>");
+
+            var a = 0;
+            for (var i = 0; i < listGenero.options.length; i++) {
+                if (listGenero.options[i].selected == true) {
+                    generos[a] = { pk_genero: listGenero.options[i].value };
+                    a++;
+                }
+            }
+        }
+
+        function listNivelCuidado() {
+            niveles = [];
+            var listNiveles = document.getElementById("<%=lbxNivelSustancia.ClientID%>");
+
+            var a = 0;
+            for (var i = 0; i < listNiveles.options.length; i++) {
+                if (listNiveles.options[i].selected == true) {
+                    niveles[a] = { pk_nivel: listNiveles.options[i].value };
+                    a++;
+                }
+            }
+        }
+
+        function listCentro() {
+            centros = [];
+            var listCentros = document.getElementById("<%=lbxCentro.ClientID%>");
+
+            var a = 0;
+            for (var i = 0; i < listCentros.options.length; i++) {
+                if (listCentros.options[i].selected == true) {
+                    centros[a] = { pk_centro: listCentros.options[i].value };
+                    a++;
+                }
+            }
+        }
+
+        function listCentroPerfiles() {
+            centrosPerfiles = [];
+
+            var a = 0;
+            for (var i = 0; i < listCentros.options.length; i++) {
+                if (listCentros.options[i].selected == true) {
+                    centrosPerfiles[a] = { pk_centro: listCentros.options[i].value };
+                    a++;
+                }
+            }
+        }
+
+        function fuenteReferido() {
+            <%--var data = new google.visualization.arrayToDataTable(<%=datosTablero()%>);--%>
+            var data = new google.visualization.arrayToDataTable(dtFuenteReferido);
+            var options = {
+                title: 'Fuente de Referidos Principales',
+                bars: 'horizontal',
+                legend: { position: "none" },
+                axes: {
+                    x: {
+                        0: { side: 'top', label: 'Perfiles' } // Top x-axis.
+                    }
+                },
+                bar: { groupWidth: "90%" }
+
+            };
+            var referido_chart = new google.charts.Bar(document.getElementById("referido_chart"));
+            referido_chart.draw(data, options);
+        };
+
+        function drogasUso() {
+
+            var data = new google.visualization.arrayToDataTable(dtDrogasUso);
+
+            var options = {
+                chartArea: { left: 0, top: 0, width: '100%', height: '100%' }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('drogas_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function sobredosis() {
+
+            var data = google.visualization.arrayToDataTable(dtSobredosis);
+
+            var options = {
+                chartArea: { left: 0, top: 0, width: '100%', height: '100%' }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('sobredosis_chart'));
+
+            chart.draw(data, options);
+        }
+
+        function drogaSobredosis() {
+
+            var data = new google.visualization.arrayToDataTable(dtDrogaSobredosis);
+
+            var options = {
+                chartArea: { left: 0, top: 0, width: '100%', height: '100%' }
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('drogaSobredosis_chart'));
+
+            chart.draw(data, options);
+        }
+        
+        function nivelCuidado() {
+            var data = new google.visualization.arrayToDataTable(dtNivelCuidado);
+
+            var options = {
+                legend: { position: 'none' },
+                axes: {
+                    x: {
+                        0: { side: 'top', label: 'Nivel de Cuidado' } // Top x-axis.
+                    }
+                },
+                bar: { groupWidth: "60%" }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('nivelCuidado_div'));
+            // Convert the Classic options to Material options.
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        };
+
+        function perfiles() {
+            var data = new google.visualization.arrayToDataTable(dtPerfiles);
+
+            var table = new google.visualization.Table(document.getElementById('perfiles_table'));
+
+            table.draw(data, { showRowNumber: true, width: '100%', height: '100%' });
+        }
+
+        function descargarPerfil() {
+            var browserIsIE;
+            var csvColumns;
+            var csvContent;
+            var downloadLink;
+            var fileName;
+            var date;
+
+            date = new Date().toDateString();
+
+            var data = new google.visualization.arrayToDataTable(dtPerfiles);
+            // build column headings
+            csvColumns = '';
+            for (var i = 0; i < data.getNumberOfColumns(); i++) {
+                csvColumns += data.getColumnLabel(i);
+                if (i < (data.getNumberOfColumns() - 1)) {
+                    csvColumns += ',';
+                }
+            }
+            csvColumns += '\n';
+
+            // build data rows
+            csvContent = csvColumns + google.visualization.dataTableToCsv(data);
+
+            // download file
+            browserIsIE = false || !!document.documentMode;
+            fileName = 'perfiles_' + date + '.csv';
+            if (browserIsIE) {
+                window.navigator.msSaveBlob(new Blob([csvContent], { type: 'data:text/csv' }), fileName);
+            } else {
+                downloadLink = document.createElement('a');
+                downloadLink.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvContent);
+                downloadLink.download = fileName;
+                raiseEvent(downloadLink, 'click');
+                downloadLink = null;
+            }
+        }
+
+        function raiseEvent(element, eventType) {
+            var eventRaised;
+            if (document.createEvent) {
+                eventRaised = document.createEvent('MouseEvents');
+                eventRaised.initEvent(eventType, true, false);
+                element.dispatchEvent(eventRaised);
+            } else if (document.createEventObject) {
+                eventRaised = document.createEventObject();
+                element.fireEvent('on' + eventType, eventRaised);
+            }
+        }
+
+
+    </script>
+
 </asp:Content>
