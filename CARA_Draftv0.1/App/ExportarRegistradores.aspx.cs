@@ -18,7 +18,38 @@ namespace CARA_Draftv0._1.App
         {
             if (!IsPostBack)
             {
+                PrepararDropDownLists();
+                
+            }
+        }
+
+        private void PrepararDropDownLists()
+        {
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
+                    var centros = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).DefaultIfEmpty().ToList();
+
+                    lbxCentro.DataValueField = "PK_Centro";
+                    lbxCentro.DataTextField = "NB_Centro";
+                    lbxCentro.DataSource = centros;
+                    lbxCentro.DataBind();
+
+                    this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");
+                    this.txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                }
+
                 GetPerfiles();
+
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
 
@@ -33,11 +64,21 @@ namespace CARA_Draftv0._1.App
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
-                    var centros = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).Select(f => f.PK_Centro).DefaultIfEmpty().ToList();
+                   
 
+                    List<int> listCentros = new List<int>();
+                    DateTime Desde = DateTime.Parse(this.txtFechaDesde.Text);
+                    DateTime Hasta = DateTime.Parse(this.txtFechaHasta.Text);
 
-                    var perfilesList = dsCARA.VW_DSH_PERFILES.Where(c => centros.Contains(c.FK_Centro)).DefaultIfEmpty().ToList();
+                    for (int i = 0; i < lbxCentro.Items.Count; i++)
+                    {
+                        if (lbxCentro.Items[i].Selected)
+                        {
+                            listCentros.Add(Int32.Parse(lbxCentro.Items[i].Value));
+                        }
+                    }
+
+                    var perfilesList = dsCARA.VW_DSH_PERFILES.Where(e => e.Fecha_Admisión >= Desde && e.Fecha_Admisión <= Hasta).Where(c => listCentros.Contains(c.FK_Centro)).DefaultIfEmpty().ToList();
 
                     if (perfilesList[0] != null)
                     {
@@ -49,6 +90,12 @@ namespace CARA_Draftv0._1.App
                         gvPerfilesList.HeaderRow.TableSection = TableRowSection.TableHeader;
                         gvPerfilesList.FooterRow.TableSection = TableRowSection.TableFooter;
                     }
+                    else
+                    {
+                        gvPerfilesList.DataSource = null;
+
+                        gvPerfilesList.DataBind();
+                    }
 
                 }
 
@@ -58,6 +105,11 @@ namespace CARA_Draftv0._1.App
 
                 throw;
             }
+        }
+
+        protected void UpdatePerfiles(object sender, EventArgs e)
+        {
+            GetPerfiles();
         }
 
 
@@ -77,26 +129,26 @@ namespace CARA_Draftv0._1.App
                 //this.BindGrid();
 
                 gvPerfilesList.HeaderRow.BackColor = Color.White;
-                foreach (TableCell cell in gvPerfilesList.HeaderRow.Cells)
-                {
-                    cell.BackColor = gvPerfilesList.HeaderStyle.BackColor;
-                }
-                foreach (GridViewRow row in gvPerfilesList.Rows)
-                {
-                    row.BackColor = Color.White;
-                    foreach (TableCell cell in row.Cells)
-                    {
-                        if (row.RowIndex % 2 == 0)
-                        {
-                            cell.BackColor = gvPerfilesList.AlternatingRowStyle.BackColor;
-                        }
-                        else
-                        {
-                            cell.BackColor = gvPerfilesList.RowStyle.BackColor;
-                        }
-                        cell.CssClass = "textmode";
-                    }
-                }
+                //foreach (TableCell cell in gvPerfilesList.HeaderRow.Cells)
+                //{
+                //    cell.BackColor = gvPerfilesList.HeaderStyle.BackColor;
+                //}
+                //foreach (GridViewRow row in gvPerfilesList.Rows)
+                //{
+                //    row.BackColor = Color.White;
+                //    foreach (TableCell cell in row.Cells)
+                //    {
+                //        if (row.RowIndex % 2 == 0)
+                //        {
+                //            cell.BackColor = gvPerfilesList.AlternatingRowStyle.BackColor;
+                //        }
+                //        else
+                //        {
+                //            cell.BackColor = gvPerfilesList.RowStyle.BackColor;
+                //        }
+                //        cell.CssClass = "textmode";
+                //    }
+                //}
 
                 gvPerfilesList.RenderControl(hw);
 

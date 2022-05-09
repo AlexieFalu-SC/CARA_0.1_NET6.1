@@ -188,7 +188,7 @@
                             <div class="bg-white py-2 collapse-inner rounded">  
                                 <h6 class="collapse-header">Gráficas:</h6>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Mi Tablero Gráfico</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mi Tablero Gráfico</a>
                                 <div class="collapse-divider"></div>
                                 <h6 class="collapse-header">Exportar:</h6>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Perfiles</a>
@@ -466,9 +466,9 @@
     <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.js") %>"></script>
 
     <script>
-        $(document).ready(function () {
-            $('.perfilesListTable').DataTable();
-        });
+        //$(document).ready(function () {
+        //    $('.perfilesListTable').DataTable();
+        //});
 
     </script>
 
