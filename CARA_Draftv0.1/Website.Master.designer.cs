@@ -78,6 +78,42 @@ namespace CARA_Draftv0._1
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTablerosAnaliticos;
 
         /// <summary>
+        /// secAnaliticaAdministradores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secAnaliticaAdministradores;
+
+        /// <summary>
+        /// secAnaliticaRegistradores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secAnaliticaRegistradores;
+
+        /// <summary>
+        /// secExportarAdministradores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secExportarAdministradores;
+
+        /// <summary>
+        /// secExportarRegistradores control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secExportarRegistradores;
+
+        /// <summary>
         /// divAdministracion control.
         /// </summary>
         /// <remarks>
@@ -85,6 +121,24 @@ namespace CARA_Draftv0._1
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAdministracion;
+
+        /// <summary>
+        /// secManejoUsuariosASSMCA control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secManejoUsuariosASSMCA;
+
+        /// <summary>
+        /// secManejoUsuariosExternos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secManejoUsuariosExternos;
 
         /// <summary>
         /// lblNombre control.

@@ -156,6 +156,25 @@ namespace CARA_Draftv0._1
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             this.lblNombre.Text = Usuario.NB_Primero + " " + Usuario.AP_Primero;
+
+            if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Supervisor") || userManager.IsInRole(Usuario.Id, "Estadistico"))
+            {
+                if(userManager.IsInRole(Usuario.Id, "SuperAdmin"))
+                {
+                    divRegistroPerfiles.Visible = true;
+
+                    divExpedientes.Visible = true;
+
+                    divTablerosAnaliticos.Visible = true;
+                    secAnaliticaAdministradores.Visible = true;
+                    secExportarAdministradores.Visible = true;
+                }
+                //secAnaliticaRegistradores.Visible = true;
+            }
+            else
+            {
+
+            }
         }
 
         protected void setActiveNav()

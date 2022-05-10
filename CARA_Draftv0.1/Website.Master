@@ -119,7 +119,7 @@
                 </li>
 
                 
-                <div runat="server" id="divRegistroPerfiles" visible="true">
+                <div runat="server" id="divRegistroPerfiles" visible="false">
                 
                 <!-- Divider -->
                 <hr class="sidebar-divider">
@@ -144,7 +144,7 @@
 
                 </div>
 
-                <div runat="server" id="divExpedientes" visible="true">
+                <div runat="server" id="divExpedientes" visible="false">
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
@@ -169,7 +169,7 @@
 
                 </div>
 
-                <div runat="server" id="divTablerosAnaliticos" visible="true">
+                <div runat="server" id="divTablerosAnaliticos" visible="false">
                     <!-- Divider -->
                     <hr class="sidebar-divider">
 
@@ -187,12 +187,12 @@
                         <div id="analitica" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">  
                                 <h6 class="collapse-header">Gráficas:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mi Tablero Gráfico</a>
+                                <div id="secAnaliticaAdministradores" runat="server" visible="false"><a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a></div>
+                                <div id="secAnaliticaRegistradores" runat="server" visible="false"><a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mi Tablero Gráfico</a></div>
                                 <div class="collapse-divider"></div>
                                 <h6 class="collapse-header">Exportar:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarAdministradores")%>">Perfiles</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarRegistradores")%>">Mis Perfiles</a>
+                                <div id="secExportarAdministradores" runat="server" visible="false"><a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarAdministradores")%>">Perfiles</a></div>
+                                <div id="secExportarRegistradores" runat="server" visible="false"><a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/ExportarRegistradores")%>">Mis Perfiles</a></div>
                             </div>
                         </div>
                     </li>
@@ -215,10 +215,18 @@
                         <span>Manejo de Usuarios</span>
                         </a>
                         <div id="manejoUsuarios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                            <div class="bg-white py-2 collapse-inner rounded">  
-                               <%-- <h6 class="collapse-header">Procesos:</h6>--%>
+                            <div class="bg-white py-2 collapse-inner rounded"> 
+                                <div id="secManejoUsuariosASSMCA" runat="server">
+                                <h6 class="collapse-header">Usuarios de ASSMCA:</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Lista de Usuarios</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
+                                </div>
+                                <hr class="sidebar-divider">
+                                <div id="secManejoUsuariosExternos" runat="server">
+                                <h6 class="collapse-header">Usuarios Externos:</h6>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Usuarios</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
+                                </div>
                             </div>
                         </div>
                     </li>

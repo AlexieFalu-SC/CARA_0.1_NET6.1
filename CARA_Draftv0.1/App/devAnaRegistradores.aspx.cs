@@ -32,23 +32,23 @@ namespace CARA_Draftv0._1.App
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    lbxGenero.DataValueField = "PK_Genero";
-                    lbxGenero.DataTextField = "DE_Genero";
-                    lbxGenero.DataSource = dsCARA.CA_LKP_GENERO.ToList();
-                    lbxGenero.DataBind();
+                    //lbxGenero.DataValueField = "PK_Genero";
+                    //lbxGenero.DataTextField = "DE_Genero";
+                    //lbxGenero.DataSource = dsCARA.CA_LKP_GENERO.ToList();
+                    //lbxGenero.DataBind();
 
-                    lbxNivelSustancia.DataValueField = "PK_NivelSustancia";
-                    lbxNivelSustancia.DataTextField = "DE_NivelSustancia";
-                    lbxNivelSustancia.DataSource = dsCARA.CA_LKP_NIVEL_SUSTANCIA.ToList();
-                    lbxNivelSustancia.DataBind();
+                    //lbxNivelSustancia.DataValueField = "PK_NivelSustancia";
+                    //lbxNivelSustancia.DataTextField = "DE_NivelSustancia";
+                    //lbxNivelSustancia.DataSource = dsCARA.CA_LKP_NIVEL_SUSTANCIA.ToList();
+                    //lbxNivelSustancia.DataBind();
 
-                    lbxCentro.DataValueField = "PK_Centro";
-                    lbxCentro.DataTextField = "NB_Centro";
-                    lbxCentro.DataSource = dsCARA.CA_CENTRO.ToList();
-                    lbxCentro.DataBind();
+                    //lbxCentro.DataValueField = "PK_Centro";
+                    //lbxCentro.DataTextField = "NB_Centro";
+                    //lbxCentro.DataSource = dsCARA.CA_CENTRO.ToList();
+                    //lbxCentro.DataBind();
 
-                    this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");
-                    this.txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                    //this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");
+                    //this.txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
 
 
                 }
