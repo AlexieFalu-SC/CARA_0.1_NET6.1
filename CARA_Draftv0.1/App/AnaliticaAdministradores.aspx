@@ -7,50 +7,43 @@
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+ <main>
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <%--<h1 class="h2">Tablero Principal</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-          <div class="btn-group mr-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:window.print();">Imprimir</button>
-          </div>
-        </div>--%>
+     <header class="page-header page-header-compact page-header-light border-bottom bg-white mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h3 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fas fa-fw fa-chart-pie"></i>
+                                    Tablero Gráfico
+                                </div>
 
-            <h1 class="h2">Tableros Analíticos</h1>
-            <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="cara-tab" data-toggle="tab" href="#cara" role="tab" aria-controls="cara" aria-selected="true">CARA</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                <a class="nav-link" id="plan-tab" data-toggle="tab" href="#plan" role="tab" aria-controls="plan" aria-selected="false">PLANIFICACIÓN</a>
-                </li>
-                <%--<li class="nav-item" role="presentation">
-                <a class="nav-link" id="perfiles-tab" data-toggle="tab" href="#perfiles" role="tab" aria-controls="perfiles" aria-selected="false">PERFILES</a>
-                </li>--%>
-                 <%--if (Roles.IsUserInRole("AdminTablero"))--%>
-                    
+                            </h3>
+                        </div>
+                        <div class="col-auto">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                <a class="nav-link active" id="cara-tab" data-toggle="tab" href="#cara" role="tab" aria-controls="cara" aria-selected="true">CARA</a>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                <a class="nav-link" id="plan-tab" data-toggle="tab" href="#plan" role="tab" aria-controls="plan" aria-selected="false">PLANIFICACIÓN</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-                <a  id="aDownload" runat="server">
-                <li class="nav-item" role="presentation">
-                <a class="nav-link" id="ssrs-tab" data-toggle="tab" href="#ssrs" role="tab" aria-controls="ssrs" aria-selected="false">PERFILES</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                <a class="nav-link" id="ssrs-plan-tab" data-toggle="tab" href="#ssrs-plan" role="tab" aria-controls="ssrs-plan" aria-selected="false">DETALLES DE PERFILES</a>
-                </li>
-                </a>
-               
-            </ul>
-      </div>
+        <div class="container-xl px-4 mt-4">
 
-        <div class="container-fluid">
-            
-                
-                
+            <!-- Content Row -->
+            <div class="row">
 
                 <div class="tab-content" id="myTabContent">
-
+                <!-- Comienza Columna de Filtros -->
                     <div class="tab-pane fade show active" id="cara" role="tabpanel" aria-labelledby="cara-tab">
                                 <div class="row">
                                     <div class="col-md-3 col-lg-2 px-md-0">
@@ -92,9 +85,6 @@
                                                   <asp:ListBox ID="lbxNivelSustancia" runat="server" SelectionMode="Multiple" onChange="changeFecha();" CssClass="form-control"></asp:ListBox>
                                               </div>
                                           </li>
-
-                        
-
                                         </ul>
                                     </div>
 
@@ -103,23 +93,23 @@
                             <div class="row">
 
                                 <div class="col-xl-2 col-md-6 mb-4">
-                                  <div class="card border-left-info shadow h-100 py-2">
+                                  <div class="card border-left-secondary shadow h-100 py-2">
                                     <div class="card-body">
                                       <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                           <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">Total de Perfiles</div>
                                           <div class="h5 mb-0 font-weight-bold text-gray-800" style="text-align:center" id="totalPerfiles"></div>
                                         </div>
-                                        <div class="col-auto">
+                                        <%--<div class="col-auto">
                                           <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                                        </div>
+                                        </div>--%>
                                       </div>
                                     </div>
                                   </div>
                                 </div>
 
                                 <div class="col-xl-4 col-md-6 mb-4">
-                                    <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card border-left-secondary shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
@@ -133,7 +123,7 @@
                                 </div>
 
                                 <div class="col-xl-4 col-md-6 mb-4">
-                                  <div class="card border-left-info shadow h-100 py-2">
+                                  <div class="card border-left-secondary shadow h-100 py-2">
                                     <div class="card-body">
                                       <div class="row no-gutters align-items-center">
                                         <div class="col">
@@ -204,7 +194,7 @@
                                 </div>
 
                                 <div class="col-xl-2 col-md-6 mb-4">
-                                    <div class="card border-left-info shadow h-100 py-2">
+                                    <div class="card border-left-secondary shadow h-100 py-2">
                                         <div class="card-body">
                                             <div class="row">
                                                 <div class="col">
@@ -229,7 +219,7 @@
                                   <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">Fuente de Referidos Principales</h6>
+                                      <h6 class="m-0 font-weight-bold text-secondary">Fuente de Referidos Principales</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
@@ -245,7 +235,7 @@
                                   <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">Drogas de Uso</h6>
+                                      <h6 class="m-0 font-weight-bold text-secondary">Drogas de Uso</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
@@ -265,7 +255,7 @@
                                   <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">Eventos de Sobredosis</h6>
+                                      <h6 class="m-0 font-weight-bold text-secondary">Eventos de Sobredosis</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
@@ -291,7 +281,7 @@
                                   <div class="card shadow mb-4">
                                     <!-- Card Header - Dropdown -->
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                      <h6 class="m-0 font-weight-bold text-primary">Niveles de Cuidado</h6>
+                                      <h6 class="m-0 font-weight-bold text-secondary">Niveles de Cuidado</h6>
                                     </div>
                                     <!-- Card Body -->
                                     <div class="card-body">
@@ -313,100 +303,19 @@
                         <uc1:wucanaliticaPlanificacion runat="server" id="wucanaliticaPlanificacion" />
                     </div>
 
-                   <%-- <div class="tab-pane fade" id="perfiles" role="tabpanel" aria-labelledby="perfiles-tab">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-2 px-md-0">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Fecha de Admisión</h6>
-                                        </div>
-                                        <div class="row">
-                                            <span class="list-item">Desde</span>
-                                            <asp:textbox runat="server" ID="txtPerfilesDesde" CssClass="form-control" onChange="changeFechaPerfiles();" TextMode="Date"/>
-                                            <span class="list-item">Hasta</span>
-                                            <asp:textbox runat="server" ID="txtPerfilesHasta" CssClass="form-control" onChange="changeFechaPerfiles();" TextMode="Date"/>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Centro de Servicio</h6>
-                                        </div>
-                                        <div class="row">
-                                            <asp:ListBox runat="server" ID="lbxCentroPerfiles" SelectionMode="Multiple" onChange="changeFechaPerfiles();" CssClass="form-control">
-                                        </asp:ListBox>
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <div class="row">
-                                            <h6 class="list-item">Perfiles para Descargar</h6>
-                                        </div>
-                                        <div class="row">
-                                             <button id="btnDescargar" class="form-control" onclick="descargarPerfil();">Descargar</button>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="col-md-9 ml-sm-auto col-lg-10 px-md-3">
-                                <div class="col-lg-12 mb-2">
-                                    <div class="card shadow mb-4">
-                                    <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Perfiles</h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                            
-                                            <div id="perfiles_table"></div>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>--%>
-
-                    <div class="tab-pane fade" id="ssrs" role="tabpanel" aria-labelledby="plan-tab">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Perfiles</h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                          <rsweb:ReportViewer ID="rvAnaliticaAdministradores" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
-                                        </div>
-                                    </div>
-                            </div>
-                    </div>
-
-                    <div class="tab-pane fade" id="ssrs-plan" role="tabpanel" aria-labelledby="plan-tab">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Detalles de Perfiles</h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-area">
-                                          <rsweb:ReportViewer ID="rvAnaliticaPerfiles" runat ="server" ShowPrintButton="false"  Width="99.9%" Height="100%" AsyncRendering="true" ZoomMode="Percent" KeepSessionAlive="true" SizeToReportContent="false"></rsweb:ReportViewer>
-                                        </div>
-                                    </div>
-                            </div>
-                    </div>
-
 
                 </div>
 
 
-</div>
+            </div>
+        </div>
 
-</main>
-    <%--<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>--%>
+    </main>
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/css/bootstrap-multiselect.css" type="text/css" />
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.15/js/bootstrap-multiselect.js"></script>
 
     <script type="text/javascript">
         var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtTotalFM, dtPerFM, dtTotalMF, dtPerFM, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
@@ -471,10 +380,10 @@
                     dtTotalFemenino = mydata.totalFemenino;
                     dtPerMasculino = mydata.perMasculino;
                     dtPerFemenino = mydata.perFemenino;
-                    dtTotalFM = mydata.totalFM;
+                    dtTotalMF = mydata.totalMF;
                     dtTotalFM = mydata.totalFM;
                     dtPerMF = mydata.perMF;
-                    dtPerMF = mydata.perMF;
+                    dtPerFM = mydata.perFM;
                     dtEdadPromedio = mydata.edadPromedio;
                 },
                 error: function () {

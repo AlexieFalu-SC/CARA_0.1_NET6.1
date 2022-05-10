@@ -228,6 +228,7 @@
     <Content Include="App\WebMethods\wsPlanificacionTablero.asmx" />
     <Content Include="App\WebMethods\wsRegistradoTablero.asmx" />
     <Content Include="App\wucanaliticaPlanificacion.ascx" />
+    <Content Include="App\wucExportarPlanificacion.ascx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\account\login.css" />
     <Content Include="Content\account\sidenav.css" />
@@ -2862,6 +2863,13 @@
     </Compile>
     <Compile Include="App\wucanaliticaPlanificacion.ascx.designer.cs">
       <DependentUpon>wucanaliticaPlanificacion.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="App\wucExportarPlanificacion.ascx.cs">
+      <DependentUpon>wucExportarPlanificacion.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\wucExportarPlanificacion.ascx.designer.cs">
+      <DependentUpon>wucExportarPlanificacion.ascx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">

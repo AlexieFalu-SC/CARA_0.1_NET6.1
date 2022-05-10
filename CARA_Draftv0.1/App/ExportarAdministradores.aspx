@@ -1,4 +1,7 @@
 ﻿<%@ Page Title=" | Exportar Perfiles" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="ExportarAdministradores.aspx.cs" Inherits="CARA_Draftv0._1.App.ExportarAdministradores" %>
+
+<%@ Register Src="~/App/wucExportarPlanificacion.ascx" TagPrefix="uc1" TagName="wucExportarPlanificacion" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 
@@ -108,7 +111,7 @@
                 
                                  </div>
                                 <div class="card-body">
-                                    <div class="table-responsive" id="divPerfilesList">
+                                    <div class="table-responsive table-striped table-hover table-sm" id="divPerfilesList">
                                             <asp:GridView runat="server" ID="gvPerfilesList" CssClass="table table-bordered perfilesListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="PK_Perfil">
                                                 <Columns>
                                                     <asp:BoundField DataField="PK_Perfil" HeaderText="ID Perfil" />
@@ -141,16 +144,7 @@
                     </div>
 
                     <div class="tab-pane fade" id="ssrs-plan" role="tabpanel" aria-labelledby="plan-tab">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Detalles de Perfiles</h6>
-                                    </div>
-                                    <!-- Card Body -->
-                                    <div class="card-body">
-                                        <div class="chart-area"> </div>
-                                    </div>
-                            </div>
+                            <uc1:wucExportarPlanificacion runat="server" id="wucExportarPlanificacion" />
                     </div>
                 </div>
 

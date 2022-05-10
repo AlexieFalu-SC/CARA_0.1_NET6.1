@@ -11,7 +11,7 @@ namespace CARA_Draftv0._1.App
 {
 
 
-    public partial class ExportarAdministradores
+    public partial class wucExportarPlanificacion
     {
 
         /// <summary>
@@ -60,21 +60,12 @@ namespace CARA_Draftv0._1.App
         protected global::System.Web.UI.WebControls.ListBox lbxMunicipios;
 
         /// <summary>
-        /// gvPerfilesList control.
+        /// gvPerfilesDetailList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPerfilesList;
-
-        /// <summary>
-        /// wucExportarPlanificacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CARA_Draftv0._1.App.wucExportarPlanificacion wucExportarPlanificacion;
+        protected global::System.Web.UI.WebControls.GridView gvPerfilesDetailList;
     }
 }

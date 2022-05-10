@@ -129,6 +129,37 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('updateButtonText');
 
+
+
+    /*Exportar Detalles de Perfiles*/
+
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCentro').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCentro').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCentro').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxReferido').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxReferido').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxReferido').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxMunicipios').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxMunicipios').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxMunicipios').multiselect('updateButtonText');
+
 });
 
 

@@ -187,7 +187,7 @@
                         <div id="analitica" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">  
                                 <h6 class="collapse-header">Gráficas:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Tableros Gráficos</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Tableros Gráficos</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Mi Tablero Gráfico</a>
                                 <div class="collapse-divider"></div>
                                 <h6 class="collapse-header">Exportar:</h6>
@@ -219,6 +219,20 @@
                                <%-- <h6 class="collapse-header">Procesos:</h6>--%>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Usuarios</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
+                            </div>
+                        </div>
+                    </li>
+                     <!-- Nav Item - Pages Collapse Menu -->
+                    <li class="nav-item" id="liManejoFacilidades">
+                        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#manejoFacilidades" aria-expanded="true" aria-controls="collapsePages">
+                        <i class="fas fa-fw fa-laptop-code"></i>
+                        <span>Manejo de Facilidades</span>
+                        </a>
+                        <div id="manejoFacilidades" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                            <div class="bg-white py-2 collapse-inner rounded">  
+                               <%-- <h6 class="collapse-header">Procesos:</h6>--%>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Facilidades</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Facilidades</a>
                             </div>
                         </div>
                     </li>
@@ -467,6 +481,9 @@
     <script>
         $(document).ready(function () {
             $('.perfilesListTable').DataTable();
+        });
+        $(document).ready(function () {
+            $('.perfilesDetailListTable').DataTable();
         });
 
     </script>

@@ -243,9 +243,9 @@
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-1" style="text-align:center">Vía de Uso (más utilizada)</div>
                         <div class="h7 mb-0 font-weight-bold text-gray-800" style="text-align:center" id="viaUso"></div>
                     </div>
-                    <div class="col-auto">
+                   <%-- <div class="col-auto">
                         <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                    </div>
+                    </div>--%>
                     </div>
                 </div>
                 </div>
