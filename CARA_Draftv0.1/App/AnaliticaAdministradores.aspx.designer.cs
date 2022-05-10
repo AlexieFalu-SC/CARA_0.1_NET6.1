@@ -15,15 +15,6 @@ namespace CARA_Draftv0._1.App
     {
 
         /// <summary>
-        /// aDownload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor aDownload;
-
-        /// <summary>
         /// txtFechaDesde control.
         /// </summary>
         /// <remarks>
@@ -76,23 +67,5 @@ namespace CARA_Draftv0._1.App
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::CARA_Draftv0._1.App.wucanaliticaPlanificacion wucanaliticaPlanificacion;
-
-        /// <summary>
-        /// rvAnaliticaAdministradores control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer rvAnaliticaAdministradores;
-
-        /// <summary>
-        /// rvAnaliticaPerfiles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Microsoft.Reporting.WebForms.ReportViewer rvAnaliticaPerfiles;
     }
 }

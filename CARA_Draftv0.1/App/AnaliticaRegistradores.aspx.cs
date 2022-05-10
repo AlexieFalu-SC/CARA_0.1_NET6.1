@@ -14,6 +14,7 @@ namespace CARA_Draftv0._1.App
 {
     public partial class AnaliticaRegistradores : System.Web.UI.Page
     {
+        ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser Usuario = new ApplicationUser();
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -25,10 +26,7 @@ namespace CARA_Draftv0._1.App
 
             if (!this.IsPostBack)
             {
-                Usuario = (ApplicationUser)Session["Usuario"];
-
                 PrepararDropDownLists();
-                GenerarReportes();
             }
         }
 
@@ -36,7 +34,8 @@ namespace CARA_Draftv0._1.App
         {
             try
             {
-                ApplicationDbContext context = new ApplicationDbContext();
+                Usuario = (ApplicationUser)Session["Usuario"];
+
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
                 using (CARAEntities dsCARA = new CARAEntities())
@@ -72,16 +71,16 @@ namespace CARA_Draftv0._1.App
             }
         }
 
-        void GenerarReportes()
-        {
-            rvAnaliticaAdministradores.Height = Unit.Pixel(800 - 58);
-            rvAnaliticaAdministradores.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
-            IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@7654321", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
-            rvAnaliticaAdministradores.ServerReport.ReportServerCredentials = irsc;
-            rvAnaliticaAdministradores.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
-            rvAnaliticaAdministradores.ServerReport.ReportPath = "/Informes CARA/PERFILES";
-            rvAnaliticaAdministradores.ServerReport.Refresh();
-        }
+        //void GenerarReportes()
+        //{
+        //    rvAnaliticaAdministradores.Height = Unit.Pixel(800 - 58);
+        //    rvAnaliticaAdministradores.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        //    IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@7654321", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
+        //    rvAnaliticaAdministradores.ServerReport.ReportServerCredentials = irsc;
+        //    rvAnaliticaAdministradores.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
+        //    rvAnaliticaAdministradores.ServerReport.ReportPath = "/Informes CARA/PERFILES";
+        //    rvAnaliticaAdministradores.ServerReport.Refresh();
+        //}
     }
 
 }

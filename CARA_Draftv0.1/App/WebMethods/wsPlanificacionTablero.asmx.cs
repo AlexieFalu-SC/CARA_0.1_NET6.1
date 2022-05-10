@@ -101,79 +101,128 @@ namespace CARA_Draftv0._1.App.WebMethods
 
                     var totalAdmisiones = dashPLN.Select(a => a.PK_Perfil).Distinct().Count();
 
-                    //var totalToxicologia = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).Count();
-                    //data.totalToxicologia = totalToxicologia.ToString();
-                    /*Comienzo de Generos*/
 
-                    var generos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
+                    if (totalAdmisiones != 0)
+                    {
+                        //var totalToxicologia = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).Count();
+                        //data.totalToxicologia = totalToxicologia.ToString();
+                        /*Comienzo de Generos*/
 
-                    int totalGeneros = generos.Sum(a => a.Cantidad);
+                        var generos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
 
-                    var generosPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
+                        int totalGeneros = generos.Sum(a => a.Cantidad);
 
-                    data.totalMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        var generosPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
 
-                    data.perMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.totalMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.totalFemenino = generosPer.Where(a => a.DE_Genero.Equals("Femenino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.perMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.perFemenino = generosPer.Where(a => a.DE_Genero.Equals("Femenino")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.totalFemenino = generosPer.Where(a => a.DE_Genero.Equals("Femenino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.totalFM = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (F->M)")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.perFemenino = generosPer.Where(a => a.DE_Genero.Equals("Femenino")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.perFM = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (F->M)")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.totalFM = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (F->M)")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.totalMF = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (M->F)")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.perFM = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (F->M)")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.perMF = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (M->F)")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.totalMF = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (M->F)")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    /*Final de Genero*/
+                        data.perMF = generosPer.Where(a => a.DE_Genero.Equals("Transgénero (M->F)")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    /*Comienzo de Grupo Edades*/
-                    var grupos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count() }).ToList();
+                        /*Final de Genero*/
 
-                    int totalGrupos = grupos.Sum(a => a.Cantidad);
+                        /*Comienzo de Grupo Edades*/
+                        var grupos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count() }).ToList();
 
-                    var gruposPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGrupos)) * 100) }).ToList();
+                        int totalGrupos = grupos.Sum(a => a.Cantidad);
 
-                    data.total18_24 = gruposPer.Where(a => a.GrupoEdad.Equals("18-24")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        var gruposPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGrupos)) * 100) }).ToList();
 
-                    data.per18_24 = gruposPer.Where(a => a.GrupoEdad.Equals("18-24")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.total18_24 = gruposPer.Where(a => a.GrupoEdad.Equals("18-24")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.total25_44 = gruposPer.Where(a => a.GrupoEdad.Equals("25-44")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.per18_24 = gruposPer.Where(a => a.GrupoEdad.Equals("18-24")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.per25_44 = gruposPer.Where(a => a.GrupoEdad.Equals("25-44")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.total25_44 = gruposPer.Where(a => a.GrupoEdad.Equals("25-44")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.total45_65 = gruposPer.Where(a => a.GrupoEdad.Equals("45-65")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.per25_44 = gruposPer.Where(a => a.GrupoEdad.Equals("25-44")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.per45_65 = gruposPer.Where(a => a.GrupoEdad.Equals("45-65")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        data.total45_65 = gruposPer.Where(a => a.GrupoEdad.Equals("45-65")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    data.total65 = gruposPer.Where(a => a.GrupoEdad.Equals("65+")).Select(x => x.Cantidad).SingleOrDefault().ToString();
+                        data.per45_65 = gruposPer.Where(a => a.GrupoEdad.Equals("45-65")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
 
-                    data.per65 = gruposPer.Where(a => a.GrupoEdad.Equals("65+")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
-                    /*Final de Grupo Edades*/
+                        data.total65 = gruposPer.Where(a => a.GrupoEdad.Equals("65+")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
-                    var drogasUso = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() });
+                        data.per65 = gruposPer.Where(a => a.GrupoEdad.Equals("65+")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
+                        /*Final de Grupo Edades*/
 
-
-                    
-                    data.totalCentros = totalCentros.ToString();
-                    data.totalAdmisiones = totalAdmisiones.ToString();
-
-                    var PerfilesVia = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() });
-
-                    int sumPerfilesVia = PerfilesVia.Select(x => x.Perfiles).Sum();
-
-                    var viaUso = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(1);
-
-                    int perfilesViaUso = viaUso.Select(a => a.Perfiles).FirstOrDefault();
-
-                    var perViaUso = ((float)perfilesViaUso/ (float)sumPerfilesVia) * 100;
+                        var drogasUso = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() });
 
 
-                    data.viaUso = viaUso.Select(a => a.DE_ViaSustancia).FirstOrDefault();
 
-                    data.viaUso += " (" + Math.Round(Convert.ToDouble(perViaUso)).ToString() + "%) ";
+                        data.totalCentros = totalCentros.ToString();
+                        data.totalAdmisiones = totalAdmisiones.ToString();
+
+                        var PerfilesVia = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() });
+
+                        int sumPerfilesVia = PerfilesVia.Select(x => x.Perfiles).Sum();
+
+                        var viaUso = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(1);
+
+                        int perfilesViaUso = viaUso.Select(a => a.Perfiles).FirstOrDefault();
+
+                        var perViaUso = ((float)perfilesViaUso / (float)sumPerfilesVia) * 100;
+
+
+                        data.viaUso = viaUso.Select(a => a.DE_ViaSustancia).FirstOrDefault();
+
+                        data.viaUso += " (" + Math.Round(Convert.ToDouble(perViaUso)).ToString() + "%) ";
+
+                       // return data;
+                    }
+                    else
+                    {
+                        data.totalMasculino = "0";
+
+                        data.perMasculino = "0";
+
+                        data.totalFemenino = "0";
+
+                        data.perFemenino = "0";
+
+                        data.totalFM = "0";
+
+                        data.perFM = "0";
+
+                        data.totalMF = "0";
+
+                        data.perMF = "0";
+
+                        /*Final de Genero*/
+
+                        /*Comienzo de Grupo Edades*/
+                        data.total18_24 = "0";
+
+                        data.per18_24 = "0";
+
+                        data.total25_44 = "0";
+
+                        data.per25_44 = "0";
+
+                        data.total45_65 = "0";
+
+                        data.per45_65 = "0";
+
+                        data.total65 = "0";
+
+                        data.per65 = "0";
+                        /*Final de Grupo Edades*/
+
+                        data.totalCentros = "0";
+                        data.totalAdmisiones = "0";
+
+                        data.viaUso = "0";
+                    }
 
                     return data;
                 }

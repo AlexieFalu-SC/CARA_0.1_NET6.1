@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using CARA_Draftv0._1.Models;
+using System.Web.UI;
 
 namespace CARA_Draftv0._1.Account
 {
@@ -33,6 +34,9 @@ namespace CARA_Draftv0._1.Account
 
         public int LoginsCount { get; set; }
 
+        ApplicationDbContext context = new ApplicationDbContext();
+        ApplicationUser Usuario = new ApplicationUser();
+
         protected void Page_Load()
         {
             var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -48,35 +52,212 @@ namespace CARA_Draftv0._1.Account
 
             var authenticationManager = HttpContext.Current.GetOwinContext().Authentication;
 
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            
+
             if (!IsPostBack)
             {
-                // Determine the sections to render
-                if (HasPassword(manager))
-                {
-                    ChangePassword.Visible = true;
-                }
-                else
-                {
-                    CreatePassword.Visible = true;
-                    ChangePassword.Visible = false;
-                }
+                SetUserInformation();
 
-                // Render success message
+                //// Render success message
                 var message = Request.QueryString["m"];
                 if (message != null)
                 {
-                    // Strip the query string from action
+                    //    // Strip the query string from action
                     Form.Action = ResolveUrl("~/Account/Manage");
 
-                    SuccessMessage =
-                        message == "ChangePwdSuccess" ? "Your password has been changed."
-                        : message == "SetPwdSuccess" ? "Your password has been set."
-                        : message == "RemoveLoginSuccess" ? "The account was removed."
-                        : message == "AddPhoneNumberSuccess" ? "Phone number has been added"
-                        : message == "RemovePhoneNumberSuccess" ? "Phone number was removed"
-                        : String.Empty;
-                    successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
+                SuccessMessage =
+                    message == "ChangePwdSuccess" ? "Your password has been changed."
+                    : message == "SetPwdSuccess" ? "Your password has been set."
+                    : message == "RemoveLoginSuccess" ? "The account was removed."
+                    : message == "AddPhoneNumberSuccess" ? "Phone number has been added"
+                    : message == "RemovePhoneNumberSuccess" ? "Phone number was removed"
+                    : String.Empty;
+                    //    successMessage.Visible = !String.IsNullOrEmpty(SuccessMessage);
                 }
+            }
+        }
+
+        private void SetUserInformation()
+        {
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+
+            var rol = userManager.GetRoles(Usuario.Id).FirstOrDefault().ToString();
+
+            this.lblNombre.Text = Usuario.NB_Primero + " " + Usuario.AP_Primero;
+
+            this.NB_Primero.Text = Usuario.NB_Primero;
+            this.NB_Segundo.Text = Usuario.NB_Segundo;
+            this.AP_Primero.Text = Usuario.AP_Primero;
+            this.AP_Segundo.Text = Usuario.AP_Segundo;
+            this.lblEmail.Text = Usuario.Email;
+            this.Telefono.Text = Usuario.Tel_Celular;
+            this.lblRol.Text = userManager.GetRoles(Usuario.Id).FirstOrDefault().ToString();
+
+            chkModulos.Enabled = true;
+
+            //if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Administrador"))
+            //{
+            //    for (int i = 0; i < chkModulos.Items.Count; i++)
+            //    {
+            //        chkModulos.Items[i].Selected = true;
+            //    }
+            //}
+            //else
+            //{
+            //    var cla = Usuario.Claims.ToList();
+            //    // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+
+            //    var TEDS = cla.Where(x => x.ClaimValue == "TEDS").Count();
+            //    var MantenimientoSEPS = cla.Where(x => x.ClaimValue == "MantenimientoSEPS").Count();
+            //    var MonitoreoSEPS = cla.Where(x => x.ClaimValue == "MonitoreoSEPS").Count();
+            //    var ReportesInformativos = cla.Where(x => x.ClaimValue == "ReportesInformativos").Count();
+
+            //    if (TEDS > 0)
+            //    {
+            //        for (int i = 0; i < chkModulos.Items.Count; i++)
+            //        {
+            //            if (chkModulos.Items[i].Value == "TEDS")
+            //            {
+            //                chkModulos.Items[i].Selected = true;
+            //            }
+
+            //        }
+            //    }
+            //    if (MantenimientoSEPS > 0)
+            //    {
+            //        for (int i = 0; i < chkModulos.Items.Count; i++)
+            //        {
+            //            if (chkModulos.Items[i].Value == "MantenimientoSEPS")
+            //            {
+            //                chkModulos.Items[i].Selected = true;
+            //            }
+
+            //        }
+            //    }
+            //    if (MonitoreoSEPS > 0)
+            //    {
+            //        for (int i = 0; i < chkModulos.Items.Count; i++)
+            //        {
+            //            if (chkModulos.Items[i].Value == "MonitoreoSEPS")
+            //            {
+            //                chkModulos.Items[i].Selected = true;
+            //            }
+
+            //        }
+            //    }
+            //    if (ReportesInformativos > 0)
+            //    {
+            //        for (int i = 0; i < chkModulos.Items.Count; i++)
+            //        {
+            //            if (chkModulos.Items[i].Value == "ReportesInformativos")
+            //            {
+            //                chkModulos.Items[i].Selected = true;
+            //            }
+
+            //        }
+            //    }
+            //}
+
+            //chkModulos.Enabled = false;
+
+            //if (Usuario.ProfileImgPath != null)
+            //{
+            //    profileImg.ImageUrl = ConfigurationManager.AppSettings["URL_Documentos"].ToString() + "UsuarioFotosPerfil/" + Usuario.Email + "/" + Usuario.ProfileImgPath;
+            //}
+            //else
+            //{
+            //    profileImg.ImageUrl = "~/Content/img/Avatar.png";
+            //}
+
+        }
+
+        protected void ChangePassword_Click(object sender, EventArgs e)
+        {
+            string mensaje = string.Empty;
+
+            if (IsValid)
+            {
+                var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                var signInManager = Context.GetOwinContext().Get<ApplicationSignInManager>();
+                IdentityResult result = manager.ChangePassword(User.Identity.GetUserId(), CurrentPassword.Text, NewPassword.Text);
+                if (result.Succeeded)
+                {
+                    var user = manager.FindById(User.Identity.GetUserId());
+                    signInManager.SignIn(user, isPersistent: false, rememberBrowser: false);
+
+                    mensaje = "Se actualizó su contraseña correctamente.";
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Contraseña Actualizada", "sweetAlert('Contraseña Actualizada','" + mensaje + "','success')", true);
+                    //Response.Redirect("~/Account/Manage?m=ChangePwdSuccess");
+                }
+                else
+                {
+                    //AddErrors(result);
+                    foreach (var error in result.Errors)
+                    {
+                        //ModelState.AddModelError("", error);
+
+                        mensaje += error + "\n";
+                    }
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
+                    //ClientScript.RegisterStartupScript(this.GetType(), "Error ", "sweetAlertRef('Error','" + mensaje + "','error','Account/Manage.aspx');", true);
+
+                }
+            }
+        }
+
+        protected void ProfileUpdate_Click(object sender, EventArgs e)
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            string mensaje = string.Empty;
+
+            //var user = new ApplicationUser();
+
+            var user = userManager.FindById(Usuario.Id);
+
+            user.UserName = Usuario.Email;
+            user.Email = Usuario.Email;
+            user.NB_Primero = NB_Primero.Text;
+            user.NB_Segundo = NB_Segundo.Text;
+            user.AP_Primero = AP_Primero.Text;
+            user.AP_Segundo = AP_Segundo.Text;
+            user.Tel_Celular = Telefono.Text;
+            user.PasswordChanged = true;
+            user.Active = true;
+            user.EmailConfirmed = true;
+            var newuser = userManager.Update(user);
+
+            if (newuser.Succeeded)
+            {
+                mensaje = "Se actualizó su contraseña correctamente.";
+
+                context.SaveChanges();
+
+                Session["Usuario"] = user;
+
+                SetUserInformation();
+
+                //Session["Usuario"] = user;
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Cuenta Actualizada", "sweetAlert('Cuenta Actualizada','" + mensaje + "','success')", true);
+            }
+
+            else
+            {
+
             }
         }
 

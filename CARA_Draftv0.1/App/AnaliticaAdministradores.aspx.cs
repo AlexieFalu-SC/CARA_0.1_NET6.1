@@ -15,6 +15,7 @@ namespace CARA_Draftv0._1.App
     public partial class AnaliticaAdministradores : System.Web.UI.Page
     {
         ApplicationUser Usuario = new ApplicationUser();
+        ApplicationDbContext context = new ApplicationDbContext();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] == null)
@@ -26,17 +27,17 @@ namespace CARA_Draftv0._1.App
             if (!this.IsPostBack)
             {
                 PrepararDropDownLists();
-                GenerarReportes();
+                //GenerarReportes();
 
-                Usuario = (ApplicationUser)Session["Usuario"];
+                //Usuario = (ApplicationUser)Session["Usuario"];
 
-                ApplicationDbContext context = new ApplicationDbContext();
-                var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+                //ApplicationDbContext context = new ApplicationDbContext();
+                //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                if (userManager.IsInRole(Usuario.Id, "AdminTablero"))
-                {
-                    aDownload.Visible = false;
-                }
+                //if (userManager.IsInRole(Usuario.Id, "AdminTablero"))
+                //{
+                //    aDownload.Visible = false;
+                //}
 
             }
         }
@@ -82,24 +83,24 @@ namespace CARA_Draftv0._1.App
             }
         }
 
-        void GenerarReportes()
-        {
-            rvAnaliticaAdministradores.Height = Unit.Pixel(800 - 58);
-            rvAnaliticaAdministradores.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
-            IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@7654321", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
-            rvAnaliticaAdministradores.ServerReport.ReportServerCredentials = irsc;
-            rvAnaliticaAdministradores.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
-            rvAnaliticaAdministradores.ServerReport.ReportPath = "/Informes CARA/PERFILES";
+        //void GenerarReportes()
+        //{
+        //    rvAnaliticaAdministradores.Height = Unit.Pixel(800 - 58);
+        //    rvAnaliticaAdministradores.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        //    IReportServerCredentials irsc = new CustomReportCredentials("alexie.ortiz", "Alexito@7654321", "assmca.local"); // e.g.: ("demo-001", "123456789", "ifc")
+        //    rvAnaliticaAdministradores.ServerReport.ReportServerCredentials = irsc;
+        //    rvAnaliticaAdministradores.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
+        //    rvAnaliticaAdministradores.ServerReport.ReportPath = "/Informes CARA/PERFILES";
 
-            rvAnaliticaPerfiles.Height = Unit.Pixel(800 - 58);
-            rvAnaliticaPerfiles.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
-            rvAnaliticaPerfiles.ServerReport.ReportServerCredentials = irsc;
-            rvAnaliticaPerfiles.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
-            rvAnaliticaPerfiles.ServerReport.ReportPath = "/Informes CARA/PERFILES_PLAN";
+        //    rvAnaliticaPerfiles.Height = Unit.Pixel(800 - 58);
+        //    rvAnaliticaPerfiles.ProcessingMode = Microsoft.Reporting.WebForms.ProcessingMode.Remote;
+        //    rvAnaliticaPerfiles.ServerReport.ReportServerCredentials = irsc;
+        //    rvAnaliticaPerfiles.ServerReport.ReportServerUrl = new Uri("http://192.168.100.24//ReportServer"); // Add the Reporting Server URL  
+        //    rvAnaliticaPerfiles.ServerReport.ReportPath = "/Informes CARA/PERFILES_PLAN";
 
-            rvAnaliticaAdministradores.ServerReport.Refresh();
-            rvAnaliticaPerfiles.ServerReport.Refresh();
-        }
+        //    rvAnaliticaAdministradores.ServerReport.Refresh();
+        //    rvAnaliticaPerfiles.ServerReport.Refresh();
+        //}
 
     }
 
