@@ -18,38 +18,73 @@ namespace CARA_Draftv0._1.App
         {
             if (!this.IsPostBack)
             {
-                PrepararDropDownLists();
+                PrepararUsersList();
             }
         }
 
-        private void PrepararDropDownLists()
+        private void PrepararUsersList()
         {
             try
             {
                 Usuario = (ApplicationUser)Session["Usuario"];
 
+                var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+                List<string> rolesRegistrado = new List<string>()
+                {
+                    "Registrado Administrativo", "Registrado Usuario"
+                };
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    //lbxGenero.DataValueField = "PK_Genero";
-                    //lbxGenero.DataTextField = "DE_Genero";
-                    //lbxGenero.DataSource = dsCARA.CA_LKP_GENERO.ToList();
-                    //lbxGenero.DataBind();
+                    var usersList = dsCARA.VW_LISTA_USUARIOS_ASSMCA.Where(a => a.PK_Usuario != Usuario.Id).Where(p => !rolesRegistrado.Contains(p.Rol)).DefaultIfEmpty().ToList();
 
-                    //lbxNivelSustancia.DataValueField = "PK_NivelSustancia";
-                    //lbxNivelSustancia.DataTextField = "DE_NivelSustancia";
-                    //lbxNivelSustancia.DataSource = dsCARA.CA_LKP_NIVEL_SUSTANCIA.ToList();
-                    //lbxNivelSustancia.DataBind();
+                    if(usersList[0] != null)
+                    {
+                        foreach (VW_LISTA_USUARIOS_ASSMCA item in usersList)
+                        {
+                           if(item.Rol == "SuperAdmin")
+                            {
+                                item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
+                            }
+                            else if(item.Rol == "Supervisor")
+                            {
+                                item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
+                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                            }
+                            else
+                            {
+                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                            }
 
-                    //lbxCentro.DataValueField = "PK_Centro";
-                    //lbxCentro.DataTextField = "NB_Centro";
-                    //lbxCentro.DataSource = dsCARA.CA_CENTRO.ToList();
-                    //lbxCentro.DataBind();
+                            if (item.Confirmado == "Confirmada")
+                            {
+                                item.Confirmado = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>SI</span>";
+                            }
+                            else
+                            {
+                                item.Confirmado = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>NO</span>";
+                            }
 
-                    //this.txtFechaDesde.Text = DateTime.Today.AddMonths(-6).ToString("yyyy-MM-dd");
-                    //this.txtFechaHasta.Text = DateTime.Today.ToString("yyyy-MM-dd");
+                            if (item.Estatus == "Activo")
+                            {
+                                item.Estatus = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Activo</span>";
+                            }
+                            else
+                            {
+                                item.Estatus = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>Inactivo</span>";
+                            }
+                        }
+                    }
 
+                    gvUsuariosASSMCAList.DataSource = usersList;
+
+                    gvUsuariosASSMCAList.DataBind();
+
+                    gvUsuariosASSMCAList.UseAccessibleHeader = true;
+                    gvUsuariosASSMCAList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gvUsuariosASSMCAList.FooterRow.TableSection = TableRowSection.TableFooter;
 
                 }
             }

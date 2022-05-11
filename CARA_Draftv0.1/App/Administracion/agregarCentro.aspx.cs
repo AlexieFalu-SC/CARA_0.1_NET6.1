@@ -74,11 +74,12 @@ namespace CARA_Draftv0._1.App.Administracion
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    var spc_centro = dsCARA.SPC_CENTRO(NB_Centro, ID_SLYC, ID_Proveedor, Email, pk_Centro_Output);
+                    var spc_centro = dsCARA.SPC_CENTRO(NB_Centro, ID_SLYC, ID_Proveedor, Email);
+                    //var spc_centro = dsCARA.SPC_CENTRO(NB_Centro, ID_SLYC, ID_Proveedor, Email, pk_Centro_Output);
 
-                    int PK_Centro = Convert.ToInt32(pk_Centro_Output.Value);
+                    // int PK_Centro = Convert.ToInt32(pk_Centro_Output.Value);
 
-                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion,"Centro","C",null, PK_Centro, null,null);
+                    // dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion,"Centro","C",null, PK_Centro, null,null);
 
                     mensaje = "El registro del centro fué correcto.";
 

@@ -493,6 +493,9 @@
         $(document).ready(function () {
             $('.perfilesDetailListTable').DataTable();
         });
+        $(document).ready(function () {
+            $('.usuariosASSMCAListTable').DataTable();
+        });
 
     </script>
 

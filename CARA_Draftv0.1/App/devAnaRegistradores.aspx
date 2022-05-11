@@ -1,6 +1,9 @@
 ﻿<%@ Page Title=" | Tablero Gráfico" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="devAnaRegistradores.aspx.cs" Inherits="CARA_Draftv0._1.App.devAnaRegistradores" %>
 
-<%@ Register Src="~/App/wucanaliticaPlanificacion.ascx" TagPrefix="uc1" TagName="wucanaliticaPlanificacion" %>
+<%@ Register Src="~/App/Administracion/wucListaUsuariosExternos.ascx" TagPrefix="uc1" TagName="wucListaUsuariosExternos" %>
+
+
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -45,26 +48,33 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
-                            <i class="fas fa-fw fa-file-export"></i>
-                            Registrar Usuario de ASSMCA
-                        </a>
+                        <div class="btn-toolbar justify-content-between" role="toolbar">
+                            <div>
+                                <h4>Usuarios de ASSMCA</h4>
+                            </div>
+                            <div>
+                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
+                                <i class="fas fa-fw fa-file-export"></i>
+                                Registrar Usuario de ASSMCA
+                            </a>
+                            </div>
+                        </div>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
 
-                            <asp:GridView runat="server" ID="gvUsersList" CssClass="table table-bordered usersListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="Usuario">
+                            <asp:GridView runat="server" ID="gvUsuariosASSMCAList" CssClass="table table-bordered usuariosASSMCAListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="Nombre">
                                 <Columns>
                                     <asp:TemplateField HeaderText="Usuario">
                                         <ItemTemplate>
                                             <div class="row d-flex align-items-center">
                                                 <div class="avatar me-2">
                                                     &nbsp
-                                                    <asp:Image ID="profileImg" ImageUrl='<%# Eval("ImgPerfil") %>' runat="server" CssClass="avatar-img img-fluid" />
+                                                    <asp:Image ID="profileImg" ImageUrl='<%# Eval("Imagen_Perfil") %>' runat="server" CssClass="avatar-img img-fluid" />
                                                 </div>
                                          
                                                 &nbsp
-                                                <%# Eval("Usuario") %></div>
+                                                <%# Eval("Nombre") %></div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:BoundField DataField="Email" HeaderText="CorreoElectrónico" />
@@ -72,7 +82,7 @@
                                     <%--<asp:BoundField DataField="Modulos" HeaderText="Modulos" />--%>
                                     <asp:TemplateField HeaderText="Módulos Accesibles">
                                         <ItemTemplate>
-                                            <div class="row">&nbsp <%# Eval("Modulos") %></div>
+                                            <div class="row">&nbsp <%# Eval("Accesos") %></div>
                                         </ItemTemplate>
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="Confirmado">
@@ -107,7 +117,7 @@
              </div>
 
             <div class="tab-pane fade" id="usuarios-externos" role="tabpanel" aria-labelledby="plan-tab">
-                   <%-- <uc1:wucExportarPlanificacion runat="server" id="wucExportarPlanificacion" />--%>
+                <uc1:wucListaUsuariosExternos runat="server" id="wucListaUsuariosExternos" />
             </div>
 
         </div>

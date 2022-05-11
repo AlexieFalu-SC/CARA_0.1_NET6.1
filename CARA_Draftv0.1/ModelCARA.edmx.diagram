@@ -39,11 +39,6 @@
         <AssociationConnector Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA" />
         <EntityTypeShape EntityType="Model.CA_USUARIO_CENTRO" Width="1.5" PointX="3" PointY="16.375" />
         <AssociationConnector Association="Model.FK_USUARIO_CENTRO_CENTRO" />
-        <EntityTypeShape EntityType="Model.CA_PACIENTE" Width="1.5" PointX="13" PointY="8.25" />
-        <AssociationConnector Association="Model.FK_PACIENTE_CENTRO" />
-        <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
-        <AssociationConnector Association="Model.FK_PACIENTE_GENERO" />
-        <AssociationConnector Association="Model.FK_PACIENTE_GRUPO_ETNICO" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="9.375" PointY="14.375" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" Width="1.5" PointX="5.375" PointY="17.75" />
         <EntityTypeShape EntityType="Model.CA_USUARIO" Width="1.5" PointX="7.375" PointY="19.125" />
@@ -101,6 +96,12 @@
         <AssociationConnector Association="Model.FK_PERFIL_VIA_SECUNDARIA" />
         <AssociationConnector Association="Model.FK_PERFIL_VIA_TERCIARIA" />
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_PERFILES" Width="1.5" PointX="11.375" PointY="20.75" />
+        <EntityTypeShape EntityType="Model.CA_PACIENTE" Width="1.5" PointX="13" PointY="8.25" />
+        <AssociationConnector Association="Model.FK_PACIENTE_CENTRO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
+        <AssociationConnector Association="Model.FK_PACIENTE_GRUPO_ETNICO" />
+        <EntityTypeShape EntityType="Model.VW_LISTA_USUARIOS_ASSMCA" Width="1.5" PointX="22.375" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.VW_LISTA_USUARIOS_REGISTRADOS" Width="1.5" PointX="22.375" PointY="5.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

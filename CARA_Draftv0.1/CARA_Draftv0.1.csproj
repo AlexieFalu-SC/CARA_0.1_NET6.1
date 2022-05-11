@@ -203,6 +203,7 @@
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
     <Content Include="App\Administracion\rolesRegistrado.aspx" />
+    <Content Include="App\Administracion\wucListaUsuariosExternos.ascx" />
     <Content Include="App\AnaliticaAdministradores.aspx" />
     <Content Include="App\AnaliticaRegistradores.aspx" />
     <Content Include="App\DashboardRegistrado.aspx" />
@@ -2710,6 +2711,13 @@
     <Compile Include="App\Administracion\rolesRegistrado.aspx.designer.cs">
       <DependentUpon>rolesRegistrado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Administracion\wucListaUsuariosExternos.ascx.cs">
+      <DependentUpon>wucListaUsuariosExternos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\wucListaUsuariosExternos.ascx.designer.cs">
+      <DependentUpon>wucListaUsuariosExternos.ascx</DependentUpon>
+    </Compile>
     <Compile Include="App\AnaliticaAdministradores.aspx.cs">
       <DependentUpon>AnaliticaAdministradores.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -3114,6 +3122,12 @@
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_DSH_PLN_ViaSustancia.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_LISTA_USUARIOS_ASSMCA.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_LISTA_USUARIOS_REGISTRADOS.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_ROLES_ADMINISTRADORES.cs">
