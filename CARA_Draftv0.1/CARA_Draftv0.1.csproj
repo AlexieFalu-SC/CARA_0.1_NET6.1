@@ -204,6 +204,7 @@
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
     <Content Include="App\Administracion\registradoListaUsuarios.aspx" />
+    <Content Include="App\Administracion\registradoRegistroUsuario.aspx" />
     <Content Include="App\Administracion\rolesRegistrado.aspx" />
     <Content Include="App\Administracion\wucListaUsuariosExternos.ascx" />
     <Content Include="App\AnaliticaAdministradores.aspx" />
@@ -2719,6 +2720,13 @@
     </Compile>
     <Compile Include="App\Administracion\registradoListaUsuarios.aspx.designer.cs">
       <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\registradoRegistroUsuario.aspx.cs">
+      <DependentUpon>registradoRegistroUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\registradoRegistroUsuario.aspx.designer.cs">
+      <DependentUpon>registradoRegistroUsuario.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\rolesRegistrado.aspx.cs">
       <DependentUpon>rolesRegistrado.aspx</DependentUpon>

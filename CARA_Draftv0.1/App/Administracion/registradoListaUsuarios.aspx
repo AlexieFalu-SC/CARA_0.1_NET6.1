@@ -33,7 +33,7 @@
                         <h4>Sub-Cuentas de Usuarios</h4>
                     </div>
                     <div>
-                    <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
+                    <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/Administracion/registradoRegistroUsuario">
                         <i class="fas fa-fw fa-file-export"></i>
                         Registrar Nuevo Usuario
                     </a>
