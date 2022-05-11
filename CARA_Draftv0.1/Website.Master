@@ -216,15 +216,15 @@
                         </a>
                         <div id="manejoUsuarios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded"> 
-                                <div id="secManejoUsuariosASSMCA" runat="server">
-                                <h6 class="collapse-header">Usuarios de ASSMCA:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/devAnaRegistradores")%>">Lista de Usuarios</a>
+                                <div id="secManejoUsuariosAdministrativo" runat="server" visible="false">
+                                <h6 class="collapse-header">Usuarios:</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaUsuarios")%>">Lista de Usuarios</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
                                 </div>
-                                <hr class="sidebar-divider">
-                                <div id="secManejoUsuariosExternos" runat="server">
-                                <h6 class="collapse-header">Usuarios Externos:</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Usuarios</a>
+                               <%-- <hr class="sidebar-divider">--%>
+                                <div id="secManejoUsuariosRegistrado" runat="server" visible="false">
+                              <%--  <h6 class="collapse-header">Usuarios Externos:</h6>--%>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/registradoListaUsuarios")%>">Lista de Usuarios</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
                                 </div>
                             </div>
@@ -496,6 +496,7 @@
         $(document).ready(function () {
             $('.usuariosASSMCAListTable').DataTable();
         });
+        
 
     </script>
 

@@ -1,8 +1,6 @@
-﻿<%@ Page Title=" | Tablero Gráfico" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="devAnaRegistradores.aspx.cs" Inherits="CARA_Draftv0._1.App.devAnaRegistradores" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="adminListaUsuarios.aspx.cs" Inherits="CARA_Draftv0._1.App.Administracion.adminListaUsuarios" %>
 
 <%@ Register Src="~/App/Administracion/wucListaUsuariosExternos.ascx" TagPrefix="uc1" TagName="wucListaUsuariosExternos" %>
-
-
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">

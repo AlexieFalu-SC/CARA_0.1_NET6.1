@@ -199,9 +199,11 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="App\Administracion\adminAdministrador.aspx" />
+    <Content Include="App\Administracion\adminListaUsuarios.aspx" />
     <Content Include="App\Administracion\adminRegistrado.aspx" />
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
+    <Content Include="App\Administracion\registradoListaUsuarios.aspx" />
     <Content Include="App\Administracion\rolesRegistrado.aspx" />
     <Content Include="App\Administracion\wucListaUsuariosExternos.ascx" />
     <Content Include="App\AnaliticaAdministradores.aspx" />
@@ -2683,6 +2685,13 @@
     <Compile Include="App\Administracion\adminAdministrador.aspx.designer.cs">
       <DependentUpon>adminAdministrador.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Administracion\adminListaUsuarios.aspx.cs">
+      <DependentUpon>adminListaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminListaUsuarios.aspx.designer.cs">
+      <DependentUpon>adminListaUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Administracion\adminRegistrado.aspx.cs">
       <DependentUpon>adminRegistrado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2703,6 +2712,13 @@
     </Compile>
     <Compile Include="App\Administracion\agregarRolRegistrado.aspx.designer.cs">
       <DependentUpon>agregarRolRegistrado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\registradoListaUsuarios.aspx.cs">
+      <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\registradoListaUsuarios.aspx.designer.cs">
+      <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\rolesRegistrado.aspx.cs">
       <DependentUpon>rolesRegistrado.aspx</DependentUpon>

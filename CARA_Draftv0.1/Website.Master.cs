@@ -72,7 +72,7 @@ namespace CARA_Draftv0._1
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
+            if (Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
@@ -157,24 +157,48 @@ namespace CARA_Draftv0._1
 
             this.lblNombre.Text = Usuario.NB_Primero + " " + Usuario.AP_Primero;
 
-            if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Supervisor") || userManager.IsInRole(Usuario.Id, "Estadistico"))
+            try
             {
-                if(userManager.IsInRole(Usuario.Id, "SuperAdmin"))
+                if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Supervisor") || userManager.IsInRole(Usuario.Id, "Estadistico"))
                 {
-                    divRegistroPerfiles.Visible = true;
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin"))
+                    {
+                        divRegistroPerfiles.Visible = true;
 
-                    divExpedientes.Visible = true;
+                        divExpedientes.Visible = true;
 
-                    divTablerosAnaliticos.Visible = true;
-                    secAnaliticaAdministradores.Visible = true;
-                    secExportarAdministradores.Visible = true;
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaAdministradores.Visible = true;
+                        secExportarAdministradores.Visible = true;
+
+                        secManejoUsuariosAdministrativo.Visible = true;
+                    }
+                    //secAnaliticaRegistradores.Visible = true;
                 }
-                //secAnaliticaRegistradores.Visible = true;
-            }
-            else
-            {
+                else
+                {
+                    if (userManager.IsInRole(Usuario.Id, "Registrado Administrativo"))
+                    {
+                        divRegistroPerfiles.Visible = true;
+
+                        divExpedientes.Visible = true;
+
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaRegistradores.Visible = true;
+                        secExportarRegistradores.Visible = true;
+
+                        secManejoUsuariosRegistrado.Visible = true;
+                    }
+
+                }
 
             }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+            }
+
+            
         }
 
         protected void setActiveNav()
@@ -199,6 +223,8 @@ namespace CARA_Draftv0._1
             Session["Usuario"] = null;
             Session["PK_Sesion"] = null;
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Response.Redirect("~/Account/Login.aspx", false);
+            return;
         }
     }
 }

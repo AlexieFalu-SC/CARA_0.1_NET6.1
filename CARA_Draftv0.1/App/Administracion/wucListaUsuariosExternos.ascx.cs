@@ -95,6 +95,12 @@ namespace CARA_Draftv0._1.App.Administracion
             }
         }
 
+        public string MyNewRow(object Cuenta_Princiapal)
+        {
+            return String.Format(@"</td></td><tr id ='tr{0}' class='collapsed-row'>
+                                    <td></td><td colspan='100' style='padding:0px; margin:0px;'>", Cuenta_Princiapal);
+        }
+
         protected void gvUsuariosSecList_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
