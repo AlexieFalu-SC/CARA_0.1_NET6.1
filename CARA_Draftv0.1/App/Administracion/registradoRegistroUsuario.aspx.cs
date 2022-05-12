@@ -124,11 +124,11 @@ namespace CARA_Draftv0._1.App.Administracion
                                 {
                                     userManager.AddClaimAsync(user.Id, RegistroPerfiles_Claims).GetAwaiter().GetResult();
                                 }
-                                else if (chkModulos.Items[i].Value == "MonitoreoSEPS")
+                                else if (chkModulos.Items[i].Value == "AccesoExpedientes")
                                 {
                                     userManager.AddClaimAsync(user.Id, AccesoExpedientes_Claims).GetAwaiter().GetResult();
                                 }
-                                else if (chkModulos.Items[i].Value == "MantenimientoSEPS")
+                                else if (chkModulos.Items[i].Value == "AccesoTableros")
                                 {
                                     userManager.AddClaimAsync(user.Id, AccesoTableros_Claims).GetAwaiter().GetResult();
                                 }

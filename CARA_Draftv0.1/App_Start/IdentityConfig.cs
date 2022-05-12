@@ -79,13 +79,23 @@ namespace CARA_Draftv0._1
             // msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
             // msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
-            SmtpClient smtpClient = new SmtpClient("192.168.100.75", Convert.ToInt32(25));
+            //SmtpClient smtpClient = new SmtpClient("192.168.100.75", Convert.ToInt32(25));
+
+
             //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             //SmtpClient smtpClient = new SmtpClient("apps.assmca.pr.gov", Convert.ToInt32(25));
+
+            //OUTLOOK
+            SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
+            smtpClient.Port = 587;
+
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
             smtpClient.Credentials = credentials;
+
+
+            
             //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = true;
             smtpClient.Send(msg);
         }
     }
