@@ -72,7 +72,7 @@ namespace CARA_Draftv0._1
         }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
+            if (Session["PK_Sesion"] == null)
             {
                 Response.Redirect("~/Account/Login.aspx", false);
                 return;
@@ -156,6 +156,75 @@ namespace CARA_Draftv0._1
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
             this.lblNombre.Text = Usuario.NB_Primero + " " + Usuario.AP_Primero;
+
+            try
+            {
+                if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Supervisor") || userManager.IsInRole(Usuario.Id, "Estadistico"))
+                {
+                    if (userManager.IsInRole(Usuario.Id, "SuperAdmin"))
+                    {
+                        divRegistroPerfiles.Visible = true;
+
+                        divExpedientes.Visible = true;
+
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaAdministradores.Visible = true;
+                        secExportarAdministradores.Visible = true;
+
+                        divAdministracion.Visible = true;
+                        secManejoUsuariosAdministrativo.Visible = true;
+                    }
+                    //secAnaliticaRegistradores.Visible = true;
+                }
+                else
+                {
+                    if (userManager.IsInRole(Usuario.Id, "Registrado Administrativo"))
+                    {
+                        divRegistroPerfiles.Visible = true;
+
+                        divExpedientes.Visible = true;
+
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaRegistradores.Visible = true;
+                        secExportarRegistradores.Visible = true;
+
+                        divAdministracion.Visible = true;
+                        secManejoUsuariosRegistrado.Visible = true;
+                    }
+                    else
+                    {
+                        var cla = Usuario.Claims.ToList();
+                        // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+
+                        var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                        var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                        var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                        if (RegistroPerfiles > 0)
+                        {
+                            divRegistroPerfiles.Visible = true;
+                        }
+                        if (AccesoExpedientes > 0)
+                        {
+                            divExpedientes.Visible = true;
+                        }
+                        if (AccesoTableros > 0)
+                        {
+                            divTablerosAnaliticos.Visible = true;
+                            secAnaliticaRegistradores.Visible = true;
+                            secExportarRegistradores.Visible = true;
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string a = ex.Message;
+            }
+
+            
         }
 
         protected void setActiveNav()
@@ -180,6 +249,8 @@ namespace CARA_Draftv0._1
             Session["Usuario"] = null;
             Session["PK_Sesion"] = null;
             Context.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Response.Redirect("~/Account/Login.aspx", false);
+            return;
         }
     }
 }

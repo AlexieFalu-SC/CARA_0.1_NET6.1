@@ -27,7 +27,7 @@ namespace CARA_Draftv0._1
         public string DE_FuenteReferido { get; set; }
         public int PK_NivelSustancia { get; set; }
         public string DE_NivelSustancia { get; set; }
-        public Nullable<bool> IN_Sobredosis { get; set; }
+        public bool IN_Sobredosis { get; set; }
         public string DE_Sobredosis { get; set; }
         public int PK_Municipio { get; set; }
         public string DE_Municipio { get; set; }

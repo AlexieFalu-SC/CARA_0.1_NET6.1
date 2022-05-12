@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.App
+namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class devAnaRegistradores
+    public partial class adminListaUsuarios
     {
 
         /// <summary>

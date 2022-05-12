@@ -7,92 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.Account
+namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class Confirm
+    public partial class registradoRegistroUsuario
     {
 
         /// <summary>
-        /// successPanel control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder successPanel;
+        protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// logoASSMCA control.
+        /// Telefono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image logoASSMCA;
+        protected global::System.Web.UI.WebControls.TextBox Telefono;
 
         /// <summary>
-        /// NewPasswordLabel control.
+        /// NB_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label NewPasswordLabel;
+        protected global::System.Web.UI.WebControls.TextBox NB_Primero;
 
         /// <summary>
-        /// NewPassword control.
+        /// NB_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NewPassword;
+        protected global::System.Web.UI.WebControls.TextBox NB_Segundo;
 
         /// <summary>
-        /// ConfirmNewPasswordLabel control.
+        /// AP_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ConfirmNewPasswordLabel;
+        protected global::System.Web.UI.WebControls.TextBox AP_Primero;
 
         /// <summary>
-        /// ConfirmNewPassword control.
+        /// AP_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ConfirmNewPassword;
+        protected global::System.Web.UI.WebControls.TextBox AP_Segundo;
 
         /// <summary>
-        /// errorPanel control.
+        /// lbxFacilidades control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder errorPanel;
+        protected global::System.Web.UI.WebControls.ListBox lbxFacilidades;
 
         /// <summary>
-        /// Image1 control.
+        /// chkModulos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
-
-        /// <summary>
-        /// ErrorMessage control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ErrorMessage;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkModulos;
     }
 }

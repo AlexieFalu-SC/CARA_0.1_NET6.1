@@ -25,12 +25,10 @@ namespace CARA_Draftv0._1
         public int FK_Centro { get; set; }
         public int FK_GrupoEtnico { get; set; }
         public string NR_Expediente { get; set; }
-        public Nullable<int> FK_Genero { get; set; }
     
         public virtual CA_CENTRO CA_CENTRO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CA_EPISODIO> CA_EPISODIO { get; set; }
-        public virtual CA_LKP_GENERO CA_LKP_GENERO { get; set; }
         public virtual CA_LKP_GRUPO_ETNICO CA_LKP_GRUPO_ETNICO { get; set; }
     }
 }

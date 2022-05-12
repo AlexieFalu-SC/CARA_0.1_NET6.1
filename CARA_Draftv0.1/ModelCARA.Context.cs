@@ -55,7 +55,6 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_LKP_VIA_SUSTANCIA> CA_LKP_VIA_SUSTANCIA { get; set; }
         public virtual DbSet<CA_EPISODIO> CA_EPISODIO { get; set; }
         public virtual DbSet<CA_USUARIO_CENTRO> CA_USUARIO_CENTRO { get; set; }
-        public virtual DbSet<CA_PACIENTE> CA_PACIENTE { get; set; }
         public virtual DbSet<VW_DSH_CARA_PERFILES> VW_DSH_CARA_PERFILES { get; set; }
         public virtual DbSet<VW_DSH_CARA_DROGAS_SOBREDOSIS> VW_DSH_CARA_DROGAS_SOBREDOSIS { get; set; }
         public virtual DbSet<CA_USUARIO> CA_USUARIO { get; set; }
@@ -71,6 +70,9 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_PERFIL> CA_PERFIL { get; set; }
         public virtual DbSet<VW_DSH_PERFILES> VW_DSH_PERFILES { get; set; }
         public virtual DbSet<VW_DSH_PLN_PERFILES> VW_DSH_PLN_PERFILES { get; set; }
+        public virtual DbSet<CA_PACIENTE> CA_PACIENTE { get; set; }
+        public virtual DbSet<VW_LISTA_USUARIOS_ASSMCA> VW_LISTA_USUARIOS_ASSMCA { get; set; }
+        public virtual DbSet<VW_LISTA_USUARIOS_REGISTRADOS> VW_LISTA_USUARIOS_REGISTRADOS { get; set; }
     
         public virtual int SPC_EPISODIO(Nullable<int> fK_Paciente, Nullable<int> fK_Centro, Nullable<System.DateTime> fE_Episodio, Nullable<System.DateTime> fE_Alta, Nullable<int> fK_EstadoServicio, Nullable<int> fK_FuenteReferido, Nullable<int> fK_EpisodiosPrevios, Nullable<int> fK_NivelSustancia, Nullable<int> nR_DiasEspera, ObjectParameter pK_Episodio)
         {
@@ -120,19 +122,6 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("PK_Episodio", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPR_PERFILES_EPISODIO_Result>("SPR_PERFILES_EPISODIO", pK_EpisodioParameter);
-        }
-    
-        public virtual int SPC_CENTROS_A_REGISTRADO(string fK_Registrado, string fK_NuevoUsuario)
-        {
-            var fK_RegistradoParameter = fK_Registrado != null ?
-                new ObjectParameter("FK_Registrado", fK_Registrado) :
-                new ObjectParameter("FK_Registrado", typeof(string));
-    
-            var fK_NuevoUsuarioParameter = fK_NuevoUsuario != null ?
-                new ObjectParameter("FK_NuevoUsuario", fK_NuevoUsuario) :
-                new ObjectParameter("FK_NuevoUsuario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTROS_A_REGISTRADO", fK_RegistradoParameter, fK_NuevoUsuarioParameter);
         }
     
         public virtual ObjectResult<SPR_ROLES_REGISTRADO_Result> SPR_ROLES_REGISTRADO(string pK_Usuario)
@@ -373,7 +362,7 @@ namespace CARA_Draftv0._1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_SESION_ACTIVIDAD", fK_SesionParameter, cAT_ActividadParameter, tI_ActividadParameter, fK_UsuarioParameter, fK_CentroParameter, fK_EpisodioParameter, fK_PerfilParameter);
         }
     
-        public virtual int SPC_CENTRO(string nB_Centro, Nullable<System.Guid> iD_SLYC, string iD_Proveedor, string email, ObjectParameter pK_Centro)
+        public virtual int SPC_CENTRO(string nB_Centro, Nullable<System.Guid> iD_SLYC, string iD_Proveedor, string email)
         {
             var nB_CentroParameter = nB_Centro != null ?
                 new ObjectParameter("NB_Centro", nB_Centro) :
@@ -391,7 +380,7 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("Email", email) :
                 new ObjectParameter("Email", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTRO", nB_CentroParameter, iD_SLYCParameter, iD_ProveedorParameter, emailParameter, pK_Centro);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTRO", nB_CentroParameter, iD_SLYCParameter, iD_ProveedorParameter, emailParameter);
         }
     
         public virtual int SPC_ERROR(string dE_Error, string fK_Sesion, ObjectParameter pK_Error)
@@ -919,6 +908,32 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("IN_Sobredosis", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_PERFIL", pK_PerfilParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_MunicipioParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter);
+        }
+    
+        public virtual int SPC_CENTROS_A_REGISTRADO(string fK_NuevoUsuario, Nullable<int> fK_Centro)
+        {
+            var fK_NuevoUsuarioParameter = fK_NuevoUsuario != null ?
+                new ObjectParameter("FK_NuevoUsuario", fK_NuevoUsuario) :
+                new ObjectParameter("FK_NuevoUsuario", typeof(string));
+    
+            var fK_CentroParameter = fK_Centro.HasValue ?
+                new ObjectParameter("FK_Centro", fK_Centro) :
+                new ObjectParameter("FK_Centro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTROS_A_REGISTRADO", fK_NuevoUsuarioParameter, fK_CentroParameter);
+        }
+    
+        public virtual int SPC_ATAR_REGISTRADO_SUBCUENTA(string fK_CuentaPrincipal, string fK_CuentaUsuario)
+        {
+            var fK_CuentaPrincipalParameter = fK_CuentaPrincipal != null ?
+                new ObjectParameter("FK_CuentaPrincipal", fK_CuentaPrincipal) :
+                new ObjectParameter("FK_CuentaPrincipal", typeof(string));
+    
+            var fK_CuentaUsuarioParameter = fK_CuentaUsuario != null ?
+                new ObjectParameter("FK_CuentaUsuario", fK_CuentaUsuario) :
+                new ObjectParameter("FK_CuentaUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ATAR_REGISTRADO_SUBCUENTA", fK_CuentaPrincipalParameter, fK_CuentaUsuarioParameter);
         }
     }
 }

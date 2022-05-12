@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CARA_Draftv0._1.App
+namespace CARA_Draftv0._1.App.Administracion
 {
-    public partial class devAnaRegistradores : System.Web.UI.Page
+    public partial class registradoListaUsuarios : System.Web.UI.Page
     {
         ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser Usuario = new ApplicationUser();
@@ -38,24 +38,44 @@ namespace CARA_Draftv0._1.App
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    var usersList = dsCARA.VW_LISTA_USUARIOS_ASSMCA.Where(a => a.PK_Usuario != Usuario.Id).Where(p => !rolesRegistrado.Contains(p.Rol)).DefaultIfEmpty().ToList();
+                    var usersList = dsCARA.VW_LISTA_USUARIOS_REGISTRADOS.Where(a => a.PK_Usuario != Usuario.Id).Where(p => p.Cuenta_Princiapal == Usuario.Id).DefaultIfEmpty().ToList();
 
-                    if(usersList[0] != null)
+                    if (usersList[0] != null)
                     {
-                        foreach (VW_LISTA_USUARIOS_ASSMCA item in usersList)
+                        foreach (VW_LISTA_USUARIOS_REGISTRADOS item in usersList)
                         {
-                           if(item.Rol == "SuperAdmin")
+                            ApplicationUser user = context.Users.Find(item.PK_Usuario);
+
+                            if (item.Rol == "SuperAdmin")
                             {
                                 item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
                             }
-                            else if(item.Rol == "Supervisor")
+                            else if (item.Rol == "Supervisor")
                             {
                                 item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
                                 item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
                             }
                             else
                             {
-                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                                var cla = user.Claims.ToList();
+                                // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+
+                                var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                                var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                                var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                                if (RegistroPerfiles > 0)
+                                {
+                                    item.Accesos += "<span class='badge bg-primary text-white text-wrap' style='width: 6rem;'>Registro de Perfiles</span>&nbsp";
+                                }
+                                if (AccesoExpedientes > 0)
+                                {
+                                    item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Ver Expedientes</span>&nbsp";
+                                }
+                                if (AccesoTableros > 0)
+                                {
+                                    item.Accesos += "<span class='badge bg-info text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                                }
                             }
 
                             if (item.Confirmado == "Confirmada")
@@ -78,13 +98,13 @@ namespace CARA_Draftv0._1.App
                         }
                     }
 
-                    gvUsuariosASSMCAList.DataSource = usersList;
+                    gvUsuariosRegistradosList.DataSource = usersList;
 
-                    gvUsuariosASSMCAList.DataBind();
+                    gvUsuariosRegistradosList.DataBind();
 
-                    gvUsuariosASSMCAList.UseAccessibleHeader = true;
-                    gvUsuariosASSMCAList.HeaderRow.TableSection = TableRowSection.TableHeader;
-                    gvUsuariosASSMCAList.FooterRow.TableSection = TableRowSection.TableFooter;
+                    gvUsuariosRegistradosList.UseAccessibleHeader = true;
+                    gvUsuariosRegistradosList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gvUsuariosRegistradosList.FooterRow.TableSection = TableRowSection.TableFooter;
 
                 }
             }

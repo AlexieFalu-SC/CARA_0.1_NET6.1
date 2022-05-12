@@ -95,7 +95,7 @@
                                             <label class="control-label">Rol de Usuario</label>
                                             <asp:Label ID="lblRol" CssClass="form-control form-control-user" Text="" runat="server" />
                                         </div>
-                                        <div class="form-group col-6">
+                                        <div class="form-group col-6" runat="server" id="divChkModulos" visible="false">
                                             <label class="control-label">Modulos Accesbiles</label>
                                             <asp:CheckBoxList ID="chkModulos" runat="server" >
                                                 <asp:ListItem Value="TEDS" Text="TEDS" />

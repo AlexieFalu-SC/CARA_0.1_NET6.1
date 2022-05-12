@@ -199,10 +199,14 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="App\Administracion\adminAdministrador.aspx" />
+    <Content Include="App\Administracion\adminListaUsuarios.aspx" />
     <Content Include="App\Administracion\adminRegistrado.aspx" />
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
+    <Content Include="App\Administracion\registradoListaUsuarios.aspx" />
+    <Content Include="App\Administracion\registradoRegistroUsuario.aspx" />
     <Content Include="App\Administracion\rolesRegistrado.aspx" />
+    <Content Include="App\Administracion\wucListaUsuariosExternos.ascx" />
     <Content Include="App\AnaliticaAdministradores.aspx" />
     <Content Include="App\AnaliticaRegistradores.aspx" />
     <Content Include="App\DashboardRegistrado.aspx" />
@@ -2682,6 +2686,13 @@
     <Compile Include="App\Administracion\adminAdministrador.aspx.designer.cs">
       <DependentUpon>adminAdministrador.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Administracion\adminListaUsuarios.aspx.cs">
+      <DependentUpon>adminListaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminListaUsuarios.aspx.designer.cs">
+      <DependentUpon>adminListaUsuarios.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Administracion\adminRegistrado.aspx.cs">
       <DependentUpon>adminRegistrado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2703,12 +2714,33 @@
     <Compile Include="App\Administracion\agregarRolRegistrado.aspx.designer.cs">
       <DependentUpon>agregarRolRegistrado.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Administracion\registradoListaUsuarios.aspx.cs">
+      <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\registradoListaUsuarios.aspx.designer.cs">
+      <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\registradoRegistroUsuario.aspx.cs">
+      <DependentUpon>registradoRegistroUsuario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\registradoRegistroUsuario.aspx.designer.cs">
+      <DependentUpon>registradoRegistroUsuario.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Administracion\rolesRegistrado.aspx.cs">
       <DependentUpon>rolesRegistrado.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="App\Administracion\rolesRegistrado.aspx.designer.cs">
       <DependentUpon>rolesRegistrado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\wucListaUsuariosExternos.ascx.cs">
+      <DependentUpon>wucListaUsuariosExternos.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\wucListaUsuariosExternos.ascx.designer.cs">
+      <DependentUpon>wucListaUsuariosExternos.ascx</DependentUpon>
     </Compile>
     <Compile Include="App\AnaliticaAdministradores.aspx.cs">
       <DependentUpon>AnaliticaAdministradores.aspx</DependentUpon>
@@ -3116,6 +3148,12 @@
     <Compile Include="VW_DSH_PLN_ViaSustancia.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
+    <Compile Include="VW_LISTA_USUARIOS_ASSMCA.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_LISTA_USUARIOS_REGISTRADOS.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
     <Compile Include="VW_ROLES_ADMINISTRADORES.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
@@ -3132,6 +3170,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\profile_images\" />
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
   </ItemGroup>

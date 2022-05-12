@@ -17,7 +17,6 @@ namespace CARA_Draftv0._1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CA_LKP_GENERO()
         {
-            this.CA_PACIENTE = new HashSet<CA_PACIENTE>();
             this.CA_PERFIL = new HashSet<CA_PERFIL>();
         }
     
@@ -25,8 +24,6 @@ namespace CARA_Draftv0._1
         public string DE_Genero { get; set; }
         public bool Activa { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CA_PACIENTE> CA_PACIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CA_PERFIL> CA_PERFIL { get; set; }
     }

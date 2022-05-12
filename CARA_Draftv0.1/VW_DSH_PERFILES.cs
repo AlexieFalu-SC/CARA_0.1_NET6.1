@@ -81,5 +81,53 @@ namespace CARA_Draftv0._1
         public string Condicion_Cuarta { get; set; }
         public string Nivel_Cuidado { get; set; }
         public string Seguro_Salud { get; set; }
+        public int FK_EstadoServicio { get; set; }
+        public int FK_FuenteReferido { get; set; }
+        public int FK_EpisodiosPrevios { get; set; }
+        public int FK_GrupoApoyoMesPasado { get; set; }
+        public int FK_Genero { get; set; }
+        public int FK_EstadoMarital { get; set; }
+        public Nullable<int> FK_Municipio { get; set; }
+        public int FK_Residencia { get; set; }
+        public int FK_HijosMenoresCuido { get; set; }
+        public int FK_Embarazada { get; set; }
+        public int FK_Veterano { get; set; }
+        public int FK_Escolaridad { get; set; }
+        public int FK_CondicionLaboral { get; set; }
+        public int FK_Estudios { get; set; }
+        public int FK_FuenteIngreso { get; set; }
+        public int FK_DrogaPrimaria { get; set; }
+        public bool IN_ToxicologiaPrimaria { get; set; }
+        public int FK_ViaPrimaria { get; set; }
+        public int FK_FrecuenciaPrimaria { get; set; }
+        public int FK_DrogaSecundaria { get; set; }
+        public bool IN_ToxicologiaSecundaria { get; set; }
+        public int FK_ViaSecundaria { get; set; }
+        public int FK_FrecuenciaSecundaria { get; set; }
+        public int FK_DrogaTerciaria { get; set; }
+        public bool IN_ToxicologiaTerciaria { get; set; }
+        public int FK_ViaTerciaria { get; set; }
+        public int FK_FrecuenciaTerciaria { get; set; }
+        public bool IN_ToxicologiaCuarta { get; set; }
+        public int FK_FrecuenciaCuarta { get; set; }
+        public int Expr1 { get; set; }
+        public bool IN_ToxicologiaQuinta { get; set; }
+        public int FK_FrecuenciaQuinta { get; set; }
+        public int FK_DrogaSobredosisPrimaria { get; set; }
+        public int FK_DrogaSobredosisSecundaria { get; set; }
+        public int FK_ICDX_Primaria { get; set; }
+        public int FK_ICDX_Secundaria { get; set; }
+        public int FK_ICDX_Terciaria { get; set; }
+        public int FK_ICDX_Cuarta { get; set; }
+        public int FK_DSMV_Primaria { get; set; }
+        public int FK_DSMV_Secundaria { get; set; }
+        public int FK_DSMV_Terciaria { get; set; }
+        public int FK_DSMV_Cuarta { get; set; }
+        public int FK_CondicionFisicaPrimaria { get; set; }
+        public int FK_CondicionFisicaSecundaria { get; set; }
+        public int FK_CondicionFisicaTerciaria { get; set; }
+        public int FK_CondicionFisicaCuarta { get; set; }
+        public int FK_NivelSustancia { get; set; }
+        public int Expr2 { get; set; }
     }
 }

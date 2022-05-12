@@ -99,72 +99,69 @@ namespace CARA_Draftv0._1.Account
             this.Telefono.Text = Usuario.Tel_Celular;
             this.lblRol.Text = userManager.GetRoles(Usuario.Id).FirstOrDefault().ToString();
 
+            divChkModulos.Visible = true;
             chkModulos.Enabled = true;
 
-            //if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Administrador"))
-            //{
-            //    for (int i = 0; i < chkModulos.Items.Count; i++)
-            //    {
-            //        chkModulos.Items[i].Selected = true;
-            //    }
-            //}
-            //else
-            //{
-            //    var cla = Usuario.Claims.ToList();
-            //    // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+            if (userManager.IsInRole(Usuario.Id, "SuperAdmin") || userManager.IsInRole(Usuario.Id, "Supervisor") || userManager.IsInRole(Usuario.Id, "Estadistico"))
+            {
+                divChkModulos.Visible = false;
+                chkModulos.Enabled = false;
+            }
+            else
+            {
+                if (userManager.IsInRole(Usuario.Id, "Registrado Administrativo"))
+                {
+                    for (int i = 0; i < chkModulos.Items.Count; i++)
+                    {
+                        chkModulos.Items[i].Selected = true;
+                    }
+                }
+                else
+                {
+                    var cla = Usuario.Claims.ToList();
+                    // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
 
-            //    var TEDS = cla.Where(x => x.ClaimValue == "TEDS").Count();
-            //    var MantenimientoSEPS = cla.Where(x => x.ClaimValue == "MantenimientoSEPS").Count();
-            //    var MonitoreoSEPS = cla.Where(x => x.ClaimValue == "MonitoreoSEPS").Count();
-            //    var ReportesInformativos = cla.Where(x => x.ClaimValue == "ReportesInformativos").Count();
+                    var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                    var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                    var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
 
-            //    if (TEDS > 0)
-            //    {
-            //        for (int i = 0; i < chkModulos.Items.Count; i++)
-            //        {
-            //            if (chkModulos.Items[i].Value == "TEDS")
-            //            {
-            //                chkModulos.Items[i].Selected = true;
-            //            }
+                    if (RegistroPerfiles > 0)
+                    {
+                        for (int i = 0; i < chkModulos.Items.Count; i++)
+                        {
+                            if (chkModulos.Items[i].Value == "RegistroPerfiles")
+                            {
+                                chkModulos.Items[i].Selected = true;
+                            }
 
-            //        }
-            //    }
-            //    if (MantenimientoSEPS > 0)
-            //    {
-            //        for (int i = 0; i < chkModulos.Items.Count; i++)
-            //        {
-            //            if (chkModulos.Items[i].Value == "MantenimientoSEPS")
-            //            {
-            //                chkModulos.Items[i].Selected = true;
-            //            }
+                        }
+                    }
+                    if (AccesoExpedientes > 0)
+                    {
+                        for (int i = 0; i < chkModulos.Items.Count; i++)
+                        {
+                            if (chkModulos.Items[i].Value == "AccesoExpedientes")
+                            {
+                                chkModulos.Items[i].Selected = true;
+                            }
 
-            //        }
-            //    }
-            //    if (MonitoreoSEPS > 0)
-            //    {
-            //        for (int i = 0; i < chkModulos.Items.Count; i++)
-            //        {
-            //            if (chkModulos.Items[i].Value == "MonitoreoSEPS")
-            //            {
-            //                chkModulos.Items[i].Selected = true;
-            //            }
+                        }
+                    }
+                    if (AccesoTableros > 0)
+                    {
+                        for (int i = 0; i < chkModulos.Items.Count; i++)
+                        {
+                            if (chkModulos.Items[i].Value == "AccesoTableros")
+                            {
+                                chkModulos.Items[i].Selected = true;
+                            }
 
-            //        }
-            //    }
-            //    if (ReportesInformativos > 0)
-            //    {
-            //        for (int i = 0; i < chkModulos.Items.Count; i++)
-            //        {
-            //            if (chkModulos.Items[i].Value == "ReportesInformativos")
-            //            {
-            //                chkModulos.Items[i].Selected = true;
-            //            }
+                        }
+                    }
+                }
+            }
 
-            //        }
-            //    }
-            //}
-
-            //chkModulos.Enabled = false;
+            chkModulos.Enabled = false;
 
             //if (Usuario.ProfileImgPath != null)
             //{

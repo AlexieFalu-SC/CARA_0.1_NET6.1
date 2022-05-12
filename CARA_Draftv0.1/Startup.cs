@@ -20,6 +20,7 @@ namespace CARA_Draftv0._1
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
+            /*Creación de roles administrativos de ASSMCA*/
             if (!roleManager.RoleExists("SuperAdmin"))
             {
 
@@ -45,79 +46,82 @@ namespace CARA_Draftv0._1
                     var result = userManager.AddToRole(user.Id, "SuperAdmin");
                 }
             }
-            if (!roleManager.RoleExists("Registrado"))
+            if (!roleManager.RoleExists("Supervisor"))
             {
-                var role = new IdentityRole("Registrado");
+                var role = new IdentityRole("Supervisor");
                 roleManager.Create(role);
 
-                var user = new ApplicationUser();
-                user.UserName = "registrado@assmca.pr.gov";
-                user.Email = "registrado@assmca.pr.gov";
-                user.NB_Primero = "Registrado";
-                user.NB_Segundo = "De";
-                user.AP_Primero = "Prueba";
-                user.AP_Segundo = "Cara";
-                user.Tel_Celular = "7875555555";
-                user.Tel_Trabajo = "7875555555";
-                user.PasswordChanged = true;
-                user.Active = true;
-                user.EmailConfirmed = true;
-                string pwd = "Registrado@2020";
-                var newuser = userManager.Create(user, pwd);
-                if (newuser.Succeeded)
-                {
-                    var result = userManager.AddToRole(user.Id, "Registrado");
-                }
+                //var user = new ApplicationUser();
+                //user.UserName = "registrado@assmca.pr.gov";
+                //user.Email = "registrado@assmca.pr.gov";
+                //user.NB_Primero = "Registrado";
+                //user.NB_Segundo = "De";
+                //user.AP_Primero = "Prueba";
+                //user.AP_Segundo = "Cara";
+                //user.Tel_Celular = "7875555555";
+                //user.Tel_Trabajo = "7875555555";
+                //user.PasswordChanged = true;
+                //user.Active = true;
+                //user.EmailConfirmed = true;
+                //string pwd = "Registrado@2020";
+                //var newuser = userManager.Create(user, pwd);
+                //if (newuser.Succeeded)
+                //{
+                //    var result = userManager.AddToRole(user.Id, "Registrado");
+                //}
             }
-            if (!roleManager.RoleExists("Operador de Registro"))
+            if (!roleManager.RoleExists("Estadistico"))
             {
-                var role = new IdentityRole("Operador de Registro");
+                var role = new IdentityRole("Estadistico");
                 roleManager.Create(role);
             }
-            if (!roleManager.RoleExists("Operador Estadistico"))
-            {
-                var role = new IdentityRole("Operador Estadistico");
-                roleManager.Create(role);
-            }
-            if (!roleManager.RoleExists("AdminCARA"))
-            {
-                var role = new IdentityRole("AdminCARA");
-                roleManager.Create(role);
-            }
-            if (!roleManager.RoleExists("AdminPlanificacion"))
-            {
-                var role = new IdentityRole("AdminPlanificacion");
-                roleManager.Create(role);
-            }
-            if (!roleManager.RoleExists("AdminObservatorio"))
-            {
-                var role = new IdentityRole("AdminObservatorio");
-                roleManager.Create(role);
-            }
-            if (!roleManager.RoleExists("AdminTablero"))
-            {
-                var role = new IdentityRole("AdminTablero");
-                roleManager.Create(role);
 
-                var user = new ApplicationUser();
-                user.UserName = "tablero@assmca.pr.gov";
-                user.Email = "tablero@assmca.pr.gov";
-                user.NB_Primero = "Tablero";
-                user.NB_Segundo = "De";
-                user.AP_Primero = "Prueba";
-                user.AP_Segundo = "Cara";
-                user.Tel_Celular = "7875555555";
-                user.Tel_Trabajo = "7875555555";
-                user.PasswordChanged = true;
-                user.Active = true;
-                user.EmailConfirmed = true;
-                string pwd = "Tablero@2020";
-                var newuser = userManager.Create(user, pwd);
-                if (newuser.Succeeded)
-                {
-                    var result = userManager.AddToRole(user.Id, "AdminTablero");
-                }
+            /*Creación de roles de usuarios registrados*/
+
+            if (!roleManager.RoleExists("Registrado Administrativo"))
+            {
+                var role = new IdentityRole("Registrado Administrativo");
+                roleManager.Create(role);
             }
+            if (!roleManager.RoleExists("Registrado Usuario"))
+            {
+                var role = new IdentityRole("Registrado Usuario");
+                roleManager.Create(role);
+            }
+            //if (!roleManager.RoleExists("AdminPlanificacion"))
+            //{
+            //    var role = new IdentityRole("AdminPlanificacion");
+            //    roleManager.Create(role);
+            //}
+            //if (!roleManager.RoleExists("AdminObservatorio"))
+            //{
+            //    var role = new IdentityRole("AdminObservatorio");
+            //    roleManager.Create(role);
+            //}
+            //if (!roleManager.RoleExists("AdminTablero"))
+            //{
+            //    var role = new IdentityRole("AdminTablero");
+            //    roleManager.Create(role);
+
+            //    var user = new ApplicationUser();
+            //    user.UserName = "tablero@assmca.pr.gov";
+            //    user.Email = "tablero@assmca.pr.gov";
+            //    user.NB_Primero = "Tablero";
+            //    user.NB_Segundo = "De";
+            //    user.AP_Primero = "Prueba";
+            //    user.AP_Segundo = "Cara";
+            //    user.Tel_Celular = "7875555555";
+            //    user.Tel_Trabajo = "7875555555";
+            //    user.PasswordChanged = true;
+            //    user.Active = true;
+            //    user.EmailConfirmed = true;
+            //    string pwd = "Tablero@2020";
+            //    var newuser = userManager.Create(user, pwd);
+            //    if (newuser.Succeeded)
+            //    {
+            //        var result = userManager.AddToRole(user.Id, "AdminTablero");
+            //    }
+            //}
 
         }
     }

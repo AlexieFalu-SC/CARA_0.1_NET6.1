@@ -7,29 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.App
+namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class devAnaRegistradores
+    public partial class wucListaUsuariosExternos
     {
 
         /// <summary>
-        /// gvUsuariosASSMCAList control.
+        /// gvUsuariosExternosList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvUsuariosASSMCAList;
-
-        /// <summary>
-        /// wucListaUsuariosExternos control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::CARA_Draftv0._1.App.Administracion.wucListaUsuariosExternos wucListaUsuariosExternos;
+        protected global::System.Web.UI.WebControls.GridView gvUsuariosExternosList;
     }
 }

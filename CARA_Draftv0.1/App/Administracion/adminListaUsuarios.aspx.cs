@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace CARA_Draftv0._1.App
+namespace CARA_Draftv0._1.App.Administracion
 {
-    public partial class devAnaRegistradores : System.Web.UI.Page
+    public partial class adminListaUsuarios : System.Web.UI.Page
     {
         ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser Usuario = new ApplicationUser();
@@ -40,15 +40,15 @@ namespace CARA_Draftv0._1.App
                 {
                     var usersList = dsCARA.VW_LISTA_USUARIOS_ASSMCA.Where(a => a.PK_Usuario != Usuario.Id).Where(p => !rolesRegistrado.Contains(p.Rol)).DefaultIfEmpty().ToList();
 
-                    if(usersList[0] != null)
+                    if (usersList[0] != null)
                     {
                         foreach (VW_LISTA_USUARIOS_ASSMCA item in usersList)
                         {
-                           if(item.Rol == "SuperAdmin")
+                            if (item.Rol == "SuperAdmin")
                             {
                                 item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
                             }
-                            else if(item.Rol == "Supervisor")
+                            else if (item.Rol == "Supervisor")
                             {
                                 item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
                                 item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";

@@ -5,36 +5,31 @@
 <html lang="en">
 <head runat="server">
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title></title>
-    <webopt:bundlereference runat="server" path="~/Content/css" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>SEATSS <%: Page.Title %></title>
+
     <asp:ContentPlaceHolder ID="head" runat="server">
         <%: Scripts.Render("~/bundles/modernizr") %>
     </asp:ContentPlaceHolder>
 
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script type="text/javascript" src="<%= Page.ResolveClientUrl("~/Scripts/caraForms/UIFlujo.js") %>"></script>
-   
-     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-    <link href="<%=ResolveClientUrl("~/Content/account/sidenav.css")%>" type="text/css" rel="stylesheet" />
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+    <!-- Custom fonts for this template-->
+    <link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Sweet Alerts -->
+    <script type="text/javascript" src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Custom styles for this template-->
+    <link href="<%=ResolveClientUrl("~/Content/css/sb-admin-2.min.css")%>" type="text/css" rel="stylesheet" />
+
+    <!-- Custom styles for this template-->
+    <link href="<%=ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.css")%>" type="text/css" rel="stylesheet" />
+
 </head>
-<body>
+<body class="bg-white">
     <form id="form1" runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -57,34 +52,24 @@
             </Scripts>
         </asp:ScriptManager>
         
-        <%--Start Navbar--%>
-        <nav class="navbar navbar-expand-md col-lg-10 ml-auto navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #DCA61E;">
-          <%--<a class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" href="<%=ResolveClientUrl("~/App/DashboardRegistrado")%>">ASSMCA</a>--%> <%--<img class="navbar-brand col-md-3 col-lg-2 mr-0 px-3" src="<%=ResolveClientUrl("~/Content/images/ASSMCA_LOGO.png")%>" width="60" height="60"/>--%>
+       <%-- <nav class="navbar navbar-expand-md col-lg-10 ml-auto navbar-dark sticky-top flex-md-nowrap p-0 shadow" style="background-color: #DCA61E;">
           <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse" data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
-          <%--<input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">--%>
             <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
               <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown">
-                   <%-- <a href="#" id="dropdown03" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Mi Cuenta"><asp:Label ID="lblNombre" Text="" runat="server" /></a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown03">
-                      <div class="dropdown-divider"></div>
-                      <asp:LoginStatus runat="server" class="dropdown-item" LogoutAction="Redirect" LogoutText="Salir" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
-                    </div>--%>
                 </li>
             
                
               </ul>
           </div>
         </nav>
-        <%--End Navbar--%>
 
 
         <div class="container-fluid">
             <div class="row">
 
-                <%--Start Sidebar--%>
                 <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse d-print-none">
                     <a class="col-md-8 offset-md-2" href="#">
                         <div class="text-center">
@@ -97,13 +82,30 @@
 
                   </div>
                 </nav>
-                <%--End Sidebar--%>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
 
             </div>
+        </div>--%>
+
+        <div id="wrapper">
+            <div id="content-wrapper" class="d-flex flex-column">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
         </div>
+
+         <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright &copy; ASSMCA</span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
+
     </form>
 
 </body>

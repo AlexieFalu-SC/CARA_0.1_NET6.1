@@ -47,22 +47,22 @@ namespace CARA_Draftv0._1
             //}
 
             AlternateView imgview = AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Html);
-            LinkedResource lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            LinkedResource lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "logo_1";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "logo_2";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "twitter";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "facebook";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
@@ -79,13 +79,23 @@ namespace CARA_Draftv0._1
             // msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(text, null, MediaTypeNames.Text.Plain));
             // msg.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(html, null, MediaTypeNames.Text.Html));
 
-            SmtpClient smtpClient = new SmtpClient("192.168.100.75", Convert.ToInt32(25));
+            //SmtpClient smtpClient = new SmtpClient("192.168.100.75", Convert.ToInt32(25));
+
+
             //smtpClient.DeliveryMethod = SmtpDeliveryMethod.Network;
             //SmtpClient smtpClient = new SmtpClient("apps.assmca.pr.gov", Convert.ToInt32(25));
+
+            //OUTLOOK
+            SmtpClient smtpClient = new SmtpClient("smtp.office365.com");
+            smtpClient.Port = 587;
+
             System.Net.NetworkCredential credentials = new System.Net.NetworkCredential(ConfigurationManager.AppSettings["Email"].ToString(), ConfigurationManager.AppSettings["Password"].ToString());
             smtpClient.Credentials = credentials;
+
+
+            
             //smtpClient.UseDefaultCredentials = false;
-            //smtpClient.EnableSsl = true;
+            smtpClient.EnableSsl = true;
             smtpClient.Send(msg);
         }
     }

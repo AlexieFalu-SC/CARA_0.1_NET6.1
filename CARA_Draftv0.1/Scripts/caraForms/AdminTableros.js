@@ -56,6 +56,13 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_lbxMunicipios').multiselect('updateButtonText');
 
 
+    $('#ContentPlaceHolder1_lbxFacilidades').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true
+    });
+    $('#ContentPlaceHolder1_lbxFacilidades').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_lbxFacilidades').multiselect('updateButtonText');
+
 /*Dashboard de Planificacion*/
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxNivelSustancia').multiselect({
         includeSelectAllOption: true,
@@ -159,6 +166,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
     });
     $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxMunicipios').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxMunicipios').multiselect('updateButtonText');
+
 
 });
 
