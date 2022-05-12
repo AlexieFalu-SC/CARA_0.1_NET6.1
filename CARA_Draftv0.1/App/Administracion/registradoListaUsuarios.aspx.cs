@@ -44,6 +44,8 @@ namespace CARA_Draftv0._1.App.Administracion
                     {
                         foreach (VW_LISTA_USUARIOS_REGISTRADOS item in usersList)
                         {
+                            ApplicationUser user = context.Users.Find(item.PK_Usuario);
+
                             if (item.Rol == "SuperAdmin")
                             {
                                 item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
@@ -55,7 +57,25 @@ namespace CARA_Draftv0._1.App.Administracion
                             }
                             else
                             {
-                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                                var cla = user.Claims.ToList();
+                                // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+
+                                var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                                var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                                var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                                if (RegistroPerfiles > 0)
+                                {
+                                    item.Accesos += "<h5><span class='badge bg-primary text-white text-wrap' style='width: 6rem;'>Registro de Perfiles</span></h5>&nbsp";
+                                }
+                                if (AccesoExpedientes > 0)
+                                {
+                                    item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Ver Expedientes</span>&nbsp";
+                                }
+                                if (AccesoTableros > 0)
+                                {
+                                    item.Accesos += "<span class='badge bg-info text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                                }
                             }
 
                             if (item.Confirmado == "Confirmada")

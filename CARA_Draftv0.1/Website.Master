@@ -496,6 +496,9 @@
         $(document).ready(function () {
             $('.usuariosASSMCAListTable').DataTable();
         });
+        $(document).ready(function () {
+            $('.usuariosRegistradosListTable').DataTable();
+        });
         
 
     </script>

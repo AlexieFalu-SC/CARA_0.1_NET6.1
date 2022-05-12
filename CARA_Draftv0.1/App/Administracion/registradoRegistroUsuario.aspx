@@ -90,4 +90,28 @@
     </div>
 
 </main>
+
+<script type="text/javascript">
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
+    function sweetAlertRef(titulo, texto, icono, ref) {
+        var baseUrl = "<%=ResolveClientUrl("~/")%>" + ref;
+
+        swal({
+            title: titulo,
+            text: texto,
+            icon: icono
+        }).then((value) => { window.location.href = baseUrl; });
+    }
+
+    function sweetAlert(titulo, texto, icono) {
+        swal({
+            title: titulo,
+            text: texto,
+            icon: icono
+        })
+    }
+</script>
 </asp:Content>

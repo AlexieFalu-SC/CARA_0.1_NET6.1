@@ -1498,8 +1498,8 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Parameter Name="Email" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="SPC_CENTROS_A_REGISTRADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="FK_Registrado" Type="nvarchar" Mode="In" />
           <Parameter Name="FK_NuevoUsuario" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_Centro" Type="int" Mode="In" />
         </Function>
         <Function Name="SPC_EPISODIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_Paciente" Type="int" Mode="In" />
@@ -2586,10 +2586,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
             <End Role="CA_USUARIO_CENTRO" EntitySet="CA_USUARIO_CENTRO" />
           </AssociationSet>
-          <FunctionImport Name="SPC_CENTROS_A_REGISTRADO">
-            <Parameter Name="FK_Registrado" Mode="In" Type="String" />
-            <Parameter Name="FK_NuevoUsuario" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="SPR_ROLES_REGISTRADO" ReturnType="Collection(Model.SPR_ROLES_REGISTRADO_Result)">
           <Parameter Name="PK_Usuario" Mode="In" Type="String" />
           </FunctionImport>
@@ -3002,6 +2998,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           </AssociationSet>
           <EntitySet Name="VW_LISTA_USUARIOS_ASSMCA" EntityType="Model.VW_LISTA_USUARIOS_ASSMCA" />
           <EntitySet Name="VW_LISTA_USUARIOS_REGISTRADOS" EntityType="Model.VW_LISTA_USUARIOS_REGISTRADOS" />
+          <FunctionImport Name="SPC_CENTROS_A_REGISTRADO">
+            <Parameter Name="FK_NuevoUsuario" Mode="In" Type="String" />
+            <Parameter Name="FK_Centro" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -4635,7 +4635,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="SPC_CENTROS_A_REGISTRADO" FunctionName="Model.Store.SPC_CENTROS_A_REGISTRADO" />
           <FunctionImportMapping FunctionImportName="SPR_ROLES_REGISTRADO" FunctionName="Model.Store.SPR_ROLES_REGISTRADO">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.SPR_ROLES_REGISTRADO_Result">
@@ -5150,6 +5149,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPC_CENTROS_A_REGISTRADO" FunctionName="Model.Store.SPC_CENTROS_A_REGISTRADO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

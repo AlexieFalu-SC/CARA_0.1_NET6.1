@@ -124,19 +124,6 @@ namespace CARA_Draftv0._1
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SPR_PERFILES_EPISODIO_Result>("SPR_PERFILES_EPISODIO", pK_EpisodioParameter);
         }
     
-        public virtual int SPC_CENTROS_A_REGISTRADO(string fK_Registrado, string fK_NuevoUsuario)
-        {
-            var fK_RegistradoParameter = fK_Registrado != null ?
-                new ObjectParameter("FK_Registrado", fK_Registrado) :
-                new ObjectParameter("FK_Registrado", typeof(string));
-    
-            var fK_NuevoUsuarioParameter = fK_NuevoUsuario != null ?
-                new ObjectParameter("FK_NuevoUsuario", fK_NuevoUsuario) :
-                new ObjectParameter("FK_NuevoUsuario", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTROS_A_REGISTRADO", fK_RegistradoParameter, fK_NuevoUsuarioParameter);
-        }
-    
         public virtual ObjectResult<SPR_ROLES_REGISTRADO_Result> SPR_ROLES_REGISTRADO(string pK_Usuario)
         {
             var pK_UsuarioParameter = pK_Usuario != null ?
@@ -921,6 +908,19 @@ namespace CARA_Draftv0._1
                 new ObjectParameter("IN_Sobredosis", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPU_PERFIL", pK_PerfilParameter, fE_PerfilParameter, iN_TI_PerfilParameter, nR_ArrestosMesPasadoParameter, fK_GrupoApoyoMesPasadoParameter, fK_GeneroParameter, nR_EdadParameter, fK_ResidenciaParameter, fK_EmbarazadaParameter, fK_HijosMenoresCuidoParameter, fK_VeteranoParameter, fK_MunicipioParameter, fK_EscolaridadParameter, fK_CondicionLaboralParameter, fK_NoFuerzaLaboralParameter, fK_EstudiosParameter, fK_FuenteIngresoParameter, fK_DrogaPrimariaParameter, iN_ToxicologiaPrimariaParameter, fK_ViaPrimariaParameter, fK_FrecuenciaPrimariaParameter, nR_EdadPrimariaParameter, fK_DrogaSecundariaParameter, iN_ToxicologiaSecundariaParameter, fK_ViaSecundariaParameter, fK_FrecuenciaSecundariaParameter, nR_EdadSecundariaParameter, fK_DrogaTerciariaParameter, iN_ToxicologiaTerciariaParameter, fK_ViaTerciariaParameter, fK_FrecuenciaTerciariaParameter, nR_EdadTerciariaParameter, nB_DrogaCuartaParameter, iN_ToxicologiaCuartaParameter, fK_ViaCuartaParameter, fK_FrecuenciaCuartaParameter, nR_EdadCuartaParameter, nB_DrogaQuintaParameter, iN_ToxicologiaQuintaParameter, fK_ViaQuintaParameter, fK_FrecuenciaQuintaParameter, nR_EdadQuintaParameter, fK_DrogaSobredosisPrimariaParameter, fK_DrogaSobredosisSecundariaParameter, dE_DrogaSobredosisTerciariaParameter, dE_DrogaSobredosisCuartaParameter, fK_ICDX_PrimariaParameter, fK_ICDX_SecundariaParameter, fK_ICDX_TerciariaParameter, fK_ICDX_CuartaParameter, fK_DSMV_PrimariaParameter, fK_DSMV_SecundariaParameter, fK_DSMV_TerciariaParameter, fK_DSMV_CuartaParameter, fK_CondicionFisicaPrimariaParameter, fK_CondicionFisicaSecundariaParameter, fK_CondicionFisicaTerciariaParameter, fK_CondicionFisicaCuartaParameter, fK_SeguroSaludParameter, fK_EstadoMaritalParameter, fE_UltimoContactoParameter, creadoPorParameter, iN_SobredosisParameter);
+        }
+    
+        public virtual int SPC_CENTROS_A_REGISTRADO(string fK_NuevoUsuario, Nullable<int> fK_Centro)
+        {
+            var fK_NuevoUsuarioParameter = fK_NuevoUsuario != null ?
+                new ObjectParameter("FK_NuevoUsuario", fK_NuevoUsuario) :
+                new ObjectParameter("FK_NuevoUsuario", typeof(string));
+    
+            var fK_CentroParameter = fK_Centro.HasValue ?
+                new ObjectParameter("FK_Centro", fK_Centro) :
+                new ObjectParameter("FK_Centro", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTROS_A_REGISTRADO", fK_NuevoUsuarioParameter, fK_CentroParameter);
         }
     }
 }

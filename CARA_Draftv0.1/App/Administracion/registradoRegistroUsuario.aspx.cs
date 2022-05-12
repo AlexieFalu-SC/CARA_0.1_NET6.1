@@ -30,7 +30,7 @@ namespace CARA_Draftv0._1.App.Administracion
         private void PrepararDropDownLists()
         {
             Usuario = (ApplicationUser)Session["Usuario"];
-
+            
             try
             {
                 using (CARAEntities dsCARA = new CARAEntities())
@@ -42,6 +42,7 @@ namespace CARA_Draftv0._1.App.Administracion
                     lbxFacilidades.DataTextField = "NB_Centro";
                     lbxFacilidades.DataSource = facilidades;
                     lbxFacilidades.DataBind();
+
                 }
 
             }
@@ -58,6 +59,7 @@ namespace CARA_Draftv0._1.App.Administracion
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
             string password = GeneratePassword();
+            PK_Sesion = Session["PK_Sesion"].ToString();
 
             string mensaje = string.Empty;
 
@@ -89,19 +91,26 @@ namespace CARA_Draftv0._1.App.Administracion
                 //signInManager.SignIn( user, isPersistent: false, rememberBrowser: false);
                 //IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
 
-                var rol = context.Roles.Where(p => p.Name.Contains("Registrado Usuario")).FirstOrDefault();
-
-                var result = userManager.AddToRole(user.Id, rol.Id);
+               // var rol = context.Roles.Where(p => p.Name.Equals("Registrado Usuario")).FirstOrDefault();
 
                 try
                 {
                     using (CARAEntities dsCARA = new CARAEntities())
                     {
+                        var result = userManager.AddToRole(user.Id, "Registrado Usuario");
+
                         dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Usuario", "C", user.Id, null, null, null);
 
                         mensaje = "El registro del usuario fué correcto. Se envió un email de confirmación al nuevo usuario.";
 
-                        
+                        for (int i = 0; i < lbxFacilidades.Items.Count; i++)
+                        {
+                            if(lbxFacilidades.Items[i].Selected)
+                            {
+                                int centro = Int32.Parse(lbxFacilidades.Items[i].Value);
+                                dsCARA.SPC_CENTROS_A_REGISTRADO(user.Id, centro);
+                            }
+                        }
 
                         var RegistroPerfiles_Claims = new Claim("Modulo", "RegistroPerfiles");
                         var AccesoExpedientes_Claims = new Claim("Modulo", "AccesoExpedientes");
@@ -131,8 +140,8 @@ namespace CARA_Draftv0._1.App.Administracion
                         string body = CreateBody(callbackUrl, password);
                         manager.SendEmail(user.Id, "Confirmacion de su cuenta", body);
 
-                        //ClientScript.RegisterStartupScript(this.GetType(), "Usuario Registrado", "sweetAlertRef('Usuario Registrado','" + mensaje + "','success','" + url + "');", true);
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Usuario Registrado", "sweetAlert('Usuario Registrado','" + mensaje + "','success')", true);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Usuario Registrado", "sweetAlertRef('Usuario Registrado','" + mensaje + "','success','" + "App/Administracion/registradoListaUsuarios.aspx" + "');", true);
+                        //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Usuario Registrado", "sweetAlert('Usuario Registrado','" + mensaje + "','success')", true);
                     }
                 }
                 catch (Exception ex)

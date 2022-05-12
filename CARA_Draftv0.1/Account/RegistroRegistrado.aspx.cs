@@ -124,7 +124,7 @@ namespace CARA_Draftv0._1.Account
                     {
                         using (CARAEntities dsCARA = new CARAEntities())
                         {
-                            dsCARA.SPC_CENTROS_A_REGISTRADO(Usuario.Id, user.Id);
+                            //dsCARA.SPC_CENTROS_A_REGISTRADO(Usuario.Id, user.Id);
                         }
 
                         url = "App/Administracion/adminRegistrado.aspx";
