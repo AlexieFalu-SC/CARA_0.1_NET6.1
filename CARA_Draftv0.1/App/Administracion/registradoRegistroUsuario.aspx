@@ -11,7 +11,7 @@
                 <h1 class="h3 mb-2 text-gray-800"><i class="fas fa-fw fa-user-plus"></i>  Agregar Nuevo Usuario</h1>
             </div>
             <div class="col-12 col-xl-auto mb-3">
-                <a class="btn btn-sm btn-light text-primary" href="<%=ResolveClientUrl("~/Account/UsersList")%>">
+                <a class="btn btn-sm btn-light text-primary" href="<%=ResolveClientUrl("~/App/Administracion/registradoListaUsuarios")%>">
                     <i class="fas fa-fw fa-user-plus"></i>Volver a lista de Usuarios
                 </a>
             </div>

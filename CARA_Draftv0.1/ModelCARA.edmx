@@ -1491,6 +1491,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPC_ATAR_REGISTRADO_SUBCUENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_CuentaPrincipal" Type="nvarchar" Mode="In" />
+          <Parameter Name="FK_CuentaUsuario" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="SPC_CENTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="NB_Centro" Type="varchar" Mode="In" />
           <Parameter Name="ID_SLYC" Type="uniqueidentifier" Mode="In" />
@@ -3001,6 +3005,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <FunctionImport Name="SPC_CENTROS_A_REGISTRADO">
             <Parameter Name="FK_NuevoUsuario" Mode="In" Type="String" />
             <Parameter Name="FK_Centro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPC_ATAR_REGISTRADO_SUBCUENTA">
+            <Parameter Name="FK_CuentaPrincipal" Mode="In" Type="String" />
+            <Parameter Name="FK_CuentaUsuario" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
@@ -5150,6 +5158,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_CENTROS_A_REGISTRADO" FunctionName="Model.Store.SPC_CENTROS_A_REGISTRADO" />
+          <FunctionImportMapping FunctionImportName="SPC_ATAR_REGISTRADO_SUBCUENTA" FunctionName="Model.Store.SPC_ATAR_REGISTRADO_SUBCUENTA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -60,6 +60,7 @@ namespace CARA_Draftv0._1.App.Administracion
 
             string password = GeneratePassword();
             PK_Sesion = Session["PK_Sesion"].ToString();
+            Usuario = (ApplicationUser)Session["Usuario"];
 
             string mensaje = string.Empty;
 
@@ -79,7 +80,8 @@ namespace CARA_Draftv0._1.App.Administracion
                 LockoutEnabled = false
             };
 
-            var newuser = userManager.Create(user, password);
+            //var newuser = userManager.Create(user, password);
+            var newuser = userManager.Create(user);
 
             if (newuser.Succeeded)
             {
@@ -98,6 +100,8 @@ namespace CARA_Draftv0._1.App.Administracion
                     using (CARAEntities dsCARA = new CARAEntities())
                     {
                         var result = userManager.AddToRole(user.Id, "Registrado Usuario");
+
+                        dsCARA.SPC_ATAR_REGISTRADO_SUBCUENTA(Usuario.Id, user.Id);
 
                         dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Usuario", "C", user.Id, null, null, null);
 

@@ -66,7 +66,7 @@ namespace CARA_Draftv0._1.App.Administracion
 
                                 if (RegistroPerfiles > 0)
                                 {
-                                    item.Accesos += "<h5><span class='badge bg-primary text-white text-wrap' style='width: 6rem;'>Registro de Perfiles</span></h5>&nbsp";
+                                    item.Accesos += "<span class='badge bg-primary text-white text-wrap' style='width: 6rem;'>Registro de Perfiles</span>&nbsp";
                                 }
                                 if (AccesoExpedientes > 0)
                                 {

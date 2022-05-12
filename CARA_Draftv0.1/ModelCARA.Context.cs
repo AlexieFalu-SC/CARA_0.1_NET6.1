@@ -922,5 +922,18 @@ namespace CARA_Draftv0._1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_CENTROS_A_REGISTRADO", fK_NuevoUsuarioParameter, fK_CentroParameter);
         }
+    
+        public virtual int SPC_ATAR_REGISTRADO_SUBCUENTA(string fK_CuentaPrincipal, string fK_CuentaUsuario)
+        {
+            var fK_CuentaPrincipalParameter = fK_CuentaPrincipal != null ?
+                new ObjectParameter("FK_CuentaPrincipal", fK_CuentaPrincipal) :
+                new ObjectParameter("FK_CuentaPrincipal", typeof(string));
+    
+            var fK_CuentaUsuarioParameter = fK_CuentaUsuario != null ?
+                new ObjectParameter("FK_CuentaUsuario", fK_CuentaUsuario) :
+                new ObjectParameter("FK_CuentaUsuario", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ATAR_REGISTRADO_SUBCUENTA", fK_CuentaPrincipalParameter, fK_CuentaUsuarioParameter);
+        }
     }
 }

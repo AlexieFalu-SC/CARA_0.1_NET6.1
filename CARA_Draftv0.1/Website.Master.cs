@@ -171,6 +171,7 @@ namespace CARA_Draftv0._1
                         secAnaliticaAdministradores.Visible = true;
                         secExportarAdministradores.Visible = true;
 
+                        divAdministracion.Visible = true;
                         secManejoUsuariosAdministrativo.Visible = true;
                     }
                     //secAnaliticaRegistradores.Visible = true;
@@ -187,7 +188,32 @@ namespace CARA_Draftv0._1
                         secAnaliticaRegistradores.Visible = true;
                         secExportarRegistradores.Visible = true;
 
+                        divAdministracion.Visible = true;
                         secManejoUsuariosRegistrado.Visible = true;
+                    }
+                    else
+                    {
+                        var cla = Usuario.Claims.ToList();
+                        // var claims = userManager.GetClaimsAsync(item.PK_Usuario);
+
+                        var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                        var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                        var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                        if (RegistroPerfiles > 0)
+                        {
+                            divRegistroPerfiles.Visible = true;
+                        }
+                        if (AccesoExpedientes > 0)
+                        {
+                            divExpedientes.Visible = true;
+                        }
+                        if (AccesoTableros > 0)
+                        {
+                            divTablerosAnaliticos.Visible = true;
+                            secAnaliticaRegistradores.Visible = true;
+                            secExportarRegistradores.Visible = true;
+                        }
                     }
 
                 }

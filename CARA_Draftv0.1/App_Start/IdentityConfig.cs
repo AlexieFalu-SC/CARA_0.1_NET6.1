@@ -47,22 +47,22 @@ namespace CARA_Draftv0._1
             //}
 
             AlternateView imgview = AlternateView.CreateAlternateViewFromString(message.Body, null, MediaTypeNames.Text.Html);
-            LinkedResource lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            LinkedResource lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "logo_1";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "logo_2";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "twitter";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
 
-            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_LOGO.png"));
+            lr = new LinkedResource(System.Web.Hosting.HostingEnvironment.MapPath("~/Content/images/ASSMCA_Logo2021.png"));
             lr.ContentId = "facebook";
             lr.ContentType.MediaType = "image/png";
             imgview.LinkedResources.Add(lr);
