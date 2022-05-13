@@ -17,9 +17,9 @@ namespace CARA_Draftv0._1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public CA_CENTRO()
         {
-            this.CA_EPISODIO = new HashSet<CA_EPISODIO>();
             this.CA_USUARIO_CENTRO = new HashSet<CA_USUARIO_CENTRO>();
             this.CA_PACIENTE = new HashSet<CA_PACIENTE>();
+            this.CA_EPISODIO = new HashSet<CA_EPISODIO>();
         }
     
         public int PK_Centro { get; set; }
@@ -29,10 +29,10 @@ namespace CARA_Draftv0._1
         public bool Activa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CA_EPISODIO> CA_EPISODIO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CA_USUARIO_CENTRO> CA_USUARIO_CENTRO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CA_PACIENTE> CA_PACIENTE { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CA_EPISODIO> CA_EPISODIO { get; set; }
     }
 }

@@ -30,14 +30,15 @@ namespace CARA_Draftv0._1
         public int FK_EpisodiosPrevios { get; set; }
         public int FK_NivelSustancia { get; set; }
         public Nullable<int> NR_DiasEspera { get; set; }
+        public Nullable<int> FK_Centro_Licencia { get; set; }
     
         public virtual CA_CENTRO CA_CENTRO { get; set; }
         public virtual CA_LKP_EPISODIOS_PREVIO CA_LKP_EPISODIOS_PREVIO { get; set; }
         public virtual CA_LKP_ESTADO_SERVICIO CA_LKP_ESTADO_SERVICIO { get; set; }
         public virtual CA_LKP_FUENTE_REFERIDO CA_LKP_FUENTE_REFERIDO { get; set; }
         public virtual CA_LKP_NIVEL_SUSTANCIA CA_LKP_NIVEL_SUSTANCIA { get; set; }
+        public virtual CA_PACIENTE CA_PACIENTE { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CA_PERFIL> CA_PERFIL { get; set; }
-        public virtual CA_PACIENTE CA_PACIENTE { get; set; }
     }
 }

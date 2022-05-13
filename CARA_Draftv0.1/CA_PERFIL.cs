@@ -80,7 +80,6 @@ namespace CARA_Draftv0._1
         public bool IN_Sobredosis { get; set; }
         public Nullable<int> FK_Municipio { get; set; }
     
-        public virtual CA_EPISODIO CA_EPISODIO { get; set; }
         public virtual CA_LKP_CONDICION_LABORAL CA_LKP_CONDICION_LABORAL { get; set; }
         public virtual CA_LKP_CONDICIONES_FISICAS CA_LKP_CONDICIONES_FISICAS { get; set; }
         public virtual CA_LKP_CONDICIONES_FISICAS CA_LKP_CONDICIONES_FISICAS1 { get; set; }
@@ -121,5 +120,6 @@ namespace CARA_Draftv0._1
         public virtual CA_LKP_VIA_SUSTANCIA CA_LKP_VIA_SUSTANCIA2 { get; set; }
         public virtual CA_LKP_VIA_SUSTANCIA CA_LKP_VIA_SUSTANCIA3 { get; set; }
         public virtual CA_LKP_VIA_SUSTANCIA CA_LKP_VIA_SUSTANCIA4 { get; set; }
+        public virtual CA_EPISODIO CA_EPISODIO { get; set; }
     }
 }

@@ -29,6 +29,16 @@
           <Property Name="FK_EpisodiosPrevios" Type="int" Nullable="false" />
           <Property Name="FK_NivelSustancia" Type="int" Nullable="false" />
           <Property Name="NR_DiasEspera" Type="int" />
+          <Property Name="FK_Centro_Licencia" Type="int" />
+        </EntityType>
+        <EntityType Name="CA_LICENCIA">
+          <Key>
+            <PropertyRef Name="PK_Licencia" />
+          </Key>
+          <Property Name="PK_Licencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NB_Licencia" Type="varchar(max)" Nullable="false" />
+          <Property Name="NB_Categoria" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="Activa" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="CA_LKP_CONDICION_LABORAL">
           <Key>
@@ -878,6 +888,40 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="Cuenta" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Roles" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PK_Roles" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VW_USUARIOS_CENTROS_LICENCIAS">
+          <Key>
+            <PropertyRef Name="PK_Usuario" />
+            <PropertyRef Name="PK_Roles" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="UsuarioEstatus" />
+            <PropertyRef Name="PK_Centro" />
+            <PropertyRef Name="NB_Centro" />
+            <PropertyRef Name="CentroEstatus" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="NB_Licencia" />
+            <PropertyRef Name="NB_Categoria" />
+            <PropertyRef Name="PK_Centro_Licencia" />
+            <PropertyRef Name="CentroLicenciaEstatus" />
+          </Key>
+          <Property Name="PK_Usuario" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="NombreUsuario" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="PK_Roles" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioEstatus" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="PK_Centro" Type="int" Nullable="false" />
+          <Property Name="NB_Centro" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CentroEstatus" Type="varchar" MaxLength="11" Nullable="false" />
+          <Property Name="PK_Licencia" Type="int" Nullable="false" />
+          <Property Name="NB_Licencia" Type="varchar(max)" Nullable="false" />
+          <Property Name="NB_Categoria" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PK_Centro_Licencia" Type="int" Nullable="false" />
+          <Property Name="NR_Licencia" Type="varchar(max)" />
+          <Property Name="FE_Expiracion" Type="datetime" />
+          <Property Name="CentroLicenciaEstatus" Type="varchar" MaxLength="11" Nullable="false" />
         </EntityType>
         <Association Name="FK_EPISODIO_CENTRO">
           <End Role="CA_CENTRO" Type="Self.CA_CENTRO" Multiplicity="1" />
@@ -1731,6 +1775,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="CA_CENTRO" EntityType="Self.CA_CENTRO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CA_EPISODIO" EntityType="Self.CA_EPISODIO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CA_LICENCIA" EntityType="Self.CA_LICENCIA" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CA_LKP_CONDICION_LABORAL" EntityType="Self.CA_LKP_CONDICION_LABORAL" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CA_LKP_CONDICIONES_FISICAS" EntityType="Self.CA_LKP_CONDICIONES_FISICAS" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CA_LKP_DSMV" EntityType="Self.CA_LKP_DSMV" Schema="dbo" store:Type="Tables" />
@@ -2046,6 +2091,26 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
     [VW_USUARIOS_ADMINISTRADORES].[PK_Roles] AS [PK_Roles]
     FROM [dbo].[VW_USUARIOS_ADMINISTRADORES] AS [VW_USUARIOS_ADMINISTRADORES]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VW_USUARIOS_CENTROS_LICENCIAS" EntityType="Self.VW_USUARIOS_CENTROS_LICENCIAS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[PK_Usuario] AS [PK_Usuario], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[NombreUsuario] AS [NombreUsuario], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[Email] AS [Email], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[PK_Roles] AS [PK_Roles], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[Name] AS [Name], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[UsuarioEstatus] AS [UsuarioEstatus], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[PK_Centro] AS [PK_Centro], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[NB_Centro] AS [NB_Centro], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[CentroEstatus] AS [CentroEstatus], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[PK_Licencia] AS [PK_Licencia], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[NB_Licencia] AS [NB_Licencia], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[NB_Categoria] AS [NB_Categoria], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[PK_Centro_Licencia] AS [PK_Centro_Licencia], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[NR_Licencia] AS [NR_Licencia], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[FE_Expiracion] AS [FE_Expiracion], 
+    [VW_USUARIOS_CENTROS_LICENCIAS].[CentroLicenciaEstatus] AS [CentroLicenciaEstatus]
+    FROM [dbo].[VW_USUARIOS_CENTROS_LICENCIAS] AS [VW_USUARIOS_CENTROS_LICENCIAS]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_EPISODIO_CENTRO" Association="Self.FK_EPISODIO_CENTRO">
             <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
             <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
@@ -2264,9 +2329,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="ID_SLYC" Type="Guid" Nullable="false" />
           <Property Name="ID_Proveedor" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Activa" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_EPISODIO_CENTRO" FromRole="CA_CENTRO" ToRole="CA_EPISODIO" />
           <NavigationProperty Name="CA_USUARIO_CENTRO" Relationship="Model.FK_USUARIO_CENTRO_CENTRO" FromRole="CA_CENTRO" ToRole="CA_USUARIO_CENTRO" />
           <NavigationProperty Name="CA_PACIENTE" Relationship="Model.FK_PACIENTE_CENTRO" FromRole="CA_CENTRO" ToRole="CA_PACIENTE" />
+          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_EPISODIO_CENTRO" FromRole="CA_CENTRO" ToRole="CA_EPISODIO" />
         </EntityType>
         <EntityType Name="CA_LKP_CONDICION_LABORAL">
           <Key>
@@ -2564,27 +2629,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <FunctionImport Name="SPR_PERFILES_EPISODIO" ReturnType="Collection(Model.SPR_PERFILES_EPISODIO_Result)">
           <Parameter Name="PK_Episodio" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="CA_EPISODIO" EntityType="Model.CA_EPISODIO" />
-          <AssociationSet Name="FK_EPISODIO_CENTRO" Association="Model.FK_EPISODIO_CENTRO">
-            <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EPISODIO_EPISODIOS_PREVIOS" Association="Model.FK_EPISODIO_EPISODIOS_PREVIOS">
-            <End Role="CA_LKP_EPISODIOS_PREVIO" EntitySet="CA_LKP_EPISODIOS_PREVIO" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EPISODIO_ESTADO_SERVICIO" Association="Model.FK_EPISODIO_ESTADO_SERVICIO">
-            <End Role="CA_LKP_ESTADO_SERVICIO" EntitySet="CA_LKP_ESTADO_SERVICIO" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EPISODIO_FUENTE_REFERIDO" Association="Model.FK_EPISODIO_FUENTE_REFERIDO">
-            <End Role="CA_LKP_FUENTE_REFERIDO" EntitySet="CA_LKP_FUENTE_REFERIDO" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EPISODIO_NIVEL_SUSTANCIA" Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA">
-            <End Role="CA_LKP_NIVEL_SUSTANCIA" EntitySet="CA_LKP_NIVEL_SUSTANCIA" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
           <EntitySet Name="CA_USUARIO_CENTRO" EntityType="Model.CA_USUARIO_CENTRO" />
           <AssociationSet Name="FK_USUARIO_CENTRO_CENTRO" Association="Model.FK_USUARIO_CENTRO_CENTRO">
             <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
@@ -2691,10 +2735,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <EntitySet Name="CA_LKP_MUNICIPIO" EntityType="Model.CA_LKP_MUNICIPIO" />
           <EntitySet Name="CA_PERFIL" EntityType="Model.CA_PERFIL" />
           <EntitySet Name="VW_DSH_PERFILES" EntityType="Model.VW_DSH_PERFILES" />
-          <AssociationSet Name="FK_PERFIL_EPISODIO" Association="Model.FK_PERFIL_EPISODIO">
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-            <End Role="CA_PERFIL" EntitySet="CA_PERFIL" />
-          </AssociationSet>
           <AssociationSet Name="FK_PERFIL_CONDICION_LABORAL" Association="Model.FK_PERFIL_CONDICION_LABORAL">
             <End Role="CA_LKP_CONDICION_LABORAL" EntitySet="CA_LKP_CONDICION_LABORAL" />
             <End Role="CA_PERFIL" EntitySet="CA_PERFIL" />
@@ -2992,10 +3032,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
             <End Role="CA_PACIENTE" EntitySet="CA_PACIENTE" />
           </AssociationSet>
-          <AssociationSet Name="FK_EPISODIO_PACIENTE" Association="Model.FK_EPISODIO_PACIENTE">
-            <End Role="CA_PACIENTE" EntitySet="CA_PACIENTE" />
-            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
-          </AssociationSet>
           <AssociationSet Name="FK_PACIENTE_GRUPO_ETNICO" Association="Model.FK_PACIENTE_GRUPO_ETNICO">
             <End Role="CA_LKP_GRUPO_ETNICO" EntitySet="CA_LKP_GRUPO_ETNICO" />
             <End Role="CA_PACIENTE" EntitySet="CA_PACIENTE" />
@@ -3010,6 +3046,37 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             <Parameter Name="FK_CuentaPrincipal" Mode="In" Type="String" />
             <Parameter Name="FK_CuentaUsuario" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="CA_EPISODIO" EntityType="Model.CA_EPISODIO" />
+          <EntitySet Name="CA_LICENCIA" EntityType="Model.CA_LICENCIA" />
+          <EntitySet Name="VW_USUARIOS_CENTROS_LICENCIAS" EntityType="Model.VW_USUARIOS_CENTROS_LICENCIAS" />
+          <AssociationSet Name="FK_EPISODIO_CENTRO" Association="Model.FK_EPISODIO_CENTRO">
+            <End Role="CA_CENTRO" EntitySet="CA_CENTRO" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EPISODIO_EPISODIOS_PREVIOS" Association="Model.FK_EPISODIO_EPISODIOS_PREVIOS">
+            <End Role="CA_LKP_EPISODIOS_PREVIO" EntitySet="CA_LKP_EPISODIOS_PREVIO" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EPISODIO_ESTADO_SERVICIO" Association="Model.FK_EPISODIO_ESTADO_SERVICIO">
+            <End Role="CA_LKP_ESTADO_SERVICIO" EntitySet="CA_LKP_ESTADO_SERVICIO" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EPISODIO_FUENTE_REFERIDO" Association="Model.FK_EPISODIO_FUENTE_REFERIDO">
+            <End Role="CA_LKP_FUENTE_REFERIDO" EntitySet="CA_LKP_FUENTE_REFERIDO" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EPISODIO_NIVEL_SUSTANCIA" Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA">
+            <End Role="CA_LKP_NIVEL_SUSTANCIA" EntitySet="CA_LKP_NIVEL_SUSTANCIA" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EPISODIO_PACIENTE" Association="Model.FK_EPISODIO_PACIENTE">
+            <End Role="CA_PACIENTE" EntitySet="CA_PACIENTE" />
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PERFIL_EPISODIO" Association="Model.FK_PERFIL_EPISODIO">
+            <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
+            <End Role="CA_PERFIL" EntitySet="CA_PERFIL" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -3017,88 +3084,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Type="String" Name="IN_TI_Perfil" Nullable="true" MaxLength="18" />
           <Property Type="String" Name="URL" Nullable="true" MaxLength="70" />
         </ComplexType>
-        <EntityType Name="CA_EPISODIO">
-          <Key>
-            <PropertyRef Name="PK_Episodio" />
-          </Key>
-          <Property Name="PK_Episodio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FK_Paciente" Type="Int32" Nullable="false" />
-          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
-          <Property Name="FE_Episodio" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FE_Alta" Type="DateTime" Precision="3" />
-          <Property Name="FK_EstadoServicio" Type="Int32" Nullable="false" />
-          <Property Name="FK_FuenteReferido" Type="Int32" Nullable="false" />
-          <Property Name="FK_EpisodiosPrevios" Type="Int32" Nullable="false" />
-          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
-          <Property Name="NR_DiasEspera" Type="Int32" />
-          <NavigationProperty Name="CA_CENTRO" Relationship="Model.FK_EPISODIO_CENTRO" FromRole="CA_EPISODIO" ToRole="CA_CENTRO" />
-          <NavigationProperty Name="CA_LKP_EPISODIOS_PREVIO" Relationship="Model.FK_EPISODIO_EPISODIOS_PREVIOS" FromRole="CA_EPISODIO" ToRole="CA_LKP_EPISODIOS_PREVIO" />
-          <NavigationProperty Name="CA_LKP_ESTADO_SERVICIO" Relationship="Model.FK_EPISODIO_ESTADO_SERVICIO" FromRole="CA_EPISODIO" ToRole="CA_LKP_ESTADO_SERVICIO" />
-          <NavigationProperty Name="CA_LKP_FUENTE_REFERIDO" Relationship="Model.FK_EPISODIO_FUENTE_REFERIDO" FromRole="CA_EPISODIO" ToRole="CA_LKP_FUENTE_REFERIDO" />
-          <NavigationProperty Name="CA_LKP_NIVEL_SUSTANCIA" Relationship="Model.FK_EPISODIO_NIVEL_SUSTANCIA" FromRole="CA_EPISODIO" ToRole="CA_LKP_NIVEL_SUSTANCIA" />
-          <NavigationProperty Name="CA_PERFIL" Relationship="Model.FK_PERFIL_EPISODIO" FromRole="CA_EPISODIO" ToRole="CA_PERFIL" />
-          <NavigationProperty Name="CA_PACIENTE" Relationship="Model.FK_EPISODIO_PACIENTE" FromRole="CA_EPISODIO" ToRole="CA_PACIENTE" />
-        </EntityType>
-        <Association Name="FK_EPISODIO_CENTRO">
-          <End Type="Model.CA_CENTRO" Role="CA_CENTRO" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_CENTRO">
-              <PropertyRef Name="PK_Centro" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_Centro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EPISODIO_EPISODIOS_PREVIOS">
-          <End Type="Model.CA_LKP_EPISODIOS_PREVIO" Role="CA_LKP_EPISODIOS_PREVIO" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_LKP_EPISODIOS_PREVIO">
-              <PropertyRef Name="PK_EpisodiosPrevio" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_EpisodiosPrevios" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EPISODIO_ESTADO_SERVICIO">
-          <End Type="Model.CA_LKP_ESTADO_SERVICIO" Role="CA_LKP_ESTADO_SERVICIO" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_LKP_ESTADO_SERVICIO">
-              <PropertyRef Name="PK_EstadoServicio" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_EstadoServicio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EPISODIO_FUENTE_REFERIDO">
-          <End Type="Model.CA_LKP_FUENTE_REFERIDO" Role="CA_LKP_FUENTE_REFERIDO" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_LKP_FUENTE_REFERIDO">
-              <PropertyRef Name="PK_FuenteReferido" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_FuenteReferido" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EPISODIO_NIVEL_SUSTANCIA">
-          <End Type="Model.CA_LKP_NIVEL_SUSTANCIA" Role="CA_LKP_NIVEL_SUSTANCIA" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_LKP_NIVEL_SUSTANCIA">
-              <PropertyRef Name="PK_NivelSustancia" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_NivelSustancia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="CA_USUARIO_CENTRO">
           <Key>
             <PropertyRef Name="FK_Usuario" />
@@ -3462,7 +3447,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="CreadoPor" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="IN_Sobredosis" Type="Boolean" Nullable="false" />
           <Property Name="FK_Municipio" Type="Int32" />
-          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_PERFIL_EPISODIO" FromRole="CA_PERFIL" ToRole="CA_EPISODIO" />
           <NavigationProperty Name="CA_LKP_CONDICION_LABORAL" Relationship="Model.FK_PERFIL_CONDICION_LABORAL" FromRole="CA_PERFIL" ToRole="CA_LKP_CONDICION_LABORAL" />
           <NavigationProperty Name="CA_LKP_CONDICIONES_FISICAS" Relationship="Model.FK_PERFIL_CONDICION_CUARTA" FromRole="CA_PERFIL" ToRole="CA_LKP_CONDICIONES_FISICAS" />
           <NavigationProperty Name="CA_LKP_CONDICIONES_FISICAS1" Relationship="Model.FK_PERFIL_CONDICION_PRIMARIA" FromRole="CA_PERFIL" ToRole="CA_LKP_CONDICIONES_FISICAS" />
@@ -3503,6 +3487,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <NavigationProperty Name="CA_LKP_VIA_SUSTANCIA2" Relationship="Model.FK_PERFIL_VIA_QUINTA" FromRole="CA_PERFIL" ToRole="CA_LKP_VIA_SUSTANCIA" />
           <NavigationProperty Name="CA_LKP_VIA_SUSTANCIA3" Relationship="Model.FK_PERFIL_VIA_SECUNDARIA" FromRole="CA_PERFIL" ToRole="CA_LKP_VIA_SUSTANCIA" />
           <NavigationProperty Name="CA_LKP_VIA_SUSTANCIA4" Relationship="Model.FK_PERFIL_VIA_TERCIARIA" FromRole="CA_PERFIL" ToRole="CA_LKP_VIA_SUSTANCIA" />
+          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_PERFIL_EPISODIO" FromRole="CA_PERFIL" ToRole="CA_EPISODIO" />
         </EntityType>
         <EntityType Name="VW_DSH_PERFILES">
           <Key>
@@ -3732,18 +3717,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
           <Property Name="Expr2" Type="Int32" Nullable="false" />
         </EntityType>
-        <Association Name="FK_PERFIL_EPISODIO">
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="1" />
-          <End Type="Model.CA_PERFIL" Role="CA_PERFIL" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_EPISODIO">
-              <PropertyRef Name="PK_Episodio" />
-            </Principal>
-            <Dependent Role="CA_PERFIL">
-              <PropertyRef Name="FK_Episodio" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_PERFIL_CONDICION_LABORAL">
           <End Type="Model.CA_LKP_CONDICION_LABORAL" Role="CA_LKP_CONDICION_LABORAL" Multiplicity="1" />
           <End Type="Model.CA_PERFIL" Role="CA_PERFIL" Multiplicity="*" />
@@ -4269,8 +4242,8 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="FK_GrupoEtnico" Type="Int32" Nullable="false" />
           <Property Name="NR_Expediente" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="CA_CENTRO" Relationship="Model.FK_PACIENTE_CENTRO" FromRole="CA_PACIENTE" ToRole="CA_CENTRO" />
-          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_EPISODIO_PACIENTE" FromRole="CA_PACIENTE" ToRole="CA_EPISODIO" />
           <NavigationProperty Name="CA_LKP_GRUPO_ETNICO" Relationship="Model.FK_PACIENTE_GRUPO_ETNICO" FromRole="CA_PACIENTE" ToRole="CA_LKP_GRUPO_ETNICO" />
+          <NavigationProperty Name="CA_EPISODIO" Relationship="Model.FK_EPISODIO_PACIENTE" FromRole="CA_PACIENTE" ToRole="CA_EPISODIO" />
         </EntityType>
         <Association Name="FK_PACIENTE_CENTRO">
           <End Type="Model.CA_CENTRO" Role="CA_CENTRO" Multiplicity="1" />
@@ -4281,18 +4254,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
             </Principal>
             <Dependent Role="CA_PACIENTE">
               <PropertyRef Name="FK_Centro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_EPISODIO_PACIENTE">
-          <End Type="Model.CA_PACIENTE" Role="CA_PACIENTE" Multiplicity="1" />
-          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CA_PACIENTE">
-              <PropertyRef Name="PK_Paciente" />
-            </Principal>
-            <Dependent Role="CA_EPISODIO">
-              <PropertyRef Name="FK_Paciente" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -4356,6 +4317,154 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           <Property Name="Accesos" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="Cuenta_Princiapal" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="CA_EPISODIO">
+          <Key>
+            <PropertyRef Name="PK_Episodio" />
+          </Key>
+          <Property Name="PK_Episodio" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FK_Paciente" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+          <Property Name="FE_Episodio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FE_Alta" Type="DateTime" Precision="3" />
+          <Property Name="FK_EstadoServicio" Type="Int32" Nullable="false" />
+          <Property Name="FK_FuenteReferido" Type="Int32" Nullable="false" />
+          <Property Name="FK_EpisodiosPrevios" Type="Int32" Nullable="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="NR_DiasEspera" Type="Int32" />
+          <Property Name="FK_Centro_Licencia" Type="Int32" />
+          <NavigationProperty Name="CA_CENTRO" Relationship="Model.FK_EPISODIO_CENTRO" FromRole="CA_EPISODIO" ToRole="CA_CENTRO" />
+          <NavigationProperty Name="CA_LKP_EPISODIOS_PREVIO" Relationship="Model.FK_EPISODIO_EPISODIOS_PREVIOS" FromRole="CA_EPISODIO" ToRole="CA_LKP_EPISODIOS_PREVIO" />
+          <NavigationProperty Name="CA_LKP_ESTADO_SERVICIO" Relationship="Model.FK_EPISODIO_ESTADO_SERVICIO" FromRole="CA_EPISODIO" ToRole="CA_LKP_ESTADO_SERVICIO" />
+          <NavigationProperty Name="CA_LKP_FUENTE_REFERIDO" Relationship="Model.FK_EPISODIO_FUENTE_REFERIDO" FromRole="CA_EPISODIO" ToRole="CA_LKP_FUENTE_REFERIDO" />
+          <NavigationProperty Name="CA_LKP_NIVEL_SUSTANCIA" Relationship="Model.FK_EPISODIO_NIVEL_SUSTANCIA" FromRole="CA_EPISODIO" ToRole="CA_LKP_NIVEL_SUSTANCIA" />
+          <NavigationProperty Name="CA_PACIENTE" Relationship="Model.FK_EPISODIO_PACIENTE" FromRole="CA_EPISODIO" ToRole="CA_PACIENTE" />
+          <NavigationProperty Name="CA_PERFIL" Relationship="Model.FK_PERFIL_EPISODIO" FromRole="CA_EPISODIO" ToRole="CA_PERFIL" />
+        </EntityType>
+        <EntityType Name="CA_LICENCIA">
+          <Key>
+            <PropertyRef Name="PK_Licencia" />
+          </Key>
+          <Property Name="PK_Licencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NB_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NB_Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Activa" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VW_USUARIOS_CENTROS_LICENCIAS">
+          <Key>
+            <PropertyRef Name="PK_Usuario" />
+            <PropertyRef Name="PK_Roles" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="UsuarioEstatus" />
+            <PropertyRef Name="PK_Centro" />
+            <PropertyRef Name="NB_Centro" />
+            <PropertyRef Name="CentroEstatus" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="NB_Licencia" />
+            <PropertyRef Name="NB_Categoria" />
+            <PropertyRef Name="PK_Centro_Licencia" />
+            <PropertyRef Name="CentroLicenciaEstatus" />
+          </Key>
+          <Property Name="PK_Usuario" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NombreUsuario" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PK_Roles" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioEstatus" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Centro" Type="Int32" Nullable="false" />
+          <Property Name="NB_Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CentroEstatus" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Licencia" Type="Int32" Nullable="false" />
+          <Property Name="NB_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NB_Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Centro_Licencia" Type="Int32" Nullable="false" />
+          <Property Name="NR_Licencia" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Expiracion" Type="DateTime" Precision="3" />
+          <Property Name="CentroLicenciaEstatus" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_EPISODIO_CENTRO">
+          <End Type="Model.CA_CENTRO" Role="CA_CENTRO" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_CENTRO">
+              <PropertyRef Name="PK_Centro" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_Centro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EPISODIO_EPISODIOS_PREVIOS">
+          <End Type="Model.CA_LKP_EPISODIOS_PREVIO" Role="CA_LKP_EPISODIOS_PREVIO" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_LKP_EPISODIOS_PREVIO">
+              <PropertyRef Name="PK_EpisodiosPrevio" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_EpisodiosPrevios" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EPISODIO_ESTADO_SERVICIO">
+          <End Type="Model.CA_LKP_ESTADO_SERVICIO" Role="CA_LKP_ESTADO_SERVICIO" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_LKP_ESTADO_SERVICIO">
+              <PropertyRef Name="PK_EstadoServicio" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_EstadoServicio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EPISODIO_FUENTE_REFERIDO">
+          <End Type="Model.CA_LKP_FUENTE_REFERIDO" Role="CA_LKP_FUENTE_REFERIDO" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_LKP_FUENTE_REFERIDO">
+              <PropertyRef Name="PK_FuenteReferido" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_FuenteReferido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EPISODIO_NIVEL_SUSTANCIA">
+          <End Type="Model.CA_LKP_NIVEL_SUSTANCIA" Role="CA_LKP_NIVEL_SUSTANCIA" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_LKP_NIVEL_SUSTANCIA">
+              <PropertyRef Name="PK_NivelSustancia" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_NivelSustancia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EPISODIO_PACIENTE">
+          <End Type="Model.CA_PACIENTE" Role="CA_PACIENTE" Multiplicity="1" />
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_PACIENTE">
+              <PropertyRef Name="PK_Paciente" />
+            </Principal>
+            <Dependent Role="CA_EPISODIO">
+              <PropertyRef Name="FK_Paciente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PERFIL_EPISODIO">
+          <End Type="Model.CA_EPISODIO" Role="CA_EPISODIO" Multiplicity="1" />
+          <End Type="Model.CA_PERFIL" Role="CA_PERFIL" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CA_EPISODIO">
+              <PropertyRef Name="PK_Episodio" />
+            </Principal>
+            <Dependent Role="CA_PERFIL">
+              <PropertyRef Name="FK_Episodio" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4618,22 +4727,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="CA_EPISODIO">
-            <EntityTypeMapping TypeName="Model.CA_EPISODIO">
-              <MappingFragment StoreEntitySet="CA_EPISODIO">
-                <ScalarProperty Name="NR_DiasEspera" ColumnName="NR_DiasEspera" />
-                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
-                <ScalarProperty Name="FK_EpisodiosPrevios" ColumnName="FK_EpisodiosPrevios" />
-                <ScalarProperty Name="FK_FuenteReferido" ColumnName="FK_FuenteReferido" />
-                <ScalarProperty Name="FK_EstadoServicio" ColumnName="FK_EstadoServicio" />
-                <ScalarProperty Name="FE_Alta" ColumnName="FE_Alta" />
-                <ScalarProperty Name="FE_Episodio" ColumnName="FE_Episodio" />
-                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
-                <ScalarProperty Name="FK_Paciente" ColumnName="FK_Paciente" />
-                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="CA_USUARIO_CENTRO">
             <EntityTypeMapping TypeName="Model.CA_USUARIO_CENTRO">
               <MappingFragment StoreEntitySet="CA_USUARIO_CENTRO">
@@ -5159,6 +5252,55 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_ADMINISTRADORES' does not
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_CENTROS_A_REGISTRADO" FunctionName="Model.Store.SPC_CENTROS_A_REGISTRADO" />
           <FunctionImportMapping FunctionImportName="SPC_ATAR_REGISTRADO_SUBCUENTA" FunctionName="Model.Store.SPC_ATAR_REGISTRADO_SUBCUENTA" />
+          <EntitySetMapping Name="CA_EPISODIO">
+            <EntityTypeMapping TypeName="Model.CA_EPISODIO">
+              <MappingFragment StoreEntitySet="CA_EPISODIO">
+                <ScalarProperty Name="FK_Centro_Licencia" ColumnName="FK_Centro_Licencia" />
+                <ScalarProperty Name="NR_DiasEspera" ColumnName="NR_DiasEspera" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_EpisodiosPrevios" ColumnName="FK_EpisodiosPrevios" />
+                <ScalarProperty Name="FK_FuenteReferido" ColumnName="FK_FuenteReferido" />
+                <ScalarProperty Name="FK_EstadoServicio" ColumnName="FK_EstadoServicio" />
+                <ScalarProperty Name="FE_Alta" ColumnName="FE_Alta" />
+                <ScalarProperty Name="FE_Episodio" ColumnName="FE_Episodio" />
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_Paciente" ColumnName="FK_Paciente" />
+                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CA_LICENCIA">
+            <EntityTypeMapping TypeName="Model.CA_LICENCIA">
+              <MappingFragment StoreEntitySet="CA_LICENCIA">
+                <ScalarProperty Name="Activa" ColumnName="Activa" />
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_USUARIOS_CENTROS_LICENCIAS">
+            <EntityTypeMapping TypeName="Model.VW_USUARIOS_CENTROS_LICENCIAS">
+              <MappingFragment StoreEntitySet="VW_USUARIOS_CENTROS_LICENCIAS">
+                <ScalarProperty Name="CentroLicenciaEstatus" ColumnName="CentroLicenciaEstatus" />
+                <ScalarProperty Name="FE_Expiracion" ColumnName="FE_Expiracion" />
+                <ScalarProperty Name="NR_Licencia" ColumnName="NR_Licencia" />
+                <ScalarProperty Name="PK_Centro_Licencia" ColumnName="PK_Centro_Licencia" />
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="CentroEstatus" ColumnName="CentroEstatus" />
+                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
+                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
+                <ScalarProperty Name="UsuarioEstatus" ColumnName="UsuarioEstatus" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PK_Roles" ColumnName="PK_Roles" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="PK_Usuario" ColumnName="PK_Usuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

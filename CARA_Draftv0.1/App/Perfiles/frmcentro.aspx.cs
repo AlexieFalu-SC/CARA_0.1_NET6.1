@@ -30,18 +30,21 @@ namespace CARA_Draftv0._1.App.Perfiles
                 ApplicationDbContext context = new ApplicationDbContext();
                 var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
-                if (userManager.IsInRole(Usuario.Id, "Registrado"))
+                if (userManager.IsInRole(Usuario.Id, "Registrado Administrativo") || userManager.IsInRole(Usuario.Id, "Registrado Usuario"))
                 {
                     try
                     {
                         using (CARAEntities dsCARA = new CARAEntities())
                         {
-                            var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
-
+                            var Centros = dsCARA.VW_USUARIOS_CENTROS_LICENCIAS.Where(a => a.PK_Usuario.Equals(Usuario.Id)).ToList().DefaultIfEmpty();
+                            
                             ddlCentro.DataValueField = "PK_Centro";
                             ddlCentro.DataTextField = "NB_Centro";
-                            ddlCentro.DataSource = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).ToList();
+                            ddlCentro.DataSource = Centros;
                             ddlCentro.DataBind();
+                            ddlCentro.Items.FindByValue(Centros.FirstOrDefault().PK_Centro.ToString()).Selected = true;
+
+                            PrepararLicenciasDeCentro();
                         }
                     }
                     catch (Exception)
@@ -59,6 +62,28 @@ namespace CARA_Draftv0._1.App.Perfiles
                 
         }
 
+        private void PrepararLicenciasDeCentro()
+        {
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    int PK_Centro = Int32.Parse(ddlCentro.SelectedValue);
+                    var Licencias = dsCARA.VW_USUARIOS_CENTROS_LICENCIAS.Where(a => a.PK_Centro.Equals(PK_Centro)).Select(r => new ListItem { Value = r.PK_Centro_Licencia.ToString(), Text = r.NB_Licencia }).ToList().Distinct().DefaultIfEmpty();
+
+                    ddlLicencias.DataValueField = "Value";
+                    ddlLicencias.DataTextField = "Text";
+                    ddlLicencias.DataSource = Licencias;
+                    ddlLicencias.DataBind();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                string message = ex.Message;
+            }
+        }
+
         private void PrepararDropDownLists()
         {
             try
@@ -69,6 +94,8 @@ namespace CARA_Draftv0._1.App.Perfiles
                     ddlCentro.DataTextField = "NB_Centro";
                     ddlCentro.DataSource = dsCARA.CA_CENTRO.ToList();
                     ddlCentro.DataBind();
+
+                    PrepararLicenciasDeCentro();
                 }
             }
             catch (Exception)
@@ -78,11 +105,19 @@ namespace CARA_Draftv0._1.App.Perfiles
             }
         }
 
+        protected void CambioDePrograma(object sender, EventArgs e)
+        {
+            PrepararLicenciasDeCentro();
+        }
+
         protected void btnAutenticarPrograma_Click(object sender, EventArgs e)
         {
             int PK_Centro = Convert.ToInt32(this.ddlCentro.SelectedValue.ToString());
             this.Session["PK_Centro"] = this.ddlCentro.SelectedValue.ToString();
             this.Session["NB_Centro"] = this.ddlCentro.SelectedItem.ToString();
+
+            this.Session["PK_Centro_Licencia"] = this.ddlLicencias.SelectedValue.ToString();
+            this.Session["NB_Licencia"] = this.ddlLicencias.SelectedItem.ToString();
 
             this.Response.Redirect("~/App/Pacientes/frmconsulta.aspx?centro=" + Centro);
         }

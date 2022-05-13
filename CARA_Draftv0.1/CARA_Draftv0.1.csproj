@@ -2920,6 +2920,9 @@
     <Compile Include="CA_EPISODIO.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
+    <Compile Include="CA_LICENCIA.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
     <Compile Include="CA_LKP_CONDICIONES_FISICAS.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
@@ -3158,6 +3161,9 @@
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
     <Compile Include="VW_USUARIOS_ADMINISTRADORES.cs">
+      <DependentUpon>ModelCARA.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VW_USUARIOS_CENTROS_LICENCIAS.cs">
       <DependentUpon>ModelCARA.tt</DependentUpon>
     </Compile>
     <Compile Include="Website.Master.cs">

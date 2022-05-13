@@ -31,12 +31,6 @@
         <EntityTypeShape EntityType="Model.CA_LKP_SUSTANCIA" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CA_LKP_VETERANO" Width="1.5" PointX="2.75" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CA_LKP_VIA_SUSTANCIA" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.CA_EPISODIO" Width="1.5" PointX="13.75" PointY="15.125" />
-        <AssociationConnector Association="Model.FK_EPISODIO_CENTRO" />
-        <AssociationConnector Association="Model.FK_EPISODIO_EPISODIOS_PREVIOS" />
-        <AssociationConnector Association="Model.FK_EPISODIO_ESTADO_SERVICIO" />
-        <AssociationConnector Association="Model.FK_EPISODIO_FUENTE_REFERIDO" />
-        <AssociationConnector Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA" />
         <EntityTypeShape EntityType="Model.CA_USUARIO_CENTRO" Width="1.5" PointX="3" PointY="16.375" />
         <AssociationConnector Association="Model.FK_USUARIO_CENTRO_CENTRO" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="9.375" PointY="14.375" />
@@ -54,7 +48,6 @@
         <EntityTypeShape EntityType="Model.CA_LKP_MUNICIPIO" Width="1.5" PointX="13.375" PointY="14.125" />
         <EntityTypeShape EntityType="Model.CA_PERFIL" Width="1.5" PointX="16" PointY="0.75" />
         <EntityTypeShape EntityType="Model.VW_DSH_PERFILES" Width="1.5" PointX="20.375" PointY="6.125" />
-        <AssociationConnector Association="Model.FK_PERFIL_EPISODIO" />
         <AssociationConnector Association="Model.FK_PERFIL_CONDICION_LABORAL" />
         <AssociationConnector Association="Model.FK_PERFIL_CONDICION_CUARTA" />
         <AssociationConnector Association="Model.FK_PERFIL_CONDICION_PRIMARIA" />
@@ -98,10 +91,19 @@
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_PERFILES" Width="1.5" PointX="11.375" PointY="20.75" />
         <EntityTypeShape EntityType="Model.CA_PACIENTE" Width="1.5" PointX="13" PointY="8.25" />
         <AssociationConnector Association="Model.FK_PACIENTE_CENTRO" />
-        <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
         <AssociationConnector Association="Model.FK_PACIENTE_GRUPO_ETNICO" />
         <EntityTypeShape EntityType="Model.VW_LISTA_USUARIOS_ASSMCA" Width="1.5" PointX="22.375" PointY="0.75" />
         <EntityTypeShape EntityType="Model.VW_LISTA_USUARIOS_REGISTRADOS" Width="1.5" PointX="22.375" PointY="5.125" />
+        <EntityTypeShape EntityType="Model.CA_EPISODIO" Width="1.5" PointX="15.25" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.CA_LICENCIA" Width="1.5" PointX="11.375" PointY="22" />
+        <EntityTypeShape EntityType="Model.VW_USUARIOS_CENTROS_LICENCIAS" Width="1.5" PointX="22.375" PointY="15" />
+        <AssociationConnector Association="Model.FK_EPISODIO_CENTRO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_EPISODIOS_PREVIOS" />
+        <AssociationConnector Association="Model.FK_EPISODIO_ESTADO_SERVICIO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_FUENTE_REFERIDO" />
+        <AssociationConnector Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA" />
+        <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
+        <AssociationConnector Association="Model.FK_PERFIL_EPISODIO" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

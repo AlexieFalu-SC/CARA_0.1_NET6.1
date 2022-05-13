@@ -15,24 +15,6 @@ namespace CARA_Draftv0._1.App.Perfiles
     {
 
         /// <summary>
-        /// CentroBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl CentroBox;
-
-        /// <summary>
-        /// divCentro control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCentro;
-
-        /// <summary>
         /// ddlCentro control.
         /// </summary>
         /// <remarks>
@@ -40,6 +22,15 @@ namespace CARA_Draftv0._1.App.Perfiles
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlCentro;
+
+        /// <summary>
+        /// ddlLicencias control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicencias;
 
         /// <summary>
         /// btnAutenticarPrograma control.
