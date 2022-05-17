@@ -15,6 +15,33 @@ namespace CARA_Draftv0._1.App.Pacientes
     {
 
         /// <summary>
+        /// lblCentro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCentro;
+
+        /// <summary>
+        /// lblLicencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLicencia;
+
+        /// <summary>
+        /// lblTipoAccion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTipoAccion;
+
+        /// <summary>
         /// PacienteBox control.
         /// </summary>
         /// <remarks>
@@ -22,6 +49,15 @@ namespace CARA_Draftv0._1.App.Pacientes
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl PacienteBox;
+
+        /// <summary>
+        /// profileImg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image profileImg;
 
         /// <summary>
         /// lblIUP control.

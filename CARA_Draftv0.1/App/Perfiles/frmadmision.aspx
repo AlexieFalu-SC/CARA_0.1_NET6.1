@@ -9,17 +9,35 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-    <div id="AdmisionBox" runat="server">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Admisión</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Compartir</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="javascript:window.print();">Imprimir</button>
-              </div>
+    <main id="divPerfil">
+
+        <header class="page-header page-header-compact page-header-light border-bottom mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-6 align-self-center">
+                            <h5 style="text-align:center"><b>Centro: </b><i><asp:Label Text="" runat="server" Id="lblCentro"/></i> <b>Licencia: </b><i><asp:Label Text="" runat="server" Id="lblLicencia"/></i></h5>
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h3 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fas fa-fw fa-file"></i><span> Registro de Admisión</span>
+                                </div>
+                            </h3>
+                        </div>
+                        <div class="col-auto">
+                            <div class="btn-group mr-2">
+                                <button type="button" class="btn btn-sm btn-outline-secondary" onclick="PrintDiv();">Imprimir</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </header>
+
+    <div id="AdmisionBox" runat="server" class="container-xl px-4">
         
         <div>
             <uc1:wucdatospersonales runat="server" id="wucdatospersonales" />
@@ -60,6 +78,36 @@
             icon: icono
         })
     }
+
+        function PrintDiv() {
+            var divContents = document.getElementById("divPerfil").innerHTML;
+
+            var printWindow = window.open();
+            printWindow.document.write('<html><head>');
+            printWindow.document.write('<link href="~/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">');
+            printWindow.document.write('<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">');
+            printWindow.document.write('<link href="<%=ResolveClientUrl("~/Content/css/sb-admin-2.min.css")%>" type="text/css" rel="stylesheet" />');
+            printWindow.document.write('<link href="<%=ResolveClientUrl("~/vendor/datatables/dataTables.bootstrap4.min.css")%>" type="text/css" rel="stylesheet" />');
+            printWindow.document.write('</head><body >');
+            printWindow.document.write(divContents);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+        function printPartOfPage(strid) {
+            var printContent = strid;
+
+            var windowUrl = "about:blank";
+            var uniqueName = new Date();
+            var windowName = 'Print' + uniqueName.getTime();
+            var printWindow = window.open(windowUrl, windowName, 'left=50000,top=50000,width=0,height=0');
+
+            printWindow.document.write(printContent.innerHTML);
+            printWindow.document.close();
+            printWindow.focus();
+            printWindow.print();
+            printWindow.close();
+        }
     </script>
 
     

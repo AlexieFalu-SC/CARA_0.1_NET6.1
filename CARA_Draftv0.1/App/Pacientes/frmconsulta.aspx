@@ -4,18 +4,30 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-    <div id="PacienteBox" runat="server">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Búsqueda de Paciente</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
+    <main>
+        <header class="page-header page-header-compact page-header-light border-bottom mb-4">
+            <div class="container-fluid px-4">
+                <div class="page-header-content">
+                     <div class="row justify-content-center">
+                        <div class="col-xl-6 align-self-center">
+                            <h5 style="text-align:center"><b>Centro: </b><i><asp:Label Text="" runat="server" Id="lblCentro"/></i> <b>Licencia: </b><i><asp:Label Text="" runat="server" Id="lblLicencia"/></i></h5>
+                        </div>
+                    </div>
+                    <div class="row align-items-center justify-content-between pt-3">
+                        <div class="col-auto mb-3">
+                            <h3 class="page-header-title">
+                                <div class="page-header-icon">
+                                    <i class="fas fa-fw fa-user-md"></i><span>Búsqueda de Paciente</span>
+                                </div>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        
+        </header>
+
+    <div id="PacienteBox" runat="server" class="container-xl px-4">
+       
         <div>
 
             <div class="card mb-4">
@@ -79,50 +91,49 @@
                 <div class="card-header">
                     <h5 class="card-title">Resultados de Búsqueda</h5>
                 </div>
-                <div class="card-body" style="padding:0px">
-
-                    <asp:GridView ID="gvPcientes" runat="server"  CssClass="table table-bordered table-hover" AutoGenerateColumns="False" PagerSettings-Visible="false" AllowPaging="True" GridLines="None" CellSpacing="-1" DataKeyNames="PK_Paciente">
+                <div class="card-body">
+                    <div class="table-responsive table-striped table-hover table-sm" id="divPacienteList">
+                        <asp:GridView ID="gvPcientes" runat="server"  CssClass="table table-bordered pacientesListTable" AutoGenerateColumns="False" Width="100%" DataKeyNames="PK_Paciente">
                         
-                        <Columns>
+                            <Columns>
 
-                            <asp:BoundField DataField="PK_Paciente" HeaderText="IUP" HeaderStyle-HorizontalAlign="Center">
+                                <asp:BoundField DataField="PK_Paciente" HeaderText="IUP" HeaderStyle-HorizontalAlign="Center">
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                </asp:BoundField>
+
+                                <asp:BoundField DataField="NB_Centro" HeaderText="Centro" HeaderStyle-HorizontalAlign="Center">
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                </asp:BoundField>
+
+                                <asp:TemplateField HeaderText="Expediente">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lnkExpediente" runat="server" Text='<%# Bind("NR_Expediente") %>'  OnClick="lnkExpediente_Click" CommandArgument='<%# Eval("Pk_Paciente")%>' CausesValidation="false"></asp:LinkButton>
+                                    </ItemTemplate>
+                                    <HeaderStyle HorizontalAlign="Center" />
+                                </asp:TemplateField>
+
+                                <asp:BoundField DataField="FE_Nacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:MM/dd/yyyy}" SortExpression="FE_Nacimiento" HeaderStyle-HorizontalAlign="Center">
                                 <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                            </asp:BoundField>
+                                </asp:BoundField>
 
-                            <asp:BoundField DataField="NB_Centro" HeaderText="Centro" HeaderStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                            </asp:BoundField>
+                                <asp:BoundField DataField="DE_GrupoEtnico" HeaderText="Grupo Etnico" HeaderStyle-HorizontalAlign="Center">
+                                    <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                </asp:BoundField>
 
-                            <asp:TemplateField HeaderText="Expediente">
-                                <ItemTemplate>
-                                    <asp:LinkButton ID="lnkExpediente" runat="server" Text='<%# Bind("NR_Expediente") %>'  OnClick="lnkExpediente_Click" CommandArgument='<%# Eval("Pk_Paciente")%>' CausesValidation="false"></asp:LinkButton>
-                                </ItemTemplate>
-                                <HeaderStyle HorizontalAlign="Center" />
-                            </asp:TemplateField>
+                            </Columns>
+                            <EmptyDataTemplate>
+                            <div class="card-block">
+                                <p class="text-center pt-4 pb-4">Ningún paciente coincide con su búsqueda. <a href="<%=ResolveClientUrl("~/App/Pacientes/frmEditar.aspx?accion=crear")%>">Crear Nuevo Paciente</a></p>
+                            </div>
+                         </EmptyDataTemplate>
 
-                            <asp:BoundField DataField="FE_Nacimiento" HeaderText="Fecha de Nacimiento" DataFormatString="{0:MM/dd/yyyy}" SortExpression="FE_Nacimiento" HeaderStyle-HorizontalAlign="Center">
-                            <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                            </asp:BoundField>
-
-                            <asp:BoundField DataField="DE_GrupoEtnico" HeaderText="Grupo Etnico" HeaderStyle-HorizontalAlign="Center">
-                                <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                            </asp:BoundField>
-
-                        </Columns>
-                        <EmptyDataTemplate>
-                        <div class="card-block">
-                            <p class="text-center pt-4 pb-4">Ningún paciente coincide con su búsqueda. <a href="frmEditar.aspx">Crear Nuevo Paciente</a></p>
-                        </div>
-                     </EmptyDataTemplate>
-
-                        <PagerSettings Visible="False"></PagerSettings>
-
-                    </asp:GridView>
+                        </asp:GridView>
+                    </div>
 
                 </div>
 
-                Página #:        
-            <asp:DropDownList ID="ddlJumpTo" runat="server" OnSelectedIndexChanged="PageNumberChanged" AutoPostBack="true"></asp:DropDownList>
+<%--                Página #:        
+            <asp:DropDownList ID="ddlJumpTo" runat="server" OnSelectedIndexChanged="PageNumberChanged" AutoPostBack="true"></asp:DropDownList>--%>
 
             </div>
 
@@ -165,6 +176,7 @@
             buttonWidth: '93%'
         });
     });
+
 
 </script>
 

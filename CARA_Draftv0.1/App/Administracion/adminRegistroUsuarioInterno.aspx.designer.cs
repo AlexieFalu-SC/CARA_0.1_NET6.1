@@ -7,101 +7,83 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.App.Perfiles
+namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class frmadmision
+    public partial class adminRegistroUsuarioInterno
     {
 
         /// <summary>
-        /// lblCentro control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCentro;
+        protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// lblLicencia control.
+        /// Telefono control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLicencia;
+        protected global::System.Web.UI.WebControls.TextBox Telefono;
 
         /// <summary>
-        /// AdmisionBox control.
+        /// NB_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl AdmisionBox;
+        protected global::System.Web.UI.WebControls.TextBox NB_Primero;
 
         /// <summary>
-        /// wucdatospersonales control.
+        /// NB_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CARA_Draftv0._1.App.Perfiles.wucdatospersonales wucdatospersonales;
+        protected global::System.Web.UI.WebControls.TextBox NB_Segundo;
 
         /// <summary>
-        /// wucperfiladmision control.
+        /// AP_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CARA_Draftv0._1.App.Perfiles.wucperfiladmision wucperfiladmision;
+        protected global::System.Web.UI.WebControls.TextBox AP_Primero;
 
         /// <summary>
-        /// wucdrogasadmision control.
+        /// AP_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::CARA_Draftv0._1.App.Perfiles.wucdrogasadmision wucdrogasadmision;
+        protected global::System.Web.UI.WebControls.TextBox AP_Segundo;
 
         /// <summary>
-        /// btnRegistrar control.
+        /// ddlRol control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrar;
+        protected global::System.Web.UI.WebControls.DropDownList ddlRol;
 
         /// <summary>
-        /// btnModificar control.
+        /// chkModulos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnModificar;
-
-        /// <summary>
-        /// btnRegistrarModificar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnRegistrarModificar;
-
-        /// <summary>
-        /// ValidationSummary1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkModulos;
     }
 }

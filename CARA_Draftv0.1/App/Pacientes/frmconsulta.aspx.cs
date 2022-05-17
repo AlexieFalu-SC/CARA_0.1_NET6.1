@@ -11,7 +11,7 @@ namespace CARA_Draftv0._1.App.Pacientes
     public partial class frmconsulta : System.Web.UI.Page
     {
         private int m_PK_Centro;
-        protected string Centro;
+        protected string Centro, Licencia, Nombre_Centro;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] == null)
@@ -23,6 +23,12 @@ namespace CARA_Draftv0._1.App.Pacientes
             this.m_PK_Centro = Convert.ToInt32(this.Session["PK_Centro"].ToString());
 
             Centro = this.Request.QueryString["centro"].ToString();
+
+            Nombre_Centro = this.Session["NB_Centro"].ToString();
+            Licencia = this.Session["PK_Centro_Licencia"].ToString();
+
+            lblCentro.Text = Nombre_Centro + " - ";
+            lblLicencia.Text = Licencia;
             if (!this.IsPostBack)
             {
                 switch (Centro)
@@ -38,7 +44,9 @@ namespace CARA_Draftv0._1.App.Pacientes
                 }
 
                 PrepararDropDownLists();
-                this.FillJumpToList(0);
+                gvPcientes.DataSource = null;
+                gvPcientes.DataBind();
+                // this.FillJumpToList(0);
 
             }
         }
@@ -78,9 +86,13 @@ namespace CARA_Draftv0._1.App.Pacientes
                 {
                     List<SPR_PACIENTE_CENTRO_Result> pacientes = dsCARA.SPR_PACIENTE_CENTRO(PK_Paciente,NR_Expediente,FE_Nacimiento,FK_Centro,FK_GrupoEtnico,FK_Genero).ToList();
 
-                    gvPcientes.PageIndex = pagina - 1;
+                    //gvPcientes.PageIndex = pagina - 1;
                     gvPcientes.DataSource = pacientes;
                     gvPcientes.DataBind();
+
+                    gvPcientes.UseAccessibleHeader = true;
+                    gvPcientes.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gvPcientes.FooterRow.TableSection = TableRowSection.TableFooter;
                     a = pacientes.Count();
                 }
             }
@@ -93,32 +105,32 @@ namespace CARA_Draftv0._1.App.Pacientes
             return a;
         }
 
-        private void FillJumpToList(int TotalRows)
+        //private void FillJumpToList(int TotalRows)
 
-        {
-            int PageCount = this.CalculateTotalPages(TotalRows);
-            for (int i = 1; i <= PageCount; i++)
-            {
-                ddlJumpTo.Items.Add(new ListItem(i.ToString(), i.ToString()));
-            }
-        }
+        //{
+        //    int PageCount = this.CalculateTotalPages(TotalRows);
+        //    for (int i = 1; i <= PageCount; i++)
+        //    {
+        //        ddlJumpTo.Items.Add(new ListItem(i.ToString(), i.ToString()));
+        //    }
+        //}
 
-        protected void PageNumberChanged(object sender, EventArgs e)
-        {
-            int PageNo = Convert.ToInt32(ddlJumpTo.SelectedItem.Value);
-            this.BindGridView(PageNo);
-        }
+        //protected void PageNumberChanged(object sender, EventArgs e)
+        //{
+        //    int PageNo = Convert.ToInt32(ddlJumpTo.SelectedItem.Value);
+        //    this.BindGridView(PageNo);
+        //}
 
-        private int CalculateTotalPages(int intTotalRows)
-        {
-            int intPageCount = 1;
-            double dblPageCount = (double)(Convert.ToDecimal(intTotalRows)
+        //private int CalculateTotalPages(int intTotalRows)
+        //{
+        //    int intPageCount = 1;
+        //    double dblPageCount = (double)(Convert.ToDecimal(intTotalRows)
 
-                                    / Convert.ToDecimal(gvPcientes.PageSize));
+        //                            / Convert.ToDecimal(gvPcientes.PageSize));
 
-            intPageCount = Convert.ToInt32(Math.Ceiling(dblPageCount));
-            return intPageCount;
-        }
+        //    intPageCount = Convert.ToInt32(Math.Ceiling(dblPageCount));
+        //    return intPageCount;
+        //}
 
         private void PrepararDropDownLists()
         {
@@ -155,7 +167,7 @@ namespace CARA_Draftv0._1.App.Pacientes
         protected void btnConsultar_Click(object sender, System.EventArgs e)
         {
             int TotalReg = BindGridView(1);
-            this.FillJumpToList(TotalReg);
+            //this.FillJumpToList(TotalReg);
 
             
         }

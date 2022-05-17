@@ -11,7 +11,7 @@ namespace CARA_Draftv0._1.App.Pacientes
     public partial class frmVisualizar : System.Web.UI.Page
     {
         protected DatosInternos ca_paciente;
-        protected string Centro;
+        protected string Centro, Nombre_Centro, Licencia;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CA_Paciente"] == null)
@@ -32,6 +32,12 @@ namespace CARA_Draftv0._1.App.Pacientes
             this.ca_paciente = (DatosInternos)this.Session["CA_Paciente"];
 
             Centro = this.Request.QueryString["centro"].ToString();
+
+            Nombre_Centro = this.Session["NB_Centro"].ToString();
+            Licencia = this.Session["PK_Centro_Licencia"].ToString();
+
+            lblCentro.Text = Nombre_Centro + " - ";
+            lblLicencia.Text = Licencia;
 
             if (!this.IsPostBack)
             {

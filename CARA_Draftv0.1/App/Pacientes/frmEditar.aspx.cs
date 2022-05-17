@@ -13,7 +13,7 @@ namespace CARA_Draftv0._1.App.Pacientes
     {
         private int m_PK_Centro;
         ApplicationUser Usuario = new ApplicationUser();
-        protected string PK_Sesion;
+        protected string PK_Sesion, Nombre_Centro, Licencia;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["Usuario"] == null || Session["PK_Sesion"] == null)
@@ -29,6 +29,12 @@ namespace CARA_Draftv0._1.App.Pacientes
 
             string Accion = this.Request.QueryString["accion"].ToString();
 
+            Nombre_Centro = this.Session["NB_Centro"].ToString();
+            Licencia = this.Session["PK_Centro_Licencia"].ToString();
+
+            lblCentro.Text = Nombre_Centro + " - ";
+            lblLicencia.Text = Licencia;
+
             if (!this.IsPostBack)
             {
                 PrepararDropDownLists();
@@ -36,11 +42,13 @@ namespace CARA_Draftv0._1.App.Pacientes
                 switch (Accion)
                 {
                     case ("crear"):
+                        this.lblTipoAccion.Text = "Registro de Paciente";
                         this.btnRegistrar.Visible = true;
                         this.btnModificar.Visible = false;
                         this.lblIUP.Text = "No Registrado";
                         break;
                     case ("editar"):
+                        this.lblTipoAccion.Text = "Edición de Paciente";
                         this.btnRegistrar.Visible = false;
                         this.btnModificar.Visible = true;
                         

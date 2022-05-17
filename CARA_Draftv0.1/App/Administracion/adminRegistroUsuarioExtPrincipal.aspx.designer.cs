@@ -7,137 +7,101 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CARA_Draftv0._1.App.Pacientes
+namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class frmPerfiles
+    public partial class adminRegistroUsuarioExtPrincipal
     {
 
         /// <summary>
-        /// lblCentro control.
+        /// Email control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCentro;
+        protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
-        /// lblLicencia control.
+        /// NB_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLicencia;
+        protected global::System.Web.UI.WebControls.TextBox NB_Primero;
 
         /// <summary>
-        /// PacienteBox control.
+        /// NB_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl PacienteBox;
+        protected global::System.Web.UI.WebControls.TextBox NB_Segundo;
 
         /// <summary>
-        /// profileImg control.
+        /// AP_Primero control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image profileImg;
+        protected global::System.Web.UI.WebControls.TextBox AP_Primero;
 
         /// <summary>
-        /// lblIUP control.
+        /// AP_Segundo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIUP;
+        protected global::System.Web.UI.WebControls.TextBox AP_Segundo;
 
         /// <summary>
-        /// lblExpediente control.
+        /// txtCentro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblExpediente;
+        protected global::System.Web.UI.WebControls.TextBox txtCentro;
 
         /// <summary>
-        /// lblNacimiento control.
+        /// txtIdSlyc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNacimiento;
+        protected global::System.Web.UI.WebControls.TextBox txtIdSlyc;
 
         /// <summary>
-        /// lblGrupoEtnico control.
+        /// ddlLicencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblGrupoEtnico;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicencia;
 
         /// <summary>
-        /// lblRaza control.
+        /// txtNumLicencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblRaza;
+        protected global::System.Web.UI.WebControls.TextBox txtNumLicencia;
 
         /// <summary>
-        /// lblCentroEpisodio control.
+        /// txtFechaExp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCentroEpisodio;
-
-        /// <summary>
-        /// lblLicenciaEpisidio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblLicenciaEpisidio;
-
-        /// <summary>
-        /// Label1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
-
-        /// <summary>
-        /// Label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
-
-        /// <summary>
-        /// gvPerfiles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvPerfiles;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaExp;
     }
 }

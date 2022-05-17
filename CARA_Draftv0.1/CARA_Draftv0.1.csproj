@@ -199,8 +199,11 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="App\Administracion\adminAdministrador.aspx" />
+    <Content Include="App\Administracion\adminListaCentros.aspx" />
     <Content Include="App\Administracion\adminListaUsuarios.aspx" />
     <Content Include="App\Administracion\adminRegistrado.aspx" />
+    <Content Include="App\Administracion\adminRegistroUsuarioExtPrincipal.aspx" />
+    <Content Include="App\Administracion\adminRegistroUsuarioInterno.aspx" />
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
     <Content Include="App\Administracion\registradoListaUsuarios.aspx" />
@@ -2686,6 +2689,13 @@
     <Compile Include="App\Administracion\adminAdministrador.aspx.designer.cs">
       <DependentUpon>adminAdministrador.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App\Administracion\adminListaCentros.aspx.cs">
+      <DependentUpon>adminListaCentros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminListaCentros.aspx.designer.cs">
+      <DependentUpon>adminListaCentros.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App\Administracion\adminListaUsuarios.aspx.cs">
       <DependentUpon>adminListaUsuarios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2699,6 +2709,20 @@
     </Compile>
     <Compile Include="App\Administracion\adminRegistrado.aspx.designer.cs">
       <DependentUpon>adminRegistrado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroUsuarioExtPrincipal.aspx.cs">
+      <DependentUpon>adminRegistroUsuarioExtPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroUsuarioExtPrincipal.aspx.designer.cs">
+      <DependentUpon>adminRegistroUsuarioExtPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroUsuarioInterno.aspx.cs">
+      <DependentUpon>adminRegistroUsuarioInterno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroUsuarioInterno.aspx.designer.cs">
+      <DependentUpon>adminRegistroUsuarioInterno.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\agregarCentro.aspx.cs">
       <DependentUpon>agregarCentro.aspx</DependentUpon>

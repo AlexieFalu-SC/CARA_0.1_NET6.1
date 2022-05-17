@@ -217,9 +217,13 @@
                         <div id="manejoUsuarios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded"> 
                                 <div id="secManejoUsuariosAdministrativo" runat="server" visible="false">
-                                <h6 class="collapse-header">Usuarios:</h6>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaUsuarios")%>">Lista de Usuarios</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Usuarios</a>
+                                <hr />
+                                <h6 class="collapse-header text-wrap">Usuarios Internos (ASSMCA):</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroUsuarioInterno")%>">Registro de Usuarios</a>
+                                <hr />
+                                    <h6 class="collapse-header text-wrap">Usuarios Externos (Registrados):</h6>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroUsuarioExtPrincipal")%>">Registro de Usuarios</a>
                                 </div>
                                <%-- <hr class="sidebar-divider">--%>
                                 <div id="secManejoUsuariosRegistrado" runat="server" visible="false">
@@ -239,7 +243,7 @@
                         <div id="manejoFacilidades" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">  
                                <%-- <h6 class="collapse-header">Procesos:</h6>--%>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Lista de Facilidades</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaCentros")%>">Lista de Facilidades</a>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Facilidades</a>
                             </div>
                         </div>
@@ -498,6 +502,9 @@
         });
         $(document).ready(function () {
             $('.usuariosRegistradosListTable').DataTable();
+        });
+        $(document).ready(function () {
+            $('.pacientesListTable').DataTable();
         });
         
 
