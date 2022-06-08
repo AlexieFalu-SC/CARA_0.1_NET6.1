@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label class="control-label">Teléfono</label>
-                        <asp:TextBox runat="server" ID="Telefono" CssClass="form-control form-control-user" Placeholder="Ej. 7875555555"/>
+                        <asp:TextBox runat="server" ID="Telefono" CssClass="form-control form-control-user" TextMode="Phone" Placeholder="Ej. 7875555555"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Telefono" CssClass="text-danger" ErrorMessage="Su telefono es requerido" />
                     </div>
                 </div>

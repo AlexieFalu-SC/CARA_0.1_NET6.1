@@ -24,6 +24,33 @@ namespace CARA_Draftv0._1.App.Administracion
         protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
+        /// rvEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvEmail;
+
+        /// <summary>
+        /// Telefono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox Telefono;
+
+        /// <summary>
+        /// rvTelefono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvTelefono;
+
+        /// <summary>
         /// NB_Primero control.
         /// </summary>
         /// <remarks>
@@ -31,6 +58,15 @@ namespace CARA_Draftv0._1.App.Administracion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox NB_Primero;
+
+        /// <summary>
+        /// rvPNB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvPNB;
 
         /// <summary>
         /// NB_Segundo control.
@@ -42,6 +78,15 @@ namespace CARA_Draftv0._1.App.Administracion
         protected global::System.Web.UI.WebControls.TextBox NB_Segundo;
 
         /// <summary>
+        /// rvSNB control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvSNB;
+
+        /// <summary>
         /// AP_Primero control.
         /// </summary>
         /// <remarks>
@@ -49,6 +94,15 @@ namespace CARA_Draftv0._1.App.Administracion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox AP_Primero;
+
+        /// <summary>
+        /// rvPAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvPAP;
 
         /// <summary>
         /// AP_Segundo control.
@@ -60,6 +114,15 @@ namespace CARA_Draftv0._1.App.Administracion
         protected global::System.Web.UI.WebControls.TextBox AP_Segundo;
 
         /// <summary>
+        /// rvSAP control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvSAP;
+
+        /// <summary>
         /// txtCentro control.
         /// </summary>
         /// <remarks>
@@ -67,6 +130,15 @@ namespace CARA_Draftv0._1.App.Administracion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtCentro;
+
+        /// <summary>
+        /// rvCentro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvCentro;
 
         /// <summary>
         /// txtIdSlyc control.
@@ -96,6 +168,15 @@ namespace CARA_Draftv0._1.App.Administracion
         protected global::System.Web.UI.WebControls.TextBox txtNumLicencia;
 
         /// <summary>
+        /// rvNumLicencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvNumLicencia;
+
+        /// <summary>
         /// txtFechaExp control.
         /// </summary>
         /// <remarks>
@@ -103,5 +184,104 @@ namespace CARA_Draftv0._1.App.Administracion
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtFechaExp;
+
+        /// <summary>
+        /// rvFechaExp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rvFechaExp;
+
+        /// <summary>
+        /// lblEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEmail;
+
+        /// <summary>
+        /// lblTelefono control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblTelefono;
+
+        /// <summary>
+        /// lblNB_Primero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNB_Primero;
+
+        /// <summary>
+        /// lblNB_Segundo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNB_Segundo;
+
+        /// <summary>
+        /// lblAP_Primero control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAP_Primero;
+
+        /// <summary>
+        /// lblAP_Segundo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblAP_Segundo;
+
+        /// <summary>
+        /// lblCentro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblCentro;
+
+        /// <summary>
+        /// lblSlyc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblSlyc;
+
+        /// <summary>
+        /// lblLicencia control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLicencia;
+
+        /// <summary>
+        /// lblFechaExp control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFechaExp;
     }
 }

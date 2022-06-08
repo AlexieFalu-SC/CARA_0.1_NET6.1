@@ -10,7 +10,7 @@
                         <div class="col-auto mb-3">
                             <h3 class="page-header-title">
                                 <div class="page-header-icon">
-                                    <i class="fas fa-fw fa-user-plus"></i><span> Lista de Facilidades</span>
+                                    <i class="fas fa-fw fa-hospital"></i><span> Lista de Facilidades</span>
                                 </div>
                             </h3>
                         </div>
@@ -34,8 +34,8 @@
                                 <h4>Facilidades</h4>
                             </div>
                             <div>
-                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
-                                <i class="fas fa-fw fa-file-export"></i>
+                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/AnaliticaAdministradores">
+                                <i class="fas fa-fw fa-hospital"></i>
                                 Registrar Nueva Facilidad
                             </a>
                             </div>

@@ -11,70 +11,52 @@ namespace CARA_Draftv0._1.App.Administracion
 {
 
 
-    public partial class adminRegistroUsuarioInterno
+    public partial class adminRegistroFacilidad
     {
 
         /// <summary>
-        /// Email control.
+        /// txtCentro control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Email;
+        protected global::System.Web.UI.WebControls.TextBox txtCentro;
 
         /// <summary>
-        /// Telefono control.
+        /// txtIdSlyc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox Telefono;
+        protected global::System.Web.UI.WebControls.TextBox txtIdSlyc;
 
         /// <summary>
-        /// NB_Primero control.
+        /// ddlLicencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NB_Primero;
+        protected global::System.Web.UI.WebControls.DropDownList ddlLicencia;
 
         /// <summary>
-        /// NB_Segundo control.
+        /// txtNumLicencia control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox NB_Segundo;
+        protected global::System.Web.UI.WebControls.TextBox txtNumLicencia;
 
         /// <summary>
-        /// AP_Primero control.
+        /// txtFechaExp control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AP_Primero;
-
-        /// <summary>
-        /// AP_Segundo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AP_Segundo;
-
-        /// <summary>
-        /// ddlRol control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlRol;
+        protected global::System.Web.UI.WebControls.TextBox txtFechaExp;
     }
 }

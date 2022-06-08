@@ -202,6 +202,7 @@
     <Content Include="App\Administracion\adminListaCentros.aspx" />
     <Content Include="App\Administracion\adminListaUsuarios.aspx" />
     <Content Include="App\Administracion\adminRegistrado.aspx" />
+    <Content Include="App\Administracion\adminRegistroFacilidad.aspx" />
     <Content Include="App\Administracion\adminRegistroUsuarioExtPrincipal.aspx" />
     <Content Include="App\Administracion\adminRegistroUsuarioInterno.aspx" />
     <Content Include="App\Administracion\agregarCentro.aspx" />
@@ -2709,6 +2710,13 @@
     </Compile>
     <Compile Include="App\Administracion\adminRegistrado.aspx.designer.cs">
       <DependentUpon>adminRegistrado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroFacilidad.aspx.cs">
+      <DependentUpon>adminRegistroFacilidad.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminRegistroFacilidad.aspx.designer.cs">
+      <DependentUpon>adminRegistroFacilidad.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\adminRegistroUsuarioExtPrincipal.aspx.cs">
       <DependentUpon>adminRegistroUsuarioExtPrincipal.aspx</DependentUpon>

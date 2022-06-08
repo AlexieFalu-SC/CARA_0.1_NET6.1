@@ -244,7 +244,7 @@
                             <div class="bg-white py-2 collapse-inner rounded">  
                                <%-- <h6 class="collapse-header">Procesos:</h6>--%>
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaCentros")%>">Lista de Facilidades</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/AnaliticaAdministradores")%>">Registro de Facilidades</a>
+                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroFacilidad")%>">Registro de Facilidades</a>
                             </div>
                         </div>
                     </li>

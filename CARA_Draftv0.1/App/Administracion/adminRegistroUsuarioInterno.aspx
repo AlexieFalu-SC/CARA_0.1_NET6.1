@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-auto">
                             <div class="btn-group mr-2">
-                                <a class="btn btn-sm btn-light text-primary" href="<%=ResolveClientUrl("~/App/Administracion/registradoListaUsuarios")%>">
+                                <a class="btn btn-sm btn-light text-primary" href="<%=ResolveClientUrl("~/App/Administracion/adminListaUsuarios")%>">
                     <i class="fas fa-fw fa-user-plus"></i>Volver a lista de Usuarios
                 </a>
                             </div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="form-group col-6">
                         <label class="control-label">Teléfono</label>
-                        <asp:TextBox runat="server" ID="Telefono" CssClass="form-control form-control-user" Placeholder="Ej. 7875555555"/>
+                        <asp:TextBox runat="server" ID="Telefono" CssClass="form-control form-control-user" TextMode="Phone" Placeholder="Ej. 7875555555"/>
                         <asp:RequiredFieldValidator runat="server" ControlToValidate="Telefono" CssClass="text-danger" ErrorMessage="Su telefono es requerido" />
                     </div>
                 </div>
@@ -78,14 +78,14 @@
                             CssClass="text-danger" ToolTip="Seleccione un valor de la lista. Este campo es requerido." ErrorMessage="Rol de Usuario." />
                         
                     </div>
-                    <div class="form-group col-6">
+                   <%-- <div class="form-group col-6">
                         <label class="control-label">Modulos Accesbiles</label>
                         <asp:CheckBoxList ID="chkModulos" runat="server" CssClass="form-check form-switch">
                             <asp:ListItem Value="RegistroPerfiles" Text="Registrar Perfiles" />
                             <asp:ListItem Value="AccesoExpedientes" Text="Ver Expedientes y Perfiles" />
                             <asp:ListItem Value="AccesoTableros" Text="Ver Tableros Analiticos" />
                         </asp:CheckBoxList>
-                    </div>
+                    </div>--%>
                 </div>
 
                 <asp:Button runat="server" Text="Agregar Usuario" OnClick="BtnRegistrar_Click"  CssClass="btn btn-primary" />

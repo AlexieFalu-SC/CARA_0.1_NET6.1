@@ -58,7 +58,7 @@
                                 <h4>Usuarios de ASSMCA</h4>
                             </div>
                             <div>
-                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
+                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/Administracion/adminRegistroUsuarioInterno">
                                 <i class="fas fa-fw fa-file-export"></i>
                                 Registrar Usuario de ASSMCA
                             </a>

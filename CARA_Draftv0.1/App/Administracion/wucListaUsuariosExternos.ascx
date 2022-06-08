@@ -7,7 +7,7 @@
                 <h4>Cuentas Principales y Sub-Cuentas de Usuarios Externos</h4>
             </div>
             <div>
-            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/Account/Register">
+            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/Administracion/adminRegistroUsuarioExtPrincipal">
                 <i class="fas fa-fw fa-file-export"></i>
                 Registrar Usuario Externos
             </a>

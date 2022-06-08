@@ -15,7 +15,7 @@ namespace CARA_Draftv0._1.App.Perfiles
         protected CARAEntities dsCARA;
         protected DatosInternos ca_paciente;
         ApplicationUser Usuario = new ApplicationUser();
-        protected string PK_Sesion;
+        protected string PK_Sesion, Nombre_Centro, Licencia;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["CA_Paciente"] == null)
@@ -37,6 +37,12 @@ namespace CARA_Draftv0._1.App.Perfiles
             Usuario = (ApplicationUser)Session["Usuario"];
 
             string Accion = this.Request.QueryString["accion"].ToString();
+
+            Nombre_Centro = this.Session["NB_Centro"].ToString();
+            Licencia = this.Session["PK_Centro_Licencia"].ToString();
+
+            lblCentro.Text = Nombre_Centro + " - ";
+            lblLicencia.Text = Licencia;
 
             if (!this.IsPostBack)
             {
