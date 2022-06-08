@@ -72,11 +72,19 @@ namespace CARA_Draftv0._1.App.Administracion
 
             string mensaje = string.Empty;
 
+            Guid idSlyc = Guid.NewGuid();
+
+            var ab = this.txtCentro.Text;
+            var aa = this.lblCentro.Text;
+
+            //this.coverScreen.Visible = true;
+
             /*Validación de existencia de usuario*/
             var emailExiste = manager.FindByEmail(Email.Text);
             if (emailExiste != null)
             {
                 mensaje = "Una cuenta con el email: " + Email.Text + " ya existe. Si desea registrarle una facilidad a dicha cuenta, favor acceder a la pantalla de agregar facilidades.";
+                //this.coverScreen.Visible = false;
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
                 return;
             }
@@ -118,23 +126,29 @@ namespace CARA_Draftv0._1.App.Administracion
                     {
                         using (CARAEntities dsCARA = new CARAEntities())
                         {
-                            userManager.AddToRole(user.Id, "Registrado Usuario");
+                            userManager.AddToRole(user.Id, "Registrado Administrativo");
 
-                            dsCARA.SPC_CENTRO(txtCentro.Text, Guid.Parse(txtIdSlyc.Text), "", Email.Text);
+                            dsCARA.SPC_CENTRO(txtCentro.Text, idSlyc, "", Email.Text);
 
-                            var pk_centro = dsCARA.VW_CENTROS_ADMINISTRADORES.Where(a => a.Email.Equals(Email.Text)).Select(f => f.PK_Centro).DefaultIfEmpty();
+                            int pk_centro = dsCARA.VW_CENTROS_ADMINISTRADORES.Where(a => a.Email == Email.Text).Select(f => f.PK_Centro).First();
 
+                            int pk_licencia = Convert.ToInt32(ddlLicencia.SelectedValue);
 
+                            DateTime fechaExp = Convert.ToDateTime(txtFechaExp.Text);
 
-                            dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "Usuario", "C", user.Id, null, null, null);
+                            dsCARA.SPC_ATAR_CENTRO_LICENCIA(pk_centro, pk_licencia, txtNumLicencia.Text, fechaExp);
 
-                            mensaje = "El registro del usuario fué correcto. Se envió un email de confirmación al nuevo usuario.";
+                            dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "UsuarioRegistrado", "C", user.Id, pk_centro, null, null);
+
+                            mensaje = "El registro del usuario y facilidad fué correcto. Se envió un email de confirmación al nuevo usuario para realizar la confirmación de cuenta.";
 
 
                             string code = manager.GenerateEmailConfirmationToken(user.Id);
                             string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
                             string body = CreateBody(callbackUrl, "1234");
                             manager.SendEmail(user.Id, "Confirmacion de su cuenta", body);
+
+                            //this.coverScreen.Visible = false;
 
                             ClientScript.RegisterStartupScript(this.GetType(), "Usuario Registrado", "sweetAlertRef('Usuario Registrado','" + mensaje + "','success','" + "App/Administracion/adminListaUsuarios.aspx" + "');", true);
                             //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Usuario Registrado", "sweetAlert('Usuario Registrado','" + mensaje + "','success')", true);
@@ -151,12 +165,16 @@ namespace CARA_Draftv0._1.App.Administracion
                             mensaje = ex.InnerException.Message;
                         }
 
+                        //this.coverScreen.Visible = false;
+
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
                     }
 
                 }
                 else
                 {
+                    //this.coverScreen.Visible = false;
+
                     mensaje = "Occurió un error al intentar realizar el registro. Favor de intentar nuevamente o contactar a informática.";
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
                     return;

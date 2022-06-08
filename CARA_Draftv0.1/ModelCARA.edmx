@@ -1535,6 +1535,12 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPC_ATAR_CENTRO_LICENCIA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="FK_Centro" Type="int" Mode="In" />
+          <Parameter Name="FK_Licencia" Type="int" Mode="In" />
+          <Parameter Name="NR_Licencia" Type="varchar(max)" Mode="In" />
+          <Parameter Name="FE_Expiracion" Type="datetime" Mode="In" />
+        </Function>
         <Function Name="SPC_ATAR_REGISTRADO_SUBCUENTA" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="FK_CuentaPrincipal" Type="nvarchar" Mode="In" />
           <Parameter Name="FK_CuentaUsuario" Type="nvarchar" Mode="In" />
@@ -3077,6 +3083,12 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             <End Role="CA_EPISODIO" EntitySet="CA_EPISODIO" />
             <End Role="CA_PERFIL" EntitySet="CA_PERFIL" />
           </AssociationSet>
+          <FunctionImport Name="SPC_ATAR_CENTRO_LICENCIA">
+            <Parameter Name="FK_Centro" Mode="In" Type="Int32" />
+            <Parameter Name="FK_Licencia" Mode="In" Type="Int32" />
+            <Parameter Name="NR_Licencia" Mode="In" Type="String" />
+            <Parameter Name="FE_Expiracion" Mode="In" Type="DateTime" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -5301,6 +5313,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPC_ATAR_CENTRO_LICENCIA" FunctionName="Model.Store.SPC_ATAR_CENTRO_LICENCIA" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

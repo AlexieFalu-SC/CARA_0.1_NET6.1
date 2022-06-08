@@ -77,7 +77,7 @@
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Paso 1</h3>
                                                 <h5 class="card-title mb-4">Incluir información de nuevo usuario</h5>
-                                                <form>
+                                               
                                                     <div class="row gx-3">
                                                         <div class="mb-3 col-md-6">
                                                             <label class="small mb-1" for="inputUsername">Correo Electrónico (debe ser el mismo al utilizado en el sistema SLYC)</label>
@@ -122,7 +122,7 @@
                                                         <button class="btn btn-primary" type="button" onclick="wizard1to2()">Siguiente</button>
                                                         <%--<a class="btn btn-primary"  onclick="wizard1to2();">Siguiente</a>--%>
                                                     </div>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Paso 2</h3>
                                                 <h5 class="card-title mb-4">Incluir información de nueva facilidad</h5>
-                                                <form>
+                                                
                                                     <div class="row gx-3">
                                                         <div class="mb-3 col-md-6">
                                                             <label class="small mb-1" for="inputBillingName">Nombre de Centro</label>
@@ -164,7 +164,7 @@
                                                         <button class="btn btn-primary" type="button" onclick="wizard2to1()">Anterior</button>
                                                         <button class="btn btn-primary" type="button" onclick="wizard2to3()">Siguiente</button>
                                                     </div>
-                                                </form>
+                                                
                                             </div>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@
                                             <div class="col-xxl-6 col-xl-8">
                                                 <h3 class="text-primary">Paso 3</h3>
                                                 <h5 class="card-title mb-4">Seleccionar licencia atada a facilidad</h5>
-                                                <form>
+                                                
                                                     <div class="row gx-3">
                                                         <asp:DropDownList runat="server" CssClass="form-control" ID="ddlLicencia"></asp:DropDownList>
                                                         <asp:RequiredFieldValidator runat="server" ControlToValidate="ddlLicencia" InitialValue="0"
@@ -198,7 +198,7 @@
                                                        <%-- <a class="btn btn-light" data-toggle="tab" href="#wizard2" role="tab" aria-controls="wizard2" onclick="wizard3to2();" type="button">Anterior</a>--%>
                                                         <button class="btn btn-primary" type="button" onclick="wizard3to4()">Siguiente</button>
                                                     </div>
-                                                </form>
+                                               
                                             </div>
                                         </div>
                                     </div>
@@ -251,7 +251,7 @@
                                                 <hr class="my-4">
                                                 <div class="d-flex justify-content-between">
                                                     <button class="btn btn-primary" type="button" onclick="wizard4to3()">Anterior</button>
-                                                    <button class="btn btn-primary" type="button">Registrar</button>
+                                                    <asp:Button runat="server" Text="Registrar" OnClick="BtnRegistrar_Click" OnClientClick="divShow();" CssClass="btn btn-primary" />
                                                 </div>
                                             </div>
                                         </div>
@@ -260,6 +260,9 @@
                             </div>
                         </div>
                     </div>
+
+                    <div id="coverScreen"  class="LockOn">
+                        </div>
                 </main>
 
 <script type="text/javascript">
@@ -297,6 +300,14 @@
 
     if (window.history.replaceState) {
         window.history.replaceState(null, null, window.location.href);
+    }
+
+    $(window).on('load', function () {
+        $("#coverScreen").hide();
+    });
+
+    function divShow() {
+        $("#coverScreen").show();
     }
 
     function sweetAlertRef(titulo, texto, icono, ref) {

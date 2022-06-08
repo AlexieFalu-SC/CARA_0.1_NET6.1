@@ -788,6 +788,7 @@
     <Content Include="Content\images\ASSMCA_Logo2021.png" />
     <Content Include="Content\images\Avatar.png" />
     <Content Include="Content\images\graphic_home.png" />
+    <Content Include="Content\images\Loading-bar.gif" />
     <Content Include="Content\images\undraw_posting_photo.svg" />
     <Content Include="Content\images\undraw_team_collaboration_re_ow29.svg" />
     <Content Include="Content\images\undraw_visionary_technology_re_jfp7.svg" />

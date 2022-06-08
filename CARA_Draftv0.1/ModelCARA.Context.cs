@@ -937,5 +937,26 @@ namespace CARA_Draftv0._1
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ATAR_REGISTRADO_SUBCUENTA", fK_CuentaPrincipalParameter, fK_CuentaUsuarioParameter);
         }
+    
+        public virtual int SPC_ATAR_CENTRO_LICENCIA(Nullable<int> fK_Centro, Nullable<int> fK_Licencia, string nR_Licencia, Nullable<System.DateTime> fE_Expiracion)
+        {
+            var fK_CentroParameter = fK_Centro.HasValue ?
+                new ObjectParameter("FK_Centro", fK_Centro) :
+                new ObjectParameter("FK_Centro", typeof(int));
+    
+            var fK_LicenciaParameter = fK_Licencia.HasValue ?
+                new ObjectParameter("FK_Licencia", fK_Licencia) :
+                new ObjectParameter("FK_Licencia", typeof(int));
+    
+            var nR_LicenciaParameter = nR_Licencia != null ?
+                new ObjectParameter("NR_Licencia", nR_Licencia) :
+                new ObjectParameter("NR_Licencia", typeof(string));
+    
+            var fE_ExpiracionParameter = fE_Expiracion.HasValue ?
+                new ObjectParameter("FE_Expiracion", fE_Expiracion) :
+                new ObjectParameter("FE_Expiracion", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPC_ATAR_CENTRO_LICENCIA", fK_CentroParameter, fK_LicenciaParameter, nR_LicenciaParameter, fE_ExpiracionParameter);
+        }
     }
 }
