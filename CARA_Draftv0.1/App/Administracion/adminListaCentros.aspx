@@ -34,7 +34,7 @@
                                 <h4>Facilidades</h4>
                             </div>
                             <div>
-                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/AnaliticaAdministradores">
+                            <a class="btn btn-sm btn-light text-primary"  runat="server" href="~/App/Administracion/adminRegistroFacilidad">
                                 <i class="fas fa-fw fa-hospital"></i>
                                 Registrar Nueva Facilidad
                             </a>

@@ -22,6 +22,7 @@
                     <asp:TemplateField>
                         <ItemTemplate>
                                 <div style="width:15px; align-content:center;">
+                                    <%--<button class="btn btn-sm" style="margin-left:0px; margin-right:0px; float: left;" onclick="return ToggleGridPanel(this, 'tr<%# Eval("Cuenta_Princiapal") %>')"><i class="fas fa-fw fa-plus-circle"></i></button>--%>
                                     <button class="btn btn-sm" style="margin-left:0px; margin-right:0px; float: left;" onclick="return ToggleGridPanel(this, 'tr<%# Eval("Cuenta_Princiapal") %>')"><i class="fas fa-fw fa-plus-circle"></i></button>
                                 </div>
                                 
@@ -124,8 +125,10 @@
         var current = $('#' + row).css('display');
         if (current == 'none') {
             $('#' + row).show();
+            $(btn).html('<i class="fas fa-fw fa-minus-circle"></i>');
         } else {
             $('#' + row).hide();
+            $(btn).html('<i class="fas fa-fw fa-plus-circle"></i>');
         }
         return false;
     }

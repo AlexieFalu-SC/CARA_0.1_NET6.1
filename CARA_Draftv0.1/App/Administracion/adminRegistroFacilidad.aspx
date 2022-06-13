@@ -47,7 +47,6 @@
                             <div class="mb-3 col-md-6">
                                 <label class="small mb-1" for="inputBillingCCNumber">ID en el SLYC</label>
                                 <asp:TextBox runat="server" ID="txtIdSlyc" CssClass="form-control form-control-user" Placeholder="Ej. 817F362B-1D1E-4D76-8B63-D6BEF8BC0067"/>
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="txtIdSlyc" CssClass="text-danger" ErrorMessage="Código Identificador en el SLYC" />
                             </div>
                         </div>
                         <hr class="my-4">
@@ -65,14 +64,39 @@
                             </div>
                             <div class="mb-3 col-md-6">
                                 <label class="small mb-1" for="inputBillingCCNumber">Fecha de Expiración</label>
-                                <asp:TextBox runat="server" ID="txtFechaExp" CssClass="form-control form-control-user" Placeholder="Ej. Perez"/>
+                                <asp:TextBox runat="server" ID="txtFechaExp" CssClass="form-control form-control-user" TextMode="Date" Placeholder="Ej. Perez"/>
                                 <asp:RequiredFieldValidator runat="server" ControlToValidate="txtFechaExp" CssClass="text-danger" ErrorMessage="Fecha de expiración de licencia" />
                             </div>
                         </div>
                         <hr class="my-4">
                         <h5 class="card-title mb-4">Seleccionar cuenta principal</h5>
                         <div class="row">
-
+                            <div class="table-responsive">
+                                <asp:GridView runat="server" ID="gvUsuariosASSMCAList" CssClass="table table-bordered usuariosASSMCAListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="Nombre">
+                                    <Columns>
+                                        <asp:TemplateField HeaderText="Seleccionar">
+                                            <ItemTemplate>
+                                                <div style="text-align:center">
+                                                    <asp:CheckBox ID="chkRegistrado" AutoPostBack="true" OnCheckedChanged="chk_Changed" runat="server" />
+                                                </div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField HeaderText="Nombre">
+                                            <ItemTemplate>
+                                                <div class="row">&nbsp <%# Eval("Nombre") %></div>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:BoundField DataField="Email" HeaderText="CorreoElectrónico" />
+                                    </Columns>
+                                    <EmptyDataTemplate>
+                                        No existen usuarios adicionales al de usted
+                                    </EmptyDataTemplate>
+                                    <%--<i class='fas fa-fw fa-trash-alt'></i>--%>
+                                </asp:GridView>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <asp:Button runat="server" Text="Registrar" OnClick="BtnRegistrar_Click" CssClass="btn btn-primary" />
                         </div>
                     </div>
                 </div>
@@ -80,5 +104,40 @@
         </div>
     </div>
 
+    <div id="coverScreen"  class="LockOn">
+                        </div>
 </main>
+
+<script type="text/javascript">
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
+    $(window).on('load', function () {
+        $("#coverScreen").hide();
+    });
+
+    function divShow() {
+        $("#coverScreen").show();
+    }
+
+    function sweetAlertRef(titulo, texto, icono, ref) {
+        var baseUrl = "<%=ResolveClientUrl("~/")%>" + ref;
+
+        swal({
+            title: titulo,
+            text: texto,
+            icon: icono
+        }).then((value) => { window.location.href = baseUrl; });
+    }
+
+    function sweetAlert(titulo, texto, icono) {
+        swal({
+            title: titulo,
+            text: texto,
+            icon: icono
+        })
+    }
+
+</script>
 </asp:Content>
