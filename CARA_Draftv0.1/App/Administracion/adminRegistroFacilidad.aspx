@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="adminRegistroFacilidad.aspx.cs" Inherits="CARA_Draftv0._1.App.Administracion.adminRegistroFacilidad" %>
+﻿<%@ Page Title="" Language="C#" MaintainScrollPositionOnPostback="true" MasterPageFile="~/Website.Master" AutoEventWireup="true" CodeBehind="adminRegistroFacilidad.aspx.cs" Inherits="CARA_Draftv0._1.App.Administracion.adminRegistroFacilidad" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -95,7 +95,8 @@
                                 </asp:GridView>
                             </div>
                         </div>
-                        <div class="row">
+                        <hr />
+                        <div class="row justify-content-center">
                             <asp:Button runat="server" Text="Registrar" OnClick="BtnRegistrar_Click" CssClass="btn btn-primary" />
                         </div>
                     </div>

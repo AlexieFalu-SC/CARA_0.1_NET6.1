@@ -21,10 +21,11 @@ namespace CARA_Draftv0._1.App.Administracion
             if (!IsPostBack)
             {
                 PrepararDropDownLists();
+                PrepararGridView();
             }
         }
 
-        private void PrepararDropDownLists()
+        private void PrepararGridView()
         {
             Usuario = (ApplicationUser)Session["Usuario"];
 
@@ -38,16 +39,8 @@ namespace CARA_Draftv0._1.App.Administracion
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
 
-                    var licencias = dsCARA.CA_LICENCIA.Select(r => new ListItem { Value = r.PK_Licencia.ToString(), Text = r.NB_Licencia }).ToList();
-
-                    ddlLicencia.DataValueField = "Value";
-                    ddlLicencia.DataTextField = "Text";
-                    ddlLicencia.DataSource = licencias;
-                    ddlLicencia.DataBind();
-                    ddlLicencia.Items.Insert(0, new ListItem("", "0"));
-
                     var usersList = dsCARA.VW_LISTA_USUARIOS_REGISTRADOS.Where(a => a.PK_Usuario != Usuario.Id).Where(p => rolesRegistrado.Contains(p.Rol)).DefaultIfEmpty().ToList();
-                   
+
                     gvUsuariosASSMCAList.DataSource = usersList;
 
                     gvUsuariosASSMCAList.DataBind();
@@ -55,6 +48,41 @@ namespace CARA_Draftv0._1.App.Administracion
                     gvUsuariosASSMCAList.UseAccessibleHeader = true;
                     gvUsuariosASSMCAList.HeaderRow.TableSection = TableRowSection.TableHeader;
                     gvUsuariosASSMCAList.FooterRow.TableSection = TableRowSection.TableFooter;
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string mensaje;
+
+                if (ex.InnerException == null)
+                {
+                    mensaje = ex.Message;
+                }
+                else
+                {
+                    mensaje = ex.InnerException.Message;
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
+            }
+        }
+
+        private void PrepararDropDownLists()
+        {
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+
+                    var licencias = dsCARA.CA_LICENCIA.Select(r => new ListItem { Value = r.PK_Licencia.ToString(), Text = r.NB_Licencia }).ToList();
+
+                    ddlLicencia.DataValueField = "Value";
+                    ddlLicencia.DataTextField = "Text";
+                    ddlLicencia.DataSource = licencias;
+                    ddlLicencia.DataBind();
+                    ddlLicencia.Items.Insert(0, new ListItem("", "0"));
 
                 }
 
@@ -159,28 +187,76 @@ namespace CARA_Draftv0._1.App.Administracion
             CheckBox chkstatus = (CheckBox)sender;
             GridViewRow row = (GridViewRow)chkstatus.NamingContainer;
 
+            string email = string.Empty;
+
             if(chkstatus.Checked == true)
             {
                 foreach (GridViewRow item in gvUsuariosASSMCAList.Rows)
                 {
                     if(row.RowIndex != item.RowIndex)
                     {
-                        CheckBox chkrow = (CheckBox)item.FindControl("chkRegistrado");
+                        //CheckBox chkrow = (CheckBox)item.FindControl("chkRegistrado");
 
-                        chkrow.Checked = false;
-                        chkrow.Enabled = false;
+                        //chkrow.Checked = false;
+                        //chkrow.Enabled = false;
+
                     }
+                }
+
+                try
+                {
+                    using (CARAEntities dsCARA = new CARAEntities())
+                    {
+                        email = gvUsuariosASSMCAList.Rows[row.RowIndex].Cells[2].Text;
+
+                        var usersList = dsCARA.VW_LISTA_USUARIOS_REGISTRADOS.Where(a => a.Email == email).DefaultIfEmpty().ToList();
+
+                        gvUsuariosASSMCAList.DataSource = usersList;
+
+                        gvUsuariosASSMCAList.DataBind();
+
+                        CheckBox chkrow = (CheckBox)gvUsuariosASSMCAList.Rows[0].Cells[0].FindControl("chkRegistrado");
+
+                        chkrow.Checked = true;
+
+                        gvUsuariosASSMCAList.UseAccessibleHeader = true;
+                        gvUsuariosASSMCAList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                        gvUsuariosASSMCAList.FooterRow.TableSection = TableRowSection.TableFooter;
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    string mensaje;
+
+                    if (ex.InnerException == null)
+                    {
+                        mensaje = ex.Message;
+                    }
+                    else
+                    {
+                        mensaje = ex.InnerException.Message;
+                    }
+
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
                 }
             }
             else
             {
-                foreach (GridViewRow item in gvUsuariosASSMCAList.Rows)
-                {
-                        CheckBox chkrow = (CheckBox)item.FindControl("chkRegistrado");
+                //    foreach (GridViewRow item in gvUsuariosASSMCAList.Rows)
+                //    {
+                //            CheckBox chkrow = (CheckBox)item.FindControl("chkRegistrado");
 
-                        chkrow.Enabled = true;
-                        chkrow.Checked = false;
-                }
+                //            chkrow.Enabled = true;
+                //            chkrow.Checked = false;
+                //    }
+
+                //    gvUsuariosASSMCAList.UseAccessibleHeader = true;
+                //    gvUsuariosASSMCAList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                //    gvUsuariosASSMCAList.FooterRow.TableSection = TableRowSection.TableFooter;
+
+                PrepararGridView();
             }
         }
     }
