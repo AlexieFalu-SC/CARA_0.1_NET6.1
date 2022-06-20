@@ -41,7 +41,7 @@ namespace CARA_Draftv0._1.App.Administracion
                     var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
                     var facilidades = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).DefaultIfEmpty().ToList();
 
-                    var roles = context.Roles.Where(p => !rolesInternos.Contains(p.Name)).Select(r => new ListItem { Value = r.Name, Text = r.Name }).ToList();
+                    var roles = context.Roles.Where(p => rolesInternos.Contains(p.Name)).Select(r => new ListItem { Value = r.Name, Text = r.Name }).ToList();
 
                     ddlRol.DataValueField = "Value";
                     ddlRol.DataTextField = "Text";

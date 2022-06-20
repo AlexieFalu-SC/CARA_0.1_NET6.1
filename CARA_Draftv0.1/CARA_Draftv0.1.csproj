@@ -199,6 +199,7 @@
     <Content Include="Account\TwoFactorAuthenticationSignIn.aspx" />
     <Content Include="Account\VerifyPhoneNumber.aspx" />
     <Content Include="App\Administracion\adminAdministrador.aspx" />
+    <Content Include="App\Administracion\adminEdicionUsuarioInterno.aspx" />
     <Content Include="App\Administracion\adminListaCentros.aspx" />
     <Content Include="App\Administracion\adminListaUsuarios.aspx" />
     <Content Include="App\Administracion\adminRegistrado.aspx" />
@@ -2690,6 +2691,13 @@
     </Compile>
     <Compile Include="App\Administracion\adminAdministrador.aspx.designer.cs">
       <DependentUpon>adminAdministrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\adminEdicionUsuarioInterno.aspx.cs">
+      <DependentUpon>adminEdicionUsuarioInterno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\adminEdicionUsuarioInterno.aspx.designer.cs">
+      <DependentUpon>adminEdicionUsuarioInterno.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\adminListaCentros.aspx.cs">
       <DependentUpon>adminListaCentros.aspx</DependentUpon>

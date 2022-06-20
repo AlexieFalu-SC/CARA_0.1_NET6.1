@@ -174,6 +174,20 @@ namespace CARA_Draftv0._1
                         divAdministracion.Visible = true;
                         secManejoUsuariosAdministrativo.Visible = true;
                     }
+                    else if(userManager.IsInRole(Usuario.Id, "Supervisor"))
+                    {
+                        divExpedientes.Visible = true;
+
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaAdministradores.Visible = true;
+                        secExportarAdministradores.Visible = true;
+                    }
+                    else
+                    {
+                        divTablerosAnaliticos.Visible = true;
+                        secAnaliticaAdministradores.Visible = true;
+                        secExportarAdministradores.Visible = true;
+                    }
                     //secAnaliticaRegistradores.Visible = true;
                 }
                 else

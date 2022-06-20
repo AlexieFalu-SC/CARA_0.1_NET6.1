@@ -50,7 +50,7 @@
                       </div>
                     </div>
                     <asp:Button runat="server" OnClick="LogIn" Text="Acceder" CssClass="btn btn-primary btn-user btn-block" />
-                    <asp:Button runat="server" ID="ResendConfirm"  OnClick="SendEmailConfirmationToken" Text="Reenviar Confirmación" Visible="false" CssClass="btn btn-primary btn-user btn-block"/>
+                    <asp:Button runat="server" ID="ResendConfirm"  OnClick="SendEmailConfirmationToken" Text="Reenviar Confirmación" Visible="false" CausesValidation="false" CssClass="btn btn-primary btn-user btn-block"/>
                   </div>
                   <hr>
                   <div class="text-center">
