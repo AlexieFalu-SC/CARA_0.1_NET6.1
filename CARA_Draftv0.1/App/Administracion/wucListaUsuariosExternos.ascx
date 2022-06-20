@@ -60,7 +60,7 @@
                     <asp:TemplateField HeaderText="Acciones"> 
                         <ItemTemplate>
                             <asp:Label ID="Edit" runat="server" Enabled="true"></asp:Label>
-                            <a href='<%=ResolveClientUrl("~/Account/EditUser.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
+                            <a href='<%=ResolveClientUrl("~/App/Administracion/adminEdicionUsuarioExterno.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
                             <%# MyNewRow(Eval("Cuenta_Princiapal")) %>
                                 <asp:GridView ID="gvUsuariosSecList" runat="server" AutoGenerateColumns="false" DataKeyNames="Cuenta_Princiapal" CssClass="table table-bordered">
                                     <Columns>
@@ -96,7 +96,7 @@
                                         <asp:TemplateField HeaderText="Acciones"> 
                                             <ItemTemplate>
                                                 <asp:Label ID="Edit" runat="server" Enabled="true"></asp:Label>
-                                                <a href='<%=ResolveClientUrl("~/Account/EditUser.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
+                                                <a href='<%=ResolveClientUrl("~/App/Administracion/adminEdicionUsuarioExterno.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                     </Columns>

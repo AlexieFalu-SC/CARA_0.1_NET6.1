@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 
 namespace CARA_Draftv0._1.App.Administracion
 {
-    public partial class adminEdicionUsuarioInterno : System.Web.UI.Page
+    public partial class adminEdicionUsuarioExterno : System.Web.UI.Page
     {
         ApplicationDbContext context = new ApplicationDbContext();
         ApplicationUser Usuario = new ApplicationUser();
@@ -23,52 +23,8 @@ namespace CARA_Draftv0._1.App.Administracion
 
             if (!this.IsPostBack)
             {
-                PrepararDropDownLists();
                 SetUserInformation(pk_usuario);
-            }
-        }
-
-        private void PrepararDropDownLists()
-        {
-            Usuario = (ApplicationUser)Session["Usuario"];
-
-            try
-            {
-                using (CARAEntities dsCARA = new CARAEntities())
-                {
-                    List<string> rolesInternos = new List<string>()
-                    {
-                        "Supervisor", "Estadistico"
-                    };
-
-                    var centrosMap = dsCARA.CA_USUARIO_CENTRO.Where(a => a.FK_Usuario.Equals(Usuario.Id)).Select(f => f.FK_Centro).DefaultIfEmpty();
-                    var facilidades = dsCARA.CA_CENTRO.Where(u => centrosMap.Contains(u.PK_Centro)).DefaultIfEmpty().ToList();
-
-                    var roles = context.Roles.Where(p => rolesInternos.Contains(p.Name)).Select(r => new ListItem { Value = r.Name, Text = r.Name }).ToList();
-
-                    ddlRol.DataValueField = "Value";
-                    ddlRol.DataTextField = "Text";
-                    ddlRol.DataSource = roles;
-                    ddlRol.DataBind();
-                    //ddlRol.Items.Insert(0, new ListItem("", "0"));
-
-                }
-
-            }
-            catch (Exception ex)
-            {
-                string mensaje;
-
-                if (ex.InnerException == null)
-                {
-                    mensaje = ex.Message;
-                }
-                else
-                {
-                    mensaje = ex.InnerException.Message;
-                }
-
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
+                PrepararCentrosList();
             }
         }
 
@@ -87,11 +43,106 @@ namespace CARA_Draftv0._1.App.Administracion
             this.NB_Segundo.Text = user.NB_Segundo;
             this.AP_Primero.Text = user.AP_Primero;
             this.AP_Segundo.Text = user.AP_Segundo;
-            this.ddlRol.SelectedValue = rol;
+            this.lblRol.Text = userManager.GetRoles(user.Id).FirstOrDefault().ToString();
 
-            
+            if (userManager.IsInRole(user.Id, "Registrado Usuario"))
+            {
+                var cla = user.Claims.ToList();
+
+                var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                if(RegistroPerfiles > 0)
+                {
+                    for (int i = 0; i < chkModulos.Items.Count; i++)
+                    {
+                        if (chkModulos.Items[i].Value == "RegistroPerfiles")
+                        {
+                            chkModulos.Items[i].Selected = true;
+                        }
+
+                    }
+                }
+                if (AccesoExpedientes > 0)
+                {
+                    for (int i = 0; i < chkModulos.Items.Count; i++)
+                    {
+                        if (chkModulos.Items[i].Value == "AccesoExpedientes")
+                        {
+                            chkModulos.Items[i].Selected = true;
+                        }
+
+                    }
+                }
+                if (AccesoTableros > 0)
+                {
+                    for (int i = 0; i < chkModulos.Items.Count; i++)
+                    {
+                        if (chkModulos.Items[i].Value == "AccesoTableros")
+                        {
+                            chkModulos.Items[i].Selected = true;
+                        }
+
+                    }
+                }
+            }
 
 
+        }
+
+        private void PrepararCentrosList()
+        {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            var user = userManager.FindById(pk_usuario);
+
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    var centros = dsCARA.VW_CENTROS_ADMINISTRADORES.Where(a => a.Email == user.Email).DefaultIfEmpty().ToList();
+
+                    if (centros[0] != null)
+                    {
+                        foreach (VW_CENTROS_ADMINISTRADORES item in centros)
+                        {
+                            if (item.Estatus == "Activo")
+                            {
+                                item.Estatus = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Activo</span>";
+                            }
+                            else
+                            {
+                                item.Estatus = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>Inactivo</span>";
+                            }
+                        }
+                    }
+
+                    gvCentrosList.DataSource = centros;
+
+                    gvCentrosList.DataBind();
+
+                    gvCentrosList.UseAccessibleHeader = true;
+                    gvCentrosList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    gvCentrosList.FooterRow.TableSection = TableRowSection.TableFooter;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string mensaje = string.Empty;
+                if (ex.InnerException == null)
+                {
+                    mensaje = ex.Message;
+                }
+                else
+                {
+                    mensaje = ex.InnerException.Message;
+                }
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
+            }
         }
 
         protected void ProfileUpdate_Click(object sender, EventArgs e)
