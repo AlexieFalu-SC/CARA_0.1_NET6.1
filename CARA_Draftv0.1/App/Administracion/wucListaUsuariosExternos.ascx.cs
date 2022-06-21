@@ -44,20 +44,8 @@ namespace CARA_Draftv0._1.App.Administracion
                     {
                         foreach (VW_LISTA_USUARIOS_REGISTRADOS item in usersList)
                         {
-                            if (item.Rol == "SuperAdmin")
-                            {
-                                item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
-                            }
-                            else if (item.Rol == "Supervisor")
-                            {
-                                item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
-                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
-                            }
-                            else
-                            {
-                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
-                            }
-
+                            item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total Bajo Su Cuenta</span>";
+                            
                             if (item.Confirmado == "Confirmada")
                             {
                                 item.Confirmado = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>SI</span>";
@@ -111,20 +99,29 @@ namespace CARA_Draftv0._1.App.Administracion
                 {
                     var usersList = dsCARA.VW_LISTA_USUARIOS_REGISTRADOS.Where(a => a.PK_Usuario != S_id).Where(p => p.Cuenta_Princiapal == S_id).DefaultIfEmpty().ToList();
 
+                    var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
                     if (usersList[0] != null)
                     {
                         foreach (VW_LISTA_USUARIOS_REGISTRADOS item in usersList)
                         {
-                            if (item.Rol == "SuperAdmin")
+                            var subuser = userManager.FindById(item.PK_Usuario);
+
+                            var cla = subuser.Claims.ToList();
+
+                            var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                            var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                            var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                            if (RegistroPerfiles > 0)
                             {
-                                item.Accesos += "<span class='badge bg-warning text-white text-wrap' style='width: 6rem;'>Acceso Total</span>";
+                                item.Accesos += "<span class='badge bg-secondary text-white text-wrap' style='width: 6rem;'>Registrar Perfiles</span>";
                             }
-                            else if (item.Rol == "Supervisor")
+                            if (AccesoExpedientes > 0)
                             {
                                 item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
-                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
                             }
-                            else
+                            if (AccesoTableros > 0)
                             {
                                 item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
                             }
@@ -152,8 +149,6 @@ namespace CARA_Draftv0._1.App.Administracion
                         SC.DataBind();
                     }
 
-
-                    
                 }
             }
         }
