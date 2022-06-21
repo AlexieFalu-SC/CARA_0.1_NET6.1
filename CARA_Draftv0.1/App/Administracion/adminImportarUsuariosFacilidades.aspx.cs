@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClosedXML.Excel;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -53,6 +54,8 @@ namespace CARA_Draftv0._1.App.Administracion
 
                     GridView1.DataSource = dt;
                     GridView1.DataBind();
+
+                    this.divExcel.Visible = true;
                 }
             }
         }
