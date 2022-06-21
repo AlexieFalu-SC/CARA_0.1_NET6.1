@@ -123,6 +123,24 @@ namespace CARA_Draftv0._1.App.Administracion
         protected global::System.Web.UI.WebControls.GridView gvCentrosList;
 
         /// <summary>
+        /// divPrincipal control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divPrincipal;
+
+        /// <summary>
+        /// gvSubCuentasList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvSubCuentasList;
+
+        /// <summary>
         /// NewPasswordLabel control.
         /// </summary>
         /// <remarks>

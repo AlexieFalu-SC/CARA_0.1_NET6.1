@@ -47,13 +47,16 @@ namespace CARA_Draftv0._1.App.Administracion
 
             if (userManager.IsInRole(user.Id, "Registrado Usuario"))
             {
+                this.divChkModulos.Visible = true;
+                this.divPrincipal.Visible = false;
+
                 var cla = user.Claims.ToList();
 
                 var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
                 var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
                 var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
 
-                if(RegistroPerfiles > 0)
+                if (RegistroPerfiles > 0)
                 {
                     for (int i = 0; i < chkModulos.Items.Count; i++)
                     {
@@ -87,8 +90,74 @@ namespace CARA_Draftv0._1.App.Administracion
                     }
                 }
             }
+            else
+            {
+                this.divChkModulos.Visible = false;
+                this.divPrincipal.Visible = true;
 
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    var usersList = dsCARA.VW_LISTA_USUARIOS_REGISTRADOS.Where(a => a.PK_Usuario != pk_usuario).Where(p => p.Cuenta_Princiapal == pk_usuario).DefaultIfEmpty().ToList();
 
+                    if (usersList[0] != null)
+                    {
+                        foreach (VW_LISTA_USUARIOS_REGISTRADOS item in usersList)
+                        {
+                            var subuser = userManager.FindById(item.PK_Usuario);
+
+                            var cla = subuser.Claims.ToList();
+
+                            var RegistroPerfiles = cla.Where(x => x.ClaimValue == "RegistroPerfiles").Count();
+                            var AccesoExpedientes = cla.Where(x => x.ClaimValue == "AccesoExpedientes").Count();
+                            var AccesoTableros = cla.Where(x => x.ClaimValue == "AccesoTableros").Count();
+
+                            if (RegistroPerfiles > 0)
+                            {
+                                item.Accesos += "<span class='badge bg-secondary text-white text-wrap' style='width: 6rem;'>Registrar Perfiles</span>";
+                            }
+                            if (AccesoExpedientes > 0)
+                            {
+                                item.Accesos += "<span class='badge bg-primary text-white text-wrap'>Ver Expedientes</span>&nbsp";
+                            }
+                            if (AccesoTableros > 0)
+                            {
+                                item.Accesos += "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Tableros y Datos</span>&nbsp";
+                            }
+
+                            if (item.Confirmado == "Confirmada")
+                            {
+                                item.Confirmado = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>SI</span>";
+                            }
+                            else
+                            {
+                                item.Confirmado = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>NO</span>";
+                            }
+
+                            if (item.Estatus == "Activo")
+                            {
+                                item.Estatus = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Activo</span>";
+                            }
+                            else
+                            {
+                                item.Estatus = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>Inactivo</span>";
+                            }
+                        }
+                        gvSubCuentasList.DataSource = usersList;
+
+                        gvSubCuentasList.DataBind();
+
+                        gvSubCuentasList.UseAccessibleHeader = true;
+                        gvSubCuentasList.HeaderRow.TableSection = TableRowSection.TableHeader;
+                        gvSubCuentasList.FooterRow.TableSection = TableRowSection.TableFooter;
+                    }
+                    else
+                    {
+                        gvSubCuentasList.DataSource = null;
+
+                        gvSubCuentasList.DataBind();
+                    }
+                }
+            }
         }
 
         private void PrepararCentrosList()
@@ -102,19 +171,19 @@ namespace CARA_Draftv0._1.App.Administracion
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    var centros = dsCARA.VW_CENTROS_ADMINISTRADORES.Where(a => a.Email == user.Email).DefaultIfEmpty().ToList();
+                    var centros = dsCARA.VW_USUARIOS_CENTROS_LICENCIAS.Where(a => a.PK_Usuario.Equals(pk_usuario)).DefaultIfEmpty().ToList();
 
                     if (centros[0] != null)
                     {
-                        foreach (VW_CENTROS_ADMINISTRADORES item in centros)
+                        foreach (VW_USUARIOS_CENTROS_LICENCIAS item in centros)
                         {
-                            if (item.Estatus == "Activo")
+                            if (item.CentroEstatus == "Activo")
                             {
-                                item.Estatus = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Activo</span>";
+                                item.CentroEstatus = "<span class='badge bg-success text-white text-wrap' style='width: 6rem;'>Activo</span>";
                             }
                             else
                             {
-                                item.Estatus = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>Inactivo</span>";
+                                item.CentroEstatus = "<span class='badge bg-danger text-white text-wrap' style='width: 6rem;'>Inactivo</span>";
                             }
                         }
                     }

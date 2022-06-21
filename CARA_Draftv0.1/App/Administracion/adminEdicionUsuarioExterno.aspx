@@ -110,36 +110,81 @@
                     </div>
                     <div class="row">
                         <div class="col-xl-4">
-                        </div>
-                        <div class="col-xl-8">
-                                <div class="card mb-4">
-                                        <div class="card-header">Facilidades</div>
-                                        <div class="card-body">
-                                            <div class="table-responsive">
-
-                                                <asp:GridView runat="server" ID="gvCentrosList" CssClass="table table-bordered usuariosASSMCAListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="PK_Centro">
-                                                    <Columns>
-                                                        <asp:BoundField DataField="Centro" HeaderText="Centro" HeaderStyle-HorizontalAlign="Center">
-                                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                                                    </asp:BoundField>
-                                                    <asp:BoundField DataField="ID_Proveedor" HeaderText="ID Proveedor" HeaderStyle-HorizontalAlign="Center">
-                                                        <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
-                                                    </asp:BoundField>
-                                                        <asp:TemplateField HeaderText="Estatus">
-                                                            <ItemTemplate>
-                                                                <div class="row">&nbsp <%# Eval("Estatus") %></div>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
+                            <div class="card mb-4">
+                                <div class="card-header">Facilidades</div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <asp:GridView runat="server" ID="gvCentrosList" CssClass="table table-bordered usuariosExternosListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="PK_Centro">
+                                            <Columns>
+                                                <asp:BoundField DataField="NB_Centro" HeaderText="Centro" HeaderStyle-HorizontalAlign="Center">
+                                                <HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+                                            </asp:BoundField>
+                                                <asp:TemplateField HeaderText="Estatus">
+                                                    <ItemTemplate>
+                                                        <div class="row">&nbsp <%# Eval("CentroEstatus") %></div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
                             
-                                                    </Columns>
-                                                    <EmptyDataTemplate>
-                                                        No existen usuarios adicionales al de usted
-                                                    </EmptyDataTemplate>
-                                                    <%--<i class='fas fa-fw fa-trash-alt'></i>--%>
-                                                </asp:GridView>
-                                            </div>
+                                            </Columns>
+                                            <EmptyDataTemplate>
+                                                No existen facilidades atadas a este usuario
+                                            </EmptyDataTemplate>
+                                            <%--<i class='fas fa-fw fa-trash-alt'></i>--%>
+                                        </asp:GridView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-8" runat="server" id="divPrincipal" visible="false">
+                                <div class="card mb-4">
+                                    <div class="card-header">Facilidades</div>
+                                    <div class="card-body">
+                                        <div class="table-responsive">
+                                            <asp:GridView runat="server" ID="gvSubCuentasList" CssClass="table table-bordered usuariosASSMCAListTable" Width="100%" AutoGenerateColumns="false" DataKeyNames="PK_Usuario">
+                                                <Columns>
+                                                    <asp:TemplateField HeaderText="Usuario">
+                                                        <ItemTemplate>
+                                                            <div class="row d-flex align-items-center">
+                                                                <div class="avatar me-2">
+                                                                    &nbsp
+                                                                    <asp:Image ID="profileImg" ImageUrl='<%# Eval("Imagen_Perfil") %>' runat="server" CssClass="avatar-img img-fluid" />
+                                                                </div>
+                                         
+                                                                &nbsp
+                                                                <%# Eval("Nombre") %></div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="Email" HeaderText="CorreoElectrónico" />
+                                                    <asp:BoundField DataField="Rol" HeaderText="Rol" />
+                                                    <asp:TemplateField HeaderText="Módulos Accesibles">
+                                                        <ItemTemplate>
+                                                            <div class="row">&nbsp <%# Eval("Accesos") %></div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Confirmado">
+                                                        <ItemTemplate>
+                                                            <div class="row">&nbsp <%# Eval("Confirmado") %></div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Estatus">
+                                                        <ItemTemplate>
+                                                            <div class="row">&nbsp <%# Eval("Estatus") %></div>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Acciones"> 
+                                                        <ItemTemplate>
+                                                            <asp:Label ID="Edit" runat="server" Enabled="true"></asp:Label>
+                                                            <a href='<%=ResolveClientUrl("~/App/Administracion/adminEdicionUsuarioExterno.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                </Columns>
+                                                <EmptyDataTemplate>
+                                                    No existen usuarios bajo esta cuenta principal de registrado
+                                                </EmptyDataTemplate>
+                                            </asp:GridView>
                                         </div>
                                     </div>
+                                </div>
                         </div>
                     </div>
                 </div>
