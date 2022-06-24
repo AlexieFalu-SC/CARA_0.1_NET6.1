@@ -246,7 +246,8 @@
                                 <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroUsuarioInterno")%>">Registro de Usuarios</a>
                                 <hr />
                                     <h6 class="collapse-header text-wrap">Usuarios Externos (Registrados):</h6>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroUsuarioExtPrincipal")%>">Registro de Usuarios</a>
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroUsuarioExtPrincipal")%>">Registro de Usuarios</a>
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminImportarUsuariosFacilidades")%>">Importar Usuarios</a>
                                 </div>
                                <%-- <hr class="sidebar-divider">--%>
                                 <div id="secManejoUsuariosRegistrado" runat="server" visible="false">
