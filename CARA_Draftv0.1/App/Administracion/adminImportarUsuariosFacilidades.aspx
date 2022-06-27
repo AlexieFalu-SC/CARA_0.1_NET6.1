@@ -84,6 +84,17 @@
                                 <div class="text-center">
                                     <h3 class="page-header-title">
                                         <div class="page-header-icon">
+                                        </div>
+                                    </h3>
+                                    <div style="text-align:center" class="small font-italic text-muted mb-4"><span>Aqui puede importar nuevas cuentas principales de registrados y su primera facilidad atada, utilizando un documento EXCEL (.xslx). Puede <a href="<%=ResolveClientUrl("~/Documents/ImportarUsuarios_Ejemplo.xlsx")%>"><span>descargar este ejemplo</span></a> , el cual indica el formato del documento el cual debe contener dies (10) columnas con exactamente el formato indicado el ejemplo.</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="text-center">
+                                    <h3 class="page-header-title">
+                                        <div class="page-header-icon">
                                         <i id="upIcon" class="fas fa-fw fa-upload"></i>
                                         </div>
                                     </h3>
@@ -95,7 +106,14 @@
                         <div class="row" runat="server" ID="btnUpload" style="display:none">
                             <div class="col">
                                 <div class="text-center">
-                                    <asp:Button Text="Upload"  CssClass="choose-file-button" OnClick="Upload" OnClientClick="divShow();" runat="server" />
+                                    <asp:Button Text="Pre-Agregar Transacciones"  CssClass="btn btn-link" OnClick="Upload" OnClientClick="divShow();" runat="server" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row" runat="server" ID="btnRegistrar" visible="false">
+                            <div class="col">
+                                <div class="text-center">
+                                    <asp:Button Text="Confirmar Registro"  CssClass="btn btn-link" OnClick="btnRegistrar_Click" OnClientClick="divShow();" runat="server" />
                                 </div>
                             </div>
                         </div>
@@ -105,12 +123,21 @@
         </div>
         <div class="row">
             <asp:FileUpload ID="FileUpload1" style="display: none" OnChange="uploadChange()" runat="server" />
-            
 
         </div>
+        
+        <br />
+
         <div class="row" runat="server" id="divExcel" visible="false">
-             <asp:GridView ID="GridView1" runat="server">
-            </asp:GridView>
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <asp:GridView ID="GridView1" runat="server" CssClass="table table-bordered usuariosExternosListTable" Width="100%">
+                        </asp:GridView>
+                    </div>
+                </div>
+            </div>
+             
         </div>
     </div>
 

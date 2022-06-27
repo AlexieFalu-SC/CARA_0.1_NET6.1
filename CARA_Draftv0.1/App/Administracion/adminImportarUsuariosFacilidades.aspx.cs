@@ -6,6 +6,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Web;
@@ -56,9 +57,56 @@ namespace CARA_Draftv0._1.App.Administracion
                             //Use the first row to add columns to DataTable.
                             if (firstRow)
                             {
-                                foreach (IXLCell cell in row.Cells())
+                                //foreach (IXLCell cell in row.Cells())
+                                //{
+                                //    dt.Columns.Add(cell.Value.ToString());
+                                //}
+                                for (int i = 0; i < 11; i++)
                                 {
-                                    dt.Columns.Add(cell.Value.ToString());
+                                    if(i == 0)
+                                    {
+                                        dt.Columns.Add("Email");
+                                    }
+                                    else if (i == 1)
+                                    {
+                                        dt.Columns.Add("Nombre Primero");
+                                    }
+                                    else if (i == 2)
+                                    {
+                                        dt.Columns.Add("Nombre Segundo");
+                                    }
+                                    else if (i == 3)
+                                    {
+                                        dt.Columns.Add("Apellido Primero");
+                                    }
+                                    else if (i == 4)
+                                    {
+                                        dt.Columns.Add("Apellido Segundo");
+                                    }
+                                    else if (i == 5)
+                                    {
+                                        dt.Columns.Add("Telefono");
+                                    }
+                                    else if (i == 6)
+                                    {
+                                        dt.Columns.Add("Nombre de Facilidad");
+                                    }
+                                    else if (i == 7)
+                                    {
+                                        dt.Columns.Add("Nombre de Licencia");
+                                    }
+                                    else if (i == 8)
+                                    {
+                                        dt.Columns.Add("Numero de Licencia");
+                                    }
+                                    else if (i == 9)
+                                    {
+                                        dt.Columns.Add("Fecha Expiracion Licencia");
+                                    }
+                                    else if (i == 10)
+                                    {
+                                        dt.Columns.Add("Codigo de Licencia");
+                                    }
                                 }
                                 firstRow = false;
                             }
@@ -116,6 +164,10 @@ namespace CARA_Draftv0._1.App.Administracion
                                                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
                                                     return;
                                                 }
+                                                else
+                                                {
+                                                    dt.Rows[dt.Rows.Count - 1][10] = licencias.PK_Licencia.ToString();
+                                                }
                                             }
                                             else if (i == 9)
                                             {
@@ -145,7 +197,9 @@ namespace CARA_Draftv0._1.App.Administracion
                             GridView1.DataBind();
 
                             this.divExcel.Visible = true;
+                            this.btnRegistrar.Visible = true;
                         }
+
                     }
                 }
             }
@@ -168,6 +222,100 @@ namespace CARA_Draftv0._1.App.Administracion
 
 
             
+        }
+
+        protected void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            var manager = Context.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            PK_Sesion = Session["PK_Sesion"].ToString();
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            string mensaje = string.Empty;
+
+            Guid idSlyc = Guid.NewGuid();
+
+            try
+            {
+                using (CARAEntities dsCARA = new CARAEntities())
+                {
+                    foreach (GridViewRow row in GridView1.Rows)
+                    {
+                        string email = row.Cells[0].Text;
+                        string nbPrimero = row.Cells[1].Text;
+                        string nbSegundo = row.Cells[2].Text;
+                        string apPrimero = row.Cells[3].Text;
+                        string apSegundo = row.Cells[4].Text;
+                        string telefono = row.Cells[5].Text;
+                        string nbFacilidad = row.Cells[6].Text;
+
+                        string nblicencia = row.Cells[7].Text;
+                        int pk_licencia = Convert.ToInt32(row.Cells[10].Text);
+
+                        string numLicencia = row.Cells[8].Text;
+                        DateTime fechaExp = Convert.ToDateTime(row.Cells[9].Text);
+
+                        var user = new ApplicationUser()
+                        {
+                            UserName = email.ToLower(),
+                            Email = email.ToLower(),
+                            NB_Primero = nbPrimero,
+                            NB_Segundo = nbSegundo,
+                            AP_Primero = apPrimero,
+                            AP_Segundo = apSegundo,
+                            Tel_Celular = telefono,
+                            Tel_Trabajo = telefono,
+                            PasswordChanged = false,
+                            Active = true,
+                            EmailConfirmed = false,
+                            LockoutEnabled = false
+                        };
+
+                        //var newuser = userManager.Create(user, password);
+                        var newuser = userManager.Create(user);
+
+                        if (newuser.Succeeded)
+                        {
+                            userManager.AddToRole(user.Id, "Registrado Administrativo");
+
+                            dsCARA.SPC_CENTRO(nbFacilidad, idSlyc, "", email);
+
+                            int pk_centro = dsCARA.VW_CENTROS_ADMINISTRADORES.Where(a => a.Email == email.ToLower()).Select(f => f.PK_Centro).First();
+
+                            dsCARA.SPC_ATAR_CENTRO_LICENCIA(pk_centro, pk_licencia, numLicencia, fechaExp);
+
+                            dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "UsuarioRegistrado", "C", user.Id, pk_centro, null, null);
+
+                            string code = manager.GenerateEmailConfirmationToken(user.Id);
+                            string callbackUrl = IdentityHelper.GetUserConfirmationRedirectUrl(code, user.Id, Request);
+                            string body = CreateBody(callbackUrl, "1234", nbPrimero, apPrimero, email);
+                            manager.SendEmail(user.Id, "Confirmacion de su cuenta", body);
+                        }
+
+                    }
+
+                    mensaje = "El registro de los nuevos usuarios y su primera facilidad fué correcto. Se envió un email de confirmación a los nuevos usuario para realizar la confirmación de cuenta.";
+
+                    ClientScript.RegisterStartupScript(this.GetType(), "Usuario Registrado", "sweetAlertRef('Usuario Registrado','" + mensaje + "','success','" + "App/Administracion/adminListaUsuarios.aspx" + "');", true);
+                }
+            }
+            catch (Exception ex)
+            {
+                if (ex.InnerException == null)
+                {
+                    mensaje = ex.Message;
+                }
+                else
+                {
+                    mensaje = ex.InnerException.Message;
+                }
+
+                //this.coverScreen.Visible = false;
+
+                ClientScript.RegisterStartupScript(this.GetType(), "Error ", "sweetAlert('Error','" + mensaje + "','error')", true);
+                return;
+            }
         }
 
         private static bool emailValidator(string email)
@@ -196,6 +344,23 @@ namespace CARA_Draftv0._1.App.Administracion
             var pattern = @"^\d{10}$";
             var options = System.Text.RegularExpressions.RegexOptions.Compiled | System.Text.RegularExpressions.RegexOptions.IgnoreCase;
             return System.Text.RegularExpressions.Regex.IsMatch(phone, pattern, options);
+        }
+
+        private string CreateBody(string Code, string password, string nbPrimero, string apPrimero,string email)
+        {
+            string body = string.Empty;
+            string code = "<a href =\"" + Code + "\" class=\"es-button\" target=\"_blank\" style=\"mso-style-priority:100 !important;text-decoration:none;-webkit-text-size-adjust:none;-ms-text-size-adjust:none;mso-line-height-rule:exactly;font-family:arial, 'helvetica neue', helvetica, sans-serif;font-size:18px;color:#4A7EB0;border-style:solid;border-color:#EFEFEF;border-width:10px 25px;display:inline-block;background:#EFEFEF;border-radius:0px;font-weight:normal;font-style:normal;line-height:22px;width:auto;text-align:center;\">Confirmar Cuenta</a>";
+            using (StreamReader reader = new StreamReader(Server.MapPath("~/App/EmailsHTML/ConfirmacionCuenta.html")))
+            {
+                body = reader.ReadToEnd();
+            }
+            body = body.Replace("{NombreCompleto}", nbPrimero + " " + apPrimero);
+            body = body.Replace("{email}", email);
+            body = body.Replace("{password}", password);
+            body = body.Replace("{botonConfirmar}", code);
+
+            return body;
+
         }
     }
 }
