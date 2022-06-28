@@ -60,15 +60,15 @@
                     <div class="col-auto mb-3">
                         <h3 class="page-header-title">
                             <div class="page-header-icon">
-                                <i class="fas fa-fw fa-user-edit"></i><span> Importar Cuentas Principales y Facilidades (REGISTRADOS)</span>
+                                <i class="fas fa-fw fa-user-edit"></i><span> Importar Nuevas Cuentas Principales y Su Primera Facilidad (REGISTRADOS)</span>
                             </div>
                         </h3>
                     </div>
-                    <div class="col-auto">
+                   <%-- <div class="col-auto">
                         <div class="btn-group mr-2">
                             <asp:Button runat="server" Text="PDF" OnClientClick="PrintDiv()" CssClass="btn btn-sm btn-outline-secondary" />
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                                         <div class="page-header-icon">
                                         </div>
                                     </h3>
-                                    <div style="text-align:center" class="small font-italic text-muted mb-4"><span>Aqui puede importar nuevas cuentas principales de registrados y su primera facilidad atada, utilizando un documento EXCEL (.xslx). Puede <a href="<%=ResolveClientUrl("~/Documents/ImportarUsuarios_Ejemplo.xlsx")%>"><span>descargar este ejemplo</span></a> , el cual indica el formato del documento el cual debe contener dies (10) columnas con exactamente el formato indicado el ejemplo.</span></div>
+                                    <div style="text-align:center" class="small font-italic text-muted mb-4"><span>Aqui puede importar nuevas cuentas principales de registrados y su primera facilidad atada, utilizando un documento EXCEL (.xslx). Puede <a href="<%=ResolveClientUrl("~/Documents/ImportarUsuarios_Ejemplo.xlsx")%>"><span>descargar este ejemplo</span></a> , el cual indica el formato del documento el cual debe contener dies (10) columnas con exactamente el formato indicado en el ejemplo.</span></div>
                                 </div>
                             </div>
                         </div>
