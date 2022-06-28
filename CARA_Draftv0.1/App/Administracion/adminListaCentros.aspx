@@ -66,7 +66,7 @@
                                     <asp:TemplateField HeaderText="Acciones"> 
                                         <ItemTemplate>
                                             <asp:Label ID="Edit" runat="server" Enabled="true"></asp:Label>
-                                            <a href='<%=ResolveClientUrl("~/Account/EditUser.aspx?pk_usuario=")%><%#Eval("PK_Centro")%>' ><i class='fas fa-fw fa-edit'></i></a>
+                                            <a href='<%=ResolveClientUrl("~/App/Administracion/adminEdicionFacilidad.aspx?pk_centro=")%><%#Eval("PK_Centro")%>' ><i class='fas fa-fw fa-edit'></i></a>
                                             <%--<asp:Label ID="Delete" runat="server" Enabled="true"></asp:Label>
                                             <a class="btn btn-datatable btn-icon btn-transparent-dark me-2"  href='~/Account/DeleteUser.aspx?pk_usuario=<%#Eval("PK_Usuario")%>'><i class='fas fa-fw fa-trash-alt'></i></a>--%>
                                         </ItemTemplate>
