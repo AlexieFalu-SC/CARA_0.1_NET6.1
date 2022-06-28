@@ -158,7 +158,7 @@ namespace CARA_Draftv0._1.App.Administracion
 
                         mensaje = "El registro de la facilidad fué correcto.";
 
-                        ClientScript.RegisterStartupScript(this.GetType(), "Usuario Registrado", "sweetAlertRef('Centro Registrado','" + mensaje + "','success','" + "App/Administracion/adminListaCentros.aspx" + "');", true);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Centro Registrado", "sweetAlertRef('Centro Registrado','" + mensaje + "','success','" + "App/Administracion/adminListaCentros.aspx" + "');", true);
                         //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Usuario Registrado", "sweetAlert('Usuario Registrado','" + mensaje + "','success')", true);
                     }
 
