@@ -222,16 +222,16 @@
                       <td><asp:ImageButton ID="ImageButton3" ImageUrl="~/Content/images/profile_images/Avatar_3.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                     <tr>
-                      <td><asp:ImageButton ID="ImageButton4" ImageUrl="~/Content/images/profile_images/Avatar_4.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton5" ImageUrl="~/Content/images/profile_images/Avatar_5.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton6" ImageUrl="~/Content/images/profile_images/Avatar_6.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton7" ImageUrl="~/Content/images/profile_images/Avatar_7.jpg" runat="server" width="64px" height="64px" /></td>
+                      <td><asp:ImageButton ID="ImageButton4" ImageUrl="~/Content/images/profile_images/Avatar_4.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton5" ImageUrl="~/Content/images/profile_images/Avatar_5.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton6" ImageUrl="~/Content/images/profile_images/Avatar_6.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton7" ImageUrl="~/Content/images/profile_images/Avatar_7.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                     <tr>
-                      <td><asp:ImageButton ID="ImageButton8" ImageUrl="~/Content/images/profile_images/Avatar_8.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton9" ImageUrl="~/Content/images/profile_images/Avatar_9.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton10" ImageUrl="~/Content/images/profile_images/Avatar_10.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton11" ImageUrl="~/Content/images/profile_images/Avatar_11.jpg" runat="server" width="64px" height="64px" /></td>
+                      <td><asp:ImageButton ID="ImageButton8" ImageUrl="~/Content/images/profile_images/Avatar_8.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton9" ImageUrl="~/Content/images/profile_images/Avatar_9.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton10" ImageUrl="~/Content/images/profile_images/Avatar_10.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton11" ImageUrl="~/Content/images/profile_images/Avatar_11.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                   </tbody>
                 </table>
