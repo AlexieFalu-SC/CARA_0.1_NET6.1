@@ -61,7 +61,7 @@
                         </div>
                         <hr />
                         <div class="row justify-content-center">
-                            <asp:Button runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" OnClientClick="divShow();" CssClass="btn btn-primary" />
+                            <asp:Button runat="server" Text="Actualizar" OnClick="BtnActualizar_Click" OnClientClick="divShow(); return true;" CssClass="btn btn-primary" />
                         </div>
                     </div>
                 </div>

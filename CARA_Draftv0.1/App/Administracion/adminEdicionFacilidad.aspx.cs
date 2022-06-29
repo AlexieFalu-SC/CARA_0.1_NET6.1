@@ -78,19 +78,15 @@ namespace CARA_Draftv0._1.App.Administracion
             {
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
-                    int pk_licencia = Convert.ToInt32(ddlLicencia.SelectedValue);
+                    dsCARA.SPU_CENTRO(pk_centro,txtCentro.Text);
 
-                    DateTime fechaExp = Convert.ToDateTime(txtFechaExp.Text);
+                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "ActualizarFacilidad", "U", Usuario.Id, pk_centro, null, null);
 
-                    dsCARA.SPC_ATAR_CENTRO_LICENCIA(pk_centro, pk_licencia, txtNumLicencia.Text, fechaExp);
-
-                    dsCARA.SPC_SESION_ACTIVIDAD(PK_Sesion, "AtarLicencia", "C", Usuario.Id, pk_centro, null, null);
-
-                    mensaje = "El registro de la licencia fué correcto.";
+                    mensaje = "La actualización de la facilidad fué correcto.";
 
                     SetUserInformation(pk_centro);
 
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Licencia Atada ", "sweetAlert('Licencia Atada','" + mensaje + "','success')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Facilidad Actualizada", "sweetAlert('Facilidad Actualizada','" + mensaje + "','success')", true);
                 }
             }
             catch (Exception)

@@ -804,6 +804,17 @@
     <Content Include="Content\images\Avatar.png" />
     <Content Include="Content\images\graphic_home.png" />
     <Content Include="Content\images\Loading-bar.gif" />
+    <Content Include="Content\images\profile_images\Avatar_1.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_10.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_11.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_3.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_4.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_5.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_6.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_7.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_8.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_9.jpg" />
+    <Content Include="Content\images\profile_images\Avatar_2.jpg" />
     <Content Include="Content\images\undraw_posting_photo.svg" />
     <Content Include="Content\images\undraw_team_collaboration_re_ow29.svg" />
     <Content Include="Content\images\undraw_visionary_technology_re_jfp7.svg" />
@@ -3260,7 +3271,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\images\profile_images\" />
     <Folder Include="SqlServerTypes\x64\" />
     <Folder Include="SqlServerTypes\x86\" />
   </ItemGroup>

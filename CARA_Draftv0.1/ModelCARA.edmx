@@ -1695,6 +1695,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
         <Function Name="SPR_USUARIOS_REGISTRADO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PK_Usuario" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="SPU_CENTRO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="PK_Centro" Type="int" Mode="In" />
+          <Parameter Name="NB_Centro" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="SPU_EPISODIO" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PK_Episodio" Type="int" Mode="In" />
           <Parameter Name="FE_Episodio" Type="datetime" Mode="In" />
@@ -3088,6 +3092,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             <Parameter Name="FK_Licencia" Mode="In" Type="Int32" />
             <Parameter Name="NR_Licencia" Mode="In" Type="String" />
             <Parameter Name="FE_Expiracion" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="SPU_CENTRO">
+            <Parameter Name="PK_Centro" Mode="In" Type="Int32" />
+            <Parameter Name="NB_Centro" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
@@ -5314,6 +5322,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_ATAR_CENTRO_LICENCIA" FunctionName="Model.Store.SPC_ATAR_CENTRO_LICENCIA" />
+          <FunctionImportMapping FunctionImportName="SPU_CENTRO" FunctionName="Model.Store.SPU_CENTRO" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
