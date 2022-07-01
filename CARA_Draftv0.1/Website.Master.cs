@@ -232,6 +232,8 @@ namespace CARA_Draftv0._1
 
                 }
 
+                profileImg.ImageUrl = "~/Content/images/profile_images/" + Usuario.ProfileImgPath;
+
             }
             catch (Exception ex)
             {

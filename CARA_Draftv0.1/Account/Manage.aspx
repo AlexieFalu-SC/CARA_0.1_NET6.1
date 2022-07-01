@@ -45,7 +45,7 @@
                             <div class="card mb-4 mb-xl-0">
                                 <div class="card-header">Foto de Perfil</div>
                                 <div class="card-body text-center">
-                                    <asp:Image ID="profileImg" ImageUrl="~/Content/images/Avatar.png" runat="server" CssClass="img-account-profile rounded-circle mb-2" />
+                                    <asp:Image ID="profileImg" ImageUrl="~" runat="server" CssClass="img-account-profile rounded-circle mb-2" />
                                     <div class="small font-italic text-muted mb-4"><span><asp:Label ID="lblNombre" Text="" runat="server" /></span></div>
                                     <a class="btn btn-sm btn-light text-primary" href="#" data-toggle="modal" data-target="#exampleModalToggle">
                         <i class="fas fa-fw fa-file-export"></i>
@@ -216,22 +216,22 @@
                 <table class="table table-borderless">
                   <tbody>
                     <tr>
-                      <td><asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/Avatar.png" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="Image1" ImageUrl="~/Content/images/profile_images/Avatar_1.jpg" runat="server" width="64px" height="64px" /></td>
-                      <td><asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/images/profile_images/Avatar_2.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton3" ImageUrl="~/Content/images/profile_images/Avatar_3.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton1" ImageUrl="~/Content/images/Avatar.png" OnClick="actualizarAvatar_Click" CommandArgument="Avatar.png" runat="server" width="64px" height="64px" /></td>
+                      <td><asp:ImageButton ID="Image1" ImageUrl="~/Content/images/profile_images/Avatar_1.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_1.jpg" runat="server" width="64px" height="64px" /></td>
+                      <td><asp:ImageButton ID="ImageButton2" ImageUrl="~/Content/images/profile_images/Avatar_2.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_2.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton3" ImageUrl="~/Content/images/profile_images/Avatar_3.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_3.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                     <tr>
-                      <td><asp:ImageButton ID="ImageButton4" ImageUrl="~/Content/images/profile_images/Avatar_4.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton5" ImageUrl="~/Content/images/profile_images/Avatar_5.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton6" ImageUrl="~/Content/images/profile_images/Avatar_6.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton7" ImageUrl="~/Content/images/profile_images/Avatar_7.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton4" ImageUrl="~/Content/images/profile_images/Avatar_4.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_4.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton5" ImageUrl="~/Content/images/profile_images/Avatar_5.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_5.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton6" ImageUrl="~/Content/images/profile_images/Avatar_6.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_6.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton7" ImageUrl="~/Content/images/profile_images/Avatar_7.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_7.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                     <tr>
-                      <td><asp:ImageButton ID="ImageButton8" ImageUrl="~/Content/images/profile_images/Avatar_8.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton9" ImageUrl="~/Content/images/profile_images/Avatar_9.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton10" ImageUrl="~/Content/images/profile_images/Avatar_10.jpg" runat="server" width="88px" height="88px" /></td>
-                      <td><asp:ImageButton ID="ImageButton11" ImageUrl="~/Content/images/profile_images/Avatar_11.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton8" ImageUrl="~/Content/images/profile_images/Avatar_8.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_8.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton9" ImageUrl="~/Content/images/profile_images/Avatar_9.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_9.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton10" ImageUrl="~/Content/images/profile_images/Avatar_10.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_10.jpg" runat="server" width="88px" height="88px" /></td>
+                      <td><asp:ImageButton ID="ImageButton11" ImageUrl="~/Content/images/profile_images/Avatar_11.jpg" OnClick="actualizarAvatar_Click" CommandArgument="Avatar_11.jpg" runat="server" width="88px" height="88px" /></td>
                     </tr>
                   </tbody>
                 </table>

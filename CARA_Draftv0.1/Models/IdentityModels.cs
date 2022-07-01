@@ -43,7 +43,8 @@ namespace CARA_Draftv0._1.Models
 
         public bool PasswordChanged { get; set; }
 
-        //public string ProfileImgPath { get; set; }
+        public string ProfileImgPath { get; set; }
+
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>

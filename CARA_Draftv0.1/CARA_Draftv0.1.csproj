@@ -804,6 +804,7 @@
     <Content Include="Content\images\Avatar.png" />
     <Content Include="Content\images\graphic_home.png" />
     <Content Include="Content\images\Loading-bar.gif" />
+    <Content Include="Content\images\profile_images\Avatar.png" />
     <Content Include="Content\images\profile_images\Avatar_1.jpg" />
     <Content Include="Content\images\profile_images\Avatar_10.jpg" />
     <Content Include="Content\images\profile_images\Avatar_11.jpg" />
@@ -3139,13 +3140,13 @@
     <Compile Include="Login.Master.designer.cs">
       <DependentUpon>Login.Master</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006162302269_Datos de Usuarios.cs" />
-    <Compile Include="Migrations\202006162302269_Datos de Usuarios.Designer.cs">
-      <DependentUpon>202006162302269_Datos de Usuarios.cs</DependentUpon>
+    <Compile Include="Migrations\202207010102498_addProfileImage.cs" />
+    <Compile Include="Migrations\202207010102498_addProfileImage.designer.cs">
+      <DependentUpon>202207010102498_addProfileImage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202009021612396_ChangedTableNames.cs" />
-    <Compile Include="Migrations\202009021612396_ChangedTableNames.designer.cs">
-      <DependentUpon>202009021612396_ChangedTableNames.cs</DependentUpon>
+    <Compile Include="Migrations\202207010216589_error1.cs" />
+    <Compile Include="Migrations\202207010216589_error1.designer.cs">
+      <DependentUpon>202207010216589_error1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelCARA.Context.cs">
@@ -3440,19 +3441,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202006162302269_Datos de Usuarios.resx">
-      <DependentUpon>202006162302269_Datos de Usuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202009021612396_ChangedTableNames.resx">
-      <DependentUpon>202009021612396_ChangedTableNames.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202207010102498_addProfileImage.resx">
+      <DependentUpon>202207010102498_addProfileImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202207010216589_error1.resx">
+      <DependentUpon>202207010216589_error1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

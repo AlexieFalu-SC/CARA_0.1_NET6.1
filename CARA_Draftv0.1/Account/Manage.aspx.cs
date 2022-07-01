@@ -10,6 +10,7 @@ using Microsoft.Owin.Security;
 using Owin;
 using CARA_Draftv0._1.Models;
 using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace CARA_Draftv0._1.Account
 {
@@ -163,6 +164,8 @@ namespace CARA_Draftv0._1.Account
 
             chkModulos.Enabled = false;
 
+            profileImg.ImageUrl = "~/Content/images/profile_images/" + Usuario.ProfileImgPath;
+
             //if (Usuario.ProfileImgPath != null)
             //{
             //    profileImg.ImageUrl = ConfigurationManager.AppSettings["URL_Documentos"].ToString() + "UsuarioFotosPerfil/" + Usuario.Email + "/" + Usuario.ProfileImgPath;
@@ -258,7 +261,48 @@ namespace CARA_Draftv0._1.Account
             }
         }
 
+        protected void actualizarAvatar_Click(object sender, ImageClickEventArgs e)
+        {
+            var imageButton = sender as ImageButton;
 
+            string newAvatar = imageButton.CommandArgument.ToString();
+
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            string mensaje = string.Empty;
+
+            //var user = new ApplicationUser();
+
+            var user = userManager.FindById(Usuario.Id);
+
+            user.ProfileImgPath = newAvatar;
+
+            var newuser = userManager.Update(user);
+
+            if (newuser.Succeeded)
+            {
+                mensaje = "Se actualizó su avatar correctamente.";
+
+                context.SaveChanges();
+
+                Session["Usuario"] = user;
+
+                SetUserInformation();
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Avatar Actualizada", "sweetAlert('Avatar Actualizada','" + mensaje + "','success')", true);
+            }
+
+            else
+            {
+
+            }
+
+
+        }
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

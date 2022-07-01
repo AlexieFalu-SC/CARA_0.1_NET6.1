@@ -7,13 +7,13 @@ namespace CARA_Draftv0._1.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class ChangedTableNames : IMigrationMetadata
+    public sealed partial class error1 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(ChangedTableNames));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(error1));
         
         string IMigrationMetadata.Id
         {
-            get { return "202009021612396_ChangedTableNames"; }
+            get { return "202207010216589_error1"; }
         }
         
         string IMigrationMetadata.Source
