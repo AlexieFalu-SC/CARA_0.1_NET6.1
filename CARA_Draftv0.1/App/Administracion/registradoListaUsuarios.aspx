@@ -50,7 +50,7 @@
                                     <div class="row d-flex align-items-center">
                                         <div class="avatar me-2">
                                             &nbsp
-                                            <asp:Image ID="profileImg" ImageUrl='<%# Eval("Imagen_Perfil") %>' runat="server" CssClass="avatar-img img-fluid" />
+                                            <asp:Image ID="profileImg" ImageUrl='<%# string.Concat("~/Content/images/profile_images/", Eval("Imagen_Perfil")) %>' runat="server" CssClass="avatar-img img-fluid" />
                                         </div>
                                          
                                         &nbsp
@@ -77,7 +77,7 @@
                             <asp:TemplateField HeaderText="Acciones"> 
                                 <ItemTemplate>
                                     <asp:Label ID="Edit" runat="server" Enabled="true"></asp:Label>
-                                    <a href='<%=ResolveClientUrl("~/Account/EditUser.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
+                                    <a href='<%=ResolveClientUrl("~/App/Administracion/adminEdicionUsuarioExterno.aspx?pk_usuario=")%><%#Eval("PK_Usuario")%>' ><i class='fas fa-fw fa-edit'></i></a>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>

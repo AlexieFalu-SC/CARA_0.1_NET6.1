@@ -484,6 +484,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PERFILES' does not have a prim
             <PropertyRef Name="PK_Perfil" />
             <PropertyRef Name="FK_Centro" />
             <PropertyRef Name="Centro" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="Nombre Licencia" />
+            <PropertyRef Name="Categoria" />
             <PropertyRef Name="Fecha Admisión" />
             <PropertyRef Name="ID Paciente" />
             <PropertyRef Name="FK_EstadoServicio" />
@@ -594,6 +597,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PERFILES' does not have a prim
           <Property Name="PK_Perfil" Type="int" Nullable="false" />
           <Property Name="FK_Centro" Type="int" Nullable="false" />
           <Property Name="Centro" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PK_Licencia" Type="int" Nullable="false" />
+          <Property Name="Nombre Licencia" Type="varchar(max)" Nullable="false" />
+          <Property Name="Categoria" Type="varchar" MaxLength="128" Nullable="false" />
           <Property Name="Fecha Admisión" Type="datetime" Nullable="false" />
           <Property Name="ID Paciente" Type="int" Nullable="false" />
           <Property Name="FK_EstadoServicio" Type="int" Nullable="false" />
@@ -1924,6 +1930,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
     [VW_DSH_PERFILES].[PK_Perfil] AS [PK_Perfil], 
     [VW_DSH_PERFILES].[FK_Centro] AS [FK_Centro], 
     [VW_DSH_PERFILES].[Centro] AS [Centro], 
+    [VW_DSH_PERFILES].[PK_Licencia] AS [PK_Licencia], 
+    [VW_DSH_PERFILES].[Nombre Licencia] AS [Nombre Licencia], 
+    [VW_DSH_PERFILES].[Categoria] AS [Categoria], 
     [VW_DSH_PERFILES].[Fecha Admisión] AS [Fecha Admisión], 
     [VW_DSH_PERFILES].[ID Paciente] AS [ID Paciente], 
     [VW_DSH_PERFILES].[FK_EstadoServicio] AS [FK_EstadoServicio], 
@@ -3156,11 +3165,11 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <EntitySet Name="VW_DSH_CARA_PERFILES" EntityType="Model.VW_DSH_CARA_PERFILES" />
           <EntitySet Name="VW_DSH_CARA_DROGAS_SOBREDOSIS" EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" />
           <EntitySet Name="VW_DSH_CARA_DROGAS_USO" EntityType="Model.VW_DSH_CARA_DROGAS_USO" />
-          <EntitySet Name="VW_DSH_PERFILES" EntityType="Model.VW_DSH_PERFILES" />
           <EntitySet Name="VW_DSH_PLN_DSMV" EntityType="Model.VW_DSH_PLN_DSMV" />
           <EntitySet Name="VW_DSH_PLN_ICDX" EntityType="Model.VW_DSH_PLN_ICDX" />
           <EntitySet Name="VW_DSH_PLN_PERFILES" EntityType="Model.VW_DSH_PLN_PERFILES" />
           <EntitySet Name="VW_DSH_PLN_ViaSustancia" EntityType="Model.VW_DSH_PLN_ViaSustancia" />
+          <EntitySet Name="VW_DSH_PERFILES" EntityType="Model.VW_DSH_PERFILES" />
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -4252,234 +4261,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Name="NB_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NB_Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="VW_DSH_PERFILES">
-          <Key>
-            <PropertyRef Name="PK_Episodio" />
-            <PropertyRef Name="PK_Perfil" />
-            <PropertyRef Name="FK_Centro" />
-            <PropertyRef Name="Centro" />
-            <PropertyRef Name="Fecha_Admisión" />
-            <PropertyRef Name="ID_Paciente" />
-            <PropertyRef Name="FK_EstadoServicio" />
-            <PropertyRef Name="Tipo_Admisión" />
-            <PropertyRef Name="Arrestos_30_Dias" />
-            <PropertyRef Name="FK_FuenteReferido" />
-            <PropertyRef Name="Fuente_Referido" />
-            <PropertyRef Name="FK_EpisodiosPrevios" />
-            <PropertyRef Name="Episodios_Previos" />
-            <PropertyRef Name="FK_GrupoApoyoMesPasado" />
-            <PropertyRef Name="Grupo_de_Apoyo" />
-            <PropertyRef Name="FK_Genero" />
-            <PropertyRef Name="Genero" />
-            <PropertyRef Name="FK_EstadoMarital" />
-            <PropertyRef Name="Estado_Marital" />
-            <PropertyRef Name="Municipio" />
-            <PropertyRef Name="FK_Residencia" />
-            <PropertyRef Name="Residencia" />
-            <PropertyRef Name="FK_HijosMenoresCuido" />
-            <PropertyRef Name="Hijos_Menores" />
-            <PropertyRef Name="FK_Embarazada" />
-            <PropertyRef Name="Embarazada" />
-            <PropertyRef Name="FK_Veterano" />
-            <PropertyRef Name="Veterano" />
-            <PropertyRef Name="FK_Escolaridad" />
-            <PropertyRef Name="Escolaridad" />
-            <PropertyRef Name="FK_CondicionLaboral" />
-            <PropertyRef Name="Condicion_Laboral" />
-            <PropertyRef Name="FK_Estudios" />
-            <PropertyRef Name="Estudios" />
-            <PropertyRef Name="FK_FuenteIngreso" />
-            <PropertyRef Name="Fuente_Ingreso" />
-            <PropertyRef Name="FK_DrogaPrimaria" />
-            <PropertyRef Name="Droga_Primaria" />
-            <PropertyRef Name="IN_ToxicologiaPrimaria" />
-            <PropertyRef Name="Toxicologia_Primaria" />
-            <PropertyRef Name="FK_ViaPrimaria" />
-            <PropertyRef Name="Via_Primaria" />
-            <PropertyRef Name="FK_FrecuenciaPrimaria" />
-            <PropertyRef Name="Frecuencia_Primaria" />
-            <PropertyRef Name="Edad_Primaria" />
-            <PropertyRef Name="FK_DrogaSecundaria" />
-            <PropertyRef Name="Droga_Secundaria" />
-            <PropertyRef Name="IN_ToxicologiaSecundaria" />
-            <PropertyRef Name="Toxicologia_Secundaria" />
-            <PropertyRef Name="FK_ViaSecundaria" />
-            <PropertyRef Name="Via_Secundaria" />
-            <PropertyRef Name="FK_FrecuenciaSecundaria" />
-            <PropertyRef Name="Frecuencia_Secundaria" />
-            <PropertyRef Name="Edad_Secundaria" />
-            <PropertyRef Name="FK_DrogaTerciaria" />
-            <PropertyRef Name="Droga_Terciaria" />
-            <PropertyRef Name="IN_ToxicologiaTerciaria" />
-            <PropertyRef Name="Toxicologia_Terciaria" />
-            <PropertyRef Name="FK_ViaTerciaria" />
-            <PropertyRef Name="Via_Terciaria" />
-            <PropertyRef Name="FK_FrecuenciaTerciaria" />
-            <PropertyRef Name="Frecuencia_Terciaria" />
-            <PropertyRef Name="Edad_Terciaria" />
-            <PropertyRef Name="IN_ToxicologiaCuarta" />
-            <PropertyRef Name="Toxicologia_Cuarta" />
-            <PropertyRef Name="FK_FrecuenciaCuarta" />
-            <PropertyRef Name="Via_Cuarta" />
-            <PropertyRef Name="Expr1" />
-            <PropertyRef Name="Frecuencia_Cuarta" />
-            <PropertyRef Name="Edad_Cuarta" />
-            <PropertyRef Name="IN_ToxicologiaQuinta" />
-            <PropertyRef Name="Toxicologia_Quinta" />
-            <PropertyRef Name="Via_Quinta" />
-            <PropertyRef Name="FK_FrecuenciaQuinta" />
-            <PropertyRef Name="Frecuencia_Quinta" />
-            <PropertyRef Name="Edad_Quinta" />
-            <PropertyRef Name="Evento_Sobredosis" />
-            <PropertyRef Name="FK_DrogaSobredosisPrimaria" />
-            <PropertyRef Name="Sobredosis_Primaria" />
-            <PropertyRef Name="FK_DrogaSobredosisSecundaria" />
-            <PropertyRef Name="Sobredosis_Secundaria" />
-            <PropertyRef Name="FK_ICDX_Primaria" />
-            <PropertyRef Name="ICDX_Primaria" />
-            <PropertyRef Name="FK_ICDX_Secundaria" />
-            <PropertyRef Name="ICDX_Secundaria" />
-            <PropertyRef Name="FK_ICDX_Terciaria" />
-            <PropertyRef Name="ICDX_Terciaria" />
-            <PropertyRef Name="FK_ICDX_Cuarta" />
-            <PropertyRef Name="ICDX_Cuarta" />
-            <PropertyRef Name="FK_DSMV_Primaria" />
-            <PropertyRef Name="DSMV_Primaria" />
-            <PropertyRef Name="FK_DSMV_Secundaria" />
-            <PropertyRef Name="DSMV_Secundaria" />
-            <PropertyRef Name="FK_DSMV_Terciaria" />
-            <PropertyRef Name="DSMV_Terciaria" />
-            <PropertyRef Name="FK_DSMV_Cuarta" />
-            <PropertyRef Name="DSMV_Cuarta" />
-            <PropertyRef Name="FK_CondicionFisicaPrimaria" />
-            <PropertyRef Name="Condicion_Primaria" />
-            <PropertyRef Name="FK_CondicionFisicaSecundaria" />
-            <PropertyRef Name="Condicion_Secundaria" />
-            <PropertyRef Name="FK_CondicionFisicaTerciaria" />
-            <PropertyRef Name="Condicion_Terciaria" />
-            <PropertyRef Name="FK_CondicionFisicaCuarta" />
-            <PropertyRef Name="Condicion_Cuarta" />
-            <PropertyRef Name="FK_NivelSustancia" />
-            <PropertyRef Name="Nivel_Cuidado" />
-            <PropertyRef Name="Expr2" />
-            <PropertyRef Name="Seguro_Salud" />
-          </Key>
-          <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
-          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
-          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
-          <Property Name="Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha_Admisión" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ID_Paciente" Type="Int32" Nullable="false" />
-          <Property Name="FK_EstadoServicio" Type="Int32" Nullable="false" />
-          <Property Name="Tipo_Admisión" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Dias_en_Espera" Type="Int32" />
-          <Property Name="Arrestos_30_Dias" Type="Int32" Nullable="false" />
-          <Property Name="FK_FuenteReferido" Type="Int32" Nullable="false" />
-          <Property Name="Fuente_Referido" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_EpisodiosPrevios" Type="Int32" Nullable="false" />
-          <Property Name="Episodios_Previos" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_GrupoApoyoMesPasado" Type="Int32" Nullable="false" />
-          <Property Name="Grupo_de_Apoyo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
-          <Property Name="Genero" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_EstadoMarital" Type="Int32" Nullable="false" />
-          <Property Name="Estado_Marital" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Municipio" Type="Int32" />
-          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Residencia" Type="Int32" Nullable="false" />
-          <Property Name="Residencia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_HijosMenoresCuido" Type="Int32" Nullable="false" />
-          <Property Name="Hijos_Menores" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Embarazada" Type="Int32" Nullable="false" />
-          <Property Name="Embarazada" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Veterano" Type="Int32" Nullable="false" />
-          <Property Name="Veterano" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Escolaridad" Type="Int32" Nullable="false" />
-          <Property Name="Escolaridad" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CondicionLaboral" Type="Int32" Nullable="false" />
-          <Property Name="Condicion_Laboral" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Estudios" Type="Int32" Nullable="false" />
-          <Property Name="Estudios" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FuenteIngreso" Type="Int32" Nullable="false" />
-          <Property Name="Fuente_Ingreso" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DrogaPrimaria" Type="Int32" Nullable="false" />
-          <Property Name="Droga_Primaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="IN_ToxicologiaPrimaria" Type="Boolean" Nullable="false" />
-          <Property Name="Toxicologia_Primaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ViaPrimaria" Type="Int32" Nullable="false" />
-          <Property Name="Via_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FrecuenciaPrimaria" Type="Int32" Nullable="false" />
-          <Property Name="Frecuencia_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Edad_Primaria" Type="Int32" Nullable="false" />
-          <Property Name="FK_DrogaSecundaria" Type="Int32" Nullable="false" />
-          <Property Name="Droga_Secundaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="IN_ToxicologiaSecundaria" Type="Boolean" Nullable="false" />
-          <Property Name="Toxicologia_Secundaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ViaSecundaria" Type="Int32" Nullable="false" />
-          <Property Name="Via_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FrecuenciaSecundaria" Type="Int32" Nullable="false" />
-          <Property Name="Frecuencia_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Edad_Secundaria" Type="Int32" Nullable="false" />
-          <Property Name="FK_DrogaTerciaria" Type="Int32" Nullable="false" />
-          <Property Name="Droga_Terciaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="IN_ToxicologiaTerciaria" Type="Boolean" Nullable="false" />
-          <Property Name="Toxicologia_Terciaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ViaTerciaria" Type="Int32" Nullable="false" />
-          <Property Name="Via_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FrecuenciaTerciaria" Type="Int32" Nullable="false" />
-          <Property Name="Frecuencia_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Edad_Terciaria" Type="Int32" Nullable="false" />
-          <Property Name="Droga_Cuarta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="IN_ToxicologiaCuarta" Type="Boolean" Nullable="false" />
-          <Property Name="Toxicologia_Cuarta" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FrecuenciaCuarta" Type="Int32" Nullable="false" />
-          <Property Name="Via_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Expr1" Type="Int32" Nullable="false" />
-          <Property Name="Frecuencia_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Edad_Cuarta" Type="Int32" Nullable="false" />
-          <Property Name="Droga_Quinta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="IN_ToxicologiaQuinta" Type="Boolean" Nullable="false" />
-          <Property Name="Toxicologia_Quinta" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="Via_Quinta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_FrecuenciaQuinta" Type="Int32" Nullable="false" />
-          <Property Name="Frecuencia_Quinta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Edad_Quinta" Type="Int32" Nullable="false" />
-          <Property Name="Evento_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DrogaSobredosisPrimaria" Type="Int32" Nullable="false" />
-          <Property Name="Sobredosis_Primaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DrogaSobredosisSecundaria" Type="Int32" Nullable="false" />
-          <Property Name="Sobredosis_Secundaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Sobredosis_Terciaria" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="Sobredosis_Cuarta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ICDX_Primaria" Type="Int32" Nullable="false" />
-          <Property Name="ICDX_Primaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ICDX_Secundaria" Type="Int32" Nullable="false" />
-          <Property Name="ICDX_Secundaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ICDX_Terciaria" Type="Int32" Nullable="false" />
-          <Property Name="ICDX_Terciaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_ICDX_Cuarta" Type="Int32" Nullable="false" />
-          <Property Name="ICDX_Cuarta" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DSMV_Primaria" Type="Int32" Nullable="false" />
-          <Property Name="DSMV_Primaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DSMV_Secundaria" Type="Int32" Nullable="false" />
-          <Property Name="DSMV_Secundaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DSMV_Terciaria" Type="Int32" Nullable="false" />
-          <Property Name="DSMV_Terciaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_DSMV_Cuarta" Type="Int32" Nullable="false" />
-          <Property Name="DSMV_Cuarta" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CondicionFisicaPrimaria" Type="Int32" Nullable="false" />
-          <Property Name="Condicion_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CondicionFisicaSecundaria" Type="Int32" Nullable="false" />
-          <Property Name="Condicion_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CondicionFisicaTerciaria" Type="Int32" Nullable="false" />
-          <Property Name="Condicion_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_CondicionFisicaCuarta" Type="Int32" Nullable="false" />
-          <Property Name="Condicion_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
-          <Property Name="Nivel_Cuidado" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="Expr2" Type="Int32" Nullable="false" />
-          <Property Name="Seguro_Salud" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="VW_DSH_PLN_DSMV">
           <Key>
             <PropertyRef Name="PK_Perfil" />
@@ -4593,6 +4374,240 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Name="PK_Licencia" Type="Int32" Nullable="false" />
           <Property Name="NB_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="NB_Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VW_DSH_PERFILES">
+          <Key>
+            <PropertyRef Name="PK_Episodio" />
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="FK_Centro" />
+            <PropertyRef Name="Centro" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="Nombre_Licencia" />
+            <PropertyRef Name="Categoria" />
+            <PropertyRef Name="Fecha_Admisión" />
+            <PropertyRef Name="ID_Paciente" />
+            <PropertyRef Name="FK_EstadoServicio" />
+            <PropertyRef Name="Tipo_Admisión" />
+            <PropertyRef Name="Arrestos_30_Dias" />
+            <PropertyRef Name="FK_FuenteReferido" />
+            <PropertyRef Name="Fuente_Referido" />
+            <PropertyRef Name="FK_EpisodiosPrevios" />
+            <PropertyRef Name="Episodios_Previos" />
+            <PropertyRef Name="FK_GrupoApoyoMesPasado" />
+            <PropertyRef Name="Grupo_de_Apoyo" />
+            <PropertyRef Name="FK_Genero" />
+            <PropertyRef Name="Genero" />
+            <PropertyRef Name="FK_EstadoMarital" />
+            <PropertyRef Name="Estado_Marital" />
+            <PropertyRef Name="Municipio" />
+            <PropertyRef Name="FK_Residencia" />
+            <PropertyRef Name="Residencia" />
+            <PropertyRef Name="FK_HijosMenoresCuido" />
+            <PropertyRef Name="Hijos_Menores" />
+            <PropertyRef Name="FK_Embarazada" />
+            <PropertyRef Name="Embarazada" />
+            <PropertyRef Name="FK_Veterano" />
+            <PropertyRef Name="Veterano" />
+            <PropertyRef Name="FK_Escolaridad" />
+            <PropertyRef Name="Escolaridad" />
+            <PropertyRef Name="FK_CondicionLaboral" />
+            <PropertyRef Name="Condicion_Laboral" />
+            <PropertyRef Name="FK_Estudios" />
+            <PropertyRef Name="Estudios" />
+            <PropertyRef Name="FK_FuenteIngreso" />
+            <PropertyRef Name="Fuente_Ingreso" />
+            <PropertyRef Name="FK_DrogaPrimaria" />
+            <PropertyRef Name="Droga_Primaria" />
+            <PropertyRef Name="IN_ToxicologiaPrimaria" />
+            <PropertyRef Name="Toxicologia_Primaria" />
+            <PropertyRef Name="FK_ViaPrimaria" />
+            <PropertyRef Name="Via_Primaria" />
+            <PropertyRef Name="FK_FrecuenciaPrimaria" />
+            <PropertyRef Name="Frecuencia_Primaria" />
+            <PropertyRef Name="Edad_Primaria" />
+            <PropertyRef Name="FK_DrogaSecundaria" />
+            <PropertyRef Name="Droga_Secundaria" />
+            <PropertyRef Name="IN_ToxicologiaSecundaria" />
+            <PropertyRef Name="Toxicologia_Secundaria" />
+            <PropertyRef Name="FK_ViaSecundaria" />
+            <PropertyRef Name="Via_Secundaria" />
+            <PropertyRef Name="FK_FrecuenciaSecundaria" />
+            <PropertyRef Name="Frecuencia_Secundaria" />
+            <PropertyRef Name="Edad_Secundaria" />
+            <PropertyRef Name="FK_DrogaTerciaria" />
+            <PropertyRef Name="Droga_Terciaria" />
+            <PropertyRef Name="IN_ToxicologiaTerciaria" />
+            <PropertyRef Name="Toxicologia_Terciaria" />
+            <PropertyRef Name="FK_ViaTerciaria" />
+            <PropertyRef Name="Via_Terciaria" />
+            <PropertyRef Name="FK_FrecuenciaTerciaria" />
+            <PropertyRef Name="Frecuencia_Terciaria" />
+            <PropertyRef Name="Edad_Terciaria" />
+            <PropertyRef Name="IN_ToxicologiaCuarta" />
+            <PropertyRef Name="Toxicologia_Cuarta" />
+            <PropertyRef Name="FK_FrecuenciaCuarta" />
+            <PropertyRef Name="Via_Cuarta" />
+            <PropertyRef Name="Expr1" />
+            <PropertyRef Name="Frecuencia_Cuarta" />
+            <PropertyRef Name="Edad_Cuarta" />
+            <PropertyRef Name="IN_ToxicologiaQuinta" />
+            <PropertyRef Name="Toxicologia_Quinta" />
+            <PropertyRef Name="Via_Quinta" />
+            <PropertyRef Name="FK_FrecuenciaQuinta" />
+            <PropertyRef Name="Frecuencia_Quinta" />
+            <PropertyRef Name="Edad_Quinta" />
+            <PropertyRef Name="Evento_Sobredosis" />
+            <PropertyRef Name="FK_DrogaSobredosisPrimaria" />
+            <PropertyRef Name="Sobredosis_Primaria" />
+            <PropertyRef Name="FK_DrogaSobredosisSecundaria" />
+            <PropertyRef Name="Sobredosis_Secundaria" />
+            <PropertyRef Name="FK_ICDX_Primaria" />
+            <PropertyRef Name="ICDX_Primaria" />
+            <PropertyRef Name="FK_ICDX_Secundaria" />
+            <PropertyRef Name="ICDX_Secundaria" />
+            <PropertyRef Name="FK_ICDX_Terciaria" />
+            <PropertyRef Name="ICDX_Terciaria" />
+            <PropertyRef Name="FK_ICDX_Cuarta" />
+            <PropertyRef Name="ICDX_Cuarta" />
+            <PropertyRef Name="FK_DSMV_Primaria" />
+            <PropertyRef Name="DSMV_Primaria" />
+            <PropertyRef Name="FK_DSMV_Secundaria" />
+            <PropertyRef Name="DSMV_Secundaria" />
+            <PropertyRef Name="FK_DSMV_Terciaria" />
+            <PropertyRef Name="DSMV_Terciaria" />
+            <PropertyRef Name="FK_DSMV_Cuarta" />
+            <PropertyRef Name="DSMV_Cuarta" />
+            <PropertyRef Name="FK_CondicionFisicaPrimaria" />
+            <PropertyRef Name="Condicion_Primaria" />
+            <PropertyRef Name="FK_CondicionFisicaSecundaria" />
+            <PropertyRef Name="Condicion_Secundaria" />
+            <PropertyRef Name="FK_CondicionFisicaTerciaria" />
+            <PropertyRef Name="Condicion_Terciaria" />
+            <PropertyRef Name="FK_CondicionFisicaCuarta" />
+            <PropertyRef Name="Condicion_Cuarta" />
+            <PropertyRef Name="FK_NivelSustancia" />
+            <PropertyRef Name="Nivel_Cuidado" />
+            <PropertyRef Name="Expr2" />
+            <PropertyRef Name="Seguro_Salud" />
+          </Key>
+          <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="FK_Centro" Type="Int32" Nullable="false" />
+          <Property Name="Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Licencia" Type="Int32" Nullable="false" />
+          <Property Name="Nombre_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha_Admisión" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ID_Paciente" Type="Int32" Nullable="false" />
+          <Property Name="FK_EstadoServicio" Type="Int32" Nullable="false" />
+          <Property Name="Tipo_Admisión" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Dias_en_Espera" Type="Int32" />
+          <Property Name="Arrestos_30_Dias" Type="Int32" Nullable="false" />
+          <Property Name="FK_FuenteReferido" Type="Int32" Nullable="false" />
+          <Property Name="Fuente_Referido" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_EpisodiosPrevios" Type="Int32" Nullable="false" />
+          <Property Name="Episodios_Previos" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_GrupoApoyoMesPasado" Type="Int32" Nullable="false" />
+          <Property Name="Grupo_de_Apoyo" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="Genero" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_EstadoMarital" Type="Int32" Nullable="false" />
+          <Property Name="Estado_Marital" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Municipio" Type="Int32" />
+          <Property Name="Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Residencia" Type="Int32" Nullable="false" />
+          <Property Name="Residencia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_HijosMenoresCuido" Type="Int32" Nullable="false" />
+          <Property Name="Hijos_Menores" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Embarazada" Type="Int32" Nullable="false" />
+          <Property Name="Embarazada" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Veterano" Type="Int32" Nullable="false" />
+          <Property Name="Veterano" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Escolaridad" Type="Int32" Nullable="false" />
+          <Property Name="Escolaridad" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CondicionLaboral" Type="Int32" Nullable="false" />
+          <Property Name="Condicion_Laboral" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_Estudios" Type="Int32" Nullable="false" />
+          <Property Name="Estudios" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FuenteIngreso" Type="Int32" Nullable="false" />
+          <Property Name="Fuente_Ingreso" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DrogaPrimaria" Type="Int32" Nullable="false" />
+          <Property Name="Droga_Primaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_ToxicologiaPrimaria" Type="Boolean" Nullable="false" />
+          <Property Name="Toxicologia_Primaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ViaPrimaria" Type="Int32" Nullable="false" />
+          <Property Name="Via_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FrecuenciaPrimaria" Type="Int32" Nullable="false" />
+          <Property Name="Frecuencia_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Edad_Primaria" Type="Int32" Nullable="false" />
+          <Property Name="FK_DrogaSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="Droga_Secundaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_ToxicologiaSecundaria" Type="Boolean" Nullable="false" />
+          <Property Name="Toxicologia_Secundaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ViaSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="Via_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FrecuenciaSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="Frecuencia_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Edad_Secundaria" Type="Int32" Nullable="false" />
+          <Property Name="FK_DrogaTerciaria" Type="Int32" Nullable="false" />
+          <Property Name="Droga_Terciaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_ToxicologiaTerciaria" Type="Boolean" Nullable="false" />
+          <Property Name="Toxicologia_Terciaria" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ViaTerciaria" Type="Int32" Nullable="false" />
+          <Property Name="Via_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FrecuenciaTerciaria" Type="Int32" Nullable="false" />
+          <Property Name="Frecuencia_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Edad_Terciaria" Type="Int32" Nullable="false" />
+          <Property Name="Droga_Cuarta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_ToxicologiaCuarta" Type="Boolean" Nullable="false" />
+          <Property Name="Toxicologia_Cuarta" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FrecuenciaCuarta" Type="Int32" Nullable="false" />
+          <Property Name="Via_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Expr1" Type="Int32" Nullable="false" />
+          <Property Name="Frecuencia_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Edad_Cuarta" Type="Int32" Nullable="false" />
+          <Property Name="Droga_Quinta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IN_ToxicologiaQuinta" Type="Boolean" Nullable="false" />
+          <Property Name="Toxicologia_Quinta" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="Via_Quinta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_FrecuenciaQuinta" Type="Int32" Nullable="false" />
+          <Property Name="Frecuencia_Quinta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Edad_Quinta" Type="Int32" Nullable="false" />
+          <Property Name="Evento_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DrogaSobredosisPrimaria" Type="Int32" Nullable="false" />
+          <Property Name="Sobredosis_Primaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DrogaSobredosisSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="Sobredosis_Secundaria" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Sobredosis_Terciaria" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Sobredosis_Cuarta" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ICDX_Primaria" Type="Int32" Nullable="false" />
+          <Property Name="ICDX_Primaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ICDX_Secundaria" Type="Int32" Nullable="false" />
+          <Property Name="ICDX_Secundaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ICDX_Terciaria" Type="Int32" Nullable="false" />
+          <Property Name="ICDX_Terciaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_ICDX_Cuarta" Type="Int32" Nullable="false" />
+          <Property Name="ICDX_Cuarta" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DSMV_Primaria" Type="Int32" Nullable="false" />
+          <Property Name="DSMV_Primaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DSMV_Secundaria" Type="Int32" Nullable="false" />
+          <Property Name="DSMV_Secundaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DSMV_Terciaria" Type="Int32" Nullable="false" />
+          <Property Name="DSMV_Terciaria" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_DSMV_Cuarta" Type="Int32" Nullable="false" />
+          <Property Name="DSMV_Cuarta" Type="String" Nullable="false" MaxLength="321" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CondicionFisicaPrimaria" Type="Int32" Nullable="false" />
+          <Property Name="Condicion_Primaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CondicionFisicaSecundaria" Type="Int32" Nullable="false" />
+          <Property Name="Condicion_Secundaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CondicionFisicaTerciaria" Type="Int32" Nullable="false" />
+          <Property Name="Condicion_Terciaria" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_CondicionFisicaCuarta" Type="Int32" Nullable="false" />
+          <Property Name="Condicion_Cuarta" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="FK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="Nivel_Cuidado" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="Expr2" Type="Int32" Nullable="false" />
+          <Property Name="Seguro_Salud" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -5259,6 +5274,80 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_DSMV">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_DSMV">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_DSMV">
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_DSMV" ColumnName="FK_DSMV" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_DSMV" ColumnName="DE_DSMV" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_ICDX">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ICDX">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_ICDX">
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_ICDX" ColumnName="FK_ICDX" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_ICDX" ColumnName="DE_ICDX" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_PERFILES">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_PERFILES">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_PERFILES">
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
+                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
+                <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
+                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
+                <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
+                <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
+                <ScalarProperty Name="DE_FuenteReferido" ColumnName="DE_FuenteReferido" />
+                <ScalarProperty Name="PK_FuenteReferido" ColumnName="PK_FuenteReferido" />
+                <ScalarProperty Name="DE_Genero" ColumnName="DE_Genero" />
+                <ScalarProperty Name="PK_Genero" ColumnName="PK_Genero" />
+                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
+                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VW_DSH_PLN_ViaSustancia">
+            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ViaSustancia">
+              <MappingFragment StoreEntitySet="VW_DSH_PLN_ViaSustancia">
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
+                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
+                <ScalarProperty Name="FK_ViaSustancia" ColumnName="FK_ViaSustancia" />
+                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="DE_ViaSustancia" ColumnName="DE_ViaSustancia" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="VW_DSH_PERFILES">
             <EntityTypeMapping TypeName="Model.VW_DSH_PERFILES">
               <MappingFragment StoreEntitySet="VW_DSH_PERFILES">
@@ -5373,84 +5462,13 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
                 <ScalarProperty Name="FK_EstadoServicio" ColumnName="FK_EstadoServicio" />
                 <ScalarProperty Name="ID_Paciente" ColumnName="ID Paciente" />
                 <ScalarProperty Name="Fecha_Admisión" ColumnName="Fecha Admisión" />
+                <ScalarProperty Name="Categoria" ColumnName="Categoria" />
+                <ScalarProperty Name="Nombre_Licencia" ColumnName="Nombre Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
                 <ScalarProperty Name="Centro" ColumnName="Centro" />
                 <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
                 <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
                 <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_DSH_PLN_DSMV">
-            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_DSMV">
-              <MappingFragment StoreEntitySet="VW_DSH_PLN_DSMV">
-                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
-                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
-                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
-                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
-                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
-                <ScalarProperty Name="FK_DSMV" ColumnName="FK_DSMV" />
-                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="DE_DSMV" ColumnName="DE_DSMV" />
-                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_DSH_PLN_ICDX">
-            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ICDX">
-              <MappingFragment StoreEntitySet="VW_DSH_PLN_ICDX">
-                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
-                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
-                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
-                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
-                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
-                <ScalarProperty Name="FK_ICDX" ColumnName="FK_ICDX" />
-                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="DE_ICDX" ColumnName="DE_ICDX" />
-                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_DSH_PLN_PERFILES">
-            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_PERFILES">
-              <MappingFragment StoreEntitySet="VW_DSH_PLN_PERFILES">
-                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
-                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
-                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
-                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
-                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
-                <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
-                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
-                <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
-                <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
-                <ScalarProperty Name="DE_FuenteReferido" ColumnName="DE_FuenteReferido" />
-                <ScalarProperty Name="PK_FuenteReferido" ColumnName="PK_FuenteReferido" />
-                <ScalarProperty Name="DE_Genero" ColumnName="DE_Genero" />
-                <ScalarProperty Name="PK_Genero" ColumnName="PK_Genero" />
-                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
-                <ScalarProperty Name="Edad" ColumnName="Edad" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
-                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
-                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
-                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VW_DSH_PLN_ViaSustancia">
-            <EntityTypeMapping TypeName="Model.VW_DSH_PLN_ViaSustancia">
-              <MappingFragment StoreEntitySet="VW_DSH_PLN_ViaSustancia">
-                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
-                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
-                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
-                <ScalarProperty Name="FK_Centro" ColumnName="FK_Centro" />
-                <ScalarProperty Name="FK_NivelSustancia" ColumnName="FK_NivelSustancia" />
-                <ScalarProperty Name="FK_ViaSustancia" ColumnName="FK_ViaSustancia" />
-                <ScalarProperty Name="FK_Genero" ColumnName="FK_Genero" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="DE_ViaSustancia" ColumnName="DE_ViaSustancia" />
-                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

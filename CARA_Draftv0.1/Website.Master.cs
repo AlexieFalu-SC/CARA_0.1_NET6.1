@@ -173,6 +173,7 @@ namespace CARA_Draftv0._1
 
                         divAdministracion.Visible = true;
                         secManejoUsuariosAdministrativo.Visible = true;
+                        secManejoFacilidadesAdministrativo.Visible = true;
                     }
                     else if(userManager.IsInRole(Usuario.Id, "Supervisor"))
                     {
@@ -204,6 +205,7 @@ namespace CARA_Draftv0._1
 
                         divAdministracion.Visible = true;
                         secManejoUsuariosRegistrado.Visible = true;
+                        secManejoFacilidadesRegistrado.Visible = true;
                     }
                     else
                     {

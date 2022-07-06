@@ -128,6 +128,8 @@
                                                 <Columns>
                                                     <asp:BoundField DataField="PK_Perfil" HeaderText="ID Perfil" />
                                                     <asp:BoundField DataField="Centro" HeaderText="Nombre de Centro" />
+                                                    <asp:BoundField DataField="Nombre_Licencia" HeaderText="Nombre de Licencia" />
+                                                    <asp:BoundField DataField="Categoria" HeaderText="Categoria de Episodio" />
                                                     <asp:BoundField DataField="Fecha_Admisión" HeaderText="Fecha Admisión" />
                                                     <asp:BoundField DataField="ID_Paciente" HeaderText="ID Paciente" />
                                                     <asp:BoundField DataField="Dias_en_Espera" HeaderText="Dias en Espera" />
@@ -144,6 +146,52 @@
                                                     <asp:BoundField DataField="Veterano" HeaderText="Veterano" />
                                                     <asp:BoundField DataField="Escolaridad" HeaderText="Escolaridad" />
                                                     <asp:BoundField DataField="Condicion_Laboral" HeaderText="Condicion Laboral" />
+                                                    <asp:BoundField DataField="Estudios" HeaderText="Estudios" />
+                                                    <asp:BoundField DataField="Fuente_Ingreso" HeaderText="Fuente Ingreso" />
+                                                    <asp:BoundField DataField="Droga_Primaria" HeaderText="Droga Primaria" />
+                                                    <asp:BoundField DataField="Toxicologia_Primaria" HeaderText="Toxicologia Primaria" />
+                                                    <asp:BoundField DataField="Via_Primaria" HeaderText="Via Primaria" />
+                                                    <asp:BoundField DataField="Frecuencia_Primaria" HeaderText="Frecuencia Primaria" />
+                                                    <asp:BoundField DataField="Edad_Primaria" HeaderText="Edad Primaria" />
+                                                    <asp:BoundField DataField="Droga_Secundaria" HeaderText="Droga Secundaria" />
+                                                    <asp:BoundField DataField="Toxicologia_Secundaria" HeaderText="Toxicologia Secundaria" />
+                                                    <asp:BoundField DataField="Via_Secundaria" HeaderText="Via Secundaria" />
+                                                    <asp:BoundField DataField="Frecuencia_Secundaria" HeaderText="Frecuencia Secundaria" />
+                                                    <asp:BoundField DataField="Edad_Secundaria" HeaderText="Edad Secundaria" />
+                                                    <asp:BoundField DataField="Droga_Terciaria" HeaderText="Droga Terciaria" />
+                                                    <asp:BoundField DataField="Toxicologia_Secundaria" HeaderText="Toxicologia Terciaria" />
+                                                    <asp:BoundField DataField="Via_Terciaria" HeaderText="Via Terciaria" />
+                                                    <asp:BoundField DataField="Frecuencia_Terciaria" HeaderText="Frecuencia Terciaria" />
+                                                    <asp:BoundField DataField="Edad_Terciaria" HeaderText="Edad Terciaria" />
+                                                    <asp:BoundField DataField="Droga_Cuarta" HeaderText="Droga Cuarta" />
+                                                    <asp:BoundField DataField="Toxicologia_Cuarta" HeaderText="Toxicologia Cuarta" />
+                                                    <asp:BoundField DataField="Via_Cuarta" HeaderText="Via Terciaria" />
+                                                    <asp:BoundField DataField="Frecuencia_Cuarta" HeaderText="Frecuencia Cuarta" />
+                                                    <asp:BoundField DataField="Edad_Cuarta" HeaderText="Edad Cuarta" />
+                                                    <asp:BoundField DataField="Droga_Quinta" HeaderText="Droga Quinta" />
+                                                    <asp:BoundField DataField="Toxicologia_Quinta" HeaderText="Toxicologia Quinta" />
+                                                    <asp:BoundField DataField="Via_Quinta" HeaderText="Via Quinta" />
+                                                    <asp:BoundField DataField="Frecuencia_Quinta" HeaderText="Frecuencia Quinta" />
+                                                    <asp:BoundField DataField="Edad_Quinta" HeaderText="Edad Quinta" />
+                                                    <asp:BoundField DataField="Evento_Sobredosis" HeaderText="Evento Sobredosis" />
+                                                    <asp:BoundField DataField="Sobredosis_Primaria" HeaderText="Sobredosis Primaria" />
+                                                    <asp:BoundField DataField="Sobredosis_Secundaria" HeaderText="Sobredosis Secundaria" />
+                                                    <asp:BoundField DataField="Sobredosis_Terciaria" HeaderText="Sobredosis Terciaria" />
+                                                    <asp:BoundField DataField="Sobredosis_Cuarta" HeaderText="Sobredosis Cuarta" />
+                                                    <asp:BoundField DataField="ICDX_Primaria" HeaderText="ICDX Primaria" />
+                                                    <asp:BoundField DataField="ICDX_Secundaria" HeaderText="ICDX Secundaria" />
+                                                    <asp:BoundField DataField="ICDX_Terciaria" HeaderText="ICDX Terciaria" />
+                                                    <asp:BoundField DataField="ICDX_Cuarta" HeaderText="ICDX Cuarta" />
+                                                    <asp:BoundField DataField="DSMV_Primaria" HeaderText="DSMV Primaria" />
+                                                    <asp:BoundField DataField="DSMV_Secundaria" HeaderText="DSMV Secundaria" />
+                                                    <asp:BoundField DataField="DSMV_Terciaria" HeaderText="DSMV Terciaria" />
+                                                    <asp:BoundField DataField="DSMV_Cuarta" HeaderText="DSMV Cuarta" />
+                                                    <asp:BoundField DataField="Condicion_Primaria" HeaderText="Condicion Primaria" />
+                                                    <asp:BoundField DataField="Condicion_Secundaria" HeaderText="Condicion Secundaria" />
+                                                    <asp:BoundField DataField="Condicion_Terciaria" HeaderText="Condicion Terciaria" />
+                                                    <asp:BoundField DataField="Condicion_Cuarta" HeaderText="Condicion Cuarta" />
+                                                    <asp:BoundField DataField="Nivel_Cuidado" HeaderText="Nivel Cuidado" />
+                                                    <asp:BoundField DataField="Seguro_Salud" HeaderText="Seguro Salud" />
                                                 </Columns>
                                                 <EmptyDataTemplate>
                                                     No existen perfiles con los filtros escogidos.

@@ -18,6 +18,9 @@ namespace CARA_Draftv0._1
         public int PK_Perfil { get; set; }
         public int FK_Centro { get; set; }
         public string Centro { get; set; }
+        public int PK_Licencia { get; set; }
+        public string Nombre_Licencia { get; set; }
+        public string Categoria { get; set; }
         public System.DateTime Fecha_Admisión { get; set; }
         public int ID_Paciente { get; set; }
         public int FK_EstadoServicio { get; set; }

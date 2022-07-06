@@ -141,6 +141,24 @@ namespace CARA_Draftv0._1
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl secManejoUsuariosRegistrado;
 
         /// <summary>
+        /// secManejoFacilidadesAdministrativo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secManejoFacilidadesAdministrativo;
+
+        /// <summary>
+        /// secManejoFacilidadesRegistrado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl secManejoFacilidadesRegistrado;
+
+        /// <summary>
         /// lblNombre control.
         /// </summary>
         /// <remarks>

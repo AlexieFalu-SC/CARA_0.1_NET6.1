@@ -99,11 +99,11 @@
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="22.375" PointY="21.25" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" Width="1.5" PointX="7.375" PointY="14.375" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_USO" Width="1.5" PointX="11.375" PointY="17.125" />
-        <EntityTypeShape EntityType="Model.VW_DSH_PERFILES" Width="1.5" PointX="3.375" PointY="20.125" />
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_DSMV" Width="1.5" PointX="18.375" PointY="1.125" />
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_ICDX" Width="1.5" PointX="18.375" PointY="5.125" />
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_PERFILES" Width="1.5" PointX="18.375" PointY="9.125" />
         <EntityTypeShape EntityType="Model.VW_DSH_PLN_ViaSustancia" Width="1.5" PointX="18.375" PointY="20.125" />
+        <EntityTypeShape EntityType="Model.VW_DSH_PERFILES" Width="1.5" PointX="3.375" PointY="21.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

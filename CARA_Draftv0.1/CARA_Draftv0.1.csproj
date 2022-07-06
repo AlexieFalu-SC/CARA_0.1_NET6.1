@@ -222,6 +222,7 @@
     <Content Include="App\Administracion\adminRegistroUsuarioInterno.aspx" />
     <Content Include="App\Administracion\agregarCentro.aspx" />
     <Content Include="App\Administracion\agregarRolRegistrado.aspx" />
+    <Content Include="App\Administracion\registradoListaCentros.aspx" />
     <Content Include="App\Administracion\registradoListaUsuarios.aspx" />
     <Content Include="App\Administracion\registradoRegistroUsuario.aspx" />
     <Content Include="App\Administracion\rolesRegistrado.aspx" />
@@ -2810,6 +2811,13 @@
     </Compile>
     <Compile Include="App\Administracion\agregarRolRegistrado.aspx.designer.cs">
       <DependentUpon>agregarRolRegistrado.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App\Administracion\registradoListaCentros.aspx.cs">
+      <DependentUpon>registradoListaCentros.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="App\Administracion\registradoListaCentros.aspx.designer.cs">
+      <DependentUpon>registradoListaCentros.aspx</DependentUpon>
     </Compile>
     <Compile Include="App\Administracion\registradoListaUsuarios.aspx.cs">
       <DependentUpon>registradoListaUsuarios.aspx</DependentUpon>

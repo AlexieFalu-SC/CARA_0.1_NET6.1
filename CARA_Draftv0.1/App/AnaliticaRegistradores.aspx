@@ -65,6 +65,17 @@
                                 <asp:ListBox ID="lbxNivelSustancia" runat="server" SelectionMode="Multiple" onChange="changeFecha();" CssClass="form-control"></asp:ListBox>
                             </div>
                         </li>
+                        <li class="list-group-item">
+                            <div class="row">
+                                <h6 class="list-item">Categoria de Episodio</h6>
+                            </div>
+                            <div class="row">
+                                <asp:ListBox ID="lbxCategoria" runat="server" SelectionMode="Multiple" onChange="changeFecha();" CssClass="form-control">
+                                    <asp:ListItem Value="Salud Mental">Salud Mental</asp:ListItem>
+                                    <asp:ListItem Value="Sustancia">Sustancia</asp:ListItem>
+                                </asp:ListBox>
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <!-- Termina Columna de Filtros -->
@@ -258,7 +269,7 @@
     
     <script type="text/javascript">
         var dtDesde, dtHasta, ajax_data, dtTotalPerfiles, dtTotalReferidosCara, dtTotalMasculino, dtPerMasculino, dtTotalFemenino, dtPerFemenino, dtEdadPromedio, dtFuenteReferido, dtNivelCuidado, dtDrogasUso, dtSobredosis, dtDrogaSobredosis, dtPerfiles;
-        var generos = [], niveles = [], centros = [], centroPerfiles = [];
+        var generos = [], niveles = [], centros = [], centroPerfiles = [], categorias = [];
         var perfiles_data, perfiles_desde, perfiles_hasta;
 
         $(function () {
@@ -266,7 +277,7 @@
                 includeSelectAllOption: true,
                 enableCaseInsensitiveFiltering: true,
                 buttonClass: 'form-control',
-                buttonWidth: '190px'
+                buttonWidth: '170px'
             });
             $(<%=lbxNivelSustancia.ClientID%>).multiselect('selectAll', false);
             $(<%=lbxNivelSustancia.ClientID%>).multiselect('updateButtonText');
@@ -275,10 +286,19 @@
                 includeSelectAllOption: true,
                 enableCaseInsensitiveFiltering: true,
                 buttonClass: 'form-control',
-                buttonWidth: '190px'
+                buttonWidth: '170px'
             });
             $(<%=lbxCentro.ClientID%>).multiselect('selectAll', false);
             $(<%=lbxCentro.ClientID%>).multiselect('updateButtonText');
+
+            $(<%=lbxCategoria.ClientID%>).multiselect({
+                includeSelectAllOption: true,
+                enableCaseInsensitiveFiltering: true,
+                buttonClass: 'form-control',
+                buttonWidth: '170px'
+            });
+            $(<%=lbxCategoria.ClientID%>).multiselect('selectAll', false);
+            $(<%=lbxCategoria.ClientID%>).multiselect('updateButtonText');
 
             $(<%=lbxGenero.ClientID%>).multiselect({
                 includeSelectAllOption: true,
@@ -304,7 +324,9 @@
 
             listCentro();
 
-            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + '}'
+            listCategoria();
+
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + ', Categorias:' + JSON.stringify(categorias) + '}'
 
             wsTotalPerfiles();
 
@@ -482,7 +504,9 @@
 
             listCentro();
 
-            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) +'}'
+            listCategoria();
+
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + ', Categorias:' + JSON.stringify(categorias) +'}'
 
             wsTotalPerfiles();
 
@@ -535,6 +559,19 @@
             for (var i = 0; i < listCentros.options.length; i++) {
                 if (listCentros.options[i].selected == true) {
                     centros[a] = { pk_centro: listCentros.options[i].value };
+                    a++;
+                }
+            }
+        }
+
+        function listCategoria() {
+            categorias = [];
+            var listCategorias = document.getElementById("<%=lbxCategoria.ClientID%>");
+
+            var a = 0;
+            for (var i = 0; i < listCategorias.options.length; i++) {
+                if (listCategorias.options[i].selected == true) {
+                    categorias[a] = { nb_categoria: listCategorias.options[i].value };
                     a++;
                 }
             }

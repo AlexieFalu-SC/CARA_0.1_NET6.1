@@ -167,6 +167,15 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCentro').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCentro').multiselect('updateButtonText');
 
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCategoria').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '190px'
+    });
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCategoria').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxCategoria').multiselect('updateButtonText');
+
     $('#ContentPlaceHolder1_wucExportarPlanificacion_lbxReferido').multiselect({
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,

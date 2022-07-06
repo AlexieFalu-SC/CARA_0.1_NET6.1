@@ -267,9 +267,14 @@
                         <div id="manejoFacilidades" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">  
                                <%-- <h6 class="collapse-header">Procesos:</h6>--%>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaCentros")%>">Lista de Facilidades</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroFacilidad")%>">Registro de Facilidades</a>
-                                <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminImportarFacilidades")%>">Importar Facilidades</a>
+                                <div id="secManejoFacilidadesAdministrativo" runat="server" visible="false">
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminListaCentros")%>">Lista de Facilidades</a>
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistroFacilidad")%>">Registro de Facilidades</a>
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/adminImportarFacilidades")%>">Importar Facilidades</a>
+                                </div>
+                                <div id="secManejoFacilidadesRegistrado" runat="server" visible="false">
+                                    <a class="collapse-item text-wrap" href="<%=ResolveClientUrl("~/App/Administracion/registradoListaCentros")%>">Lista de Mis Facilidades</a>
+                                </div>
                             </div>
                         </div>
                     </li>

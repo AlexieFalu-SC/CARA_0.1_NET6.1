@@ -85,6 +85,7 @@ namespace CARA_Draftv0._1.App
                     List<int> listMunicipios = new List<int>();
                     DateTime Desde = DateTime.Parse(this.txtFechaDesde.Text);
                     DateTime Hasta = DateTime.Parse(this.txtFechaHasta.Text);
+                    List<string> listCategorias = new List<string>();
 
                     for (int i = 0; i < lbxCentro.Items.Count; i++)
                     {
@@ -110,7 +111,15 @@ namespace CARA_Draftv0._1.App
                         }
                     }
 
-                    var perfilesList = dsCARA.VW_DSH_PERFILES.Where(e => e.Fecha_Admisión >= Desde && e.Fecha_Admisión <= Hasta).Where(c => listCentros.Contains(c.FK_Centro)).DefaultIfEmpty().ToList();
+                    for (int i = 0; i < lbxCategoria.Items.Count; i++)
+                    {
+                        if (lbxCategoria.Items[i].Selected)
+                        {
+                            listCategorias.Add(lbxCategoria.Items[i].Value);
+                        }
+                    }
+
+                    var perfilesList = dsCARA.VW_DSH_PERFILES.Where(e => e.Fecha_Admisión >= Desde && e.Fecha_Admisión <= Hasta).Where(c => listCentros.Contains(c.FK_Centro)).Where(g => listCategorias.Contains(g.Categoria)).DefaultIfEmpty().ToList();
 
                     if (perfilesList[0] != null)
                     {
