@@ -70,6 +70,18 @@
                                                     <div class="row">
                                                         <asp:ListBox runat="server" ID="lbxCentro" SelectionMode="Multiple" CssClass="form-control"></asp:ListBox>
                                                     </div>
+                                                    <div class="row">
+                                                        <br />
+                                                    </div>
+                                                    <div class="row">
+                                                        <span class="list-item">Categoria de Episodio</span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <asp:ListBox runat="server" ID="lbxCategoria" SelectionMode="Multiple" CssClass="form-control">
+                                                            <asp:ListItem Value="Salud Mental">Salud Mental</asp:ListItem>
+                                                            <asp:ListItem Value="Sustancia">Sustancia</asp:ListItem>
+                                                        </asp:ListBox>
+                                                    </div>
                                                 </li>
                                                 <li class="list-group-item flex-fill">
                                                     <div class="row">

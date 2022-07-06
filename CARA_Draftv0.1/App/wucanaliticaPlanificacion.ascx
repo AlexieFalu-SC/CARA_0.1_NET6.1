@@ -72,6 +72,17 @@
                     <asp:ListBox runat="server" ID="lbxMunicipios" SelectionMode="Multiple" CssClass="form-control" onChange="changeFilter();"></asp:ListBox>
                 </div>
             </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <h6 class="list-item">Categoria de Episodio</h6>
+                </div>
+                <div class="row">
+                    <asp:ListBox ID="lbxCategoria" runat="server" SelectionMode="Multiple" onChange="changeFilter();" CssClass="form-control">
+                        <asp:ListItem Value="Salud Mental">Salud Mental</asp:ListItem>
+                        <asp:ListItem Value="Sustancia">Sustancia</asp:ListItem>
+                    </asp:ListBox>
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -337,7 +348,7 @@
     var plnDesde, plnHasta, plnAjax_data, plnTotalVia, plnTotalToxicologia, plnTotalCentros, plnTotalAdmisiones, plnDrogasUso, plnICDX, plnDSMV, plnCondicionesFisicas;
     var plnTotalMasculino, plnPerMasculino, plnTotalFemenino, plnPerFemenino, plnTotalFM, plnPerFM, plnTotalMF, plnPerFM;
     var plnTotal18_24, plnPer18_24, plnTotal25_44, plnPer25_44, plnTotal45_65, plnPer45_65, plnTotal65, plnPer65;
-    var plnGeneros = [], plnNiveles = [], plnCentros = [], plnFuenteReferido = [], plnGrupoEdades = [], plnSobredosis = [], plnMunicipios = [];
+    var plnGeneros = [], plnNiveles = [], plnCentros = [], plnFuenteReferido = [], plnGrupoEdades = [], plnSobredosis = [], plnMunicipios = [], plnCategorias = [];
 
 
     
@@ -363,7 +374,9 @@
 
             plnlistMunicipios();
 
-            plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + ', Fuente:' + JSON.stringify(plnFuenteReferido) + ', Grupo:' + JSON.stringify(plnGrupoEdades) + ', Sobredosis:' + JSON.stringify(plnSobredosis) + ', Municipios:' + JSON.stringify(plnMunicipios) + '}'
+            plnlistCategorias();
+
+            plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + ', Fuente:' + JSON.stringify(plnFuenteReferido) + ', Grupo:' + JSON.stringify(plnGrupoEdades) + ', Sobredosis:' + JSON.stringify(plnSobredosis) + ', Municipios:' + JSON.stringify(plnMunicipios) + ', Categorias:' + JSON.stringify(plnCategorias) + '}'
 
             wsplnTotales();
 
@@ -397,7 +410,9 @@
 
         plnlistMunicipios();
 
-        plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + ', Fuente:' + JSON.stringify(plnFuenteReferido) + ', Grupo:' + JSON.stringify(plnGrupoEdades) + ', Sobredosis:' + JSON.stringify(plnSobredosis) + ', Municipios:' + JSON.stringify(plnMunicipios) + '}'
+        plnlistCategorias();
+
+        plnAjax_data = '{Desde:"' + plnDesde + '", Hasta:"' + plnHasta + '", gen:' + JSON.stringify(plnGeneros) + ', Niveles:' + JSON.stringify(plnNiveles) + ', Centros:' + JSON.stringify(plnCentros) + ', Fuente:' + JSON.stringify(plnFuenteReferido) + ', Grupo:' + JSON.stringify(plnGrupoEdades) + ', Sobredosis:' + JSON.stringify(plnSobredosis) + ', Municipios:' + JSON.stringify(plnMunicipios) + ', Categorias:' + JSON.stringify(plnCategorias) + '}'
 
         wsplnTotales();
 
@@ -679,6 +694,19 @@
             }
         }
     }
+
+    function plnlistCategorias() {
+        plnCategorias = [];
+        var plnlistCategorias = document.getElementById("<%=lbxCategoria.ClientID%>");
+
+         var a = 0;
+         for (var i = 0; i < plnlistCategorias.options.length; i++) {
+             if (plnlistCategorias.options[i].selected == true) {
+                 plnCategorias[a] = { nb_categoria: plnlistCategorias.options[i].value };
+                 a++;
+             }
+         }
+     }
 
     function plnlistFuenteReferido() {
         plnFuenteReferido = [];

@@ -44,7 +44,7 @@ namespace CARA_Draftv0._1.App.WebMethods
     {
 
         [WebMethod]
-        public dashPlanificacionTotales dashTotales(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios)
+        public dashPlanificacionTotales dashTotales(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios, List<dashCaraCategorias> Categorias)
         {
             dashPlanificacionTotales data = new dashPlanificacionTotales();
 
@@ -55,6 +55,7 @@ namespace CARA_Draftv0._1.App.WebMethods
             List<string> listGrupo = new List<string>();
             List<string> listSobredosis = new List<string>();
             List<int> listMunicipios = new List<int>();
+            List<string> listCategorias = new List<string>();
 
             try
             {
@@ -95,7 +96,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listMunicipios.Add(item.pk_municipios);
                     }
 
-                    var dashPLN = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).ToList();
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashPLN = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).ToList();
 
                     var totalCentros = dashPLN.Select(a => a.PK_Centro).Distinct().Count();
 
@@ -108,11 +114,11 @@ namespace CARA_Draftv0._1.App.WebMethods
                         //data.totalToxicologia = totalToxicologia.ToString();
                         /*Comienzo de Generos*/
 
-                        var generos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
+                        var generos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
 
                         int totalGeneros = generos.Sum(a => a.Cantidad);
 
-                        var generosPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
+                        var generosPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
 
                         data.totalMasculino = generosPer.Where(a => a.DE_Genero.Equals("Masculino")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
@@ -133,11 +139,11 @@ namespace CARA_Draftv0._1.App.WebMethods
                         /*Final de Genero*/
 
                         /*Comienzo de Grupo Edades*/
-                        var grupos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count() }).ToList();
+                        var grupos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count() }).ToList();
 
                         int totalGrupos = grupos.Sum(a => a.Cantidad);
 
-                        var gruposPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGrupos)) * 100) }).ToList();
+                        var gruposPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.GrupoEdad).Select(x => new { GrupoEdad = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGrupos)) * 100) }).ToList();
 
                         data.total18_24 = gruposPer.Where(a => a.GrupoEdad.Equals("18-24")).Select(x => x.Cantidad).SingleOrDefault().ToString();
 
@@ -156,18 +162,18 @@ namespace CARA_Draftv0._1.App.WebMethods
                         data.per65 = gruposPer.Where(a => a.GrupoEdad.Equals("65+")).Select(x => x.Porcentaje).SingleOrDefault().ToString();
                         /*Final de Grupo Edades*/
 
-                        var drogasUso = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() });
+                        var drogasUso = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() });
 
 
 
                         data.totalCentros = totalCentros.ToString();
                         data.totalAdmisiones = totalAdmisiones.ToString();
 
-                        var PerfilesVia = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() });
+                        var PerfilesVia = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() });
 
                         int sumPerfilesVia = PerfilesVia.Select(x => x.Perfiles).Sum();
 
-                        var viaUso = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(1);
+                        var viaUso = dsCARA.VW_DSH_PLN_ViaSustancia.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ViaSustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_ViaSustancia).Select(x => new { DE_ViaSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(1);
 
                         int perfilesViaUso = viaUso.Select(a => a.Perfiles).FirstOrDefault();
 
@@ -238,13 +244,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashDrogasUso(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashDrogasUso(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -262,16 +269,21 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
                     /*
                     Top 5 Drogas confirmadas con toxicologia
                     var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
                     */
-                    var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
+                    var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
 
                     /*Nueva Sección*/
                     var totalDrogas = dashCaraPer.Sum(a => a.Perfiles);
 
-                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
+                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
 
                     /*END*/
 
@@ -300,13 +312,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashICDX(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashICDX(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -324,7 +337,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_PLN_ICDX.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ICDX.Equals("No Aplica")).GroupBy(a => a.DE_ICDX).Select(x => new { DE_ICDX = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_PLN_ICDX.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_ICDX.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_ICDX).Select(x => new { DE_ICDX = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]
@@ -351,13 +369,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashDSMV(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashDSMV(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -375,7 +394,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_PLN_DSMV.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_DSMV.Equals("No Aplica")).GroupBy(a => a.DE_DSMV).Select(x => new { DE_DSMV = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_PLN_DSMV.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_DSMV.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_DSMV).Select(x => new { DE_DSMV = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]
@@ -402,7 +426,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios)
+        public object[] dashCaraSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios, List<dashCaraCategorias> Categorias)
         {
             try
             {
@@ -413,6 +437,7 @@ namespace CARA_Draftv0._1.App.WebMethods
                 List<string> listGrupo = new List<string>();
                 List<string> listSobredosis = new List<string>();
                 List<int> listMunicipios = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -449,13 +474,18 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listMunicipios.Add(item.pk_municipios);
                     }
 
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
                     //var dashCara = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).GroupBy(a => new { a.DE_Sobredosis, a.FE_Perfil.Month } ).Select(x => new { DE_Sobredosis = x.Key.DE_Sobredosis, Perfiles = x.Count(), FE_Perfil = x.Key.Month}).ToList();
 
                     //var dashCara = dashCaraMes.GroupBy(a => new { a.DE_Sobredosis, a.FE_Perfil }).Select(x => new { DE_Sobredosis = x.Key.DE_Sobredosis, Perfiles = x.Count(), FE_Perfil = x.Key });
 
-                    var dashCaraPerfiles = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.FE_Perfil.Month ).Select(x => new { Mes = x.Key, Perfiles = x.Count()}).ToList();
+                    var dashCaraPerfiles = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.FE_Perfil.Month ).Select(x => new { Mes = x.Key, Perfiles = x.Count()}).ToList();
 
-                    var dashCaraEventos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(g => (bool)g.IN_Sobredosis).Where(i => listSobredosis.Contains("Si")).GroupBy(a => a.FE_Perfil.Month).Select(i => new { Mes = i.Key, Eventos = i.Count() }).ToList();
+                    var dashCaraEventos = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(g => (bool)g.IN_Sobredosis).Where(i => listSobredosis.Contains("Si")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.FE_Perfil.Month).Select(i => new { Mes = i.Key, Eventos = i.Count() }).ToList();
 
                     if(dashCaraEventos.Count() == 0)
                     {
@@ -508,7 +538,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashMunicipio(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios)
+        public object[] dashMunicipio(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraFuenteReferido> Fuente, List<dashCaraGrupoEdades> Grupo, List<dashCaraSobredosis> Sobredosis, List<dashCaraMunicipios> Municipios, List<dashCaraCategorias> Categorias)
         {
             try
             {
@@ -519,6 +549,7 @@ namespace CARA_Draftv0._1.App.WebMethods
                 List<string> listGrupo = new List<string>();
                 List<string> listSobredosis = new List<string>();
                 List<int> listMunicipios = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -555,16 +586,21 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listMunicipios.Add(item.pk_municipios);
                     }
 
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
                     /*
                     Top 5 Drogas confirmadas con toxicologia
                     var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_USO.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(f => f.IN_Toxicologia.Equals(true)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).Take(5);
                     */
-                    var dashCaraPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Municipio).Select(x => new { DE_Municipio = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
+                    var dashCaraPer = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Municipio).Select(x => new { DE_Municipio = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
 
                     /*Nueva Sección*/
                     var totalDrogas = dashCaraPer.Sum(a => a.Perfiles);
 
-                    var dashCara = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).GroupBy(a => a.DE_Municipio).Select(x => new { DE_Municipio = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
+                    var dashCara = dsCARA.VW_DSH_PLN_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(a => listFuente.Contains(a.PK_FuenteReferido)).Where(f => listGrupo.Contains(f.GrupoEdad)).Where(r => listSobredosis.Contains(r.DE_Sobredosis)).Where(g => listMunicipios.Contains(g.PK_Municipio)).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Municipio).Select(x => new { DE_Municipio = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
 
                     /*END*/
 
@@ -593,13 +629,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraDrogaSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraDrogaSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -617,11 +654,16 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_SOBREDOSIS.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).ToList();
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCaraPer = dsCARA.VW_DSH_CARA_DROGAS_SOBREDOSIS.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles).ToList();
 
                     var totalDrogas = dashCaraPer.Sum(a => a.Perfiles);
 
-                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_SOBREDOSIS.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
+                    var dashCara = dsCARA.VW_DSH_CARA_DROGAS_SOBREDOSIS.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).Where(u => listCategorias.Contains(u.NB_Categoria)).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = (((0.0 + x.Count()) / (0.0 + totalDrogas)) * 100) }).OrderByDescending(f => f.Perfiles);
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]

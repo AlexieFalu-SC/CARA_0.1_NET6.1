@@ -20,114 +20,114 @@ namespace CARA_Draftv0._1
         public string Centro { get; set; }
         public System.DateTime Fecha_Admisión { get; set; }
         public int ID_Paciente { get; set; }
+        public int FK_EstadoServicio { get; set; }
         public string Tipo_Admisión { get; set; }
         public Nullable<int> Dias_en_Espera { get; set; }
         public int Arrestos_30_Dias { get; set; }
+        public int FK_FuenteReferido { get; set; }
         public string Fuente_Referido { get; set; }
+        public int FK_EpisodiosPrevios { get; set; }
         public string Episodios_Previos { get; set; }
+        public int FK_GrupoApoyoMesPasado { get; set; }
         public string Grupo_de_Apoyo { get; set; }
+        public int FK_Genero { get; set; }
         public string Genero { get; set; }
+        public int FK_EstadoMarital { get; set; }
         public string Estado_Marital { get; set; }
+        public Nullable<int> FK_Municipio { get; set; }
         public string Municipio { get; set; }
+        public int FK_Residencia { get; set; }
         public string Residencia { get; set; }
+        public int FK_HijosMenoresCuido { get; set; }
         public string Hijos_Menores { get; set; }
+        public int FK_Embarazada { get; set; }
         public string Embarazada { get; set; }
+        public int FK_Veterano { get; set; }
         public string Veterano { get; set; }
+        public int FK_Escolaridad { get; set; }
         public string Escolaridad { get; set; }
+        public int FK_CondicionLaboral { get; set; }
         public string Condicion_Laboral { get; set; }
+        public int FK_Estudios { get; set; }
         public string Estudios { get; set; }
+        public int FK_FuenteIngreso { get; set; }
         public string Fuente_Ingreso { get; set; }
+        public int FK_DrogaPrimaria { get; set; }
         public string Droga_Primaria { get; set; }
+        public bool IN_ToxicologiaPrimaria { get; set; }
         public string Toxicologia_Primaria { get; set; }
+        public int FK_ViaPrimaria { get; set; }
         public string Via_Primaria { get; set; }
+        public int FK_FrecuenciaPrimaria { get; set; }
         public string Frecuencia_Primaria { get; set; }
         public int Edad_Primaria { get; set; }
+        public int FK_DrogaSecundaria { get; set; }
         public string Droga_Secundaria { get; set; }
+        public bool IN_ToxicologiaSecundaria { get; set; }
         public string Toxicologia_Secundaria { get; set; }
+        public int FK_ViaSecundaria { get; set; }
         public string Via_Secundaria { get; set; }
+        public int FK_FrecuenciaSecundaria { get; set; }
         public string Frecuencia_Secundaria { get; set; }
         public int Edad_Secundaria { get; set; }
+        public int FK_DrogaTerciaria { get; set; }
         public string Droga_Terciaria { get; set; }
+        public bool IN_ToxicologiaTerciaria { get; set; }
         public string Toxicologia_Terciaria { get; set; }
+        public int FK_ViaTerciaria { get; set; }
         public string Via_Terciaria { get; set; }
+        public int FK_FrecuenciaTerciaria { get; set; }
         public string Frecuencia_Terciaria { get; set; }
         public int Edad_Terciaria { get; set; }
         public string Droga_Cuarta { get; set; }
+        public bool IN_ToxicologiaCuarta { get; set; }
         public string Toxicologia_Cuarta { get; set; }
+        public int FK_FrecuenciaCuarta { get; set; }
         public string Via_Cuarta { get; set; }
+        public int Expr1 { get; set; }
         public string Frecuencia_Cuarta { get; set; }
         public int Edad_Cuarta { get; set; }
         public string Droga_Quinta { get; set; }
+        public bool IN_ToxicologiaQuinta { get; set; }
         public string Toxicologia_Quinta { get; set; }
         public string Via_Quinta { get; set; }
+        public int FK_FrecuenciaQuinta { get; set; }
         public string Frecuencia_Quinta { get; set; }
         public int Edad_Quinta { get; set; }
         public string Evento_Sobredosis { get; set; }
+        public int FK_DrogaSobredosisPrimaria { get; set; }
         public string Sobredosis_Primaria { get; set; }
+        public int FK_DrogaSobredosisSecundaria { get; set; }
         public string Sobredosis_Secundaria { get; set; }
         public string Sobredosis_Terciaria { get; set; }
         public string Sobredosis_Cuarta { get; set; }
-        public string ICDX_Primaria { get; set; }
-        public string ICDX_Secundaria { get; set; }
-        public string ICDX_Terciaria { get; set; }
-        public string ICDX_Cuarta { get; set; }
-        public string DSMV_Primaria { get; set; }
-        public string DSMV_Secundaria { get; set; }
-        public string DSMV_Terciaria { get; set; }
-        public string DSMV_Cuarta { get; set; }
-        public string Condicion_Primaria { get; set; }
-        public string Condicion_Secundaria { get; set; }
-        public string Condicion_Terciaria { get; set; }
-        public string Condicion_Cuarta { get; set; }
-        public string Nivel_Cuidado { get; set; }
-        public string Seguro_Salud { get; set; }
-        public int FK_EstadoServicio { get; set; }
-        public int FK_FuenteReferido { get; set; }
-        public int FK_EpisodiosPrevios { get; set; }
-        public int FK_GrupoApoyoMesPasado { get; set; }
-        public int FK_Genero { get; set; }
-        public int FK_EstadoMarital { get; set; }
-        public Nullable<int> FK_Municipio { get; set; }
-        public int FK_Residencia { get; set; }
-        public int FK_HijosMenoresCuido { get; set; }
-        public int FK_Embarazada { get; set; }
-        public int FK_Veterano { get; set; }
-        public int FK_Escolaridad { get; set; }
-        public int FK_CondicionLaboral { get; set; }
-        public int FK_Estudios { get; set; }
-        public int FK_FuenteIngreso { get; set; }
-        public int FK_DrogaPrimaria { get; set; }
-        public bool IN_ToxicologiaPrimaria { get; set; }
-        public int FK_ViaPrimaria { get; set; }
-        public int FK_FrecuenciaPrimaria { get; set; }
-        public int FK_DrogaSecundaria { get; set; }
-        public bool IN_ToxicologiaSecundaria { get; set; }
-        public int FK_ViaSecundaria { get; set; }
-        public int FK_FrecuenciaSecundaria { get; set; }
-        public int FK_DrogaTerciaria { get; set; }
-        public bool IN_ToxicologiaTerciaria { get; set; }
-        public int FK_ViaTerciaria { get; set; }
-        public int FK_FrecuenciaTerciaria { get; set; }
-        public bool IN_ToxicologiaCuarta { get; set; }
-        public int FK_FrecuenciaCuarta { get; set; }
-        public int Expr1 { get; set; }
-        public bool IN_ToxicologiaQuinta { get; set; }
-        public int FK_FrecuenciaQuinta { get; set; }
-        public int FK_DrogaSobredosisPrimaria { get; set; }
-        public int FK_DrogaSobredosisSecundaria { get; set; }
         public int FK_ICDX_Primaria { get; set; }
+        public string ICDX_Primaria { get; set; }
         public int FK_ICDX_Secundaria { get; set; }
+        public string ICDX_Secundaria { get; set; }
         public int FK_ICDX_Terciaria { get; set; }
+        public string ICDX_Terciaria { get; set; }
         public int FK_ICDX_Cuarta { get; set; }
+        public string ICDX_Cuarta { get; set; }
         public int FK_DSMV_Primaria { get; set; }
+        public string DSMV_Primaria { get; set; }
         public int FK_DSMV_Secundaria { get; set; }
+        public string DSMV_Secundaria { get; set; }
         public int FK_DSMV_Terciaria { get; set; }
+        public string DSMV_Terciaria { get; set; }
         public int FK_DSMV_Cuarta { get; set; }
+        public string DSMV_Cuarta { get; set; }
         public int FK_CondicionFisicaPrimaria { get; set; }
+        public string Condicion_Primaria { get; set; }
         public int FK_CondicionFisicaSecundaria { get; set; }
+        public string Condicion_Secundaria { get; set; }
         public int FK_CondicionFisicaTerciaria { get; set; }
+        public string Condicion_Terciaria { get; set; }
         public int FK_CondicionFisicaCuarta { get; set; }
+        public string Condicion_Cuarta { get; set; }
         public int FK_NivelSustancia { get; set; }
+        public string Nivel_Cuidado { get; set; }
         public int Expr2 { get; set; }
+        public string Seguro_Salud { get; set; }
     }
 }

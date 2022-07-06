@@ -20,5 +20,8 @@ namespace CARA_Draftv0._1
         public int FK_Genero { get; set; }
         public int FK_NivelSustancia { get; set; }
         public int FK_Centro { get; set; }
+        public int PK_Licencia { get; set; }
+        public string NB_Licencia { get; set; }
+        public string NB_Categoria { get; set; }
     }
 }

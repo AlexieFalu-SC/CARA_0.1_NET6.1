@@ -31,5 +31,8 @@ namespace CARA_Draftv0._1
         public string DE_Sobredosis { get; set; }
         public int PK_Municipio { get; set; }
         public string DE_Municipio { get; set; }
+        public int PK_Licencia { get; set; }
+        public string NB_Licencia { get; set; }
+        public string NB_Categoria { get; set; }
     }
 }

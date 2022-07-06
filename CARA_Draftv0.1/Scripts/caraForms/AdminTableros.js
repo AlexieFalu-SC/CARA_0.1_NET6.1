@@ -77,7 +77,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxNivelSustancia').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxNivelSustancia').multiselect('updateButtonText');
@@ -86,7 +86,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentro').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentro').multiselect('updateButtonText');
@@ -104,16 +104,25 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentroPerfiles').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCentroPerfiles').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCategoria').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '170px'
+    });
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCategoria').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxCategoria').multiselect('updateButtonText');
 
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect({
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxFuenteReferido').multiselect('updateButtonText');
@@ -122,7 +131,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxGrupoEdades').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxGrupoEdades').multiselect('updateButtonText');
@@ -131,7 +140,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxSobredosis').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxSobredosis').multiselect('updateButtonText');
@@ -140,7 +149,7 @@ $('#ContentPlaceHolder1_lbxReferido').multiselect('selectAll', false);
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_wucanaliticaPlanificacion_lbxMunicipios').multiselect('updateButtonText');
