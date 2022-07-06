@@ -77,7 +77,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public dashCaraData dashCaraTotalPerfiles(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public dashCaraData dashCaraTotalPerfiles(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             dashCaraData data = new dashCaraData();
 
@@ -86,6 +86,7 @@ namespace CARA_Draftv0._1.App.WebMethods
             List<int> listGenero = new List<int>();
             List<int> listNiveles = new List<int>();
             List<int> listCentros = new List<int>();
+            List<string> listCategorias = new List<string>();
 
             try
             {
@@ -106,13 +107,18 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).ToList();
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
 
-                    var generos = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
+                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(g => listCategorias.Contains(g.NB_Categoria)).ToList();
+
+                    var generos = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(g => listCategorias.Contains(g.NB_Categoria)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count() }).ToList();
 
                     int totalGeneros = generos.Sum(a => a.Cantidad);
 
-                    var generosPer = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
+                    var generosPer = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(b => listCentros.Contains(b.PK_Centro)).Where(c => listGenero.Contains(c.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(g => listCategorias.Contains(g.NB_Categoria)).GroupBy(a => a.DE_Genero).Select(x => new { DE_Genero = x.Key, Cantidad = x.Count(), Porcentaje = (((0.0 + x.Count()) / (0.0 + totalGeneros)) * 100) }).ToList();
 
                     //var generosPer = generos.Select(x => new { DE_Genero = x.DE_Genero, Cantidad = x.Cantidad, Porcentaje = ((x.Cantidad / totalGeneros) * 100) });
 
@@ -152,13 +158,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraFuenteReferido(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraFuenteReferido(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -177,7 +184,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).GroupBy(a => a.DE_FuenteReferido).Select(x => new { DE_FuenteReferido = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(g => listCategorias.Contains(g.NB_Categoria)).GroupBy(a => a.DE_FuenteReferido).Select(x => new { DE_FuenteReferido = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
 
                     DataTable Datos = new DataTable();
 
@@ -288,13 +300,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraNivelCuidado(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraNivelCuidado(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -313,7 +326,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).GroupBy(a => a.DE_NivelSustancia).Select(x => new { DE_NivelSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(g => listCategorias.Contains(g.NB_Categoria)).GroupBy(a => a.DE_NivelSustancia).Select(x => new { DE_NivelSustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]
@@ -340,7 +358,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraDrogasUso(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraDrogasUso(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
@@ -391,13 +409,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -415,7 +434,12 @@ namespace CARA_Draftv0._1.App.WebMethods
                         listCentros.Add(item.pk_centro);
                     }
 
-                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).GroupBy(a => a.DE_Sobredosis).Select(x => new { DE_Sobredosis = x.Key, Perfiles = x.Count() });
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
+                    }
+
+                    var dashCara = dsCARA.VW_DSH_CARA_PERFILES.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.PK_Genero)).Where(x => listNiveles.Contains(x.PK_NivelSustancia)).Where(b => listCentros.Contains(b.PK_Centro)).Where(g => listCategorias.Contains(g.NB_Categoria)).GroupBy(a => a.DE_Sobredosis).Select(x => new { DE_Sobredosis = x.Key, Perfiles = x.Count() });
 
                     var charData = new object[dashCara.Count() + 1];
                     charData[0] = new object[]
@@ -442,13 +466,14 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashCaraDrogaSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros)
+        public object[] dashCaraDrogaSobredosis(DateTime Desde, DateTime Hasta, List<dashCaraGenero> gen, List<dashCaraNivel> Niveles, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {
                 List<int> listGenero = new List<int>();
                 List<int> listNiveles = new List<int>();
                 List<int> listCentros = new List<int>();
+                List<string> listCategorias = new List<string>();
 
                 using (CARAEntities dsCARA = new CARAEntities())
                 {
@@ -464,6 +489,11 @@ namespace CARA_Draftv0._1.App.WebMethods
                     foreach (dashCaraCentro item in Centros)
                     {
                         listCentros.Add(item.pk_centro);
+                    }
+
+                    foreach (dashCaraCategorias item in Categorias)
+                    {
+                        listCategorias.Add(item.nb_categoria);
                     }
 
                     var dashCara = dsCARA.VW_DSH_CARA_DROGAS_SOBREDOSIS.Where(e => e.FE_Perfil >= Desde && e.FE_Perfil <= Hasta).Where(a => listGenero.Contains(a.FK_Genero)).Where(x => listNiveles.Contains(x.FK_NivelSustancia)).Where(b => listCentros.Contains(b.FK_Centro)).Where(c => !c.DE_Sustancia.Equals("No Aplica")).GroupBy(a => a.DE_Sustancia).Select(x => new { DE_Sustancia = x.Key, Perfiles = x.Count() }).OrderByDescending(f => f.Perfiles);
@@ -493,7 +523,7 @@ namespace CARA_Draftv0._1.App.WebMethods
 
         [WebMethod]
         //[ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public object[] dashPerfiles(DateTime Desde, DateTime Hasta, List<dashCaraCentro> Centros)
+        public object[] dashPerfiles(DateTime Desde, DateTime Hasta, List<dashCaraCentro> Centros, List<dashCaraCategorias> Categorias)
         {
             try
             {

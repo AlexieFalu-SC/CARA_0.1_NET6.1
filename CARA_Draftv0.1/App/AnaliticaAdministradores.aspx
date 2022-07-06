@@ -354,7 +354,7 @@
 
             //listCentroPerfiles();
 
-            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + '}'
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + ', Categorias:' + JSON.stringify(categorias) + '}'
 
             wsTotalPerfiles();
 
@@ -546,7 +546,7 @@
 
             listCategoria();
 
-            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) +'}'
+            ajax_data = '{Desde:"' + dtDesde + '", Hasta:"' + dtHasta + '", gen:' + JSON.stringify(generos) + ', Niveles:' + JSON.stringify(niveles) + ', Centros:' + JSON.stringify(centros) + ', Categorias:' + JSON.stringify(categorias) +'}'
 
             wsTotalPerfiles();
 
@@ -607,7 +607,7 @@
             var a = 0;
             for (var i = 0; i < listCategorias.options.length; i++) {
                 if (listCategorias.options[i].selected == true) {
-                    cetegorias[a] = { nb_categoria: listCategorias.options[i].value };
+                    categorias[a] = { nb_categoria: listCategorias.options[i].value };
                     a++;
                 }
             }

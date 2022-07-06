@@ -20,16 +20,19 @@ namespace CARA_Draftv0._1
         public string NB_Centro { get; set; }
         public System.DateTime FE_Perfil { get; set; }
         public Nullable<int> Edad { get; set; }
+        public string GrupoEdad { get; set; }
         public int PK_Genero { get; set; }
         public string DE_Genero { get; set; }
         public int PK_FuenteReferido { get; set; }
         public string DE_FuenteReferido { get; set; }
         public int PK_NivelSustancia { get; set; }
         public string DE_NivelSustancia { get; set; }
-        public string DE_Sobredosis { get; set; }
-        public string GrupoEdad { get; set; }
         public bool IN_Sobredosis { get; set; }
+        public string DE_Sobredosis { get; set; }
         public int PK_Municipio { get; set; }
         public string DE_Municipio { get; set; }
+        public int PK_Licencia { get; set; }
+        public string NB_Licencia { get; set; }
+        public string NB_Categoria { get; set; }
     }
 }

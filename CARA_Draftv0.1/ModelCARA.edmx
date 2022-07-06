@@ -361,6 +361,7 @@
           <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
           <Property Name="AccessFailedCount" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="ProfileImgPath" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="CA_USUARIO_CENTRO">
           <Key>
@@ -434,10 +435,13 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_PERFILES' does not have a
             <PropertyRef Name="DE_FuenteReferido" />
             <PropertyRef Name="PK_NivelSustancia" />
             <PropertyRef Name="DE_NivelSustancia" />
-            
+            <PropertyRef Name="IN_Sobredosis" />
             <PropertyRef Name="DE_Sobredosis" />
             <PropertyRef Name="PK_Municipio" />
             <PropertyRef Name="DE_Municipio" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="NB_Licencia" />
+            <PropertyRef Name="NB_Categoria" />
           </Key>
           <Property Name="PK_Episodio" Type="int" Nullable="false" />
           <Property Name="PK_Perfil" Type="int" Nullable="false" />
@@ -456,6 +460,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_CARA_PERFILES' does not have a
           <Property Name="DE_Sobredosis" Type="varchar" MaxLength="2" Nullable="false" />
           <Property Name="PK_Municipio" Type="int" Nullable="false" />
           <Property Name="DE_Municipio" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="PK_Licencia" Type="int" Nullable="false" />
+          <Property Name="NB_Licencia" Type="varchar(max)" Nullable="false" />
+          <Property Name="NB_Categoria" Type="varchar" MaxLength="128" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'CARA_0.1.dbo.VW_DSH_PERFILES' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -815,8 +822,8 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_LISTA_USUARIOS_ASSMCA' does not ha
             <PropertyRef Name="Confirmado" />
             <PropertyRef Name="Estatus" />
             <PropertyRef Name="Active" />
-            <PropertyRef Name="Imagen_Perfil" />
             <PropertyRef Name="Accesos" />
+            <PropertyRef Name="Imagen_Perfil" />
           </Key>
           <Property Name="PK_Usuario" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" />
@@ -827,7 +834,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_LISTA_USUARIOS_ASSMCA' does not ha
           <Property Name="Confirmado" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Imagen_Perfil" Type="varchar" MaxLength="27" Nullable="false" />
+          <Property Name="Imagen_Perfil" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Accesos" Type="varchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -840,9 +847,9 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_LISTA_USUARIOS_REGISTRADOS' does n
             <PropertyRef Name="Confirmado" />
             <PropertyRef Name="Estatus" />
             <PropertyRef Name="Active" />
-            <PropertyRef Name="Imagen_Perfil" />
             <PropertyRef Name="Accesos" />
             <PropertyRef Name="Cuenta_Princiapal" />
+            <PropertyRef Name="Imagen_Perfil" />
           </Key>
           <Property Name="PK_Usuario" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="Nombre" Type="nvarchar(max)" />
@@ -853,7 +860,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_LISTA_USUARIOS_REGISTRADOS' does n
           <Property Name="Confirmado" Type="varchar" MaxLength="13" Nullable="false" />
           <Property Name="Estatus" Type="varchar" MaxLength="11" Nullable="false" />
           <Property Name="Active" Type="bit" Nullable="false" />
-          <Property Name="Imagen_Perfil" Type="varchar" MaxLength="27" Nullable="false" />
+          <Property Name="Imagen_Perfil" Type="nvarchar(max)" Nullable="false" />
           <Property Name="Accesos" Type="varchar" MaxLength="1" Nullable="false" />
           <Property Name="Cuenta_Princiapal" Type="nvarchar" MaxLength="128" Nullable="false" />
         </EntityType>
@@ -1863,7 +1870,10 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
     [VW_DSH_CARA_PERFILES].[IN_Sobredosis] AS [IN_Sobredosis], 
     [VW_DSH_CARA_PERFILES].[DE_Sobredosis] AS [DE_Sobredosis], 
     [VW_DSH_CARA_PERFILES].[PK_Municipio] AS [PK_Municipio], 
-    [VW_DSH_CARA_PERFILES].[DE_Municipio] AS [DE_Municipio]
+    [VW_DSH_CARA_PERFILES].[DE_Municipio] AS [DE_Municipio], 
+    [VW_DSH_CARA_PERFILES].[PK_Licencia] AS [PK_Licencia], 
+    [VW_DSH_CARA_PERFILES].[NB_Licencia] AS [NB_Licencia], 
+    [VW_DSH_CARA_PERFILES].[NB_Categoria] AS [NB_Categoria]
     FROM [dbo].[VW_DSH_CARA_PERFILES] AS [VW_DSH_CARA_PERFILES]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VW_DSH_PERFILES" EntityType="Self.VW_DSH_PERFILES" store:Type="Views" store:Schema="dbo">
@@ -2700,7 +2710,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             <Parameter Name="FK_NivelSustancia" Mode="In" Type="Int32" />
             <Parameter Name="NR_DiasEspera" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="VW_DSH_CARA_PERFILES" EntityType="Model.VW_DSH_CARA_PERFILES" />
           <EntitySet Name="VW_DSH_CARA_DROGAS_SOBREDOSIS" EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" />
           <EntitySet Name="CA_USUARIO" EntityType="Model.CA_USUARIO" />
           <AssociationSet Name="FK_USUARIO_CENTRO_USUARIO" Association="Model.FK_USUARIO_CENTRO_USUARIO">
@@ -3097,6 +3106,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             <Parameter Name="PK_Centro" Mode="In" Type="Int32" />
             <Parameter Name="NB_Centro" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="VW_DSH_CARA_PERFILES" EntityType="Model.VW_DSH_CARA_PERFILES" />
         </EntityContainer>
         <ComplexType Name="SPR_PERFILES_EPISODIO_Result">
           <Property Type="Int32" Name="PK_Perfil" Nullable="false" />
@@ -3175,41 +3185,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Type="DateTime" Name="FE_Episodio" Nullable="false" Precision="23" />
           <Property Type="Int32" Name="NR_Perfiles" Nullable="true" />
         </ComplexType>
-        <EntityType Name="VW_DSH_CARA_PERFILES">
-          <Key>
-            <PropertyRef Name="PK_Episodio" />
-            <PropertyRef Name="PK_Perfil" />
-            <PropertyRef Name="PK_Centro" />
-            <PropertyRef Name="NB_Centro" />
-            <PropertyRef Name="FE_Perfil" />
-            <PropertyRef Name="PK_Genero" />
-            <PropertyRef Name="DE_Genero" />
-            <PropertyRef Name="PK_FuenteReferido" />
-            <PropertyRef Name="DE_FuenteReferido" />
-            <PropertyRef Name="PK_NivelSustancia" />
-            <PropertyRef Name="DE_NivelSustancia" />
-            <PropertyRef Name="DE_Sobredosis" />
-            <PropertyRef Name="PK_Municipio" />
-            <PropertyRef Name="DE_Municipio" />
-          </Key>
-          <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
-          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
-          <Property Name="PK_Centro" Type="Int32" Nullable="false" />
-          <Property Name="NB_Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Edad" Type="Int32" />
-          <Property Name="PK_Genero" Type="Int32" Nullable="false" />
-          <Property Name="DE_Genero" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="PK_FuenteReferido" Type="Int32" Nullable="false" />
-          <Property Name="DE_FuenteReferido" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="PK_NivelSustancia" Type="Int32" Nullable="false" />
-          <Property Name="DE_NivelSustancia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="DE_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="GrupoEdad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
-          <Property Name="IN_Sobredosis" Type="Boolean" Nullable="false" />
-          <Property Name="PK_Municipio" Type="Int32" Nullable="false" />
-          <Property Name="DE_Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="VW_DSH_CARA_DROGAS_SOBREDOSIS">
           <Key>
             <PropertyRef Name="FE_Perfil" />
@@ -3248,6 +3223,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
           <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CA_USUARIO_CENTRO" Relationship="Model.FK_USUARIO_CENTRO_USUARIO" FromRole="CA_USUARIO" ToRole="CA_USUARIO_CENTRO" />
+          <Property Name="ProfileImgPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_USUARIO_CENTRO_USUARIO">
           <End Type="Model.CA_USUARIO" Role="CA_USUARIO" Multiplicity="1" />
@@ -4309,7 +4285,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Name="Confirmado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Imagen_Perfil" Type="String" Nullable="false" MaxLength="27" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen_Perfil" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Accesos" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="VW_LISTA_USUARIOS_REGISTRADOS">
@@ -4333,7 +4309,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <Property Name="Confirmado" Type="String" Nullable="false" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Estatus" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" Nullable="false" />
-          <Property Name="Imagen_Perfil" Type="String" Nullable="false" MaxLength="27" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen_Perfil" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Accesos" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
           <Property Name="Cuenta_Princiapal" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
@@ -4485,6 +4461,48 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="VW_DSH_CARA_PERFILES">
+          <Key>
+            <PropertyRef Name="PK_Episodio" />
+            <PropertyRef Name="PK_Perfil" />
+            <PropertyRef Name="PK_Centro" />
+            <PropertyRef Name="NB_Centro" />
+            <PropertyRef Name="FE_Perfil" />
+            <PropertyRef Name="PK_Genero" />
+            <PropertyRef Name="DE_Genero" />
+            <PropertyRef Name="PK_FuenteReferido" />
+            <PropertyRef Name="DE_FuenteReferido" />
+            <PropertyRef Name="PK_NivelSustancia" />
+            <PropertyRef Name="DE_NivelSustancia" />
+            <PropertyRef Name="IN_Sobredosis" />
+            <PropertyRef Name="DE_Sobredosis" />
+            <PropertyRef Name="PK_Municipio" />
+            <PropertyRef Name="DE_Municipio" />
+            <PropertyRef Name="PK_Licencia" />
+            <PropertyRef Name="NB_Licencia" />
+            <PropertyRef Name="NB_Categoria" />
+          </Key>
+          <Property Name="PK_Episodio" Type="Int32" Nullable="false" />
+          <Property Name="PK_Perfil" Type="Int32" Nullable="false" />
+          <Property Name="PK_Centro" Type="Int32" Nullable="false" />
+          <Property Name="NB_Centro" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FE_Perfil" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="GrupoEdad" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Genero" Type="Int32" Nullable="false" />
+          <Property Name="DE_Genero" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PK_FuenteReferido" Type="Int32" Nullable="false" />
+          <Property Name="DE_FuenteReferido" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="PK_NivelSustancia" Type="Int32" Nullable="false" />
+          <Property Name="DE_NivelSustancia" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="IN_Sobredosis" Type="Boolean" Nullable="false" />
+          <Property Name="DE_Sobredosis" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Municipio" Type="Int32" Nullable="false" />
+          <Property Name="DE_Municipio" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PK_Licencia" Type="Int32" Nullable="false" />
+          <Property Name="NB_Licencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NB_Categoria" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -4833,29 +4851,6 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SPU_EPISODIO" FunctionName="Model.Store.SPU_EPISODIO" />
-          <EntitySetMapping Name="VW_DSH_CARA_PERFILES">
-            <EntityTypeMapping TypeName="Model.VW_DSH_CARA_PERFILES">
-              <MappingFragment StoreEntitySet="VW_DSH_CARA_PERFILES">
-                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
-                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
-                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
-                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
-                <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
-                <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
-                <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
-                <ScalarProperty Name="DE_FuenteReferido" ColumnName="DE_FuenteReferido" />
-                <ScalarProperty Name="PK_FuenteReferido" ColumnName="PK_FuenteReferido" />
-                <ScalarProperty Name="DE_Genero" ColumnName="DE_Genero" />
-                <ScalarProperty Name="PK_Genero" ColumnName="PK_Genero" />
-                <ScalarProperty Name="Edad" ColumnName="Edad" />
-                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
-                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
-                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
-                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
-                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="VW_DSH_CARA_DROGAS_SOBREDOSIS">
             <EntityTypeMapping TypeName="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS">
               <MappingFragment StoreEntitySet="VW_DSH_CARA_DROGAS_SOBREDOSIS">
@@ -4870,6 +4865,7 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           <EntitySetMapping Name="CA_USUARIO">
             <EntityTypeMapping TypeName="Model.CA_USUARIO">
               <MappingFragment StoreEntitySet="CA_USUARIO">
+                <ScalarProperty Name="ProfileImgPath" ColumnName="ProfileImgPath" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
                 <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
@@ -5323,6 +5319,32 @@ warning 6002: The table/view 'CARA_0.1.dbo.VW_USUARIOS_CENTROS_LICENCIAS' does n
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="SPC_ATAR_CENTRO_LICENCIA" FunctionName="Model.Store.SPC_ATAR_CENTRO_LICENCIA" />
           <FunctionImportMapping FunctionImportName="SPU_CENTRO" FunctionName="Model.Store.SPU_CENTRO" />
+          <EntitySetMapping Name="VW_DSH_CARA_PERFILES">
+            <EntityTypeMapping TypeName="Model.VW_DSH_CARA_PERFILES">
+              <MappingFragment StoreEntitySet="VW_DSH_CARA_PERFILES">
+                <ScalarProperty Name="NB_Categoria" ColumnName="NB_Categoria" />
+                <ScalarProperty Name="NB_Licencia" ColumnName="NB_Licencia" />
+                <ScalarProperty Name="PK_Licencia" ColumnName="PK_Licencia" />
+                <ScalarProperty Name="DE_Municipio" ColumnName="DE_Municipio" />
+                <ScalarProperty Name="PK_Municipio" ColumnName="PK_Municipio" />
+                <ScalarProperty Name="DE_Sobredosis" ColumnName="DE_Sobredosis" />
+                <ScalarProperty Name="IN_Sobredosis" ColumnName="IN_Sobredosis" />
+                <ScalarProperty Name="DE_NivelSustancia" ColumnName="DE_NivelSustancia" />
+                <ScalarProperty Name="PK_NivelSustancia" ColumnName="PK_NivelSustancia" />
+                <ScalarProperty Name="DE_FuenteReferido" ColumnName="DE_FuenteReferido" />
+                <ScalarProperty Name="PK_FuenteReferido" ColumnName="PK_FuenteReferido" />
+                <ScalarProperty Name="DE_Genero" ColumnName="DE_Genero" />
+                <ScalarProperty Name="PK_Genero" ColumnName="PK_Genero" />
+                <ScalarProperty Name="GrupoEdad" ColumnName="GrupoEdad" />
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="FE_Perfil" ColumnName="FE_Perfil" />
+                <ScalarProperty Name="NB_Centro" ColumnName="NB_Centro" />
+                <ScalarProperty Name="PK_Centro" ColumnName="PK_Centro" />
+                <ScalarProperty Name="PK_Perfil" ColumnName="PK_Perfil" />
+                <ScalarProperty Name="PK_Episodio" ColumnName="PK_Episodio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

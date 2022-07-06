@@ -54,7 +54,6 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_LKP_VETERANO> CA_LKP_VETERANO { get; set; }
         public virtual DbSet<CA_LKP_VIA_SUSTANCIA> CA_LKP_VIA_SUSTANCIA { get; set; }
         public virtual DbSet<CA_USUARIO_CENTRO> CA_USUARIO_CENTRO { get; set; }
-        public virtual DbSet<VW_DSH_CARA_PERFILES> VW_DSH_CARA_PERFILES { get; set; }
         public virtual DbSet<VW_DSH_CARA_DROGAS_SOBREDOSIS> VW_DSH_CARA_DROGAS_SOBREDOSIS { get; set; }
         public virtual DbSet<CA_USUARIO> CA_USUARIO { get; set; }
         public virtual DbSet<VW_USUARIOS_ADMINISTRADORES> VW_USUARIOS_ADMINISTRADORES { get; set; }
@@ -75,6 +74,7 @@ namespace CARA_Draftv0._1
         public virtual DbSet<CA_EPISODIO> CA_EPISODIO { get; set; }
         public virtual DbSet<CA_LICENCIA> CA_LICENCIA { get; set; }
         public virtual DbSet<VW_USUARIOS_CENTROS_LICENCIAS> VW_USUARIOS_CENTROS_LICENCIAS { get; set; }
+        public virtual DbSet<VW_DSH_CARA_PERFILES> VW_DSH_CARA_PERFILES { get; set; }
     
         public virtual int SPC_EPISODIO(Nullable<int> fK_Paciente, Nullable<int> fK_Centro, Nullable<System.DateTime> fE_Episodio, Nullable<System.DateTime> fE_Alta, Nullable<int> fK_EstadoServicio, Nullable<int> fK_FuenteReferido, Nullable<int> fK_EpisodiosPrevios, Nullable<int> fK_NivelSustancia, Nullable<int> nR_DiasEspera, ObjectParameter pK_Episodio)
         {

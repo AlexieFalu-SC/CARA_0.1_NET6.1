@@ -33,7 +33,6 @@
         <EntityTypeShape EntityType="Model.CA_LKP_VIA_SUSTANCIA" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.CA_USUARIO_CENTRO" Width="1.5" PointX="3" PointY="16.375" />
         <AssociationConnector Association="Model.FK_USUARIO_CENTRO_CENTRO" />
-        <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="9.375" PointY="14.375" />
         <EntityTypeShape EntityType="Model.VW_DSH_CARA_DROGAS_SOBREDOSIS" Width="1.5" PointX="5.375" PointY="17.75" />
         <EntityTypeShape EntityType="Model.CA_USUARIO" Width="1.5" PointX="7.375" PointY="19.125" />
         <AssociationConnector Association="Model.FK_USUARIO_CENTRO_USUARIO" />
@@ -104,6 +103,7 @@
         <AssociationConnector Association="Model.FK_EPISODIO_NIVEL_SUSTANCIA" />
         <AssociationConnector Association="Model.FK_EPISODIO_PACIENTE" />
         <AssociationConnector Association="Model.FK_PERFIL_EPISODIO" />
+        <EntityTypeShape EntityType="Model.VW_DSH_CARA_PERFILES" Width="1.5" PointX="22.375" PointY="21.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
