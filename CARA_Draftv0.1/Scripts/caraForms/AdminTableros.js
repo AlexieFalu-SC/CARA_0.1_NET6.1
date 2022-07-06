@@ -5,7 +5,7 @@ $(function () {
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_lbxNivelSustancia').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_lbxNivelSustancia').multiselect('updateButtonText');
@@ -14,10 +14,19 @@ $(function () {
         includeSelectAllOption: true,
         enableCaseInsensitiveFiltering: true,
         buttonClass: 'form-control',
-        buttonWidth: '190px'
+        buttonWidth: '170px'
     });
     $('#ContentPlaceHolder1_lbxCentro').multiselect('selectAll', false);
     $('#ContentPlaceHolder1_lbxCentro').multiselect('updateButtonText');
+
+    $('#ContentPlaceHolder1_lbxCategoria').multiselect({
+        includeSelectAllOption: true,
+        enableCaseInsensitiveFiltering: true,
+        buttonClass: 'form-control',
+        buttonWidth: '170px'
+    });
+    $('#ContentPlaceHolder1_lbxCategoria').multiselect('selectAll', false);
+    $('#ContentPlaceHolder1_lbxCategoria').multiselect('updateButtonText');
 
     $('#ContentPlaceHolder1_lbxGenero').multiselect({
         includeSelectAllOption: true,

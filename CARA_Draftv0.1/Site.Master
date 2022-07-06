@@ -116,7 +116,7 @@
                         <div id="buscar" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <%--<h6 class="collapse-header">Login Screens:</h6>--%>
-                                <a class="collapse-item" runat="server" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=leer")%>">Buscar Expedientes</a>
+                                <a class="collapse-item" href="<%=ResolveClientUrl("~/App/Perfiles/frmcentro.aspx?centro=leer")%>">Buscar Expedientes</a>
                                 <%--<div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other Pages:</h6>
                             <a class="collapse-item" href="404.html">404 Page</a>
@@ -146,7 +146,7 @@
                         <div id="manejoUsuarios" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <%--<h6 class="collapse-header">Login Screens:</h6>--%>
-                                <a class="collapse-item" runat="server" href="<%=ResolveClientUrl("~/App/Administracion/adminAdministrador")%>">Manejo de Usuario</a>
+                                <a class="collapse-item"  href="<%=ResolveClientUrl("~/App/Administracion/adminAdministrador")%>">Manejo de Usuario</a>
                                 <%--<div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other Pages:</h6>
                             <a class="collapse-item" href="404.html">404 Page</a>
@@ -164,7 +164,7 @@
                         <div id="facilidades" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <%--<h6 class="collapse-header">Login Screens:</h6>--%>
-                                <a class="collapse-item" runat="server" href="<%=ResolveClientUrl("~/App/Administracion/adminRegistrado")%>">Mis Facilidades</a>
+                                <a class="collapse-item"  href="<%=ResolveClientUrl("~/App/Administracion/adminRegistrado")%>">Mis Facilidades</a>
                                 <%--<div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other Pages:</h6>
                             <a class="collapse-item" href="404.html">404 Page</a>
@@ -196,7 +196,7 @@
                         <div id="grpAnalitica" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                             <div class="bg-white py-2 collapse-inner rounded">
                                 <%--<h6 class="collapse-header">Login Screens:</h6>--%>
-                                <a class="collapse-item" runat="server" href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Tablero Analitico</a>
+                                <a class="collapse-item"  href="<%=ResolveClientUrl("~/App/AnaliticaRegistradores")%>">Tablero Analitico</a>
                                 <%--<div class="collapse-divider"></div>
                             <h6 class="collapse-header">Other Pages:</h6>
                             <a class="collapse-item" href="404.html">404 Page</a>

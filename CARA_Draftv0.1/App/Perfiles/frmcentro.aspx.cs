@@ -11,7 +11,7 @@ using System.Web.UI.WebControls;
 namespace CARA_Draftv0._1.App.Perfiles
 {
     public partial class frmCentro : System.Web.UI.Page
-    {
+    { 
         ApplicationUser Usuario = new ApplicationUser();
         protected string Centro;
         protected void Page_Load(object sender, EventArgs e)

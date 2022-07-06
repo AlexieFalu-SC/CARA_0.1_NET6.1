@@ -89,8 +89,8 @@ namespace CARA_Draftv0._1.App.Administracion
             this.AP_Segundo.Text = user.AP_Segundo;
             this.ddlRol.SelectedValue = rol;
 
-            
 
+            profileImg.ImageUrl = "~/Content/images/profile_images/" + user.ProfileImgPath;
 
         }
 
@@ -140,6 +140,47 @@ namespace CARA_Draftv0._1.App.Administracion
             {
 
             }
+        }
+
+        protected void actualizarAvatar_Click(object sender, ImageClickEventArgs e)
+        {
+            var imageButton = sender as ImageButton;
+
+            string newAvatar = imageButton.CommandArgument.ToString();
+
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            Usuario = (ApplicationUser)Session["Usuario"];
+
+            string mensaje = string.Empty;
+
+            //var user = new ApplicationUser();
+
+            var user = userManager.FindById(pk_usuario);
+
+            user.ProfileImgPath = newAvatar;
+
+            var newuser = userManager.Update(user);
+
+            if (newuser.Succeeded)
+            {
+                mensaje = "Se actualizó su avatar correctamente.";
+
+                context.SaveChanges();
+
+                SetUserInformation(pk_usuario);
+
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Avatar Actualizada", "sweetAlert('Avatar Actualizada','" + mensaje + "','success')", true);
+            }
+
+            else
+            {
+
+            }
+
+
         }
 
         protected void ChangePassword_Click(object sender, EventArgs e)

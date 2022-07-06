@@ -59,6 +59,11 @@ namespace CARA_Draftv0._1.App.WebMethods
         public int pk_municipios;
     }
 
+    public class dashCaraCategorias
+    {
+        public string nb_categoria;
+    }
+
     /// <summary>
     /// Summary description for wsRegistradoTablero
     /// </summary>

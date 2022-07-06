@@ -18,7 +18,7 @@
                                                 <div class="card-body">
                                                     <div class="form-group">
                                                         <label class="control-label">Centro:</label>
-                                                        <asp:DropDownList runat="server" ID="ddlCentro" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
+                                                        <asp:DropDownList runat="server" ID="ddlCentro" OnSelectedIndexChanged="CambioDePrograma" CssClass="form-control" AutoPostBack="true"></asp:DropDownList>
                                                     </div>
                                                         
                                                 </div>

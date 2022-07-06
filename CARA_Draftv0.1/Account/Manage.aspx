@@ -48,9 +48,9 @@
                                     <asp:Image ID="profileImg" ImageUrl="~" runat="server" CssClass="img-account-profile rounded-circle mb-2" />
                                     <div class="small font-italic text-muted mb-4"><span><asp:Label ID="lblNombre" Text="" runat="server" /></span></div>
                                     <a class="btn btn-sm btn-light text-primary" href="#" data-toggle="modal" data-target="#exampleModalToggle">
-                        <i class="fas fa-fw fa-file-export"></i>
-                        Atar Nueva Licencia
-                    </a>
+                                        <i class="fas fa-fw fa-file-export"></i>
+                                        Seleccionar Avatar
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -202,6 +202,7 @@
                 </div>
             </div>
 
+        <!-- Actualizar Avatar Modal-->
         <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
